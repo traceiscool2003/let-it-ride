@@ -9,12 +9,36 @@ var broken := false
 var vault_state := "closed"
 
 const Art := preload("res://scripts/art.gd")
+const SpriteChar := preload("res://scripts/sprite_char.gd")
 const ANIMATED := ["velma", "dumpster_dan", "slick_nick", "lorraine", "dunn", "secretdoor", "tailor", "fizz", "gunny", "shady", "safe", "poker", "holdem", "baccarat", "hilo", "blackjack", "case", "roulette", "bar", "lucky", "vera", "mags", "phone", "cat", "vault", "bets", "james", "daily", "board", "fence"]
+
+
+## CraftPix sheets for the standing NPCs: [sheet, hue_shift, sat, val, flip].
+const NPC_SHEETS := {
+	"velma": ["gangsters_1", 0.88, 1.1, 0.95, false],
+	"dumpster_dan": ["city_men_2", 0.3, 0.4, 0.7, true],
+	"slick_nick": ["city_men_3", 0.62, 1.0, 1.0, false],
+	"lorraine": ["city_men_3", 0.8, 1.2, 0.95, true],
+	"dunn": ["gangsters_3", 0.62, 0.7, 0.55, false],
+}
+var spr: AnimatedSprite2D
 
 
 func _ready() -> void:
 	z_index = -4
 	t = randf() * 10.0
+	if NPC_SHEETS.has(kind):
+		var d: Array = NPC_SHEETS[kind]
+		spr = AnimatedSprite2D.new()
+		spr.centered = true
+		spr.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+		spr.sprite_frames = SpriteChar.frames(String(d[0]))
+		spr.material = SpriteChar.material_hue(float(d[1]), float(d[2]), float(d[3]))
+		spr.flip_h = bool(d[4])
+		spr.scale = Vector2(0.4, 0.4)
+		spr.position = Vector2(0, -63.0 * 0.4)
+		add_child(spr)
+		spr.play("idle2" if spr.sprite_frames.has_animation("idle2") and randf() < 0.5 else "idle")
 
 
 func breakable() -> bool:
@@ -279,6 +303,9 @@ func _draw_npc() -> void:
 		"dunn": ["OFFICER DUNN", Color(0.1, 0.12, 0.25), Color(0.8, 0.8, 0.85)]}[kind]
 	var col: Color = cfg[1]
 	var skin: Color = cfg[2]
+	if spr != null:
+		_txt_small(String(cfg[0]), -38, skin, 70)
+		return
 	var bob := sin(t * 2.2) * 0.8
 	draw_circle(Vector2(0, -5), 7.0, Color(0, 0, 0, 0.0))
 	draw_rect(Rect2(-4, -12, 3, 12), col.darkened(0.3))
