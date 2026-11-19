@@ -445,3 +445,49 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
 - MARLOW: "Good news, Jules is alive. Bad news, he's in Reno."
 
 - **2026-11-19 (run 3, scheduled):** Finished item 51 (comedy + story pass). Everything in Parts 1-4 is now [x]. NOTE: gen_voice_kit.gd overwrites HOW_TO_RECORD.md, VOICE_SCRIPT.md and voice READMEs and drops the local grunt/studio sections; merge line changes only if you rerun it. Next: playtest, record voices.
+
+- [ ] **52. Second comedy pass: lines must MAKE SENSE, darker, humor-forward, High on Life energy.**
+  - The user's feedback on the item 51 lines: "make sure the lines make sense, not just random bs. Darker, more humor-forward, like High on Life."
+  - KEEP every line id. Rewrite text and "how to say it" notes only. Then regenerate the kits (`gen_voice_kit.gd`, `gen_all_lines.gd`) and run `voice_test` and `studio_test`.
+  - **What went wrong in pass 51** (real examples to fix):
+    - Non-sequiturs that don't parse:
+      - "Behave. Or whatever the opposite of this is. Behave anyway."
+      - "Come back when you're rich! Or me. I'll be rich! Or dead!"
+      - "Everybody here lost their voice. It's a cult. It's called Karaoke."
+      - "It's the same water. It's also the same tap."
+    - An overused choppy rhythm, "Thing. Other thing. Third thing.", on almost every line. It reads like random fragments, not a person talking.
+    - Jokes that don't connect to the moment the line plays in, the character speaking, or the story.
+  - **What GOOD looks like:** High on Life ENERGY. Do not copy its lines, characters or names.
+    - Characters TALK TO Rico like real, unhinged people, in natural run-on sentences. They riff, interrupt themselves, over-explain, get weirdly specific, and escalate one idea to an absurd, dark conclusion.
+    - Self-aware, occasionally fourth-wall jokes (about respawning, loading screens, being a video game, the player's choices).
+    - Every character has ONE comic obsession they keep coming back to (callbacks):
+      - Mags: loves Rico's debt like a pet, and is threatening in a sweet voice.
+      - Doc Fizz: legally mandated side-effect disclaimers that get worse.
+      - Marlow: tired babysitter who has given up, and guilty about Jules.
+      - Lucky: runs a betting pool on Rico's deaths.
+      - Gunny: deeply, inappropriately in love with his guns.
+      - Silas: a fashion snob who judges your ugly-buff clothes.
+      - The House: a smug corporate villain who speaks in HR and loyalty-program language.
+      - Each boss: trash talk built on ITS card game's actual rules.
+      - Crowd NPCs: overheard, specific casino-floor misery.
+    - Darker topics are fine, as punchlines aimed at Rico, the House or the situation: debt, addiction, dying over and over, bad decisions, the House owning your soul, scammy loyalty programs, sad tourists.
+    - Never: slurs, hate toward real groups, sexual content involving minors, or mocking real tragedies.
+  - **The rules, per line:**
+    1. **It makes sense:** a stranger reading the line, with its "where it plays" note, gets the joke right away.
+    2. **It fits the moment:**
+       - a greet line greets you
+       - a "broke" line is about being broke
+       - a boss phase line is about that phase
+       - a story line states its story beat clearly
+    3. **One clear joke per line, with the punchline LAST.** Lines can be longer and conversational (1-3 sentences, up to ~35 words). Barks and crowd lines stay short.
+    4. **Sounds like a person,** not word salad. Read it out loud. If it's awkward to say, rewrite it.
+    5. **Story lines stay crystal clear:** a funny delivery is fine, but the plot fact (where Jules is, what just happened) must be stated plainly.
+  - **Review step (required):**
+    - After rewriting, go through EVERY line in `voice/ALL_LINES.md` and score it against rules 1-5.
+    - Rewrite anything that fails.
+    - Write `COMEDY_REVIEW.md`: the 20 lines you're most proud of, plus any you couldn't fix.
+  - **Tone examples** (write in this direction, don't reuse them verbatim):
+    - MAGS (greet): "Rico! My favorite investment. You look terrible, which is great news for my interest rate."
+    - DOC FIZZ (buy): "Excellent choice. By law I have to tell you this may cause luck, liver failure or a brief conversation with God. He's a big fan of yours, actually. Bit of a gambler."
+    - LUCKY (died): "Welcome back! I had you dying on the stairs, so honestly, thank you. Drinks are on the guy who bet 'spikes.'"
+    - THE HOUSE (PA): "Attention, guests: Rico has died for the forty-third time. As a valued member, he has earned one complimentary... nothing. Thank you for your loyalty."
