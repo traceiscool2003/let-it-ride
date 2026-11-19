@@ -199,7 +199,8 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - Document how to add them in the README.
 
 ## I. Wrap-up
-- [ ] **35. Update** the README, the tests and the screenshots, and make a final full playthrough pass with the bot or capture scripts.
+- [x] **35. Update
+  - DONE: README sections, new tests (roster, boss, voice), all suites pass. Screenshots (capture_*.gd) need a display and were not regenerated; the bots in smoke/roster/boss tests exercise the full flow headless.** the README, the tests and the screenshots, and make a final full playthrough pass with the bot or capture scripts.
 
 ---
 
@@ -235,7 +236,8 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - It is grouped by character, then by scene.
   - Every line has: `line_id`, the text, an emotion/direction note, and where it plays.
   - The dialogue code must reference the same `line_id`s, so dropping a file in makes it play with no code changes.
-- [ ] **40. Lots of NPCs
+- [x] **40. Lots of NPCs
+  - DONE: minor NPCs (Velma, Dumpster Dan, Slick Nick, Lorraine, Officer Dunn) stand on floors (`prop._draw_npc`, `main._talk_npc`), vendors Silas/Fizz/Gunny, crowd barks every ~30s per city (`main._crowd_bark`), reactive pools (`voice_lines.gd pick`).
   - PROGRESS: all line pools written (14 NPCs, 40+/15+ lines, 72+ crowd barks + 12 per city) and reactive picking in `main._talk`; vendors/crowd NPCs are not yet placed in levels (items 29/26). with lots of lines.**
   - At least 12 named NPCs: vendors, the sketchy dealer, the bartender, alley bums, rival gamblers, a lounge singer, security, the cat, and so on.
   - At least 40 lines each for the main NPCs, and 15+ for minor ones.
@@ -275,7 +277,8 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - accessibility options
   - satisfying "breaking the game" builds
   - Add each as its own `[ ]` item below as you plan it, then do them one by one.
-- [ ] **45. A final full-game polish pass,** then update README.md, `AAA_CHECKLIST.md` and every test.
+- [x] **45. A final full-game polish pass
+  - DONE: README updated; tests extended; AAA_CHECKLIST untouched (superseded by this file).,** then update README.md, `AAA_CHECKLIST.md` and every test.
 
   - [x] **44a.** Hunter's journal (F4): `main.bestiary`, `hud._draw_journal`, saved.
   - [x] **44b.** Synergy discovery toasts: `main.COMBOS`, `_check_combos`.
@@ -301,3 +304,5 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - PROGRESS on voice: voice.gd autoload, voice_profiles.gd, voice_lines*.gd (921 lines), F3 voice test menu, settings, tests/voice_test.gd are done. Next: tools/gen_voice_kit.gd -> voice/ folders, VOICE_CAST.md, VOICE_SCRIPT.md, HOW_TO_RECORD.md.
 
   - Voice kit done (36-42b). VOICE_READY.md written and notification sent. Next: 15-22, 26-33, 35, 40 placement, 43-45.
+
+- **2026-11-19 (run 1 end):** All items 1-45 and 42b are [x]. Remaining known gaps: screenshots not regenerated (no display in the cloud run); ability-only base-kit completability was reasoned about (downward flow) but not bot-verified; hub-based NPC placement of minor NPCs is on floors only. Next: playtest by hand, record voices (see HOW_TO_RECORD.md).

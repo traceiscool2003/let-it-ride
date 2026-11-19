@@ -68,6 +68,15 @@ func _process(_d: float) -> bool:
 			for i in 5:
 				main._offer_charm("chalk")
 			check(main.charms.count("chalk") >= 2, "charms stack")
+		25:
+			for c in ["velma", "dumpster_dan", "slick_nick", "lorraine", "dunn", "comp"]:
+				main._talk_npc(c)
+			main.crowd_cd = 0.0
+			main._crowd_bark(0.1)
+			main.dialog.clear()
+			main.state = "play"
+			paused = false
+			check(main.bark_text != "", "crowd bark: " + main.bark_text.left(40))
 		30:
 			main.floor_num = 3
 			main._enter_secret()

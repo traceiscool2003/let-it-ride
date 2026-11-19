@@ -9,7 +9,7 @@ var broken := false
 var vault_state := "closed"
 
 const Art := preload("res://scripts/art.gd")
-const ANIMATED := ["secretdoor", "tailor", "fizz", "gunny", "shady", "safe", "poker", "holdem", "baccarat", "hilo", "blackjack", "case", "roulette", "bar", "lucky", "vera", "mags", "phone", "cat", "vault", "bets", "jules", "daily", "board", "fence"]
+const ANIMATED := ["velma", "dumpster_dan", "slick_nick", "lorraine", "dunn", "secretdoor", "tailor", "fizz", "gunny", "shady", "safe", "poker", "holdem", "baccarat", "hilo", "blackjack", "case", "roulette", "bar", "lucky", "vera", "mags", "phone", "cat", "vault", "bets", "jules", "daily", "board", "fence"]
 
 
 func _ready() -> void:
@@ -52,6 +52,8 @@ func _draw() -> void:
 			_txt_small("LUCKY'S BAR", -46, Color(0.55, 1, 0.6), 60)
 		"tailor", "fizz", "gunny", "shady":
 			_draw_stall()
+		"velma", "dumpster_dan", "slick_nick", "lorraine", "dunn":
+			_draw_npc()
 		"secretdoor":
 			draw_rect(Rect2(-9, -26, 18, 26), Color(0.04, 0.02, 0.06))
 			draw_rect(Rect2(-7, -24, 14, 24), Color(0.12, 0.05, 0.16))
@@ -268,6 +270,27 @@ func _draw_stall() -> void:
 		"shady":
 			draw_rect(Rect2(-6, -22 + bob, 12, 3), Color(0.1, 0.1, 0.12))
 	_txt_small(String(cfg[0]), -38, acc, 70)
+
+
+## Standing NPCs: lounge singer, alley bum, rival gamblers, security.
+func _draw_npc() -> void:
+	var cfg: Array = {"velma": ["VELMA", Color(0.55, 0.15, 0.4), Color(0.9, 0.8, 0.6)], "dumpster_dan": ["DAN", Color(0.4, 0.35, 0.25), Color(0.7, 0.6, 0.45)],
+		"slick_nick": ["NICK", Color(0.2, 0.2, 0.35), Color(0.9, 0.75, 0.5)], "lorraine": ["LORRAINE", Color(0.75, 0.3, 0.3), Color(0.95, 0.85, 0.5)],
+		"dunn": ["OFFICER DUNN", Color(0.1, 0.12, 0.25), Color(0.8, 0.8, 0.85)]}[kind]
+	var col: Color = cfg[1]
+	var skin: Color = cfg[2]
+	var bob := sin(t * 2.2) * 0.8
+	draw_circle(Vector2(0, -5), 7.0, Color(0, 0, 0, 0.0))
+	draw_rect(Rect2(-4, -12, 3, 12), col.darkened(0.3))
+	draw_rect(Rect2(1, -12, 3, 12), col.darkened(0.3))
+	draw_rect(Rect2(-5, -22 + bob, 10, 11), col)
+	draw_circle(Vector2(0, -26 + bob), 4.0, skin)
+	if kind == "dunn":
+		draw_rect(Rect2(-5, -31 + bob, 10, 3), Color(0.1, 0.1, 0.2))
+	elif kind == "velma":
+		draw_circle(Vector2(0, -24 + bob), 5.0, Color(0.9, 0.7, 0.3, 0.0))
+		draw_rect(Rect2(-5, -30 + bob, 10, 3), Color(0.2, 0.1, 0.1))
+	_txt_small(String(cfg[0]), -38, skin, 70)
 
 
 func _draw_vera() -> void:

@@ -105,3 +105,11 @@ Every line of dialogue can be voiced. Drop `res://voice/<character>/<line_id>.og
 - Press **F3** in game for the Voice Test menu. Settings > Audio has Voice Volume and Voice Filters.
 - After editing `scripts/voice_lines*.gd` or `voice_profiles.gd`, regenerate the docs and folders with:
   `godot --headless --path . --script res://tools/gen_voice_kit.gd`
+
+## The redesign (2026-11)
+
+- 5 cities x 5 floors (4 explore + 1 table-game boss); final boss THE HOUSE (Hold'em). `scripts/cities.gd`, `scripts/boss_defs.gd`.
+- Abilities and buffs are clothing (`scripts/wardrobe.gd`); 8 ranged weapons (`weapons.gd`); 13 enemy kinds (`enemy_types.gd`).
+- Controls: G fire, TAB weapon, E focus-heal, M map, F3 voice test, F4 journal.
+- Tests: `godot --headless --path . --script res://tests/<parse|smoke|systems|casino_test|roster_test|boss_test|voice_test>.gd`
+- See `REDESIGN_CHECKLIST.md` for the full status.

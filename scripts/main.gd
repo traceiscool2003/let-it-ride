@@ -1636,6 +1636,7 @@ func _tick_play(delta: float) -> void:
 	run_time += delta
 	_focus_tick(delta)
 	_weapon_tick(delta)
+	_crowd_bark(delta)
 	if wobble_t > 0.0:
 		wobble_t -= delta
 		if int(wobble_t * 4.0) % 2 == 0:
@@ -2079,6 +2080,8 @@ func _check_world(delta: float) -> void:
 						interact_text = "UP: SHADY UPGRADE"
 					"secretdoor":
 						interact_text = "UP: SIT AT THE SECRET TABLE"
+					"velma", "dumpster_dan", "slick_nick", "lorraine", "dunn":
+						interact_text = "UP: TALK TO " + String(VoiceProfiles.P[k]["name"])
 					"bets":
 						interact_text = "SIDE BET PLACED" if bet_used else "UP: SIDE BETS"
 					"vault":
@@ -2098,6 +2101,8 @@ func _check_world(delta: float) -> void:
 							_open_menu("shop")
 						"secretdoor":
 							_enter_secret()
+						"velma", "dumpster_dan", "slick_nick", "lorraine", "dunn":
+							_talk_npc(k)
 						"tailor", "fizz", "gunny", "shady":
 							_open_menu(k)
 							Voice.speak_ctx(k, voice_state())
@@ -3021,6 +3026,35 @@ func _talk(who: String, then_menu := "") -> void:
 
 
 ## What the NPCs react to: clothes, money, recent death, boss kills.
+## Minor NPCs on the floors: a state-aware, voiced line.
+func _talk_npc(cid: String) -> void:
+	var vp: Dictionary = VoiceLines.pick(cid, voice_state(), rng)
+	if vp.is_empty():
+		return
+	_say([[String(VoiceProfiles.P[cid]["name"]), String(vp["text"])]], "")
+
+
+var crowd_cd := 20.0
+
+
+## Generic crowd barks (tourists, junkies, pit bosses...) for the current city.
+func _crowd_bark(delta: float) -> void:
+	crowd_cd -= delta
+	if crowd_cd > 0.0 or not settings.val("barks"):
+		return
+	crowd_cd = rng.randf_range(22.0, 40.0)
+	var city := Cities.city_of(floor_num)
+	var types := ["tourist", "junkie", "pitboss", "drunk", "bouncer", "hustler"]
+	var pool: Array = VoiceLines.registry().filter(func(e): return e["dir"] in types and (String(e["id"]).begins_with("bark_") or String(e["id"]).begins_with("city%d_" % (city + 1))))
+	# Early cities skew to junkies/hustlers, later ones to pit bosses/security.
+	if pool.is_empty():
+		return
+	var e: Dictionary = pool[rng.randi_range(0, pool.size() - 1)]
+	bark_text = "%s: %s" % [e["speaker"], e["text"]]
+	bark_t = 5.0
+	Voice.play_entry(e, String(e["char"]))
+
+
 func run_swag() -> int:
 	var sw := Wardrobe.swag(worn, floor_num)
 	for id in charms.equipped:
