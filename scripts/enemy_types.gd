@@ -23,6 +23,32 @@ const T := {
 }
 
 
+## Sprite sheet per enemy kind (assets/chars): [sheet, hue_shift per city 0..4, sat, val].
+## Kinds without an entry (bats, rats, drones) keep the procedural rig.
+const SHEETS := {
+	0: ["city_men_2", [0.0, 0.08, 0.3, 0.5, 0.7], 1.0, 0.9],
+	2: ["city_men_3", [0.0, 0.1, 0.3, 0.55, 0.75], 1.0, 0.95],
+	3: ["gangsters_2", [0.0, 0.1, 0.3, 0.5, 0.7], 0.9, 0.85],
+	4: ["city_men_2", [0.3, 0.35, 0.4, 0.45, 0.5], 0.5, 0.75],
+	6: ["city_men_1", [0.35, 0.4, 0.55, 0.65, 0.8], 0.8, 0.85],
+	7: ["city_men_3", [0.65, 0.7, 0.75, 0.8, 0.85], 1.0, 0.9],
+	8: ["gangsters_3", [0.0, 0.0, 0.0, 0.1, 0.2], 1.0, 1.0],
+	9: ["gangsters_3", [0.0, 0.0, 0.0, 0.0, 0.0], 0.35, 0.55],
+	10: ["gangsters_1", [0.0, 0.0, 0.0, 0.0, 0.0], 0.6, 0.6],
+	11: ["gangsters_3", [0.0, 0.0, 0.0, 0.12, 0.12], 1.2, 1.1],
+}
+
+
+## Later-city gunmen swap to the tommy-gun sheet.
+static func sheet_for(kind: int, city: int) -> Array:
+	var d: Array = SHEETS.get(kind, [])
+	if d.is_empty():
+		return d
+	if (kind == 8 and city >= 3) or (kind == 9 and city >= 4):
+		return ["gangsters_1", [0.0, 0.0, 0.0, 0.0, 0.0], 0.9, 0.9]
+	return d
+
+
 static func info(kind: int) -> Dictionary:
 	return T.get(kind, {})
 

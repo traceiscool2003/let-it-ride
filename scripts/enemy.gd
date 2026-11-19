@@ -8,9 +8,14 @@ signal fire(kind: String, pos: Vector2, vel: Vector2)
 
 const Sprites := preload("res://scripts/sprites.gd")
 const Rig := preload("res://scripts/rig.gd")
+const SpriteChar := preload("res://scripts/sprite_char.gd")
+const SPR_SCALE := 0.4
 const ET := preload("res://scripts/enemy_types.gd")
 
 var rig
+var spr: AnimatedSprite2D
+var spr_mat: ShaderMaterial
+var atk_n := 0
 var walk_phase := 0.0
 var kind := 0
 var level
@@ -95,6 +100,7 @@ func setup(k: int, lvl, pl, floor_num: int, threat := 1.0, elite_ := false) -> v
 		hp *= 2
 		speed *= 1.15
 	max_hp = hp
+	_make_sprite(floor_num)
 	dir = 1 if randf() < 0.5 else -1
 	t = randf() * 10.0
 	punch_cd = randf_range(0.5, 1.5)
@@ -103,6 +109,69 @@ func setup(k: int, lvl, pl, floor_num: int, threat := 1.0, elite_ := false) -> v
 	var cs := CollisionShape2D.new()
 	cs.shape = rs
 	add_child(cs)
+
+
+## Use a CraftPix sheet (recoloured for the city) instead of the procedural rig.
+func _make_sprite(floor_num: int) -> void:
+	var city := ET.city_of(floor_num)
+	var d: Array = ET.sheet_for(kind, city) if kind != 1 else []
+	if d.is_empty() or beh == "rat" or beh == "drone":
+		return
+	spr = AnimatedSprite2D.new()
+	spr.centered = true
+	spr.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	spr.sprite_frames = SpriteChar.frames(String(d[0]))
+	spr_mat = SpriteChar.material_hue(float((d[1] as Array)[city]), float(d[2]), float(d[3]))
+	spr.material = spr_mat
+	add_child(spr)
+	spr.play("idle")
+
+
+func _update_sprite(delta: float) -> void:
+	var sf := spr.sprite_frames
+	var anim := "idle"
+	if not alive:
+		anim = "dead"
+	elif ai == "stun":
+		anim = "hurt"
+	elif ai == "aim" or (ai == "recover" and beh != "" and sf.has_animation("shot")):
+		anim = "shot" if ai == "aim" else ("recharge" if sf.has_animation("recharge") else "idle")
+	elif ai == "windup" or ai == "punch":
+		var an := "attack_%d" % (1 + atk_n % 3)
+		anim = an if sf.has_animation(an) else "attack"
+	elif absf(velocity.x) > 55.0 and sf.has_animation("run"):
+		anim = "run"
+	elif absf(velocity.x) > 8.0:
+		anim = "walk"
+	if not sf.has_animation(anim):
+		anim = "idle"
+	if spr.animation != anim:
+		if anim.begins_with("attack"):
+			pass
+		spr.play(anim)
+		if anim == "shot" or anim == "recharge" or anim.begins_with("attack"):
+			# Stretch the animation over the telegraph window.
+			spr.speed_scale = 1.0
+	elif not spr.is_playing() and sf.get_animation_loop(anim):
+		spr.play(anim)
+	if ai == "punch" and anim.begins_with("attack") and not _punched:
+		_punched = true
+		atk_n += 1
+	if ai != "punch":
+		_punched = false
+	spr.flip_h = dir < 0
+	var sc := _scale() * SPR_SCALE
+	spr.scale = Vector2(sc, sc)
+	spr.position = Vector2(1.6 * dir * _scale(), size.y * 0.5 - 63.0 * sc)
+	var fl := clampf(flash * 5.0, 0.0, 0.9)
+	spr_mat.set_shader_parameter("flash", fl)
+	var dim := 1.0
+	if not alive:
+		dim = clampf(1.0 - dead_t * 0.8, 0.0, 1.0)
+	spr.modulate = Color(1, 1, 1, dim)
+
+
+var _punched := false
 
 
 func get_rect() -> Rect2:
@@ -366,6 +435,10 @@ func _bat(delta: float) -> void:
 
 
 func _process(delta: float) -> void:
+	if spr != null:
+		_update_sprite(delta)
+		queue_redraw()
+		return
 	if rig == null:
 		return
 	var tp: Dictionary
@@ -456,8 +529,9 @@ func _draw() -> void:
 			var gp := 0.5 + 0.5 * sin(t * 4.0)
 			draw_circle(Vector2(0, 0), size.y * 0.75, Color(1, 0.8, 0.25, 0.08 + 0.06 * gp))
 		var exf := Transform2D(0.0, Vector2(float(dir), 1.0) * _scale(), 0.0, Vector2(0, size.y * 0.5))
-		rig.draw(self, exf)
-		Gear.enemy(self, exf, rig, kind, t, Gear.palette(fl_n)[2])
+		if spr == null:
+			rig.draw(self, exf)
+			Gear.enemy(self, exf, rig, kind, t, Gear.palette(fl_n)[2])
 		if beh != "" and alive:
 			var tc: Color = T.get("col", Color.GRAY)
 			draw_set_transform(Vector2(0, size.y * 0.5) , 0.0, Vector2(float(dir), 1.0))
@@ -476,7 +550,7 @@ func _draw() -> void:
 			draw_rect(Rect2(sr.position + Vector2(1, 3), Vector2(4, 3)), Color(0.6, 0.85, 1.0, 0.7))
 			draw_rect(Rect2(sr.position + Vector2(0, 12), Vector2(6, 1)), Color(0.9, 0.7, 0.2))
 		draw_set_transform(Vector2.ZERO)
-		if flash > 0.0:
+		if flash > 0.0 and spr == null:
 			draw_rect(Rect2(-size * 0.5, size), Color(1, 1, 1, 0.6))
 		if alive and (ai == "windup" or ai == "aim"):
 			var blink := int(t * 20.0) % 2 == 0

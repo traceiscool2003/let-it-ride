@@ -30,6 +30,8 @@ const HORIZON := 360.0
 const ROAD_TOP := 400.0
 
 
+const BgArt := preload("res://scripts/bg_art.gd")
+
 static func draw(ci: CanvasItem, f: Font, city: int, t: float) -> void:
 	city = clampi(city, 0, LOOKS.size() - 1)
 	var L: Dictionary = LOOKS[city]
@@ -80,24 +82,12 @@ static func _skyline(ci: CanvasItem, f: Font, city: int, L: Dictionary, t: float
 	var bld: Color = L["bld"]
 	var win: Color = L["win"]
 	var lit: float = L["lit"]
-	# Two parallax layers that drift slowly, so the city feels far away.
-	for layer in 2:
-		var spd := 6.0 + layer * 10.0
-		var scale := 0.7 + layer * 0.3
-		var col := bld.lightened(0.08 * (1 - layer))
-		var off := fmod(t * spd, 1400.0)
-		var x := -off
-		var i := 0
-		while x < 1300.0:
-			var seed := i * 13 + layer * 101 + city * 7
-			var bw := (34.0 + Scenery.rnd(seed) * 60.0) * scale
-			var bh := lerpf(h[0], h[1], Scenery.rnd(seed + 1)) * scale
-			var bx := x
-			var top := HORIZON - bh
-			ci.draw_rect(Rect2(bx, top, bw - 4, bh + 20), col)
-			_building_detail(ci, city, bx, top, bw - 4, bh, seed, t, win, lit, layer)
-			x += bw
-			i += 1
+	# Painted CraftPix skyline (assets/bg), tinted per city, scrolling past at layered speeds.
+	var art_h := 460.0
+	var rect := Rect2(0, HORIZON + 30.0 - art_h, 1280.0, art_h)
+	var info := BgArt.city_info(city)
+	Scenery.glow(ci, Vector2(640, HORIZON - 30), 520.0, 90.0, info["glow"])
+	BgArt.skyline(ci, rect, city, t * 60.0, 0.0, 0.85, 0.0, [0.0, 0.2, 0.4, 0.7, 1.0, 1.5], 2)
 	# Signature landmarks per city.
 	match city:
 		0:

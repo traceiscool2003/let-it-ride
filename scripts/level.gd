@@ -113,6 +113,8 @@ var is_boss := false
 var is_lobby := false
 var boss_id := ""
 const ZoneFx := preload("res://scripts/zone_fx.gd")
+const Scenery := preload("res://scripts/scenery.gd")
+const BgArt := preload("res://scripts/bg_art.gd")
 ## Optional per-floor spots (Vector2.ZERO = none). Vault Doors and side-bet
 ## kiosks are also added to `games`; main.gd decides whether to use them.
 var vault_spot := Vector2.ZERO
@@ -555,30 +557,36 @@ func _draw_home_bg() -> void:
 	var hh := h * T
 	var ww := w * T
 	var fl := (h - 1) * T
-	# ---- Night sky over the whole width (visible outside).
-	for i in 16:
-		var k := float(i) / 15.0
-		draw_rect(Rect2(split, i * hh / 16.0, ww - split, hh / 16.0 + 1), Color(0.05, 0.04, 0.14).lerp(Color(0.38, 0.14, 0.32), k * k))
-	for i in 40:
-		var sx := split + fposmod(float(i) * 97.3, ww - split)
-		draw_rect(Rect2(sx, fposmod(float(i) * 41.7, hh * 0.45), 1, 1), Color(1, 1, 1, 0.35 + 0.3 * sin(t * 2.0 + i)))
-	draw_circle(Vector2(split + (ww - split) * 0.82, 40), 14.0, Color(0.95, 0.93, 0.8, 0.9))
-	draw_circle(Vector2(split + (ww - split) * 0.82 + 5, 37), 12.0, Color(0.07, 0.05, 0.16, 0.45))
-	# Skyline: two layers of buildings with lit windows, and a far casino glow.
-	for layer in 2:
-		var col := Color(0.09, 0.06, 0.16) if layer == 0 else Color(0.05, 0.03, 0.1)
-		var x := split + 4.0
-		var seed_i := layer * 13
-		while x < ww:
-			var bw := 22.0 + float((seed_i * 37) % 28)
-			var bh := 70.0 + float((seed_i * 53) % 90) - layer * 18.0
-			draw_rect(Rect2(x, fl - bh - (30 if layer == 0 else 0), bw, bh + 30), col)
-			for wy in range(int(fl - bh - (20 if layer == 0 else 0)), int(fl - 18), 10):
-				for wx in range(int(x) + 3, int(x + bw) - 4, 7):
-					if ((wx * 7 + wy * 13 + seed_i) % 5) < 2:
-						draw_rect(Rect2(wx, wy, 3, 4), Color(1.0, 0.82, 0.45, 0.55 if layer == 0 else 0.3))
-			x += bw + 3.0
-			seed_i += 1
+	# ---- The street outside: CraftPix alley art (falls back to the code-drawn night skyline).
+	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	var art_street := BgArt.street(self, Rect2(split, 0, ww - split, hh), 1, Color(0.72, 0.7, 0.88))
+	if art_street:
+		Scenery.vgrad(self, Rect2(split, 0, ww - split, hh), [[0.0, Color(0.02, 0.0, 0.1, 0.25)], [0.6, Color(0, 0, 0, 0.0)], [1.0, Color(0, 0, 0, 0.3)]])
+	else:
+		# ---- Night sky over the whole width (visible outside).
+		for i in 16:
+			var k := float(i) / 15.0
+			draw_rect(Rect2(split, i * hh / 16.0, ww - split, hh / 16.0 + 1), Color(0.05, 0.04, 0.14).lerp(Color(0.38, 0.14, 0.32), k * k))
+		for i in 40:
+			var sx := split + fposmod(float(i) * 97.3, ww - split)
+			draw_rect(Rect2(sx, fposmod(float(i) * 41.7, hh * 0.45), 1, 1), Color(1, 1, 1, 0.35 + 0.3 * sin(t * 2.0 + i)))
+		draw_circle(Vector2(split + (ww - split) * 0.82, 40), 14.0, Color(0.95, 0.93, 0.8, 0.9))
+		draw_circle(Vector2(split + (ww - split) * 0.82 + 5, 37), 12.0, Color(0.07, 0.05, 0.16, 0.45))
+		# Skyline: two layers of buildings with lit windows, and a far casino glow.
+		for layer in 2:
+			var col := Color(0.09, 0.06, 0.16) if layer == 0 else Color(0.05, 0.03, 0.1)
+			var x := split + 4.0
+			var seed_i := layer * 13
+			while x < ww:
+				var bw := 22.0 + float((seed_i * 37) % 28)
+				var bh := 70.0 + float((seed_i * 53) % 90) - layer * 18.0
+				draw_rect(Rect2(x, fl - bh - (30 if layer == 0 else 0), bw, bh + 30), col)
+				for wy in range(int(fl - bh - (20 if layer == 0 else 0)), int(fl - 18), 10):
+					for wx in range(int(x) + 3, int(x + bw) - 4, 7):
+						if ((wx * 7 + wy * 13 + seed_i) % 5) < 2:
+							draw_rect(Rect2(wx, wy, 3, 4), Color(1.0, 0.82, 0.45, 0.55 if layer == 0 else 0.3))
+				x += bw + 3.0
+				seed_i += 1
 	# A glowing casino sign on the horizon: where you're headed.
 	var cx := ww - 60.0
 	draw_rect(Rect2(cx - 28, fl - 150, 56, 120), Color(0.12, 0.05, 0.16))
@@ -591,6 +599,12 @@ func _draw_home_bg() -> void:
 		var x0: float = float(sh[0]) * T
 		var x1: float = float(sh[1]) * T
 		var c: Color = sh[3]
+		if art_street:
+			if sh[2] != "":
+				draw_rect(Rect2(x0 + 2, fl - 80, x1 - x0 - 4, 13), Color(0.05, 0.03, 0.08, 0.8))
+				draw_rect(Rect2(x0 + 2, fl - 80, x1 - x0 - 4, 1), c.lightened(0.3))
+				draw_string(ThemeDB.fallback_font, Vector2(x0, fl - 70), sh[2], HORIZONTAL_ALIGNMENT_CENTER, x1 - x0, 9, Color(1, 0.95, 0.8))
+			continue
 		draw_rect(Rect2(x0, fl - 96, x1 - x0, 80), c.darkened(0.55))
 		draw_rect(Rect2(x0 + 4, fl - 56, x1 - x0 - 8, 40), Color(1.0, 0.8, 0.45, 0.14))
 		for i in int((x1 - x0) / 8.0):

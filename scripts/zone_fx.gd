@@ -8,6 +8,7 @@ extends Node2D
 ## 3 Fremont/Goldun Nugget, 4 Alley, 5 Strip/Bellagiro.
 
 const T := 16
+const BgArt := preload("res://scripts/bg_art.gd")
 const COL_RAT := Color(0.16, 0.14, 0.15)
 
 var lvl
@@ -144,6 +145,7 @@ func _draw_back() -> void:
 	if lvl.is_boss:
 		_boss_backdrop(cam, vr)
 	else:
+		_art_backdrop(cam, vr)
 		# 4 parallax layers, far -> near, each fogged into the wall colour (atmospheric perspective).
 		for li in 4:
 			var f: float = [0.18, 0.34, 0.52, 0.72][li]
@@ -152,6 +154,16 @@ func _draw_back() -> void:
 			_vfade(Rect2(vr.position.x, vr.position.y, vr.size.x, vr.size.y), Color(wall.r, wall.g, wall.b, fogk * 0.34), Color(wall.r, wall.g, wall.b, fogk * 0.1))
 		_wall_decals(vr)
 	_shafts(cam, vr)
+
+
+## The painted CraftPix skyline of this level's city, far behind everything, darkened
+## so platforms and enemies stay readable.
+func _art_backdrop(cam: Vector2, vr: Rect2) -> void:
+	var city: int = [0, 1, 2, 3, 0, 4][clampi(zone, 0, 5)]
+	var rect := Rect2(vr.position.x, vr.position.y, vr.size.x, vr.size.y)
+	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	BgArt.skyline(self, rect, city, cam.x, t, 0.7, 2.0)
+	_vfade(rect, Color(0, 0, 0, 0.1), Color(0, 0, 0, 0.45))
 
 
 func _layer(li: int, f: float, cam: Vector2, vr: Rect2) -> void:

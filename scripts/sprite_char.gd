@@ -69,10 +69,22 @@ static func material(mode: int) -> ShaderMaterial:
 	return m
 
 
+## A sheet recoloured for an enemy: hue-shift the clothes, scale saturation/brightness.
+static func material_hue(hue: float, sat := 1.0, val := 1.0) -> ShaderMaterial:
+	var m := material(0)
+	m.set_shader_parameter("hue_shift", hue)
+	m.set_shader_parameter("sat_mul", sat)
+	m.set_shader_parameter("val_mul", val)
+	return m
+
+
 const SHADER := """
 shader_type canvas_item;
 uniform int mode = 0;
 uniform float flash = 0.0;
+uniform float hue_shift = 0.0;   // 0..1 turn applied to clothes (skin tones are skipped)
+uniform float val_mul = 1.0;
+uniform float sat_mul = 1.0;
 
 vec3 rgb2hsv(vec3 c) {
 	vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
@@ -106,6 +118,16 @@ void fragment() {
 		if (hsv.x > 0.095 && hsv.x < 0.18 && hsv.y > 0.3 && hsv.z > 0.45) {
 			col.rgb = hsv2rgb(vec3(0.07, 0.55, hsv.z * 0.32));
 		}
+	}
+	if (hue_shift != 0.0 || val_mul != 1.0 || sat_mul != 1.0) {
+		vec3 h2 = rgb2hsv(col.rgb);
+		bool skin = h2.x < 0.11 && h2.y < 0.65 && h2.y > 0.12;
+		if (!skin && h2.y > 0.12) {
+			h2.x = fract(h2.x + hue_shift);
+		}
+		h2.y = clamp(h2.y * sat_mul, 0.0, 1.0);
+		h2.z = clamp(h2.z * val_mul, 0.0, 1.0);
+		col.rgb = hsv2rgb(h2);
 	}
 	col.rgb = mix(col.rgb, vec3(1.0), flash);
 	COLOR = col;

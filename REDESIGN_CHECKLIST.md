@@ -560,7 +560,7 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
 
 > **Note (LOCAL session, 2026-11-19):** Rico's brother is now named **JAMES** (renamed from Jules everywhere, including the voice folder `voice/james` and the line ids `james_*`). Use James in all new and rewritten lines.
 
-- [ ] **56. Use the CraftPix background art in the levels and the road trip.** Art is in `assets/bg/` (see `LICENSE_craftpix.txt`).
+- [x] **56. Use the CraftPix background art in the levels and the road trip.** DONE (run 4): new scripts/bg_art.gd (cached textures, per-city skyline/street config); zone_fx.gd draws a darkened per-city parallax skyline behind every level (walls/layers cover most of it, so platforms stay readable); roadtrip.gd uses the skyline art per city; level.gd apartment street hub uses street_1 art (falls back to the old code drawing). Shots: tests/capture_bg.gd, capture_zones/drive/home. Art is in `assets/bg/` (see `LICENSE_craftpix.txt`).
   - **What's there:**
     - `skyline_1..8/1-5.png`: parallax layers, back to front, 576x324. Draw at 3x with nearest filtering.
     - `silhouette_1..8/1-5.png`: grey night silhouettes. Tint them.
