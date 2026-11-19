@@ -9,6 +9,7 @@ enum S { NORMAL, WALL_RUN, LEDGE, CLIMB, SLIDE, DASH, VAULT, DEAD }
 
 const T := 16.0
 const Rig := preload("res://scripts/rig.gd")
+const RicoArt := preload("res://scripts/rico_art.gd")
 const SCARF_N := 8
 const Wardrobe := preload("res://scripts/wardrobe.gd")
 
@@ -1026,8 +1027,10 @@ func _draw() -> void:
 				else:
 					draw_line(p0, p1, sc if i % 3 != 2 else sc.darkened(0.2), w)
 
-	rig.draw(self, xf, a)
-	Wardrobe.draw(self, rig, xf, worn, outfit_floor, a)
+	var lk := RicoArt.look(worn, outfit_floor)
+	RicoArt.dress_rig(rig, lk)
+	rig.draw(self, xf, a, RicoArt.body.bind(lk))
+	Wardrobe.draw(self, rig, xf, worn, outfit_floor, a, true)
 	if not charm_ids.is_empty():
 		Wardrobe.draw_charm_gear(self, rig, xf, charm_ids, a)
 	if hit_flash > 0.0:

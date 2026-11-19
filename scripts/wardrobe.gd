@@ -133,7 +133,12 @@ static func draw_charm_gear(ci: CanvasItem, rig, xf: Transform2D, charm_ids: Arr
 	ci.draw_set_transform_matrix(xf)
 
 
-static func draw(ci: CanvasItem, rig, xf: Transform2D, worn: Array, floor_num: int, alpha: float) -> void:
+## `integrated`: the body art (rico_art.gd) already drew the outfit, legs, shoes,
+## torso item and gloves, so only accessories are layered on top here.
+static func draw(ci: CanvasItem, rig, xf: Transform2D, worn: Array, floor_num: int, alpha: float, integrated := false) -> void:
+	if integrated:
+		_draw_accessories(ci, rig, xf, worn, alpha, true)
+		return
 	var tier: Dictionary = TIERS[tier_for(floor_num)]
 	var hip: Vector2 = rig.pose["hip"]
 	var tor: float = rig.pose["torso"]
@@ -176,6 +181,13 @@ static func draw(ci: CanvasItem, rig, xf: Transform2D, worn: Array, floor_num: i
 			for i in 4:
 				ci.draw_circle(Vector2(-2.0 + i * 1.4, -torso_len + 2.5 + (i % 2) * 2.0), 0.8, Color(it["col2"], alpha))
 		ci.draw_set_transform_matrix(xf)
+	_draw_accessories(ci, rig, xf, worn, alpha, false)
+
+
+static func _draw_accessories(ci: CanvasItem, rig, xf: Transform2D, worn: Array, alpha: float, integrated: bool) -> void:
+	var hip: Vector2 = rig.pose["hip"]
+	var tor: float = rig.pose["torso"]
+	var torso_len: float = rig.s["torso_len"]
 	var bid := item_in_slot(worn, "back")
 	if bid != "":
 		var itb: Dictionary = info(bid)
@@ -195,11 +207,20 @@ static func draw(ci: CanvasItem, rig, xf: Transform2D, worn: Array, floor_num: i
 			ci.draw_colored_polygon(PackedVector2Array([Vector2(0, 0.6), Vector2(-2.4, -0.6), Vector2(-2.4, 1.8)]), Color(itn["col2"], alpha))
 			ci.draw_colored_polygon(PackedVector2Array([Vector2(0, 0.6), Vector2(2.4, -0.6), Vector2(2.4, 1.8)]), Color(itn["col2"], alpha))
 		else:
-			ci.draw_rect(Rect2(-2.8, 0.0, 5.6, 1.6), Color(itn["col"], alpha))
 			if nid == "gold_chain":
-				ci.draw_circle(Vector2(0.5, 2.4), 1.0, Color(itn["col2"], alpha))
+				# A hanging rope chain of little gold links, with a medallion.
+				for k in 7:
+					var ang := PI * (0.15 + 0.7 * float(k) / 6.0)
+					var lp := Vector2(0.4, 0.2) + Vector2(cos(ang) * 2.6, sin(ang) * 2.4)
+					ci.draw_circle(lp, 0.45, Color(itn["col2"], alpha))
+					ci.draw_circle(lp + Vector2(-0.1, -0.1), 0.25, Color(itn["col"], alpha))
+				ci.draw_circle(Vector2(0.4, 2.9), 0.95, Color(0.05, 0.03, 0.07, alpha))
+				ci.draw_circle(Vector2(0.4, 2.9), 0.75, Color(itn["col"], alpha))
+				ci.draw_circle(Vector2(0.2, 2.7), 0.25, Color(1, 1, 0.9, alpha))
+			else:
+				ci.draw_rect(Rect2(-2.8, 0.0, 5.6, 1.6), Color(itn["col"], alpha))
 		ci.draw_set_transform_matrix(xf)
-	var hid := item_in_slot(worn, "hands")
+	var hid := "" if integrated else item_in_slot(worn, "hands")
 	if hid != "":
 		var ith: Dictionary = info(hid)
 		for h in [rig.pose["hand_f"], rig.pose["hand_b"]]:
@@ -207,7 +228,7 @@ static func draw(ci: CanvasItem, rig, xf: Transform2D, worn: Array, floor_num: i
 	var hdid := item_in_slot(worn, "head")
 	if hdid != "":
 		var ith2: Dictionary = info(hdid)
-		var top: Vector2 = rig.head_point(Vector2(0, -3.5))
+		var top: Vector2 = rig.head_point(Vector2(0.8, -6.4) if integrated else Vector2(0, -3.5))
 		ci.draw_set_transform_matrix(xf * Transform2D(float(rig.pose["torso"]) + float(rig.pose["head"]), top))
 		if hdid == "top_hat":
 			ci.draw_rect(Rect2(-3.0, -5.0, 6.0, 5.4), Color(ith2["col"], alpha))
@@ -220,10 +241,20 @@ static func draw(ci: CanvasItem, rig, xf: Transform2D, worn: Array, floor_num: i
 	var fid := item_in_slot(worn, "face")
 	if fid != "":
 		var itf: Dictionary = info(fid)
-		var eye: Vector2 = rig.head_point(Vector2(1.8, -0.2))
+		var eye: Vector2 = rig.head_point(Vector2(2.6, -2.4) if integrated else Vector2(1.8, -0.2))
 		ci.draw_set_transform_matrix(xf * Transform2D(float(rig.pose["torso"]) + float(rig.pose["head"]), eye))
 		if fid == "eyepatch":
-			ci.draw_rect(Rect2(-1.2, -1.2, 2.4, 2.4), Color(itf["col"], alpha))
+			ci.draw_circle(Vector2(0.3, 0.0), 1.15, Color(itf["col"], alpha))
+			ci.draw_line(Vector2(-3.0, -1.6), Vector2(1.2, -0.8), Color(itf["col"], alpha), 0.35)
+		elif integrated:
+			# Sleek aviator shades: a dark tinted lens with a gold rim and a glint.
+			var lens := PackedVector2Array([Vector2(-0.6, -0.9), Vector2(2.6, -1.0), Vector2(2.3, 0.6), Vector2(0.9, 1.0), Vector2(-0.4, 0.4)])
+			ci.draw_colored_polygon(lens, Color(itf["col2"], alpha))
+			var rimpts := lens.duplicate()
+			rimpts.append(lens[0])
+			ci.draw_polyline(rimpts, Color(itf["col"], alpha), 0.45)
+			ci.draw_line(Vector2(-0.6, -0.7), Vector2(-3.0, -1.2), Color(itf["col"], alpha), 0.4)
+			ci.draw_line(Vector2(0.3, -0.5), Vector2(1.1, -0.7), Color(1, 1, 1, 0.8 * alpha), 0.3)
 		else:
 			ci.draw_rect(Rect2(-1.6, -1.0, 4.4, 2.0), Color(itf["col"], alpha))
 			ci.draw_rect(Rect2(-1.2, -0.6, 3.6, 1.2), Color(itf["col2"], alpha))

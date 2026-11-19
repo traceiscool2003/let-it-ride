@@ -514,3 +514,5 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
 > - `scripts/voice_plan.gd` decides which lines go on it, about 486 lines plus 33 grunts.
 > - The F6 studio and `voice/ALL_LINES.md` show only that list. Press A in the studio to see the extras.
 > - When rewriting lines, put the BEST joke in the recorded versions (version 1 and 2 of each moment, the story lines, and boss intro, defeat and phase lines). Don't change `voice_plan.gd`.
+
+> **Note (LOCAL session, 2026-11-19):** the title screen (`scripts/title_screen.gd`, `hud._draw_title`) and Rico's in-game character art (`scripts/rico_art.gd`, `rig._limb_smooth`, `Wardrobe.draw(..., integrated)`) were rebuilt locally. Don't revert them. If you touch them, only polish.
