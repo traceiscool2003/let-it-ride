@@ -339,7 +339,8 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
   - **Portraits:** dialogue portraits for everyone.
   - Use `rig.gd` (the procedural IK rig) and code-drawn art, with smooth shading, outlines, highlights and secondary motion (cloth, hair, coats).
   - Keep the animation quality Hollow Knight-like.
-- [ ] **49. Music overhaul (`scripts/music.gd`):** replace the chiptune/beep feel with rich synthesized music.
+- [x] **49. Music overhaul (`scripts/music.gd`):** replace the chiptune/beep feel with rich synthesized music.
+  - DONE: `scripts/music.gd` rewritten: FM Rhodes, detuned string pads, upright/sub bass, sax/trumpet/guitar/vibes/calliope leads, brass stabs, pre-rendered drum kit (kick, snare, brush, hats, ride, clap, toms, riser), stereo comb reverb + ping-pong echo, vinyl dust. One theme per zone via `Music.zone` (alley noir, lounge, carnival, blues-rock, swing, luxe strip, home chill) with crossfade on change; boss tracks escalate by phase. `tests/music_test.gd` renders all offline (8-18 us/sample).
   - **Synthesis:** layered pads, an electric-piano/Rhodes timbre (FM), upright or electric bass, real-sounding drum kits (kick, snare, hats synthesized with noise and pitch envelopes), and reverb/echo.
   - **Exploration:** one theme per city that matches its mood: grimy lo-fi jazz noir in the alley, through smoky lounge jazz, to big-band and luxe Vegas on the Strip.
   - **Bosses:** an intense track per boss with phase escalation.

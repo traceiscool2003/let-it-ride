@@ -1666,6 +1666,7 @@ func _tick_play(delta: float) -> void:
 				target = 0.6
 				break
 	Music.intensity = target
+	Music.zone = level.zone if level != null and not in_hub else 6
 	Music.boss_mode = target >= 1.0 and boss != null and boss.phase >= 1
 	if Music.boss_mode:
 		Music.boss_music = boss.def.get("music", {})
