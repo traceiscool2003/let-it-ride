@@ -2636,7 +2636,13 @@ func _update_camera(delta: float) -> void:
 	var target: Vector2 = player.global_position + look
 	if boss and is_instance_valid(boss) and boss.alive():
 		target = target.lerp(boss.global_position, 0.3)
-	camera.global_position = camera.global_position.lerp(target, 1.0 - exp(-6.0 * delta))
+	# Smooth framing: horizontal follows quickly, vertical eases slowly (snappier when falling fast)
+	# so small hops don't bob the whole screen.
+	var cp: Vector2 = camera.global_position
+	var ky := 3.2 if v.y < 220.0 else 7.0
+	cp.x = lerpf(cp.x, target.x, 1.0 - exp(-6.5 * delta))
+	cp.y = lerpf(cp.y, target.y, 1.0 - exp(-ky * delta))
+	camera.global_position = cp
 
 
 func shake(amount: float) -> void:

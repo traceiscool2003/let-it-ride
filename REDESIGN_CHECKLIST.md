@@ -317,12 +317,13 @@ The user wants everything to look and sound advanced, like a AAA game: "not chea
 Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT edit `scripts/sfx.gd` or the grunt sections of `HOW_TO_RECORD.md`.
 
 ## M. Environments: every map, Hollow Knight and Silksong quality
-- [ ] **46. Rendering upgrade for levels:**
+- [x] **46. Rendering upgrade for levels:**
+  - DONE: new `scripts/zone_fx.gd` (4 layers per level: back = 4 fogged parallax layers + light shafts + wall decals; ao = ambient occlusion/contact shadows; mid = animated set dressing; front = 2 foreground parallax silhouettes, vignette, zone particles). Tile materials, rim light from lamps/neons, decals and low-frequency variation via `ZoneFx.tile_detail` in `level._draw_tile`. Camera: slower vertical easing in `main._update_camera`. `tests/capture_zones.gd` screenshots every zone (checked by eye).
   - Parallax: at least 4 background layers plus 1-2 foreground layers per zone, with depth fog and atmospheric perspective.
   - Lighting: rim lighting, light shafts, emissive props, animated ambient particles (dust, steam, embers, rain, confetti depending on zone).
   - Tiles: edge highlights, ambient occlusion in corners, varied tiles (no repeating grid look), decals (cracks, stains, posters, graffiti), and props that break up silhouettes.
   - Smooth camera framing.
-- [ ] **47. A distinct, detailed look for each city/zone, matching the trashy-to-luxury climb:**
+- [x] **47. A distinct, detailed look for each city/zone, matching the trashy-to-luxury climb:**
   - **Alley (city 1):** wet brick, dumpsters, fire escapes, flickering neon, steam vents, rain, trash bags, rats, puddle reflections.
   - **Atlantic Shitty, Resortz:** peeling carpet, water-stained ceilings, dim slots, boardwalk windows.
   - **Reno, Cirrcus Cirrcus:** tacky carnival colors, tent stripes, clown art, a tired carousel.
@@ -331,6 +332,7 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
   - **The Strip, Bellagiro:** marble, crystal chandeliers, fountains, gardens, art.
   - **Boss arenas:** each table-game boss gets a themed stage with set dressing.
   - **The apartment hub:** cozy-gross, lived-in detail.
+  - DONE: zones 0-5 each have their own parallax set, dressing, decals and particles (alley rain/steam/rats/puddles/barrel fire; Resortz carpet/palms/leaks/boardwalk windows; Cirrcus tent stripes/bunting/ferris wheel/balloons/popcorn/carousel horse/confetti; Hard Rok wood paneling/amps/guitars/gulf windows/smoke (palette retuned); Goldun Nugget gold arches/shark tank/glitter; Bellagiro marble/chandeliers/fountains/topiary/sparkles). Boss arenas: curtains, spotlight sweep, per-boss emblem (`level.boss_id`), table + chairs, rising embers. Hub makeover was already done.
 - [ ] **48. Every character redesigned to look premium:**
   - **Rico:** silhouette, outfit layers, the clothing tiers per floor, readable at gameplay zoom.
   - **Every enemy type:** distinct silhouettes, color coding by city.
