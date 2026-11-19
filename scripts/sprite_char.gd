@@ -121,7 +121,7 @@ void fragment() {
 	}
 	if (hue_shift != 0.0 || val_mul != 1.0 || sat_mul != 1.0) {
 		vec3 h2 = rgb2hsv(col.rgb);
-		bool skin = h2.x < 0.11 && h2.y < 0.65 && h2.y > 0.12;
+		bool skin = h2.x < 0.12 && h2.y < 0.82 && h2.y > 0.12;
 		if (!skin && h2.y > 0.12) {
 			h2.x = fract(h2.x + hue_shift);
 		}
