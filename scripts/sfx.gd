@@ -51,6 +51,7 @@ func _ready() -> void:
 	streams["buy"] = _seq([784.0, 1047.0, 1568.0], 0.06, "square", 0.18)
 	streams["deny"] = _seq([220.0, 196.0], 0.08, "square", 0.18)
 	streams["blip"] = _tone(700.0, 760.0, 0.02, "square", 0.08)
+	streams["charge"] = _tone(300.0, 900.0, 0.35, "tri", 0.18)
 
 
 func play(sname: String, pitch := 1.0) -> void:

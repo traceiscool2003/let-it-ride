@@ -31,6 +31,7 @@ const DEFAULT_KEYS := {
 	"dash": [KEY_SHIFT, KEY_X],
 	"attack": [KEY_F, KEY_J],
 	"parry": [KEY_Q, KEY_K],
+	"focus": [KEY_E, KEY_L],
 	"confirm": [KEY_ENTER, KEY_KP_ENTER],
 	"restart": [KEY_R], "pause": [KEY_ESCAPE, KEY_P],
 	"choose1": [KEY_1], "choose2": [KEY_2],
@@ -306,6 +307,11 @@ var casino
 ## Slot machines on this floor, keyed by position: each has its own odds.
 var machines := {}
 var charms: Charms
+## Nerve: fills as you land hits; hold FOCUS to turn 33 of it into a life.
+var nerve := 0.0
+const NERVE_MAX := 99.0
+const NERVE_COST := 33.0
+var focus_t := 0.0
 ## Worn clothing ids for this run (see wardrobe.gd). Abilities come from here.
 var worn: Array = []
 var menu: Menus
@@ -585,7 +591,7 @@ func _setup_input() -> void:
 		"left": [JOY_BUTTON_DPAD_LEFT], "right": [JOY_BUTTON_DPAD_RIGHT],
 		"up": [JOY_BUTTON_DPAD_UP], "down": [JOY_BUTTON_DPAD_DOWN],
 		"jump": [JOY_BUTTON_A], "dash": [JOY_BUTTON_B, JOY_BUTTON_RIGHT_SHOULDER],
-		"attack": [JOY_BUTTON_X], "parry": [JOY_BUTTON_LEFT_SHOULDER, JOY_BUTTON_Y],
+		"attack": [JOY_BUTTON_X], "focus": [JOY_BUTTON_RIGHT_STICK], "parry": [JOY_BUTTON_LEFT_SHOULDER, JOY_BUTTON_Y],
 		"pause": [JOY_BUTTON_START], "restart": [JOY_BUTTON_BACK],
 	}
 	var axes := {
@@ -636,6 +642,8 @@ func _start_run(daily := false) -> void:
 	run_dmg_bonus = ch["dmg"]
 	charms.reset_run()
 	worn = Wardrobe.START_OUTFIT.duplicate()
+	nerve = 0.0
+	focus_t = 0.0
 	heat_run = heat()
 	hp = 99
 	_recalc_max_hp()
@@ -1502,6 +1510,7 @@ func _tick_play(delta: float) -> void:
 		if state != "play":
 			return
 	run_time += delta
+	_focus_tick(delta)
 	_check_trophies()
 	_update_flow(delta)
 	_update_camera(delta)
@@ -1528,6 +1537,35 @@ func _tick_play(delta: float) -> void:
 				break
 	Music.intensity = target
 	Music.boss_mode = target >= 1.0 and boss != null and boss.phase == 2
+
+
+func _add_nerve(n: float) -> void:
+	nerve = minf(NERVE_MAX, nerve + n)
+
+
+## Hold FOCUS (E / L) while standing still: 0.9s later, spend Nerve to heal one life.
+func _focus_tick(delta: float) -> void:
+	if player == null or not is_instance_valid(player) or hp >= start_hp:
+		focus_t = 0.0
+		return
+	var ok: bool = Input.is_action_pressed("focus") and nerve >= NERVE_COST and player.is_on_floor() \
+		and absf(player.velocity.x) < 20.0 and player.invuln <= 0.0 and player.atk_t <= 0.0
+	if not ok:
+		focus_t = maxf(0.0, focus_t - delta * 3.0)
+		return
+	if focus_t <= 0.0:
+		Sfx.play("charge")
+	focus_t += delta
+	if int(focus_t * 30.0) % 3 == 0:
+		fx.burst(player.global_position + Vector2(0, -6), 1, Color(0.5, 0.9, 1.0), 40.0, 0.4, 1.5, -60.0)
+	if focus_t >= 0.9:
+		focus_t = 0.0
+		nerve -= NERVE_COST
+		hp = mini(start_hp, hp + 1)
+		hurt_flash = 0.0
+		Sfx.play("buy", 1.3)
+		fx.burst(player.global_position + Vector2(0, -6), 20, Color(0.5, 1.0, 0.9), 120.0, 0.6, 2.5, -40.0)
+		fx.text(player.global_position + Vector2(0, -26), "+1 LIFE", Color(0.6, 1.0, 0.9), 11)
 
 
 func _physics_process(delta: float) -> void:
@@ -1843,7 +1881,17 @@ func _resolve_strike() -> void:
 			if v == 3 or v == 4:
 				level.smash(Vector2i(cx, cy))
 				landed = true
+	if not landed and down:
+		# Pogo off spikes: a down-strike that touches a spike bounces you up.
+		for cx in range(c0.x, c1.x + 1):
+			if level.spike_at(Vector2(cx * 16 + 8, c1.y * 16 + 8)) or level.spike_at(Vector2(cx * 16 + 8, c0.y * 16 + 8)):
+				landed = true
+				fx.burst(Vector2(cx * 16 + 8, c1.y * 16 + 4), 6, Color(1, 0.9, 0.5), 120.0, 0.3, 2.0, 120.0)
+				break
 	if landed:
+		_add_nerve(11.0 if not fin else 16.0)
+		if not down and player.atk_kind == "fwd":
+			player.velocity.x -= player.facing * (70.0 if not fin else 110.0)
 		Sfx.play("hit", 1.0 + player.combo * 0.12)
 		hitstop(0.035 if not fin else 0.06)
 		shake(0.12 if not fin else 0.3)
@@ -1872,6 +1920,7 @@ func _enemy_killed(e) -> void:
 		_spawn_loose(e.global_position, [25, 5, 5])
 		_callout("ELITE DOWN", Color(1, 0.82, 0.3))
 		unlock("elite")
+	_add_nerve(14.0)
 	pot += bonus
 	stats["kills"] = stats.get("kills", 0) + 1
 	fx.text(e.global_position + Vector2(0, -14), "+%d" % bonus, Color(1, 0.85, 0.4), 10)

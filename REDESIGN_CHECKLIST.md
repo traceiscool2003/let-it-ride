@@ -90,7 +90,8 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - Use the existing `rig.gd`.
 
 ## B. Combat
-- [ ] **4. Hollow Knight-style fighting controls:**
+- [x] **4. Hollow Knight-style fighting controls:**
+  - DONE: Nerve meter (`main.nerve`, HUD), hold FOCUS (E/L) to heal, spike pogo, hit recoil, one attack button for side/up/down already existed (`main.gd`, `hud.gd`, `sfx.gd`).
   - one attack button for side, up and down (a pogo off enemies and spikes)
   - knockback and recoil on both sides
   - i-frames, and a hold-to-heal focus that uses a meter filled by hitting enemies ("Nerve")

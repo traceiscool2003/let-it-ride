@@ -262,6 +262,16 @@ func _draw_run_hud() -> void:
 		_diamond(c, s, RED if alive else Color(0.25, 0.12, 0.15))
 		if alive:
 			_diamond(c + Vector2(-3, -3), s * 0.3, Color(1, 0.7, 0.7))
+	# Nerve meter (fills when you land hits; hold FOCUS to heal).
+	var nr := Rect2(1000, 14, 150, 10)
+	draw_rect(nr.grow(2), Color(0, 0, 0, 0.6))
+	draw_rect(nr, Color(0.1, 0.16, 0.22))
+	var nf: float = g.nerve / g.NERVE_MAX
+	draw_rect(Rect2(nr.position, Vector2(nr.size.x * nf, nr.size.y)), Color(0.4, 0.95, 1.0) if g.nerve >= g.NERVE_COST else Color(0.25, 0.5, 0.65))
+	draw_rect(Rect2(nr.position.x + nr.size.x * (g.NERVE_COST / g.NERVE_MAX) - 1, nr.position.y, 2, nr.size.y), Color(1, 1, 1, 0.6))
+	_txt(Vector2(1000, 42), "NERVE", 12, DIM)
+	if g.focus_t > 0.0:
+		draw_rect(Rect2(nr.position + Vector2(0, 12), Vector2(nr.size.x * clampf(g.focus_t / 0.9, 0, 1), 4)), Color(1, 1, 1, 0.9))
 	if g.player and is_instance_valid(g.player):
 		var pl = g.player
 		for i in pl.dash_max:
