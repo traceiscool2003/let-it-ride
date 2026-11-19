@@ -236,3 +236,14 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - satisfying "breaking the game" builds
   - Add each as its own `[ ]` item below as you plan it, then do them one by one.
 - [ ] **45. A final full-game polish pass,** then update README.md, `AAA_CHECKLIST.md` and every test.
+
+## L. Extra voice requirements (added by the user, 2026-11-18)
+- [ ] **42b. A super simple voice-changing guide**, added to `HOW_TO_RECORD.md` and to every `voice/<character>/README.txt`. Write it for a total beginner, step by step and numbered, with short sentences and no jargon.
+  - **Free tools, with exact clicks:**
+    - **Audacity** (free): record, trim, Effect > Pitch and Tempo > Change Pitch, then Effect > EQ / Distortion / Reverb, then export.
+    - Optionally the **free tier of a real-time voice changer**, so the user can hear the voice live while acting. Name a currently free option found by research (for example Voicemod's free tier or Clownfish), and note any limits of the free version.
+  - **One recipe card per character**, with the exact Audacity settings to make the user's single voice sound like that character. For example: `BIG SAL: Change Pitch -4 semitones, Bass Boost +6 dB, slight Distortion 10%`. Each card also has an acting tip, such as "talk from your chest, slow, chewing a cigar".
+  - Mention that the game ALSO applies a light in-engine filter per character (item 38). The user can choose either path: bake the effect in with Audacity, or record clean and let the game do it. Say which is easier: recording clean.
+  - **A "go down the list" recording checklist** per character: a numbered table of every line with its file name, the exact text, how to say it, and a `[ ]` box for the user to tick. Order it character by character, so the user records one character's whole session in one sitting.
+  - **"Test it in game" steps:** drop the file, open Godot, press F5, and go to where the line plays (or use a debug "voice test" menu that plays any line by ID). Build that menu.
+- The VOICE NOTIFICATION should only fire after 42b is also [x].
