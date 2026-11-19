@@ -55,19 +55,28 @@ func _process(delta: float) -> void:
 	queue_redraw()
 
 
+## Real casino colors: $1 white, $5 red, $25 green, $100 black, $500 purple, $1000 orange.
+static func color_of(v: int) -> Color:
+	if v >= 1000:
+		return Color(1.0, 0.6, 0.12)
+	if v >= 500:
+		return Color(0.62, 0.3, 0.9)
+	if v >= 100:
+		return Color(0.1, 0.1, 0.12)
+	if v >= 25:
+		return Color(0.15, 0.7, 0.3)
+	if v >= 5:
+		return Color(0.9, 0.15, 0.2)
+	return Color(0.95, 0.95, 0.97)
+
+
 func color() -> Color:
-	if value >= 100:
-		return Color(0.8, 0.4, 1.0)
-	if value >= 25:
-		return Color(1.0, 0.78, 0.2)
-	if value >= 5:
-		return Color(0.92, 0.2, 0.26)
-	return Color(0.82, 0.86, 0.95)
+	return color_of(value)
 
 
 func _draw() -> void:
 	var y := 0.0 if loose else sin(t * 3.0) * 1.5
-	var r := 3.5 if value == 1 else (4.5 if value == 5 else (5.5 if value == 25 else 6.5))
+	var r := 3.5 if value == 1 else (4.5 if value == 5 else (5.0 if value == 25 else (5.5 if value == 100 else (6.0 if value == 500 else 6.8))))
 	var c := color()
 	if ttl > 0.0 and age > ttl - 1.2 and int(age * 12.0) % 2 == 0:
 		c.a = 0.35
@@ -75,6 +84,10 @@ func _draw() -> void:
 	var spin := absf(cos(t * (9.0 if loose else 2.2)))
 	draw_set_transform(Vector2(0, y), 0.0, Vector2(maxf(0.2, spin), 1.0))
 	draw_circle(Vector2.ZERO, r, c)
-	draw_circle(Vector2.ZERO, r * 0.65, c.darkened(0.35))
-	draw_circle(Vector2.ZERO, r * 0.35, c.lightened(0.2))
+	var inner := Color(1, 1, 1) if c.v < 0.5 or value in [5, 25, 500] else Color(0.15, 0.15, 0.2)
+	for i in 6:
+		var a := i * TAU / 6.0
+		draw_circle(Vector2(cos(a), sin(a)) * r * 0.82, r * 0.14, inner)
+	draw_circle(Vector2.ZERO, r * 0.55, c.darkened(0.25))
+	draw_circle(Vector2.ZERO, r * 0.3, c.lightened(0.15))
 	draw_set_transform(Vector2.ZERO)

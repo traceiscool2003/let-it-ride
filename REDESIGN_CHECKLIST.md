@@ -171,7 +171,8 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
 - [ ] **31. Each city earns you a new casino status**, like real loyalty tiers (Bronze, Silver, Gold, Platinum, Black Card). The status gives perks and shows on the HUD.
 
 ## G. Money
-- [ ] **32. Money is poker chips that physically fall and scatter.** Each value has its real-life color:
+- [x] **32. Money is poker chips
+  - DONE: `chip.gd` real colors incl. $500 purple and $1000 orange, edge-spot art; kills spill loose chips (`main.chips_for`), bosses drop 500/1000 chips. that physically fall and scatter.** Each value has its real-life color:
   - $1 white, $5 red, $25 green, $100 black, $500 purple, $1000 orange/yellow
 
 ## H. Story and voice

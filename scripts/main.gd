@@ -956,6 +956,18 @@ func _add_chip(pos: Vector2, v: int):
 	return c
 
 
+## Break an amount into real chip denominations (largest first, max `cap` chips).
+func chips_for(amount: int, cap := 10) -> Array:
+	var out: Array = []
+	for d in [1000, 500, 100, 25, 5, 1]:
+		while amount >= d and out.size() < cap:
+			out.append(d)
+			amount -= d
+	if amount > 0 and out.size() > 0:
+		out[out.size() - 1] = int(out[out.size() - 1]) + amount if out[out.size() - 1] < 5 else out[out.size() - 1]
+	return out
+
+
 func _spawn_loose(pos: Vector2, values: Array) -> void:
 	for v in values:
 		var c = _add_chip(pos, v)
@@ -2143,7 +2155,7 @@ func _enemy_killed(e) -> void:
 		_callout("ELITE DOWN", Color(1, 0.82, 0.3))
 		unlock("elite")
 	_add_nerve(14.0)
-	pot += bonus
+	_spawn_loose(e.global_position + Vector2(0, -6), chips_for(bonus, 6))
 	stats["kills"] = stats.get("kills", 0) + 1
 	fx.text(e.global_position + Vector2(0, -14), "+%d" % bonus, Color(1, 0.85, 0.4), 10)
 	fx.burst(e.global_position, 12, Color(1, 0.9, 0.6), 120.0, 0.4, 2.0, 200.0)
@@ -2280,7 +2292,7 @@ func _on_boss_defeated() -> void:
 	var vals: Array = []
 	for i in 14 + tier * 4:
 		var r := rng.randf()
-		vals.append(100 if r < 0.08 else (25 if r < 0.4 else 5))
+		vals.append(1000 if r < 0.03 else (500 if r < 0.1 else (100 if r < 0.25 else (25 if r < 0.5 else 5))))
 	_spawn_loose(boss.global_position + Vector2(0, -10), vals)
 	for e in enemies:
 		if is_instance_valid(e) and e.alive:
