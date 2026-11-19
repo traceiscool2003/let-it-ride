@@ -516,3 +516,30 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
 > - When rewriting lines, put the BEST joke in the recorded versions (version 1 and 2 of each moment, the story lines, and boss intro, defeat and phase lines). Don't change `voice_plan.gd`.
 
 > **Note (LOCAL session, 2026-11-19):** the title screen (`scripts/title_screen.gd`, `hud._draw_title`) and Rico's in-game character art (`scripts/rico_art.gd`, `rig._limb_smooth`, `Wardrobe.draw(..., integrated)`) were rebuilt locally. Don't revert them. If you touch them, only polish.
+
+- [ ] **54. A tutorial area that teaches every move, one at a time.** The user asked: "each thing like the movement needs to be explained in some type of tutorial level or tiny area."
+  - **Build "THE BACK ALLEY": a short, hand-built practice course behind Rico's apartment.**
+    - Reachable from the street hub through a gate marked "PRACTICE".
+    - On the very first run, the game routes you through it before floor 1 (skippable with a prompt).
+  - **Stations, each with a big readable sign:**
+    - the move's name
+    - the key or button, using the player's actual binding (reuse `main._coach_tick` / the key-name helpers)
+    - a one-line funny explanation in Rico or Marlow's voice
+  - **The obstacle teaches the move.** Order:
+    1. Walk
+    2. Jump: a crate
+    3. Hold jump for height: a taller ledge
+    4. Dash: a gap too wide to jump
+    5. Attack: a cardboard dummy
+    6. Down-attack pogo: spikes with a balloon to bounce on
+    7. Parry: a dummy that throws slow cards
+    8. Heal with Nerve
+    9. Ranged weapon: shoot a can
+    10. Breakable walls: a cracked wall hiding chips
+    11. The map (M)
+    12. The exit door: Cash Out vs Let It Ride, using fake chips
+  - **Ability stations for the clothing abilities** (double jump, wall cling, ground pound, glide): unlock as Rico first wears each item. A ghostly "try it" outline shows the move; reuse the coach UI.
+  - **Feedback per station:** a checkmark, and a "NICE" pop with a sound once done. A progress tracker shows "6/12 learned".
+  - **Persistence:** it remembers completion in the save. It can be replayed any time from the hub gate or the pause menu ("PRACTICE").
+  - Every new line goes into the voice registry (`voice_lines_misc.gd`) with ids, and must pass `voice_plan.should_record()` (story or tutorial lines are recorded). Then regenerate the kits.
+  - **Tests:** add `tests/tutorial_test.gd`, which walks a bot through the stations and checks each completes. Screenshot it with a capture script.
