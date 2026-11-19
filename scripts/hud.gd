@@ -881,6 +881,37 @@ func _draw_common() -> void:
 		_draw_debug()
 	if g.voice_test_on:
 		_draw_voice_test()
+	if g.journal_on:
+		_draw_journal()
+
+
+## F4 hunter's journal: every enemy and boss you've met, kills per entry.
+func _draw_journal() -> void:
+	draw_rect(Rect2(0, 0, 1280, 720), Color(0.04, 0.03, 0.07, 0.94))
+	_ctxt(62, "THE DEGENERATE'S JOURNAL", 32, GOLD)
+	_ctxt(90, "Everybody you've met on the climb, and how many times you've beaten them. (any key closes)", 15, DIM)
+	var ET = g.EnemyTypes
+	var names: Array = []
+	for k in ET.T:
+		names.append(ET.name_of(k))
+	var bosses: Array = []
+	for d in g.BossDefs.POOL:
+		bosses.append(d["name"])
+	for d in g.BossDefs.SECRET:
+		bosses.append(d["name"])
+	bosses.append(g.BossDefs.FINAL["name"])
+	var y := 140.0
+	_txt(Vector2(80, y), "ENEMIES", 18, CYAN)
+	y += 30.0
+	for i in names.size():
+		var n: String = names[i]
+		var kills := int(g.bestiary.get(n, 0))
+		_txt(Vector2(80 + (i % 2) * 280, y + (i / 2) * 26), "%s  %s" % [n if kills > 0 else "? ? ?", "x%d" % kills if kills > 0 else ""], 16, Color.WHITE if kills > 0 else DIM)
+	_txt(Vector2(660, 140), "BOSSES", 18, RED)
+	for i in bosses.size():
+		var bn: String = bosses[i]
+		var bk := int(g.bestiary.get(bn, 0))
+		_txt(Vector2(660, 170 + i * 26), "%s  %s" % [bn if bk > 0 else "? ? ?", "x%d" % bk if bk > 0 else ""], 16, Color.WHITE if bk > 0 else DIM)
 
 
 ## F3 voice test overlay.

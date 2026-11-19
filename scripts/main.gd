@@ -382,6 +382,10 @@ var dialog_spoken: Array = []
 var dialog_clip := 0.0
 var dialog_clip_wait := 0.0
 var recent_death := false
+## Hunter's journal: kills per enemy / boss name (saved).
+var bestiary := {}
+var journal_on := false
+var combos_seen := {}
 var wobble_t := 0.0
 ## Map screen (M): markers you drop (floor-local world positions).
 var map_markers: Array = []
@@ -2233,6 +2237,8 @@ func _enemy_killed(e) -> void:
 		unlock("elite")
 	_add_nerve(14.0)
 	charms.kill_stack += 1
+	var bkey := EnemyTypes.name_of(e.kind)
+	bestiary[bkey] = int(bestiary.get(bkey, 0)) + 1
 	_spawn_loose(e.global_position + Vector2(0, -6), chips_for(bonus, 6))
 	stats["kills"] = stats.get("kills", 0) + 1
 	fx.text(e.global_position + Vector2(0, -14), "+%d" % bonus, Color(1, 0.85, 0.4), 10)
@@ -2376,6 +2382,7 @@ func _on_boss_defeated() -> void:
 		toasts.append({"text": "THE RAISE PAID OFF", "sub": "+$%d back from the table" % int(raise_paid * 1.5), "t": 3.5})
 		raise_paid = 0
 	stats["bosses"] = stats.get("bosses", 0) + 1
+	bestiary[String(boss.bname)] = int(bestiary.get(String(boss.bname), 0)) + 1
 	unlock("boss%d" % tier)
 	_gain_xp(150 * tier, "BOSS DOWN")
 	Sfx.play("boss_die")
@@ -2647,6 +2654,7 @@ func _load() -> void:
 	lifetime = int(cf.get_value("stats", "lifetime", 0))
 	runs = int(cf.get_value("stats", "runs", 0))
 	perks = cf.get_value("stats", "perks", {})
+	bestiary = cf.get_value("stats", "bestiary", {})
 	intro_seen = bool(cf.get_value("story", "intro", false))
 	exit_tip_seen = bool(cf.get_value("story", "exit_tip", false))
 	bosses_beaten = int(cf.get_value("story", "bosses", 0))
@@ -2671,6 +2679,7 @@ func _save() -> void:
 	cf.set_value("stats", "lifetime", lifetime)
 	cf.set_value("stats", "runs", runs)
 	cf.set_value("stats", "perks", perks)
+	cf.set_value("stats", "bestiary", bestiary)
 	cf.set_value("story", "intro", intro_seen)
 	cf.set_value("story", "exit_tip", exit_tip_seen)
 	cf.set_value("story", "bosses", bosses_beaten)
@@ -3057,7 +3066,7 @@ func _open_menu(kind: String, sub_override := "") -> void:
 
 func _charm_item(id: String, tag := "") -> Dictionary:
 	var inf: Dictionary = Charms.info(id)
-	return {"id": id, "name": inf["name"], "desc": inf["desc"], "col": Charms.color(id),
+	return {"id": id, "name": inf["name"], "desc": String(inf["desc"]) + (("  \"" + String(Charms.FLAVOR[id]) + "\"") if Charms.FLAVOR.has(id) else ""), "col": Charms.color(id),
 		"tag": tag if tag != "" else String(inf["rarity"]).to_upper(), "tag_col": Charms.color(id),
 		"icon": String(inf["tags"][0]).left(1) if inf["tags"].size() > 0 else "?"}
 
@@ -3540,8 +3549,37 @@ func _offer_charm(id: String) -> void:
 		_open_menu("swap")
 
 
+## Named synergies: when you hold both, the game tells you (and winks).
+const COMBOS := [
+	[["magnet", "seven"], "MAGNETIC SEVENS", "Everything is drawn to you, and every seventh chip is a jackpot."],
+	[["heater", "housemoney"], "FLAMING HOUSE", "A heater at x4+: the chips are on fire and they are not even yours."],
+	[["cool", "grease"], "ICE IN THE VEINS", "You never lose your flow and nothing slows you down."],
+	[["spender", "bankroll"], "BIG SPENDER, BIGGER BANK", "Sacrifice a life, collect 20% more on every cash out."],
+	[["snowball", "pickpocket"], "STREET SNOWBALL", "Every kill stacks and every stomp pays."],
+	[["reels", "counter"], "CARD COUNTER AT THE REELS", "Free spins and double side bets. The pit boss is sweating."],
+]
+
+
+func _check_combos() -> void:
+	for c in COMBOS:
+		var key := String(c[1])
+		if combos_seen.has(key):
+			continue
+		var ok := true
+		for id in c[0]:
+			if not charms.has(id):
+				ok = false
+		if ok:
+			combos_seen[key] = true
+			toasts.append({"text": "SYNERGY: " + key, "sub": String(c[2]), "t": 5.0})
+			_callout("SYNERGY!", Color(1, 0.5, 0.95))
+			shake(0.3)
+			Sfx.play("ride")
+
+
 func _give_charm(id: String) -> void:
 	charms.equipped.append(id)
+	call_deferred("_check_combos")
 	_stat_add("charms_found")
 	var inf: Dictionary = Charms.info(id)
 	toasts.append({"text": "CHARM: " + String(inf["name"]), "sub": inf["desc"], "t": 4.0})
@@ -4138,6 +4176,15 @@ func _input(event: InputEvent) -> void:
 		voice_test_on = true
 		Voice.clear_cache()
 		get_viewport().set_input_as_handled()
+		return
+	if event is InputEventKey and event.pressed and not event.echo and (event as InputEventKey).physical_keycode == KEY_F4 and state in ["play", "pause", "title"]:
+		journal_on = not journal_on
+		get_viewport().set_input_as_handled()
+		return
+	if journal_on:
+		if event is InputEventKey and event.pressed:
+			journal_on = false
+			get_viewport().set_input_as_handled()
 		return
 	if voice_test_on:
 		if _voice_test_input(event):

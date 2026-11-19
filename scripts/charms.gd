@@ -57,6 +57,15 @@ const DEFS := {
 	"rabbit": {"name": "RABBIT'S FOOT", "desc": "Once per floor, a lethal hit dumps your Pot instead", "rarity": "jackpot", "tags": ["LUCK", "RISK"]},
 }
 
+## One-line personality for the item cards (Isaac / Gungeon style).
+const FLAVOR := {
+	"chalk": "Smells like a gym and bad ideas.", "magnet": "Chips find you. So do debt collectors.", "seven": "Seven is a lie we agreed to believe.",
+	"cool": "Ice in your veins, vodka in your flask.", "spender": "Money's for spending. Lives are for losing.", "heater": "Don't look at the numbers. Just feel them.",
+	"rabbit": "Unlucky for the rabbit.", "allin": "Your mother warned you about this one.", "bankroll": "Your accountant just fainted.",
+	"snowball": "Small avalanche. Big feelings.", "overdraft": "The bank will call. The bank is always calling.",
+	"lead_boots": "Style over substance. Mostly lead.", "itchy_wool": "Grandma meant well.", "cheap_shades": "They make everything look cheap. Including you.",
+	"tight_pants": "You can run. Barely. And never sit.",
+}
 var max_slots := 5
 var equipped: Array = []
 ## Risk of Rain stacking: picking up a charm you already hold adds a stack.

@@ -256,12 +256,13 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - A per-character progress checklist.
 
 ## K. Research-driven "what players loved" pass
-- [ ] **43. Research.** Use WebSearch/WebFetch to research what players loved most in top roguelikes and platformers:
+- [x] **43. Research.**
+  - DONE: `RESEARCH_PLAYERS_LOVED.md` with sources (and honest gaps). Use WebSearch/WebFetch to research what players loved most in top roguelikes and platformers:
   - Hollow Knight and Silksong, Hades and Hades II, Dead Cells, Balatro, Risk of Rain 2, Spelunky 2, Celeste
   - Enter the Gungeon, Binding of Isaac, Slay the Spire, Rogue Legacy 2, Blasphemous, Ori
   - Sources: Steam reviews, Reddit and design talks.
   - Write the findings to `RESEARCH_PLAYERS_LOVED.md` with sources. The aim is a NEW game idea built heavily on proven ideas.
-- [ ] **44. Implement the top 10-15 loved features from the research** that fit this game, as original takes. Examples to judge:
+- [x] **44. Implement the top 10-15 loved features from the research** that fit this game, as original takes. Examples to judge:
   - synergy discovery moments and item descriptions with personality
   - a hub that grows between runs
   - NPCs who remember you
@@ -275,6 +276,12 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - satisfying "breaking the game" builds
   - Add each as its own `[ ]` item below as you plan it, then do them one by one.
 - [ ] **45. A final full-game polish pass,** then update README.md, `AAA_CHECKLIST.md` and every test.
+
+  - [x] **44a.** Hunter's journal (F4): `main.bestiary`, `hud._draw_journal`, saved.
+  - [x] **44b.** Synergy discovery toasts: `main.COMBOS`, `_check_combos`.
+  - [x] **44c.** Item cards with personality: `Charms.FLAVOR`.
+  - [x] **44d.** Charm stacking (Risk of Rain style): `charms.add_stack`.
+  - [x] **44e.** Already present: fast restart (R), Daily Deal seeds, Assist/accessibility, Heat/Table Limits hard modes, secrets.
 
 ## L. Extra voice requirements (added by the user, 2026-11-18)
 - [x] **42b. A super simple voice-changing guide**
