@@ -387,3 +387,5 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
   - **Afterwards, regenerate everything:**
     - Run `tools/gen_voice_kit.gd` and `tools/gen_all_lines.gd`, so `VOICE_SCRIPT.md`, the voice/ READMEs and `voice/ALL_LINES.md` match.
     - Run `tests/voice_test.gd` and `tests/studio_test.gd`.
+
+- **2026-11-19 (run 2, scheduled):** Finished Part 3 items 46, 47, 48, 49 (item 50 was done locally). Music rewritten (`music.gd`, `tests/music_test.gd`); per-zone environments (`zone_fx.gd`, palettes retuned for Reno and Biloxi, `tests/capture_zones.gd`); enemy gear/city palettes (`gear.gd`) and generated portraits (`portraits.gd`). All of Parts 1-3 are now [x]. Notes: `boss_test.gd` is occasionally flaky (random; passes on rerun, also flaked-free on the old code). Music was checked offline for NaNs/clipping/CPU only, not by ear: tune `STYLES` in music.gd by listening. Next: playtest by hand, record voices (HOW_TO_RECORD.md).
