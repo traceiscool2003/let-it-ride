@@ -186,13 +186,19 @@ static func _rico(ci: CanvasItem, feet: Vector2, t: float) -> void:
 	ci.draw_colored_polygon(PackedVector2Array([Vector2(-15, -56 + by), Vector2(-11, -58 + by), Vector2(-9, -36), Vector2(-14, -34)]), dark)
 	ci.draw_colored_polygon(PackedVector2Array([Vector2(15, -56 + by), Vector2(11, -58 + by), Vector2(9, -36), Vector2(14, -34)]), dark)
 	ci.draw_rect(Rect2(-10, -34, 20, 5), Color(0.06, 0.05, 0.08))   # waistband
-	# Hood up, with the drawstring tips just visible.
-	var hood := PackedVector2Array([Vector2(-9, -61 + by), Vector2(9, -61 + by), Vector2(10, -70 + by), Vector2(8, -78 + by), Vector2(3, -82 + by),
-		Vector2(-3, -82 + by), Vector2(-8, -78 + by), Vector2(-10, -70 + by)])
-	ci.draw_colored_polygon(hood, cloth)
-	ci.draw_polyline(PackedVector2Array([Vector2(-4, -80 + by), Vector2(-1, -66 + by)]), Color(0.02, 0.02, 0.03), 1.0)
-	# Gold rim light down his right side: hood, shoulder, arm, leg.
-	ci.draw_polyline(PackedVector2Array([Vector2(3, -82 + by), Vector2(8, -78 + by), Vector2(10, -70 + by), Vector2(11, -62 + by), Vector2(15, -56 + by),
+	# Head from behind, then his signature wide-brim fedora (the in-game silhouette).
+	var head := PackedVector2Array()
+	for k in 16:
+		var ang := TAU * k / 16.0
+		head.append(Vector2(cos(ang) * 9.0, -72 + by + sin(ang) * 9.0))
+	ci.draw_colored_polygon(head, dark)
+	ci.draw_colored_polygon(PackedVector2Array([Vector2(-17, -79 + by), Vector2(17, -80 + by), Vector2(19, -77 + by), Vector2(-19, -76 + by)]), dark)
+	ci.draw_colored_polygon(PackedVector2Array([Vector2(-10, -79 + by), Vector2(10, -80 + by), Vector2(8, -91 + by), Vector2(2, -88 + by), Vector2(-3, -91 + by), Vector2(-9, -89 + by)]), cloth)
+	ci.draw_line(Vector2(-10, -82 + by), Vector2(10, -83 + by), Color(0.8, 0.08, 0.14), 2.0)
+	ci.draw_colored_polygon(PackedVector2Array([Vector2(-8, -86 + by), Vector2(-4, -87 + by), Vector2(-4, -81 + by), Vector2(-8, -80 + by)]), Color(0.9, 0.88, 0.82))
+	# Gold rim light down his right side: hat, head, shoulder, arm, leg.
+	ci.draw_polyline(PackedVector2Array([Vector2(8, -91 + by), Vector2(10, -80 + by), Vector2(19, -77 + by)]), rim, 0.9)
+	ci.draw_polyline(PackedVector2Array([Vector2(9, -72 + by), Vector2(8, -66 + by), Vector2(11, -62 + by), Vector2(15, -56 + by),
 		Vector2(14, -34), Vector2(11, -27), Vector2(9, -30), Vector2(8, 0)]), rim, 0.9)
 	Scenery.glow(ci, Vector2(12, -50), 6.0, 22.0, Color(1.0, 0.7, 0.4, 0.12))
 	# Scarf: two red tails streaming back in the wind, tapering to the tips.

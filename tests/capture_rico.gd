@@ -4,6 +4,7 @@ var frame := 0
 var m
 var shots := [[1, []], [6, []], [11, []], [16, []], [21, []], [21, ["top_hat", "shades", "cape", "gold_chain", "tux_pants", "wingtips"]], [3, ["bucket_hat", "hawaiian", "cargo_shorts", "fanny_pack"]], [8, ["track_jacket", "grip_gloves", "eyepatch"]]]
 var idx := 0
+var zoom := float(OS.get_environment("RICO_ZOOM")) if OS.get_environment("RICO_ZOOM") != "" else 7.0
 func _initialize() -> void:
 	m = load("res://scenes/main.tscn").instantiate()
 	m.save_path = "user://test_rico.cfg"
@@ -24,6 +25,6 @@ func _process(_d: float) -> bool:
 			return true
 		m.player.outfit_floor = shots[idx][0]
 		m.player.worn = ["thrift_sneakers"] + shots[idx][1]
-		m.camera.zoom = Vector2(7, 7)
+		m.camera.zoom = Vector2(zoom, zoom)
 		idx += 1
 	return false

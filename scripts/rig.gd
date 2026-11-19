@@ -123,29 +123,28 @@ func _limb(ci: CanvasItem, a: Vector2, t: Vector2, l1: float, l2: float, bend: f
 		ci.draw_circle(e, 1.3, Color(sk.darkened(1.0 - shade), alpha))
 
 
-## Hand-drawn limb: tapered, outlined segments with a soft highlight, a sleeve
-## cuff, and a shaped sneaker or hand. Used when the style has "smooth".
+## Hand-drawn limb: tapered, softly shaded segments with thin anti-aliased
+## outlines, then footwear by style (slides+socks, sneaker, boot, dress shoe) or a
+## hand with a sleeve cuff. Used when the style has "smooth".
 func _limb_smooth(ci: CanvasItem, a: Vector2, t: Vector2, l1: float, l2: float, bend: float, is_leg: bool, alpha: float, shade: float) -> void:
 	var r := ik(a, t, l1, l2, bend)
 	var j: Vector2 = r[0]
 	var e: Vector2 = r[1]
-	var w: float = (s["leg_w"] if is_leg else s["arm_w"]) * 1.12
+	var w: float = s["leg_w"] if is_leg else s["arm_w"]
+	var ow: float = s.get("outline_w", 0.6)
 	var col: Color = s["leg"] if is_leg else s["arm"]
-	col = Color(col.darkened((1.0 - shade) * 0.9), alpha)
+	col = Color(col.darkened((1.0 - shade) * 0.85), alpha)
 	var oc := Color(s["outline"], alpha)
-	var segs := [[a, j, w * 0.55, w * 0.46], [j, e, w * 0.46, w * 0.36]]
+	var segs := [[a, j, w * 0.55, w * 0.47], [j, e, w * 0.47, w * 0.36]]
+	# Outline pass (slightly larger, anti-aliased), then the fill pass.
 	for sg in segs:
 		var p0: Vector2 = sg[0]
 		var p1: Vector2 = sg[1]
-		var n := (p1 - p0).normalized().orthogonal()
 		var r0: float = sg[2]
 		var r1: float = sg[3]
-		var quad := PackedVector2Array([p0 + n * r0, p1 + n * r1, p1 - n * r1, p0 - n * r0])
-		var loop := quad.duplicate()
-		loop.append(quad[0])
-		ci.draw_polyline(loop, oc, 0.9)
-		ci.draw_circle(p0, r0 + 0.45, oc)
-		ci.draw_circle(p1, r1 + 0.45, oc)
+		ci.draw_line(p0, p1, oc, (r0 + r1) + ow * 2.0, true)
+		ci.draw_circle(p0, r0 + ow, oc)
+		ci.draw_circle(p1, r1 + ow, oc)
 	for sg in segs:
 		var p0: Vector2 = sg[0]
 		var p1: Vector2 = sg[1]
@@ -155,25 +154,48 @@ func _limb_smooth(ci: CanvasItem, a: Vector2, t: Vector2, l1: float, l2: float, 
 		ci.draw_colored_polygon(PackedVector2Array([p0 + n * r0, p1 + n * r1, p1 - n * r1, p0 - n * r0]), col)
 		ci.draw_circle(p0, r0, col)
 		ci.draw_circle(p1, r1, col)
-		ci.draw_line(p0 - n * r0 * 0.45, p1 - n * r1 * 0.45, Color(col.lightened(0.25), alpha * 0.7), maxf(0.3, r1 * 0.45))
+		ci.draw_line(p0 - n * r0 * 0.5, p1 - n * r1 * 0.5, Color(col.lightened(0.18), alpha * 0.6), maxf(0.25, r1 * 0.4), true)
+		ci.draw_line(p0 + n * r0 * 0.55, p1 + n * r1 * 0.55, Color(col.darkened(0.25), alpha * 0.5), maxf(0.25, r1 * 0.35), true)
 	if is_leg:
-		# Sneaker: a rounded shoe pointing forward, with a coloured sole stripe.
-		var sc: Color = s["shoe"]
-		var s2: Color = s.get("shoe2", sc.darkened(0.4))
-		var shoe := PackedVector2Array([e + Vector2(-1.6, -1.8), e + Vector2(1.6, -1.9), e + Vector2(3.6, -1.0), e + Vector2(4.0, 0.2), e + Vector2(-1.8, 0.2)])
-		var sl := shoe.duplicate()
-		sl.append(shoe[0])
-		ci.draw_colored_polygon(shoe, Color(sc.darkened((1.0 - shade) * 0.8), alpha))
-		ci.draw_polyline(sl, oc, 0.8)
-		ci.draw_line(e + Vector2(-1.7, -0.3), e + Vector2(3.9, -0.3), Color(s2.darkened((1.0 - shade) * 0.8), alpha), 0.7)
+		_foot(ci, e, alpha, shade, oc, ow)
 	else:
-		# Sleeve cuff, then the hand (or glove).
 		var cuff: Color = s.get("cuff", col.lightened(0.2))
 		var dn := (e - j).normalized()
-		ci.draw_line(e - dn * 1.4 + dn.orthogonal() * w * 0.36, e - dn * 1.4 - dn.orthogonal() * w * 0.36, Color(cuff.darkened((1.0 - shade) * 0.8), alpha), 0.6)
 		var sk: Color = s["skin"]
-		ci.draw_circle(e + dn * 0.6, 1.55, oc)
-		ci.draw_circle(e + dn * 0.6, 1.15, Color(sk.darkened((1.0 - shade) * 0.6), alpha))
+		ci.draw_circle(e + dn * 0.7, 1.05 + ow, oc)
+		ci.draw_circle(e + dn * 0.7, 1.05, Color(sk.darkened((1.0 - shade) * 0.6), alpha))
+		ci.draw_line(e - dn * 0.6 + dn.orthogonal() * w * 0.4, e - dn * 0.6 - dn.orthogonal() * w * 0.4, Color(cuff.darkened((1.0 - shade) * 0.7), alpha), 0.55, true)
+
+
+func _foot(ci: CanvasItem, e: Vector2, alpha: float, shade: float, oc: Color, ow: float) -> void:
+	var sc: Color = s["shoe"]
+	var s2: Color = s.get("shoe2", sc.darkened(0.4))
+	sc = Color(sc.darkened((1.0 - shade) * 0.75), alpha)
+	s2 = Color(s2.darkened((1.0 - shade) * 0.75), alpha)
+	var pts: PackedVector2Array
+	match String(s.get("shoe_style", "sneaker")):
+		"slides":
+			# Socks with slides: a grey sock foot and a brown strap.
+			pts = PackedVector2Array([e + Vector2(-1.6, -1.2), e + Vector2(1.6, -1.4), e + Vector2(3.4, -0.6), e + Vector2(3.6, 0.2), e + Vector2(-1.8, 0.2)])
+			ci.draw_colored_polygon(pts, Color(s2, alpha))
+			ci.draw_rect(Rect2(e + Vector2(-1.9, 0.0), Vector2(5.8, 0.6)), sc)
+			ci.draw_line(e + Vector2(0.4, -1.3), e + Vector2(1.6, 0.0), sc, 1.1, true)
+		"boot":
+			pts = PackedVector2Array([e + Vector2(-1.7, -3.0), e + Vector2(1.4, -3.0), e + Vector2(1.8, -1.2), e + Vector2(3.8, -0.8), e + Vector2(4.0, 0.3), e + Vector2(-1.9, 0.3)])
+			ci.draw_colored_polygon(pts, sc)
+			ci.draw_rect(Rect2(e + Vector2(-1.9, -0.1), Vector2(5.9, 0.5)), s2)
+		"dress":
+			pts = PackedVector2Array([e + Vector2(-1.6, -1.6), e + Vector2(1.2, -1.6), e + Vector2(4.4, -0.4), e + Vector2(4.4, 0.2), e + Vector2(-1.7, 0.2)])
+			ci.draw_colored_polygon(pts, sc)
+			ci.draw_line(e + Vector2(0.0, -1.3), e + Vector2(3.4, -0.5), Color(1, 1, 1, 0.25 * alpha), 0.3, true)
+		_:
+			pts = PackedVector2Array([e + Vector2(-1.7, -1.8), e + Vector2(1.4, -1.9), e + Vector2(3.6, -1.0), e + Vector2(4.0, 0.2), e + Vector2(-1.9, 0.2)])
+			ci.draw_colored_polygon(pts, sc)
+			ci.draw_line(e + Vector2(-1.8, -0.2), e + Vector2(3.9, -0.2), s2, 0.6, true)
+			ci.draw_line(e + Vector2(0.2, -1.6), e + Vector2(1.4, -1.0), Color(s2, 0.7 * alpha), 0.3, true)
+	var loop := pts.duplicate()
+	loop.append(pts[0])
+	ci.draw_polyline(loop, oc, ow, true)
 
 
 ## Flat-color version used for after-images.

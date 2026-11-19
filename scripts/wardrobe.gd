@@ -228,7 +228,7 @@ static func _draw_accessories(ci: CanvasItem, rig, xf: Transform2D, worn: Array,
 	var hdid := item_in_slot(worn, "head")
 	if hdid != "":
 		var ith2: Dictionary = info(hdid)
-		var top: Vector2 = rig.head_point(Vector2(0.8, -6.4) if integrated else Vector2(0, -3.5))
+		var top: Vector2 = rig.head_point(Vector2(1.2, -8.4) if integrated else Vector2(0, -3.5)) + (rig.s.get("acc_off", Vector2.ZERO) if integrated else Vector2.ZERO)
 		ci.draw_set_transform_matrix(xf * Transform2D(float(rig.pose["torso"]) + float(rig.pose["head"]), top))
 		if hdid == "top_hat":
 			ci.draw_rect(Rect2(-3.0, -5.0, 6.0, 5.4), Color(ith2["col"], alpha))
@@ -241,7 +241,7 @@ static func _draw_accessories(ci: CanvasItem, rig, xf: Transform2D, worn: Array,
 	var fid := item_in_slot(worn, "face")
 	if fid != "":
 		var itf: Dictionary = info(fid)
-		var eye: Vector2 = rig.head_point(Vector2(2.6, -2.4) if integrated else Vector2(1.8, -0.2))
+		var eye: Vector2 = rig.head_point(Vector2(3.0, -5.2) if integrated else Vector2(1.8, -0.2)) + (rig.s.get("acc_off", Vector2.ZERO) if integrated else Vector2.ZERO)
 		ci.draw_set_transform_matrix(xf * Transform2D(float(rig.pose["torso"]) + float(rig.pose["head"]), eye))
 		if fid == "eyepatch":
 			ci.draw_circle(Vector2(0.3, 0.0), 1.15, Color(itf["col"], alpha))

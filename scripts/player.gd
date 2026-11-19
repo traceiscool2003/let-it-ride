@@ -1028,6 +1028,10 @@ func _draw() -> void:
 					draw_line(p0, p1, sc if i % 3 != 2 else sc.darkened(0.2), w)
 
 	var lk := RicoArt.look(worn, outfit_floor)
+	if hit_flash > 0.0 or state == S.DEAD or invuln > 0.9:
+		lk["mood"] = "hurt"
+	elif flow_ratio > 0.7:
+		lk["mood"] = "fired"
 	RicoArt.dress_rig(rig, lk)
 	rig.draw(self, xf, a, RicoArt.body.bind(lk))
 	Wardrobe.draw(self, rig, xf, worn, outfit_floor, a, true)
