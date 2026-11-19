@@ -1221,6 +1221,8 @@ func _dialog_end() -> void:
 # ---------------------------------------------------------------- loop
 
 func _process(delta: float) -> void:
+	if VoiceStudio.is_open:
+		return
 	if _jp("debug1"):
 		debug_overlay = not debug_overlay
 	if _jp("debug2") and state == "play" and not in_hub:

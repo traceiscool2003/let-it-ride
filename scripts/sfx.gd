@@ -68,7 +68,7 @@ func grunt(who: String, slot: String) -> bool:
 		return false
 	if grunt_player.playing and slot != "hurt" and slot != "death":
 		return false
-	var st = load(files[randi() % files.size()])
+	var st = Voice.load_stream(files[randi() % files.size()])
 	if st == null or not (st is AudioStream):
 		return false
 	var bus := "Voice_" + who
@@ -88,7 +88,11 @@ func grunt_files(who: String, slot: String) -> Array:
 	for n in range(1, 6):
 		for e in EXTS:
 			var path := "res://voice/%s/grunt_%s_%d.%s" % [who, slot, n, e]
-			if ResourceLoader.exists(path):
+			var upath := "user://voice/%s/grunt_%s_%d.%s" % [who, slot, n, e]
+			if FileAccess.file_exists(ProjectSettings.globalize_path(upath)):
+				out.append(upath)
+				break
+			if ResourceLoader.exists(path) or FileAccess.file_exists(ProjectSettings.globalize_path(path)):
 				out.append(path)
 				break
 	_grunt_cache[key] = out

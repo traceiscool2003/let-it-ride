@@ -1,5 +1,35 @@
 # HOW TO RECORD THE VOICES
 
+---
+
+## The in-game Voice Studio (the easiest way)
+
+You don't need Audacity at all. The game can record you itself.
+
+1. Plug in your mic, open the project in Godot and press **F5**.
+2. Press **F6** at any time. The Voice Studio opens and the game pauses.
+3. The screen shows the character card (their quote, pitch, speed and attitude), the **line to say** in big letters, and a note on **how to say it**.
+4. Press **R** and say the line. Press **R** again to stop. The level meter turns red if you're too loud.
+5. Your take saves automatically and plays back **through that character's voice filter**, so you hear how it will sound in the game.
+6. Happy with it? Press **ENTER** for the next line. Not happy? Press **R** to redo it.
+
+| Key | What it does |
+|---|---|
+| R | Record / stop (saves automatically) |
+| SPACE | Play the current take |
+| ENTER / DOWN | Next line |
+| UP | Previous line |
+| N | Jump to the next line you haven't recorded |
+| LEFT / RIGHT | Show one character only (or all of them) |
+| U | Show only the lines you still need to record |
+| DEL | Delete this take |
+| F6 / ESC | Close the studio |
+
+- **Where takes go:** studio takes save into `voice/all/` in your project. Grunts go into each character's folder.
+- **Progress:** the top of the screen shows how many of the 954 lines and grunts you've recorded.
+- **The whole list on paper:** `voice/ALL_LINES.md` has every line, numbered, in the same order as the studio.
+- **Prefer your own app?** Save everything into the single folder `voice/all/`, using the names in `voice/ALL_LINES.md`.
+
 You are the voice of EVERY character. This guide is for a total beginner. Short steps, no jargon.
 
 Files you will use:

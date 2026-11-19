@@ -355,3 +355,34 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
   - Added `double_jump`, `land_hard` and `heal` sounds.
   - Grunt slots: `Sfx.grunt(who, slot)` plays `res://voice/<who>/grunt_<slot>_<n>.ogg` if the user recorded one. Hooked to Rico's moves, enemy deaths and boss hits and deaths.
   - Documented in `HOW_TO_RECORD.md` and the voice folder READMEs.
+
+---
+
+# PART 4 (added 2026-11-19): comedy pass on every line
+`scripts/voice_studio.gd`, `tools/gen_all_lines.gd` and `voice/ALL_LINES.md` (the F6 in-game recording studio and the master list) were built in a LOCAL session. You may regenerate `ALL_LINES.md` with the tool, but don't restructure the studio.
+
+- [ ] **51. Make every voice line genuinely funny: dark humor that makes people laugh out loud.**
+  - The user hasn't recorded yet, so do this BEFORE they start. KEEP every line id (`greet_1`, and so on) so the studio and files still match. Only change the text and the "how to say it" notes.
+  - **Voice:** Rico is a self-destructive degenerate gambler who is weirdly proud of it. Lean into gallows humor about debt, losing, bad decisions, addiction-as-personality, near-death and The House's corporate cruelty.
+    - Comedy styles to draw on: deadpan, absurd escalation, callbacks, rule-of-three, punchy one-liners, characters roasting Rico.
+    - Every character has their own comic voice:
+      - Mags: cheerful menace.
+      - Doc Fizz: horrifying side-effect disclaimers.
+      - The bosses: trash talk themed on their game.
+      - Crowd NPCs: overheard casino-floor misery.
+  - **Rules:**
+    - Short lines; punchlines at the end.
+    - No slurs, nothing hateful about real groups, nothing sexual involving minors.
+    - Dark, but fun, not mean-spirited toward the player.
+    - Use the parody casino and site names.
+  - **Story consistency:** while rewriting, fix the leftover story contradictions from the old "underground Pit" version so everything fits the 5-city climb from Atlantic Shitty up to the Bellagiro:
+    - Remove Big Sal and Madame Roulette references, "down"/"below" wording and the "DESCEND door" tip.
+    - Use the new boss roster for the `story.gd` BOSS_* fallbacks.
+    - Move Jules's ending to the top of the Bellagiro.
+  - **Files:**
+    - `scripts/voice_lines_main.gd`, `voice_lines_misc.gd`, `voice_lines.gd`
+    - `story.gd`, `dialogue.gd`, `boss_defs.gd` (the boss lines)
+    - the death quips, whispers, Losing Tickets and tips
+  - **Afterwards, regenerate everything:**
+    - Run `tools/gen_voice_kit.gd` and `tools/gen_all_lines.gd`, so `VOICE_SCRIPT.md`, the voice/ READMEs and `voice/ALL_LINES.md` match.
+    - Run `tests/voice_test.gd` and `tests/studio_test.gd`.

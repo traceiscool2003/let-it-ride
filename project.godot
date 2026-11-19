@@ -20,6 +20,7 @@ config/features=PackedStringArray("4.7")
 Sfx="*res://scripts/sfx.gd"
 Music="*res://scripts/music.gd"
 Voice="*res://scripts/voice.gd"
+VoiceStudio="*res://scripts/voice_studio.gd"
 
 [display]
 
@@ -38,3 +39,7 @@ textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.03, 0.01, 0.05, 1)
+
+[audio]
+
+driver/enable_input=true

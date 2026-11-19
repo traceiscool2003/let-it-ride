@@ -139,21 +139,57 @@ func _make_blip(hz: float, wave: String) -> AudioStreamWAV:
 
 
 ## Path of the voice file for a line entry, or "" if the user hasn't recorded it.
+## Looks in, in order:
+##   user://voice/all/<dir>__<id>.*   (takes from the in-game studio in an exported build)
+##   res://voice/all/<dir>__<id>.*    (the ONE-FOLDER method + studio takes in the editor)
+##   res://voice/<dir>/<id>.*         (the per-character folders)
+## (dir "_cutscenes/x" is written "_cutscenes-x" in the one-folder names.)
 func file_for(entry: Dictionary) -> String:
 	if entry.is_empty():
 		return ""
-	var base := "res://voice/%s/%s" % [entry["dir"], entry["id"]]
-	if _file_cache.has(base):
-		return _file_cache[base]
+	var flat := String(entry["dir"]).replace("/", "-")
+	var key := "%s|%s" % [entry["dir"], entry["id"]]
+	if _file_cache.has(key):
+		return _file_cache[key]
+	var bases := ["user://voice/all/%s__%s" % [flat, entry["id"]], "res://voice/all/%s__%s" % [flat, entry["id"]], "res://voice/%s/%s" % [entry["dir"], entry["id"]]]
 	var found := ""
-	for e in EXTS:
-		if ResourceLoader.exists(base + "." + e):
-			found = base + "." + e
+	for base in bases:
+		for e in EXTS:
+			var p: String = base + "." + e
+			if ResourceLoader.exists(p) or FileAccess.file_exists(ProjectSettings.globalize_path(p)):
+				found = p
+				break
+		if found != "":
 			break
-	_file_cache[base] = found
+	_file_cache[key] = found
 	return found
 
 
+## Load an audio file whether or not Godot has imported it yet (fresh studio takes
+## and files dropped in while the game is running aren't imported).
+func load_stream(path: String) -> AudioStream:
+	if path == "":
+		return null
+	if ResourceLoader.exists(path):
+		var r = load(path)
+		if r is AudioStream:
+			return r
+	var abs := ProjectSettings.globalize_path(path)
+	if not FileAccess.file_exists(abs):
+		return null
+	match path.get_extension().to_lower():
+		"wav":
+			return AudioStreamWAV.load_from_file(abs)
+		"ogg":
+			return AudioStreamOggVorbis.load_from_file(abs)
+		"mp3":
+			var f := FileAccess.open(abs, FileAccess.READ)
+			if f == null:
+				return null
+			var m := AudioStreamMP3.new()
+			m.data = f.get_buffer(f.get_length())
+			return m
+	return null
 func has_file(entry: Dictionary) -> bool:
 	return file_for(entry) != ""
 
@@ -179,8 +215,8 @@ func play_entry(entry: Dictionary, cid := "") -> float:
 	var path := file_for(entry)
 	if path == "":
 		return 0.0
-	var st = load(path)
-	if st == null or not (st is AudioStream):
+	var st := load_stream(path)
+	if st == null:
 		return 0.0
 	player.bus = "Voice_" + cid if AudioServer.get_bus_index("Voice_" + cid) >= 0 else "Voice"
 	player.stream = st
