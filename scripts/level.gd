@@ -26,8 +26,8 @@ class Emissive extends Node2D:
 const T := 16
 const RW := 14
 const RH := 10
-const RX := 4
-const RY := 4
+const RX := 6
+const RY := 5
 const EMPTY := 0
 const SOLID := 1
 const SPIKE := 2

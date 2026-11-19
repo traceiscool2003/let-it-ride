@@ -187,9 +187,9 @@ Cutscene lines live under `voice/_cutscenes/<scene>/`.
 
 | Line ID | Text | Direction | Folder |
 |---|---|---|---|
-| `intro_1` | They call it The Pit. Twelve floors of dirty money, buried under the city. | Cutscene: intro | `voice/_cutscenes/intro/` |
-| `intro_2` | Three years ago my brother Jules sat down at its tables. He never came back up. | Cutscene: intro | `voice/_cutscenes/intro/` |
-| `intro_5` | So I can't die. I just owe you forever. | Cutscene: intro | `voice/_cutscenes/intro/` |
+| `intro_1` | Five cities. Twenty-five floors. One long climb from a dumpster to the nicest casino in Vegas. I've bet on worse. | Cutscene: intro | `voice/_cutscenes/intro/` |
+| `intro_2` | My brother Jules sat down at the House's table three years ago. He never got up. Somebody has to cash him out. Might as well be the guy with no impulse control. | Cutscene: intro | `voice/_cutscenes/intro/` |
+| `intro_5` | So I can't die. I just owe you forever. Honestly? Best terms I've ever been offered. | Cutscene: intro | `voice/_cutscenes/intro/` |
 
 ### Cutscene mags_chase
 
@@ -354,8 +354,8 @@ Cutscene lines live under `voice/_cutscenes/<scene>/`.
 
 | Line ID | Text | Direction | Folder |
 |---|---|---|---|
-| `intro_7` | Radio check. Rico, you hear me? Every chip you grab rides in your Pot. At each door you bank it, or let it ride for double. | Cutscene: intro | `voice/_cutscenes/intro/` |
-| `intro_8` | Talk to the folks up here between runs. When you're ready, take the DESCEND door on the far right. Jules is waiting. | Cutscene: intro | `voice/_cutscenes/intro/` |
+| `intro_7` | Radio check, Rico. Every chip you grab rides in your Pot. At each door you bank it, or let it ride for double. You'll let it ride. You always let it ride. | Cutscene: intro | `voice/_cutscenes/intro/` |
+| `intro_8` | Talk to the folks up here between runs. Wear something. Anything. When you're ready, take the DESCEND door. And Rico: please don't bet the shoes. | Cutscene: intro | `voice/_cutscenes/intro/` |
 
 ### Cutscene ending
 
@@ -660,7 +660,7 @@ Cutscene lines live under `voice/_cutscenes/<scene>/`.
 
 | Line ID | Text | Direction | Folder |
 |---|---|---|---|
-| `intro_3` | Nobody walks into the Pit without a Marker, kid. Sign here. And here. And... there. | Cutscene: intro | `voice/_cutscenes/intro/` |
+| `intro_3` | Nobody climbs without a Marker, kid. Sign here. And here. And... there. Don't read it. Nobody reads it. | Cutscene: intro | `voice/_cutscenes/intro/` |
 
 ### Cutscene mags_chase
 
@@ -1572,7 +1572,7 @@ Cutscene lines live under `voice/_cutscenes/<scene>/`.
 
 | Line ID | Text | Direction | Folder |
 |---|---|---|---|
-| `intro_4` | Welcome, valued guest. House rules: no one dies owing the House. Bust down there, and you wake up right here. With interest. | Cutscene: intro | `voice/_cutscenes/intro/` |
+| `intro_4` | Welcome, valued guest. House rules: no one dies owing the House. Bust, and you wake up right here. With interest. | Cutscene: intro | `voice/_cutscenes/intro/` |
 | `intro_6` | Now you're getting it. | Cutscene: intro | `voice/_cutscenes/intro/` |
 
 ### Cutscene true_ending

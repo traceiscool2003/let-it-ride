@@ -339,9 +339,9 @@ Folder: `voice/rico/` (cutscene lines go in the folder shown). Voice: Grin the w
 | 73 | [ ] | `_cutscenes/secret_defeat/secret_defeat_1.ogg` | Another secret down. Another stack of chips. | Cutscene: secret defeat |
 | 74 | [ ] | `_cutscenes/secret_defeat/secret_defeat_3.ogg` | Good. | Cutscene: secret defeat |
 | 75 | [ ] | `_cutscenes/final_prelude/final_prelude_2.ogg` | And I still got a bet on you. | Cutscene: final prelude |
-| 76 | [ ] | `_cutscenes/intro/intro_1.ogg` | They call it The Pit. Twelve floors of dirty money, buried under the city. | Cutscene: intro |
-| 77 | [ ] | `_cutscenes/intro/intro_2.ogg` | Three years ago my brother Jules sat down at its tables. He never came back up. | Cutscene: intro |
-| 78 | [ ] | `_cutscenes/intro/intro_5.ogg` | So I can't die. I just owe you forever. | Cutscene: intro |
+| 76 | [ ] | `_cutscenes/intro/intro_1.ogg` | Five cities. Twenty-five floors. One long climb from a dumpster to the nicest casino in Vegas. I've bet on worse. | Cutscene: intro |
+| 77 | [ ] | `_cutscenes/intro/intro_2.ogg` | My brother Jules sat down at the House's table three years ago. He never got up. Somebody has to cash him out. Might as well be the guy with no impulse control. | Cutscene: intro |
+| 78 | [ ] | `_cutscenes/intro/intro_5.ogg` | So I can't die. I just owe you forever. Honestly? Best terms I've ever been offered. | Cutscene: intro |
 | 79 | [ ] | `_cutscenes/mags_chase/mags_chase_2.ogg` | ...Can we talk about this? | Cutscene: mags chase |
 | 80 | [ ] | `_cutscenes/ending/ending_1.ogg` | The vault door groans open. Behind it, a man shuffling cards in the dark. | Cutscene: ending |
 | 81 | [ ] | `_cutscenes/ending/ending_3.ogg` | Somebody had to cash you out. Come on. We're going home. | Cutscene: ending |
@@ -406,8 +406,8 @@ Folder: `voice/marlow/` (cutscene lines go in the folder shown). Voice: Hold the
 | 44 | [ ] | `_cutscenes/city4_arrive/city4_arrive_2.ogg` | Goldun Nugget's got a vault down below. Everyone wants in. Nobody gets out. | Cutscene: city4 arrive |
 | 45 | [ ] | `_cutscenes/secret_found/secret_found_2.ogg` | That's not on the map, Rico. Be careful in there. | Cutscene: secret found |
 | 46 | [ ] | `_cutscenes/secret_defeat/secret_defeat_2.ogg` | You're not supposed to know about those rooms. The House won't like it. | Cutscene: secret defeat |
-| 47 | [ ] | `_cutscenes/intro/intro_7.ogg` | Radio check. Rico, you hear me? Every chip you grab rides in your Pot. At each door you bank it, or let it ride for double. | Cutscene: intro |
-| 48 | [ ] | `_cutscenes/intro/intro_8.ogg` | Talk to the folks up here between runs. When you're ready, take the DESCEND door on the far right. Jules is waiting. | Cutscene: intro |
+| 47 | [ ] | `_cutscenes/intro/intro_7.ogg` | Radio check, Rico. Every chip you grab rides in your Pot. At each door you bank it, or let it ride for double. You'll let it ride. You always let it ride. | Cutscene: intro |
+| 48 | [ ] | `_cutscenes/intro/intro_8.ogg` | Talk to the folks up here between runs. Wear something. Anything. When you're ready, take the DESCEND door. And Rico: please don't bet the shoes. | Cutscene: intro |
 | 49 | [ ] | `_cutscenes/ending/ending_4.ogg` | Rico... the floor's still going down. There's more Pit below The Pit. | Cutscene: ending |
 | 50 | [ ] | `_cutscenes/true_ending/true_ending_8.ogg` | Rico, the lights just went warm up here. Every Marker in the Lobby burned up at once. Everyone's free. | Cutscene: true ending |
 | 51 | [ ] | `_cutscenes/true_ending/true_ending_10.ogg` | Course they are. It's still a casino. Now it's ours. Let it ride, kid. | Cutscene: true ending |
@@ -567,7 +567,7 @@ Folder: `voice/mags/` (cutscene lines go in the folder shown). Voice: Sweet as p
 | 39 | [ ] | `mags/buy_3.ogg` | Smart. Debt is just future money you spent early. | The player just bought something. |
 | 40 | [ ] | `mags/buy_4.ogg` | No refunds. No regrets. Some regrets. | The player just bought something. |
 | 41 | [ ] | `_cutscenes/city4_arrive/city4_arrive_3.ogg` | I'll see you at the vault, kid. With a calculator. | Cutscene: city4 arrive |
-| 42 | [ ] | `_cutscenes/intro/intro_3.ogg` | Nobody walks into the Pit without a Marker, kid. Sign here. And here. And... there. | Cutscene: intro |
+| 42 | [ ] | `_cutscenes/intro/intro_3.ogg` | Nobody climbs without a Marker, kid. Sign here. And here. And... there. Don't read it. Nobody reads it. | Cutscene: intro |
 | 43 | [ ] | `_cutscenes/mags_chase/mags_chase_1.ogg` | Payday, kid. You're late. I hate late. | Cutscene: mags chase |
 | 44 | [ ] | `_cutscenes/mags_chase/mags_chase_3.ogg` | We ARE talking. This is me talking. The swimming is me collecting. Cash out and pay me, or keep running. | Cutscene: mags chase |
 | 45 | [ ] | `mags/mags_intro_1.ogg` | Name's Mags. I hold the Markers at the door, and yours says the House owns your bones until you settle up. | Conversation: mags_intro |
@@ -994,7 +994,7 @@ Folder: `voice/the_house/` (cutscene lines go in the folder shown). Voice: Say i
 | 12 | [ ] | `_cutscenes/city5_arrive/city5_arrive_3.ogg` | Welcome, Rico. We've been expecting you. For years. | Cutscene: city5 arrive |
 | 13 | [ ] | `_cutscenes/final_prelude/final_prelude_1.ogg` | You climbed my five cities. You beat my table-lords. You wore my clothes. | Cutscene: final prelude |
 | 14 | [ ] | `_cutscenes/final_prelude/final_prelude_3.ogg` | Then sit. Hole cards. Flop. Turn. River. | Cutscene: final prelude |
-| 15 | [ ] | `_cutscenes/intro/intro_4.ogg` | Welcome, valued guest. House rules: no one dies owing the House. Bust down there, and you wake up right here. With interest. | Cutscene: intro |
+| 15 | [ ] | `_cutscenes/intro/intro_4.ogg` | Welcome, valued guest. House rules: no one dies owing the House. Bust, and you wake up right here. With interest. | Cutscene: intro |
 | 16 | [ ] | `_cutscenes/intro/intro_6.ogg` | Now you're getting it. | Cutscene: intro |
 | 17 | [ ] | `_cutscenes/true_ending/true_ending_1.ogg` | Again? You beat me AGAIN? Fine. Double or nothing. One more hand. | Cutscene: true ending |
 | 18 | [ ] | `_cutscenes/true_ending/true_ending_3.ogg` | ...Nobody has called me that in twenty years. | Cutscene: true ending |

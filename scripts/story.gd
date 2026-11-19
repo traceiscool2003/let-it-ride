@@ -4,14 +4,14 @@ extends RefCounted
 
 ## Plays the first time you enter the Lobby.
 const INTRO := [
-	["RICO", "They call it The Pit. Twelve floors of dirty money, buried under the city."],
-	["RICO", "Three years ago my brother Jules sat down at its tables. He never came back up."],
-	["MAGS", "Nobody walks into the Pit without a Marker, kid. Sign here. And here. And... there."],
-	["THE HOUSE", "Welcome, valued guest. House rules: no one dies owing the House. Bust down there, and you wake up right here. With interest."],
-	["RICO", "So I can't die. I just owe you forever."],
+	["RICO", "Five cities. Twenty-five floors. One long climb from a dumpster to the nicest casino in Vegas. I've bet on worse."],
+	["RICO", "My brother Jules sat down at the House's table three years ago. He never got up. Somebody has to cash him out. Might as well be the guy with no impulse control."],
+	["MAGS", "Nobody climbs without a Marker, kid. Sign here. And here. And... there. Don't read it. Nobody reads it."],
+	["THE HOUSE", "Welcome, valued guest. House rules: no one dies owing the House. Bust, and you wake up right here. With interest."],
+	["RICO", "So I can't die. I just owe you forever. Honestly? Best terms I've ever been offered."],
 	["THE HOUSE", "Now you're getting it."],
-	["MARLOW", "Radio check. Rico, you hear me? Every chip you grab rides in your Pot. At each door you bank it, or let it ride for double."],
-	["MARLOW", "Talk to the folks up here between runs. When you're ready, take the DESCEND door on the far right. Jules is waiting."],
+	["MARLOW", "Radio check, Rico. Every chip you grab rides in your Pot. At each door you bank it, or let it ride for double. You'll let it ride. You always let it ride."],
+	["MARLOW", "Talk to the folks up here between runs. Wear something. Anything. When you're ready, take the DESCEND door. And Rico: please don't bet the shoes."],
 ]
 
 ## Character introductions during the opening cutscene.
@@ -111,6 +111,8 @@ const TRUE_ENDING := [
 ]
 
 const DEATH_QUIPS := [
+	"\"Dying's just a bad beat with extra steps.\" - Rico",
+	"\"Next time I go all in on a better plan. Or the same plan.\" - Rico",
 	"\"You'll be back. They always come back.\" - Marlow",
 	"\"Should've banked it, kid.\" - Marlow",
 	"\"The House thanks you for your business.\"",
@@ -120,6 +122,8 @@ const DEATH_QUIPS := [
 ]
 
 const WHISPERS := [
+	"Somewhere, someone is losing their shirt. Maybe yours.",
+	"The odds are 1 in 3. You've never once believed that.",
 	"The chips are still warm here.",
 	"Somewhere below, a roulette wheel is spinning.",
 	"The air smells like cigars and bad decisions.",

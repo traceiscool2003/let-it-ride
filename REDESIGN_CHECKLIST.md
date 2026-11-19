@@ -169,7 +169,8 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - DONE: `Cities.is_alley`: floors 1-2 use the new alley zone palette (brick, grime), then the Atlantic Shitty casino interior., nasty alleyway.** Each floor gets nicer, and you eventually make it into the casino.
 - [x] **25. Each city is 5 floors
   - DONE: `boss_every = 5`, `Cities.city_of`; floor 5/10/15/20/25 are bosses. you climb up,** with 4 explore floors and a boss on floor 5.
-- [ ] **26. Exploration is most of the game, not casino gameplay.**
+- [x] **26. Exploration is most of the game
+  - DONE: floors are now 6x5 rooms (was 4x4) in `level.gd` (RX/RY), downward-flowing layout completable with the base kit, secret rooms, vendors, map; pace stays grounded., not casino gameplay.**
   - Bigger, deeper, Hollow Knight-style interconnected maps.
   - The pace is grounded and slower, rewarding players who take their time.
 - [x] **27. Hidden stuff:**
@@ -189,7 +190,8 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - $1 white, $5 red, $25 green, $100 black, $500 purple, $1000 orange/yellow
 
 ## H. Story and voice
-- [ ] **33. The hero is a degenerate gambler who loves risk.** Rewrite the story and tone for this: funny and self-aware.
+- [x] **33. The hero is a degenerate gambler
+  - DONE: hero renamed RICO everywhere; `story.gd` INTRO/quips/whispers rewritten funny and self-aware; intro cards say five cities; boss lines per boss in `boss_defs.gd`. who loves risk.** Rewrite the story and tone for this: funny and self-aware.
 - [x] **34. Voice every character.**
   - DONE: voice.gd autoload + voice_lines*.gd registry (921 lines with IDs), VOICE_SCRIPT.md, README section.
   - Write `VOICE_SCRIPT.md`, which lists every line per character with a line ID.
