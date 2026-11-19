@@ -131,7 +131,8 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - DONE: Phase-change RAISE menu (`main._on_boss_phase_raise`, kind "raise"): Call/Raise/All-in spend Pot for x1.5/x2/x3 damage (`boss.dmg_mult`), refunded x1.5 on win; all charms/clothes carry over. and buffs from the 4 floors in the boss fight.** Spend chips at the table, for example a Buy-in or Raise at phase changes that multiplies your damage, and every buff carries over.
 - [x] **14. Really good boss music
   - DONE: `music.gd boss_music`: each boss has bpm/root/mode/lead wave in `boss_defs.gd`; escalates per phase (tempo, hats, kick, octave lead).:** its own intense track per boss that escalates per phase. It's synthesized in `music.gd`.
-- [ ] **15. Secret bosses and side bosses,** hidden behind secret rooms or off the main path.
+- [x] **15. Secret bosses
+  - DONE: 3 secret bosses in `boss_defs.SECRET` (Snake Eyes Sal, One-Armed Bandit, Mr. Lucky) behind SECRET TABLE doors in breakable-wall stash rooms (`level._stash`, `main._enter_secret`); big chip/loot payout. and side bosses,** hidden behind secret rooms or off the main path.
 
 ## E. Buffs, items and gambling
 - [x] **16. Buffs work like Balatro
@@ -171,7 +172,8 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
 - [ ] **26. Exploration is most of the game, not casino gameplay.**
   - Bigger, deeper, Hollow Knight-style interconnected maps.
   - The pace is grounded and slower, rewarding players who take their time.
-- [ ] **27. Hidden stuff:** breakable walls, secret rooms and hidden items.
+- [x] **27. Hidden stuff:**
+  - DONE: breakable (cracked) walls guard stash rooms with chips, safes and the secret table door; rooms hit ~85% of floors from floor 3. breakable walls, secret rooms and hidden items.
 - [x] **28. The map naturally guides you
   - DONE: removed the exit waypoint arrow (`hud.gd`); the lit exit door (lamp + glow in `level._build_lights`) and the M map guide you. Level layout bias toward the exit is unchanged. to the boss** through layout, lighting and signage, not a waypoint arrow.
 - [x] **29. Vendor rooms are spread

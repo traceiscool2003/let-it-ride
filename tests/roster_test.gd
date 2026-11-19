@@ -68,8 +68,14 @@ func _process(_d: float) -> bool:
 			for i in 5:
 				main._offer_charm("chalk")
 			check(main.charms.count("chalk") >= 2, "charms stack")
+		30:
+			main.floor_num = 3
+			main._enter_secret()
+			main._loading_tick(10.0)
+			main._loading_tick(10.0)
+			check(main.boss != null and main.in_secret and main.boss.def["id"] in ["snake_eyes", "rusty_slots"], "secret boss arena built")
 		70:
-			check(main.state in ["play", "dead", "menu", "dialog", "cine"], "still running after 60 frames: " + main.state)
+			check(main.state in ["play", "dead", "menu", "dialog", "cine", "loading"], "still running after 60 frames: " + main.state)
 			print("roster test: ", fails, " failed")
 			quit(1 if fails > 0 else 0)
 	return false

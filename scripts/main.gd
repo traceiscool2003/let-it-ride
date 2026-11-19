@@ -752,8 +752,13 @@ func _start_run(daily := false) -> void:
 		_bark("start", true)
 
 
+## Secret boss: a side fight reached through a hidden door (item 15).
+var in_secret := false
+var secret_id := ""
+
+
 func is_boss_floor() -> bool:
-	return floor_num % boss_every == 0
+	return in_secret or floor_num % boss_every == 0
 
 
 func _build_floor() -> void:
@@ -1003,6 +1008,16 @@ func _spawn_enemy(pos: Vector2, kind: int) -> void:
 	enemies.append(e)
 
 
+func _enter_secret() -> void:
+	var city := Cities.city_of(floor_num)
+	var opts: Array = ["snake_eyes", "rusty_slots"] if city < 3 else ["rusty_slots", "mr_lucky"]
+	secret_id = opts[rng.randi_range(0, opts.size() - 1)]
+	in_secret = true
+	_stat_add("secrets")
+	_loading("boss%d" % int(BossDefs.by_id(secret_id)["tier"]), "SECRET TABLE", "A side boss: " + String(BossDefs.by_id(secret_id)["name"]), func(): _build_floor())
+
+
+
 func _reach_exit() -> void:
 	_resolve_bet_at_exit()
 	_gain_xp(20 + 5 * floor_num, "FLOOR CLEARED")
@@ -1072,6 +1087,8 @@ func _choose(i: int) -> void:
 	if banked > best:
 		best = banked
 		new_best = true
+	if in_secret:
+		in_secret = false
 	floor_num += 1
 	_recalc_max_hp()
 	_save()
@@ -1080,6 +1097,7 @@ func _choose(i: int) -> void:
 
 func _die(reason: String) -> void:
 	recent_death = true
+	in_secret = false
 	state = "dead"
 	dead_t = 0.0
 	death_reason = reason
@@ -2055,6 +2073,8 @@ func _check_world(delta: float) -> void:
 						interact_text = "UP: GUNNY'S ARMORY"
 					"shady":
 						interact_text = "UP: SHADY UPGRADE"
+					"secretdoor":
+						interact_text = "UP: SIT AT THE SECRET TABLE"
 					"bets":
 						interact_text = "SIDE BET PLACED" if bet_used else "UP: SIDE BETS"
 					"vault":
@@ -2072,6 +2092,8 @@ func _check_world(delta: float) -> void:
 					match k:
 						"vera":
 							_open_menu("shop")
+						"secretdoor":
+							_enter_secret()
 						"tailor", "fizz", "gunny", "shady":
 							_open_menu(k)
 							Voice.speak_ctx(k, voice_state())
@@ -2368,6 +2390,10 @@ func _on_boss_defeated() -> void:
 	for e in enemies:
 		if is_instance_valid(e) and e.alive:
 			e.kill(0.0)
+	if in_secret:
+		_spawn_loose(boss.global_position + Vector2(0, -10), [1000, 500, 500, 100, 100, 100])
+		_callout("SECRET BOSS DOWN", Color(1, 0.4, 0.85))
+		_stat_add("secret_bosses")
 	var wdrop: Array = Weapons.ids().filter(func(k): return not owned_weapons.has(k))
 	if not wdrop.is_empty():
 		give_weapon(wdrop[rng.randi_range(0, wdrop.size() - 1)])
@@ -4236,6 +4262,8 @@ var raise_paid := 0
 
 
 func boss_def_for(fl: int) -> Dictionary:
+	if in_secret:
+		return BossDefs.by_id(secret_id)
 	if fl % 25 == 0:
 		return BossDefs.final_def()
 	if boss_order.size() < 4:

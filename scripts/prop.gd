@@ -9,7 +9,7 @@ var broken := false
 var vault_state := "closed"
 
 const Art := preload("res://scripts/art.gd")
-const ANIMATED := ["tailor", "fizz", "gunny", "shady", "safe", "poker", "holdem", "baccarat", "hilo", "blackjack", "case", "roulette", "bar", "lucky", "vera", "mags", "phone", "cat", "vault", "bets", "jules", "daily", "board", "fence"]
+const ANIMATED := ["secretdoor", "tailor", "fizz", "gunny", "shady", "safe", "poker", "holdem", "baccarat", "hilo", "blackjack", "case", "roulette", "bar", "lucky", "vera", "mags", "phone", "cat", "vault", "bets", "jules", "daily", "board", "fence"]
 
 
 func _ready() -> void:
@@ -52,6 +52,13 @@ func _draw() -> void:
 			_txt_small("LUCKY'S BAR", -46, Color(0.55, 1, 0.6), 60)
 		"tailor", "fizz", "gunny", "shady":
 			_draw_stall()
+		"secretdoor":
+			draw_rect(Rect2(-9, -26, 18, 26), Color(0.04, 0.02, 0.06))
+			draw_rect(Rect2(-7, -24, 14, 24), Color(0.12, 0.05, 0.16))
+			var pulse := 0.5 + 0.5 * sin(t * 3.0)
+			draw_string(ThemeDB.fallback_font, Vector2(-5, -9), "?", HORIZONTAL_ALIGNMENT_CENTER, 10, 16, Color(1, 0.3, 0.8, 0.5 + 0.5 * pulse))
+			draw_circle(Vector2(0, -12), 12.0, Color(1, 0.3, 0.8, 0.08 * pulse))
+			_txt_small("SECRET TABLE", -32, Color(1, 0.4, 0.85), 70)
 		"vera":
 			Art.vera(self, t)
 			_txt_small("VERA'S TABLE", -47, Color(1, 0.6, 0.75), 60)

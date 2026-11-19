@@ -86,6 +86,9 @@ var threat := 1.0
 var bg_art: Array = []
 ## Hidden stash pocket (top-left cell) or (-1, -1).
 var stash_cell := Vector2i(-1, -1)
+## True on floors that may hide a secret boss door behind a breakable wall.
+var secret_ok := false
+var floor_num_hint := 1
 
 var w := RW * RX
 var h := RH * RY
@@ -320,6 +323,8 @@ func generate(r: RandomNumberGenerator, floor_num: int, rule_list: Array, threat
 					for x in [wx, wx + 1]:
 						grid[idx(x, y)] = CRACK
 
+	floor_num_hint = floor_num
+	secret_ok = floor_num >= 2 and not (floor_num % 5 == 0)
 	_stash(start_room, exit_room)
 
 	# Spikes: sparse on the first floors, thicker deeper down.
@@ -1177,7 +1182,7 @@ func _draw_hatch(ci: CanvasItem) -> void:
 ## A sealed pocket in the corner of a side room: cracked walls around a safe
 ## and a few gold chips. You can see the gold through the cracks.
 func _stash(start_room: Vector2i, exit_room: Vector2i) -> void:
-	if rng.randf() > 0.6:
+	if rng.randf() > (0.6 if floor_num_hint < 3 else 0.85):
 		return
 	var rooms: Array = []
 	for ry in RY:
@@ -1217,7 +1222,11 @@ func _stash(start_room: Vector2i, exit_room: Vector2i) -> void:
 			for x in range(ix, ix + 3):
 				if x != ix + 1:
 					chip_spots.append([Vector2(x * T + 8, fy * T + 8), 25])
-			prop_spots.append([Vector2((ix + 1) * T + 8, (fy + 1) * T), 3])
+			if secret_ok and rng.randf() < 0.55:
+				# A secret table: a hidden door to a side boss.
+				games.append([Vector2((ix + 1) * T + 8, (fy + 1) * T), "secretdoor"])
+			else:
+				prop_spots.append([Vector2((ix + 1) * T + 8, (fy + 1) * T), 3])
 			return
 
 
