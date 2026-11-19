@@ -28,7 +28,6 @@ static func draw_scene(ci: CanvasItem, f: Font, t: float, tt: float) -> void:
 		_sky(ci, t, flash)
 		_strip(ci, f, t)
 		_city(ci, t, flash)
-	_neon_signs(ci, f, t)
 	_foreground(ci, f, t, false)
 	_rain(ci, t)
 	_foreground(ci, f, t, true)
