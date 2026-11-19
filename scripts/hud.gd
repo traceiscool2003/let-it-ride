@@ -602,8 +602,9 @@ func _draw_title() -> void:
 
 
 func _draw_loading() -> void:
-	Scenery.painting(self, f, g.load_kind, t)
-	Scenery.vgrad(self, Rect2(0, 440, 1280, 280), [[0.0, Color(0, 0, 0, 0.0)], [0.42, Color(0.01, 0.0, 0.03, 0.86)], [1.0, Color(0.01, 0.0, 0.03, 0.97)]])
+	Scenery.painting(self, f, g.load_kind, g.load_t if String(g.load_kind).begins_with("drive") else t)
+	var shade_y := 540.0 if String(g.load_kind).begins_with("drive") else 440.0
+	Scenery.vgrad(self, Rect2(0, shade_y, 1280, 720 - shade_y), [[0.0, Color(0, 0, 0, 0.0)], [0.42, Color(0.01, 0.0, 0.03, 0.86)], [1.0, Color(0.01, 0.0, 0.03, 0.97)]])
 	var slide := (1.0 - ease(clampf(g.load_t / 0.5, 0.0, 1.0), 0.3)) * 40.0
 	_txt(Vector2(70 - slide, 596), g.load_title, 60, GOLD)
 	draw_rect(Rect2(72 - slide, 612, 380, 3), Color(1, 0.3, 0.6, 0.85))
@@ -614,7 +615,7 @@ func _draw_loading() -> void:
 	var c := Vector2(1196, 626)
 	Scenery.glow(self, c, 46.0, 46.0, Color(1, 0.4, 0.3, 0.25))
 	Scenery.chip(self, c, 26.0, Color(0.85, 0.12, 0.18), 0.0, maxf(0.08, absf(cos(t * 3.2))))
-	var ready: bool = g.load_done and g.load_t > 0.8
+	var ready: bool = g.load_done and g.load_t > (2.5 if String(g.load_kind).begins_with("drive") else 0.8)
 	var dots := ".".repeat(int(t * 3.0) % 4)
 	_txt(Vector2(980, 690), ("JUMP  continue" if ready else "LOADING" + dots), 16, Color(1, 1, 1, 0.75), HORIZONTAL_ALIGNMENT_RIGHT, 260)
 	var k := clampf(g.load_t / maxf(0.01, g.load_dur), 0.0, 1.0)
@@ -1018,7 +1019,7 @@ func _draw_hub() -> void:
 				_txt(sp + Vector2(-20, 9), "!", 26, Color(0.15, 0.05, 0.1), HORIZONTAL_ALIGNMENT_CENTER, 40)
 		# Bouncing arrow over the DESCEND door when that's the goal.
 		var lines: Array = g.objective_lines()
-		if lines.size() > 0 and String(lines[0]).contains("bus stop"):
+		if lines.size() > 0 and String(lines[0]).contains("your car"):
 			var ep: Vector2 = g.to_screen(g.level.exit_pos + Vector2(0, -78))
 			ep.y += sin(t * 6.0) * 7.0
 			draw_colored_polygon(PackedVector2Array([ep + Vector2(-14, -10), ep + Vector2(14, -10), ep + Vector2(0, 8)]), GOLD)

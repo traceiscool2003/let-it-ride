@@ -75,7 +75,7 @@ func _process(_delta: float) -> bool:
 			check(main.state == "play" and main.bars_target == 0.0, "intro cutscene skips cleanly")
 			check(main.tip_title == "HOME", "Lobby tip shows after the intro")
 			check(main.hub_new.get("VERA", false) and main.hub_new.get("MAGS", false), "new-dialogue markers over Vera and Mags")
-			check(String(main.objective_lines()[0]).contains("bus stop") and String(main.objective_lines()[1]).contains("!"), "objective: bus stop first, talking is optional")
+			check(String(main.objective_lines()[0]).contains("your car") and String(main.objective_lines()[1]).contains("!"), "objective: your car first, talking is optional")
 		10:
 			main._hub_interact("phone")
 			check(main.state == "dialog" and main.dialog[0][0] == "MARLOW", "payphone starts Marlow's intro")

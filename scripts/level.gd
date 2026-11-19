@@ -501,7 +501,7 @@ func generate_boss(r: RandomNumberGenerator, tier: int, rule_list: Array, zone_ 
 ## The hub between runs. Busted debtors wake up here. Characters stand on the
 ## floor as `games` entries; main.gd filters out the ones not unlocked yet.
 ## The hub is Rico's apartment (left) and the street outside (right). Walk out the
-## front door at HOME_DOOR and down the block; the bus stop at the end is the start
+## front door at HOME_DOOR and down the block; Rico's junker car at the end is the start
 ## of the climb. Tile x < HOME_DOOR is indoors.
 const HOME_DOOR := 23
 
@@ -594,7 +594,7 @@ func _draw_home_bg() -> void:
 		draw_rect(Rect2(x0, fl - 98, x1 - x0, 3), c.lightened(0.2))
 		if sh[2] != "":
 			draw_string(ThemeDB.fallback_font, Vector2(x0, fl - 70), sh[2], HORIZONTAL_ALIGNMENT_CENTER, x1 - x0, 9, Color(1, 0.95, 0.8))
-	# Street furniture: lamp posts, a parked car, a bus stop at the end of the block.
+	# Street furniture: lamp posts, a parked car, and Rico's junker at the end of the block.
 	for lx in [27, 35, 43, 51]:
 		var px: float = lx * T + 8
 		draw_rect(Rect2(px - 1, fl - 70, 2, 62), Color(0.1, 0.1, 0.13))
@@ -604,11 +604,19 @@ func _draw_home_bg() -> void:
 	draw_rect(Rect2(53 * T - 22, fl - 20, 22, 7), Color(0.14, 0.17, 0.25))
 	draw_circle(Vector2(53 * T - 22, fl - 6), 3.0, Color(0.03, 0.03, 0.05))
 	draw_circle(Vector2(53 * T - 0, fl - 6), 3.0, Color(0.03, 0.03, 0.05))
+	# Rico's junker at the curb: the run starts when you climb in.
 	var bx := (w - 8) * T
-	draw_rect(Rect2(bx, fl - 58, 3, 46), Color(0.2, 0.2, 0.25))
-	draw_rect(Rect2(bx - 8, fl - 62, 56, 4), Color(0.25, 0.25, 0.32))
-	draw_rect(Rect2(bx + 4, fl - 58, 40, 30), Color(0.4, 0.7, 0.9, 0.12))
-	draw_string(ThemeDB.fallback_font, Vector2(bx - 20, fl - 70), "TO ATLANTIC SHITTY", HORIZONTAL_ALIGNMENT_CENTER, 90, 8, Color(1.0, 0.85, 0.4))
+	var cy := fl - 8.0
+	draw_rect(Rect2(bx - 14, cy - 18, 70, 18), Color(0.42, 0.3, 0.18))
+	draw_colored_polygon(PackedVector2Array([Vector2(bx - 2, cy - 18), Vector2(bx + 6, cy - 32), Vector2(bx + 40, cy - 32), Vector2(bx + 48, cy - 18)]), Color(0.38, 0.27, 0.16))
+	draw_rect(Rect2(bx + 16, cy - 18, 16, 18), Color(0.45, 0.45, 0.42))
+	draw_rect(Rect2(bx + 8, cy - 29, 12, 9), Color(0.3, 0.38, 0.4, 0.8))
+	draw_line(Vector2(bx + 24, cy - 29), Vector2(bx + 38, cy - 21), Color(0.75, 0.72, 0.6), 2.0)
+	for r in 4:
+		draw_circle(Vector2(bx - 8 + r * 17, cy - 5), 2.0, Color(0.5, 0.25, 0.08, 0.8))
+	draw_circle(Vector2(bx, cy + 1), 6.0, Color(0.03, 0.03, 0.04))
+	draw_circle(Vector2(bx + 42, cy + 1), 6.0, Color(0.03, 0.03, 0.04))
+	draw_string(ThemeDB.fallback_font, Vector2(bx - 26, cy - 44), "TO ATLANTIC SHITTY", HORIZONTAL_ALIGNMENT_CENTER, 100, 8, Color(1.0, 0.85, 0.4))
 	# ---- The apartment (indoors, x < HOME_DOOR).
 	draw_rect(Rect2(0, 0, split, hh), Color(0.17, 0.13, 0.19))
 	for x in range(0, int(split), 12):

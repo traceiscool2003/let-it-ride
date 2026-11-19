@@ -2918,7 +2918,7 @@ func _enter_lobby(woke: bool) -> void:
 		_save()
 		_cinematic(_intro_steps(), "play", "intro")
 		return
-	_tip("lobby", "THE LOBBY", "Home sweet hovel. You wake up in bed after every bust. Step out the front door and walk down the block; talk to anyone with a  !  over their head. The bus stop at the far end starts the climb.")
+	_tip("lobby", "THE LOBBY", "Home sweet hovel. You wake up in bed after every bust. Step out the front door and walk down the block; talk to anyone with a  !  over their head. Your car (if it starts) at the far end of the block starts the climb.")
 	if woke:
 		var ev := "wake_" + last_cause
 		if lost_pot >= 1000:
@@ -2940,7 +2940,7 @@ func _hub_world() -> void:
 	interact_text = ""
 	if pr.intersects(level.exit_rect()):
 		interact_pos = level.exit_pos + Vector2(0, -50)
-		interact_text = "UP: CATCH THE BUS TO " + String(Cities.CITIES[0]["name"])
+		interact_text = "UP: GET IN THE CAR. DRIVE TO " + String(Cities.CITIES[0]["name"])
 		if Input.is_action_pressed("up") and player.is_on_floor():
 			_begin_run()
 		return
@@ -3861,7 +3861,7 @@ func objective_lines() -> Array:
 		for v in hub_new.values():
 			if v:
 				any_new = true
-		out.append("Walk out the front door to the bus stop at the end of the block to start a run")
+		out.append("Walk out the front door to your car at the end of the block to start a run")
 		if any_new:
 			out.append("Optional: talk to anyone with a  !  over their head")
 		if skill_points > 0:
@@ -4371,6 +4371,9 @@ func _loading(kind: String, title: String, sub: String, fn: Callable) -> void:
 	load_post = "play"
 	load_tip = LOAD_TIPS[randi() % LOAD_TIPS.size()]
 	load_dur = 2.4 if settings.val("load_screens") == "full" else 0.9
+	if kind.begins_with("drive"):
+		# The road trip between cities is a proper scene, not a flash.
+		load_dur = 7.5 if settings.val("load_screens") == "full" else 3.0
 	dialog.clear()
 	state = "loading"
 	get_tree().paused = true
@@ -4380,7 +4383,9 @@ func _loading(kind: String, title: String, sub: String, fn: Callable) -> void:
 
 ## Loading screen for the floor `floor_num` is about to become.
 func _loading_floor(fn: Callable) -> void:
-	if is_boss_floor():
+	if floor_num > 1 and Cities.floor_in_city(floor_num) == 0:
+		_loading_drive(Cities.city_of(floor_num), fn)
+	elif is_boss_floor():
 		var bd := boss_def_for(floor_num)
 		var tier := int(bd["tier"])
 		_loading("boss%d" % tier, String(bd["name"]) + "  -  " + String(bd["game"]), "BOSS FLOOR  -  FLOOR %d  -  %s" % [floor_num, Cities.info(floor_num)["full"]], fn)
@@ -4391,8 +4396,13 @@ func _loading_floor(fn: Callable) -> void:
 
 ## Start a run from anywhere, through the floor 1 loading screen.
 func _begin_run(daily := false) -> void:
-	var z: Dictionary = ZONES[0]
-	_loading(z["paint"], z["name"], "FLOOR 1  -  " + String(z["sub"]), func(): _start_run(daily))
+	_loading_drive(0, func(): _start_run(daily))
+
+
+## The highway road trip to city `city`: the car and the skyline get nicer each city.
+func _loading_drive(city: int, fn: Callable) -> void:
+	var c: Dictionary = Cities.CITIES[clampi(city, 0, Cities.CITIES.size() - 1)]
+	_loading("drive%d" % clampi(city, 0, 4), "ON THE ROAD", "Next stop: " + String(c["full"]), fn)
 
 
 func _loading_tick(delta: float) -> void:
@@ -4408,7 +4418,8 @@ func _loading_tick(delta: float) -> void:
 		state = "loading"
 		get_tree().paused = true
 	var ready := load_done and load_t >= load_dur
-	if load_done and load_t > 0.8 and (_jp("jump") or _jp("confirm")):
+	var skip_after := 2.5 if load_kind.begins_with("drive") else 0.8
+	if load_done and load_t > skip_after and (_jp("jump") or _jp("confirm")):
 		ready = true
 	if ready:
 		state = load_post

@@ -344,6 +344,8 @@ static func painting(ci: CanvasItem, f: Font, kind: String, t: float) -> void:
 			_paint_vault(ci, f, t, false)
 		"deep":
 			_paint_vault(ci, f, t, true)
+		"drive0", "drive1", "drive2", "drive3", "drive4":
+			load("res://scripts/roadtrip.gd").draw(ci, f, int(kind.right(1)), t)
 		"boss1", "boss2", "boss3":
 			_paint_boss(ci, f, int(kind.right(1)), t)
 		_:
