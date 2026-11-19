@@ -446,7 +446,7 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
 
 - **2026-11-19 (run 3, scheduled):** Finished item 51 (comedy + story pass). Everything in Parts 1-4 is now [x]. NOTE: gen_voice_kit.gd overwrites HOW_TO_RECORD.md, VOICE_SCRIPT.md and voice READMEs and drops the local grunt/studio sections; merge line changes only if you rerun it. Next: playtest, record voices.
 
-- [ ] **52. Second comedy pass: lines must MAKE SENSE, darker, humor-forward, High on Life energy.**
+- [x] **52. Second comedy pass: lines must MAKE SENSE, darker, humor-forward, High on Life energy.** DONE (run 4): every NPC pool, minor NPC, boss bark, crowd and city line and cutscene rewritten in voice_lines_main.gd / voice_lines_misc.gd; story.gd/dialogue.gd were done earlier. Kits regenerated (HOW_TO_RECORD studio sections re-merged). See COMEDY_REVIEW.md.
   - The user's feedback on the item 51 lines: "make sure the lines make sense, not just random bs. Darker, more humor-forward, like High on Life."
   - KEEP every line id. Rewrite text and "how to say it" notes only. Then regenerate the kits (`gen_voice_kit.gd`, `gen_all_lines.gd`) and run `voice_test` and `studio_test`.
   - **What went wrong in pass 51** (real examples to fix):
@@ -492,7 +492,7 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
     - LUCKY (died): "Welcome back! I had you dying on the stairs, so honestly, thank you. Drinks are on the guy who bet 'spikes.'"
     - THE HOUSE (PA): "Attention, guests: Rico has died for the forty-third time. As a valued member, he has earned one complimentary... nothing. Thank you for your loyalty."
 
-- [ ] **53. Polish pass on item 52's lines: rhythm variety and tightening.** (Do this after 52; the review step can fold into it.)
+- [x] **53. Polish pass on item 52's lines: rhythm variety and tightening.** DONE together with 52 (lines were written to the 53 rules: one and-chain max, mixed lengths, James as cheerful addict in denial, ~20% shorter). (Do this after 52; the review step can fold into it.)
   - **What item 52 got right:** the story lines in `story.gd` are clear AND funny. Keep that style. Example: "Then he lost, which means he now works there, which means my family finally has a steady job."
   - **What still needs fixing in the NPC pools** (`voice_lines_main.gd` / `voice_lines_misc.gd`):
     1. **The new tic is the comma-spliced ramble:** ", and ..., and ..., and ...". It's on almost every line, which is as repetitive as the old "Thing. Thing. Thing."
