@@ -591,11 +591,11 @@ func _draw_title() -> void:
 		title_sel_prev = g.title_sel
 		title_sel_t = t
 	TitleScreen.draw_scene(self, f, t, tt)
-	TitleScreen.draw_logo(self, f, Vector2(86, 150), t, tt)
+	TitleScreen.draw_logo(self, f, Vector2(86, 172), t, tt)
 	var tag_a := clampf((tt - 1.25) / 0.5, 0.0, 1.0)
-	_txt(Vector2(92, 262), "Climb five casinos.  Win back Jules.  Know when to walk away.", 18, Color(0.95, 0.88, 0.95, 0.9 * tag_a))
+	_txt(Vector2(92, 290), "Climb five casinos.  Win back Jules.  Know when to walk away.", 18, Color(0.95, 0.88, 0.95, 0.9 * tag_a))
 	if g.intro_seen:
-		_txt(Vector2(92, 288), "Your Marker is still open.", 14, Color(1, 0.55, 0.55, 0.8 * tag_a))
+		_txt(Vector2(92, 312), "Your Marker is still open.", 14, Color(1, 0.55, 0.55, 0.8 * tag_a))
 	# Menu: each item is a neon sign. Items slide in one after another.
 	var items: Array = g.title_items()
 	for i in items.size():
@@ -604,7 +604,7 @@ func _draw_title() -> void:
 		if ka <= 0.0:
 			continue
 		var slide := (1.0 - ease(ka, 0.3)) * -60.0
-		var y := 344.0 + i * 46.0 + (24.0 if i > g.title_sel else 0.0)
+		var y := 368.0 + i * 44.0 + (24.0 if i > g.title_sel else 0.0)
 		var x := 112.0 + slide
 		if sel:
 			x += 14.0 * ease(clampf((t - title_sel_t) / 0.15, 0.0, 1.0), 0.4)

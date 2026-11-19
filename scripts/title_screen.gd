@@ -6,10 +6,10 @@ extends RefCounted
 ## `tt` is seconds since the title screen appeared (drives the intro).
 
 const Scenery := preload("res://scripts/scenery.gd")
+const SpriteChar := preload("res://scripts/sprite_char.gd")
 
 const HORIZON := 430.0
 const ROOF_Y := 560.0
-const RICO_AT := Vector2(960, ROOF_Y - 6)
 
 
 static func draw_scene(ci: CanvasItem, f: Font, t: float, tt: float) -> void:
@@ -19,8 +19,9 @@ static func draw_scene(ci: CanvasItem, f: Font, t: float, tt: float) -> void:
 	_city(ci, t, flash)
 	_neon_signs(ci, f, t)
 	_rooftop(ci, t, flash)
-	_rico(ci, RICO_AT, t)
+	_foreground(ci, f, t, false)
 	_rain(ci, t)
+	_foreground(ci, f, t, true)
 	_finish(ci, t, tt, flash)
 
 
@@ -161,47 +162,27 @@ static func _rooftop(ci: CanvasItem, t: float, flash: float) -> void:
 		ci.draw_rect(Rect2(0, ROOF_Y - 10, 1280, 170), Color(0.7, 0.7, 0.9, 0.06 * flash))
 
 
-## Rico from behind, hood up, hands in his pockets, scarf whipping in the wind,
-## staring at the Strip. Rim-lit gold from the horizon on his right side.
+## Rico on the ledge: the real in-game sprite (the couch-bum look he starts in),
+## silhouetted against the city with a warm gold rim light from the Strip,
+## breathing through his idle animation.
 static func _rico(ci: CanvasItem, feet: Vector2, t: float) -> void:
-	var breath := sin(t * 1.6) * 0.8
-	var dark := Color(0.035, 0.03, 0.05)
-	var cloth := Color(0.09, 0.07, 0.12)
-	var rim := Color(1.0, 0.72, 0.38, 0.95)
-	var M := Transform2D(0.0, Vector2(2.4, 2.4), 0.0, feet)
-	ci.draw_set_transform_matrix(M)
-	# Ground shadow and the reflection in the wet roof.
-	Scenery.glow(ci, Vector2(0, 1), 22.0, 3.0, Color(0, 0, 0, 0.6))
-	# Legs: jeans, slightly apart, weight on one hip.
-	ci.draw_colored_polygon(PackedVector2Array([Vector2(-8, 0), Vector2(-3, 0), Vector2(-1, -30), Vector2(-9, -30)]), dark)
-	ci.draw_colored_polygon(PackedVector2Array([Vector2(3, 0), Vector2(8, 0), Vector2(9, -30), Vector2(1, -30)]), dark)
-	ci.draw_rect(Rect2(-9, -2, 7, 2), Color(0.18, 0.14, 0.16))   # sneaker soles
-	ci.draw_rect(Rect2(2, -2, 7, 2), Color(0.18, 0.14, 0.16))
-	# Hoodie: hem, torso widening to the shoulders.
-	var by := -breath
-	var torso := PackedVector2Array([Vector2(-11, -27), Vector2(11, -27), Vector2(13, -46 + by), Vector2(15, -56 + by), Vector2(11, -62 + by),
-		Vector2(-11, -62 + by), Vector2(-15, -56 + by), Vector2(-13, -46 + by)])
-	ci.draw_colored_polygon(torso, cloth)
-	# Arms down, hands in the hoodie pocket.
-	ci.draw_colored_polygon(PackedVector2Array([Vector2(-15, -56 + by), Vector2(-11, -58 + by), Vector2(-9, -36), Vector2(-14, -34)]), dark)
-	ci.draw_colored_polygon(PackedVector2Array([Vector2(15, -56 + by), Vector2(11, -58 + by), Vector2(9, -36), Vector2(14, -34)]), dark)
-	ci.draw_rect(Rect2(-10, -34, 20, 5), Color(0.06, 0.05, 0.08))   # waistband
-	# Head from behind, then his signature wide-brim fedora (the in-game silhouette).
-	var head := PackedVector2Array()
-	for k in 16:
-		var ang := TAU * k / 16.0
-		head.append(Vector2(cos(ang) * 9.0, -72 + by + sin(ang) * 9.0))
-	ci.draw_colored_polygon(head, dark)
-	ci.draw_colored_polygon(PackedVector2Array([Vector2(-17, -79 + by), Vector2(17, -80 + by), Vector2(19, -77 + by), Vector2(-19, -76 + by)]), dark)
-	ci.draw_colored_polygon(PackedVector2Array([Vector2(-10, -79 + by), Vector2(10, -80 + by), Vector2(8, -91 + by), Vector2(2, -88 + by), Vector2(-3, -91 + by), Vector2(-9, -89 + by)]), cloth)
-	ci.draw_line(Vector2(-10, -82 + by), Vector2(10, -83 + by), Color(0.8, 0.08, 0.14), 2.0)
-	ci.draw_colored_polygon(PackedVector2Array([Vector2(-8, -86 + by), Vector2(-4, -87 + by), Vector2(-4, -81 + by), Vector2(-8, -80 + by)]), Color(0.9, 0.88, 0.82))
-	# Gold rim light down his right side: hat, head, shoulder, arm, leg.
-	ci.draw_polyline(PackedVector2Array([Vector2(8, -91 + by), Vector2(10, -80 + by), Vector2(19, -77 + by)]), rim, 0.9)
-	ci.draw_polyline(PackedVector2Array([Vector2(9, -72 + by), Vector2(8, -66 + by), Vector2(11, -62 + by), Vector2(15, -56 + by),
-		Vector2(14, -34), Vector2(11, -27), Vector2(9, -30), Vector2(8, 0)]), rim, 0.9)
-	Scenery.glow(ci, Vector2(12, -50), 6.0, 22.0, Color(1.0, 0.7, 0.4, 0.12))
-	ci.draw_set_transform(Vector2.ZERO)
+	var sf: SpriteFrames = SpriteChar.frames("city_men_1")
+	if sf == null or not sf.has_animation("idle"):
+		return
+	var n := sf.get_frame_count("idle")
+	var tex: Texture2D = sf.get_frame_texture("idle", int(t * 6.0) % n)
+	var sc := 2.6
+	var size := Vector2(128, 128) * sc
+	# Frame bottom = feet; the body sits a little left of the frame centre.
+	var origin := feet - Vector2(60.0 * sc, 127.0 * sc)
+	Scenery.glow(ci, feet + Vector2(0, -2), 70.0, 8.0, Color(0, 0, 0, 0.6))
+	# Rim light: a gold copy nudged toward the Strip, then a softer wider halo.
+	for o in [Vector2(5, -2), Vector2(3, 0), Vector2(2, -4)]:
+		ci.draw_texture_rect(tex, Rect2(origin + o, size), false, Color(1.0, 0.72, 0.38, 0.55))
+	ci.draw_texture_rect(tex, Rect2(origin + Vector2(-2, 0), size), false, Color(0.4, 0.5, 0.9, 0.25))
+	# The figure itself, deep in shadow (lit faintly by the neon).
+	ci.draw_texture_rect(tex, Rect2(origin, size), false, Color(0.16, 0.12, 0.18, 1.0))
+	ci.draw_texture_rect(tex, Rect2(origin, size), false, Color(0.55, 0.42, 0.5, 0.18))
 
 
 # ---------------------------------------------------------------- weather + finish
@@ -234,51 +215,146 @@ static func _finish(ci: CanvasItem, t: float, tt: float, flash: float) -> void:
 		ci.draw_rect(Rect2(0, 0, 1280, 720), Color(0, 0, 0, fade))
 
 
-# ---------------------------------------------------------------- the logo
+# ---------------------------------------------------------------- the marquee logo
 
-## Big extruded gold logo with a neon outline. Slams in at ~0.9s with a flash,
-## then idles with a slow glow pulse and a light sweep every few seconds.
+const LOGO_BOX := Rect2(0, -150, 520, 230)   # in logo space; at = top-left anchor + this
+
+
+## A Vegas marquee sign: a dark lacquered board, a gold frame, and two rings of
+## chasing bulbs that light up in sequence on boot. "LET IT" sits on top, and the
+## letters of "RIDE" spin like slot reels and slam into place one by one.
 static func draw_logo(ci: CanvasItem, f: Font, at: Vector2, t: float, tt: float) -> void:
-	var k := clampf((tt - 0.7) / 0.35, 0.0, 1.0)
+	var k := clampf((tt - 0.35) / 0.5, 0.0, 1.0)
 	if k <= 0.0:
 		return
-	var sc := lerpf(1.5, 1.0, ease(k, 0.25))
-	var alpha := clampf(k * 2.0, 0.0, 1.0)
-	ci.draw_set_transform(at, 0.0, Vector2(sc, sc))
-	# Back glow.
-	var pulse := 0.85 + 0.15 * sin(t * 1.8)
-	Scenery.glow(ci, Vector2(250, -30), 360.0, 110.0, Color(1.0, 0.45, 0.35, 0.22 * alpha * pulse))
-	# "LET IT" sits above "RIDE".
-	_logo_word(ci, f, Vector2(8, -70), "LET IT", 54, 5, alpha, t)
-	_logo_word(ci, f, Vector2(0, 40), "RIDE", 128, 10, alpha, t)
-	# A thin rule with diamond caps and a spinning chip.
-	ci.draw_rect(Rect2(10, 64, 470, 3), Color(1.0, 0.35, 0.55, 0.9 * alpha))
-	for dx in [6.0, 484.0]:
-		ci.draw_colored_polygon(PackedVector2Array([Vector2(dx, 58), Vector2(dx + 7, 65.5), Vector2(dx, 73), Vector2(dx - 7, 65.5)]), Color(1.0, 0.8, 0.3, alpha))
-	Scenery.chip(ci, Vector2(445, -88), 16.0, Color(0.85, 0.12, 0.18), 0.0, maxf(0.15, absf(cos(t * 2.4))))
+	var a := ease(k, 0.4)
+	ci.draw_set_transform(at + Vector2(0, (1.0 - a) * -40.0), 0.0, Vector2.ONE)
+	var box := LOGO_BOX
+	# Glow spilling from the sign onto the night.
+	Scenery.glow(ci, box.get_center(), box.size.x * 0.75, box.size.y * 0.8, Color(1.0, 0.55, 0.3, 0.16 * a))
+	# Board and frame.
+	ci.draw_rect(box.grow(10), Color(0.2, 0.12, 0.05, a))
+	ci.draw_rect(box.grow(7), Color(0.9, 0.68, 0.28, a))
+	ci.draw_rect(box.grow(4), Color(0.45, 0.28, 0.08, a))
+	Scenery.vgrad(ci, box, [[0.0, Color(0.16, 0.03, 0.08, a)], [1.0, Color(0.05, 0.01, 0.04, a)]])
+	ci.draw_rect(Rect2(box.position + Vector2(6, 6), Vector2(box.size.x - 12, 2)), Color(1, 0.85, 0.6, 0.25 * a))
+	# Chasing marquee bulbs around the frame.
+	var bulbs := _bulb_path(box.grow(-2), 15.0)
+	var lit_n := int(clampf((tt - 0.5) / 0.9, 0.0, 1.0) * bulbs.size())
+	for i in bulbs.size():
+		var p: Vector2 = bulbs[i]
+		var on := i < lit_n and (int(t * 8.0) + i) % 3 != 0
+		var bc := Color(1.0, 0.86, 0.5) if on else Color(0.35, 0.22, 0.1)
+		if on:
+			Scenery.glow(ci, p, 9.0, 9.0, Color(1.0, 0.75, 0.35, 0.35 * a))
+		ci.draw_circle(p, 3.2, Color(0.15, 0.08, 0.03, a))
+		ci.draw_circle(p, 2.4, Color(bc, a))
+		if on:
+			ci.draw_circle(p + Vector2(-0.7, -0.7), 0.9, Color(1, 1, 0.95, a))
+	# "LET IT" in neon script across the top.
+	var neon := Color(1.0, 0.35, 0.6)
+	var flick := 1.0 if fmod(t + 1.7, 7.3) > 0.12 else 0.35
+	_neon_word(ci, f, Vector2(box.position.x + 34, box.position.y + 66), "LET IT", 52, neon, a * flick)
+	# "RIDE": four slot-reel letters that spin in and lock one at a time.
+	var letters := ["R", "I", "D", "E"]
+	var glyphs := ["7", "$", "A", "K", "Q", "J", "R", "I", "D", "E", "♣", "♦"]
+	var x := box.position.x + 30
+	for li in 4:
+		var lock_t := 1.1 + li * 0.22
+		var cell := Rect2(x, box.position.y + 84, 112, 128)
+		ci.draw_rect(cell, Color(0.03, 0.01, 0.03, a))
+		Scenery.vgrad(ci, cell, [[0.0, Color(0, 0, 0, 0.55 * a)], [0.25, Color(0, 0, 0, 0.0)], [0.75, Color(0, 0, 0, 0.0)], [1.0, Color(0, 0, 0, 0.55 * a)]])
+		var ch: String = letters[li]
+		var dy := 0.0
+		if tt < lock_t:
+			var spin := int(t * 30.0 + li * 3) % glyphs.size()
+			ch = glyphs[spin]
+			dy = fmod(t * 900.0, 40.0) - 20.0
+		var bounce := 0.0
+		if tt >= lock_t and tt < lock_t + 0.18:
+			bounce = sin((tt - lock_t) / 0.18 * PI) * 10.0
+		_gold_letter(ci, f, Vector2(cell.position.x + 12, cell.end.y - 18 + dy + bounce), ch, 112, a, t, li)
+		if tt >= lock_t and tt < lock_t + 0.25:
+			ci.draw_rect(cell, Color(1, 0.9, 0.6, (1.0 - (tt - lock_t) / 0.25) * 0.5 * a))
+		ci.draw_rect(cell, Color(0.9, 0.68, 0.28, 0.6 * a), false, 1.5)
+		x += 118
+	# A spinning chip as the jewel on the sign's top-right corner.
+	Scenery.chip(ci, Vector2(box.end.x - 34, box.position.y + 42), 20.0, Color(0.85, 0.12, 0.18), 0.0, maxf(0.15, absf(cos(t * 2.4))))
 	ci.draw_set_transform(Vector2.ZERO)
-	# Impact flash when it lands.
-	var fl := 1.0 - clampf((tt - 1.05) / 0.35, 0.0, 1.0)
-	if tt > 1.0 and fl > 0.0:
-		ci.draw_rect(Rect2(0, 0, 1280, 720), Color(1.0, 0.9, 0.75, 0.35 * fl))
+	# The flash when the last reel locks.
+	var last := 1.1 + 3 * 0.22
+	if tt > last and tt < last + 0.4:
+		ci.draw_rect(Rect2(0, 0, 1280, 720), Color(1.0, 0.92, 0.75, 0.3 * (1.0 - (tt - last) / 0.4)))
 
 
-static func _logo_word(ci: CanvasItem, f: Font, p: Vector2, s: String, size: int, depth: int, alpha: float, t: float) -> void:
-	# Extruded side, darkening as it goes back.
-	for d in range(depth, 0, -1):
-		var kd := float(d) / depth
-		ci.draw_string(f, p + Vector2(d * 0.6, d), s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color(0.35 - 0.25 * kd, 0.08, 0.06, alpha))
-	# Neon outline glow, then a dark crisp outline.
-	ci.draw_string_outline(f, p, s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, 18, Color(1.0, 0.3, 0.5, 0.12 * alpha))
-	ci.draw_string_outline(f, p, s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, 9, Color(1.0, 0.35, 0.55, 0.35 * alpha))
-	ci.draw_string_outline(f, p, s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, 4, Color(0.25, 0.04, 0.05, alpha))
-	# Gold face with a bevel: dark lower edge, bright upper edge.
-	ci.draw_string(f, p + Vector2(0, 2), s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color(0.75, 0.42, 0.1, alpha))
-	ci.draw_string(f, p, s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color(1.0, 0.78, 0.28, alpha))
-	ci.draw_string(f, p + Vector2(0, -2), s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color(1.0, 0.95, 0.7, 0.35 * alpha))
-	# A light sweep glints across every 5 seconds.
-	var sweep := fmod(t, 5.0) / 0.8
-	if sweep < 1.0:
-		var w := f.get_string_size(s, HORIZONTAL_ALIGNMENT_LEFT, -1, size).x
-		var sx := p.x + sweep * (w + 80.0) - 40.0
-		Scenery.glow(ci, Vector2(sx, p.y - size * 0.35), 26.0, size * 0.5, Color(1, 1, 0.9, 0.35 * alpha * sin(sweep * PI)))
+static func _bulb_path(r: Rect2, spacing: float) -> Array:
+	var out: Array = []
+	var x := r.position.x
+	while x <= r.end.x:
+		out.append(Vector2(x, r.position.y))
+		x += spacing
+	var y := r.position.y + spacing
+	while y <= r.end.y:
+		out.append(Vector2(r.end.x, y))
+		y += spacing
+	x = r.end.x - spacing
+	while x >= r.position.x:
+		out.append(Vector2(x, r.end.y))
+		x -= spacing
+	y = r.end.y - spacing
+	while y > r.position.y:
+		out.append(Vector2(r.position.x, y))
+		y -= spacing
+	return out
+
+
+static func _neon_word(ci: CanvasItem, f: Font, p: Vector2, s: String, size: int, col: Color, a: float) -> void:
+	ci.draw_string_outline(f, p, s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, 16, Color(col, 0.12 * a))
+	ci.draw_string_outline(f, p, s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, 8, Color(col, 0.35 * a))
+	ci.draw_string_outline(f, p, s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, 3, Color(col.lightened(0.2), 0.9 * a))
+	ci.draw_string(f, p, s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color(1.0, 0.92, 0.96, a))
+
+
+static func _gold_letter(ci: CanvasItem, f: Font, p: Vector2, s: String, size: int, a: float, t: float, li: int) -> void:
+	for d in range(7, 0, -1):
+		ci.draw_string(f, p + Vector2(d * 0.5, d), s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color(0.3 - d * 0.03, 0.08, 0.04, a))
+	ci.draw_string_outline(f, p, s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, 5, Color(0.2, 0.05, 0.03, a))
+	ci.draw_string(f, p + Vector2(0, 3), s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color(0.7, 0.38, 0.08, a))
+	ci.draw_string(f, p, s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color(1.0, 0.8, 0.3, a))
+	ci.draw_string(f, p + Vector2(0, -3), s, HORIZONTAL_ALIGNMENT_LEFT, -1, size, Color(1.0, 0.96, 0.75, 0.4 * a))
+	# A glint that sweeps across each letter in turn.
+	var g := fmod(t * 0.6 - li * 0.12, 3.0)
+	if g < 0.25:
+		Scenery.glow(ci, p + Vector2(40 + g * 120.0, -size * 0.4), 14.0, size * 0.45, Color(1, 1, 0.9, 0.4 * a * sin(g / 0.25 * PI)))
+
+
+# ---------------------------------------------------------------- foreground
+
+## Chips and cards tumbling through the frame. `near` = big, soft, fast pieces
+## close to the camera (drawn over the rain) for depth.
+static func _foreground(ci: CanvasItem, f: Font, t: float, near: bool) -> void:
+	var n := 6 if near else 12
+	var chip_cols := [Color(0.85, 0.12, 0.18), Color(0.1, 0.55, 0.3), Color(0.12, 0.12, 0.14), Color(0.45, 0.2, 0.7), Color(0.95, 0.95, 0.95)]
+	for i in n:
+		var seed := i * 17 + (500 if near else 0)
+		var spd := (90.0 + Scenery.rnd(seed) * 70.0) * (1.8 if near else 1.0)
+		var y := fposmod(t * spd + Scenery.rnd(seed + 1) * 900.0, 900.0) - 90.0
+		var x := 680.0 + Scenery.rnd(seed + 2) * 620.0 + sin(t * 0.7 + i) * 40.0
+		if near:
+			x = Scenery.rnd(seed + 2) * 1280.0
+		var r := (22.0 + Scenery.rnd(seed + 3) * 14.0) if near else (6.0 + Scenery.rnd(seed + 3) * 6.0)
+		var spin := absf(cos(t * (1.5 + Scenery.rnd(seed + 4) * 2.0) + i))
+		if i % 3 == 0:
+			var rot := t * (0.8 + Scenery.rnd(seed + 5)) + i
+			var flip := cos(t * (1.1 + Scenery.rnd(seed + 6)) + i)
+			if near:
+				Scenery.glow(ci, Vector2(x, y), r * 1.6, r * 1.6, Color(1, 1, 1, 0.05))
+			Scenery.card(ci, f, Vector2(x, y), r * (1.3 if near else 2.2), rot, flip, ["A", "K", "7"][i % 3], i % 2 == 0)
+		else:
+			var col: Color = chip_cols[i % chip_cols.size()]
+			if near:
+				# Soft, out-of-focus chip close to the lens.
+				Scenery.glow(ci, Vector2(x, y), r * 1.8, r * 1.8 * maxf(0.2, spin), Color(col, 0.18))
+				Scenery.chip(ci, Vector2(x, y), r, Color(col, 0.55), 0.0, maxf(0.15, spin))
+			else:
+				Scenery.chip(ci, Vector2(x, y), r, col, 0.0, maxf(0.15, spin))
