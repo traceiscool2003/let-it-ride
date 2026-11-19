@@ -1268,6 +1268,7 @@ func _process(delta: float) -> void:
 						break
 		"title":
 			Music.intensity = 0.0
+			Music.zone = 4  # rainy alley noir jazz fits the rooftop title
 			var n := title_items().size()
 			if _jp("up"):
 				title_sel = (title_sel + n - 1) % n

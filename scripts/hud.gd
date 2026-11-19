@@ -566,41 +566,112 @@ func _draw_logo(y: float) -> void:
 	_diamond(Vector2(910, y + 19), 7.0, Color(1, 0.3, 0.6, flick))
 
 
+const TitleScreen := preload("res://scripts/title_screen.gd")
+const TITLE_BLURBS := {
+	"NEW GAME": "Five casinos. One brother. Zero impulse control.",
+	"CONTINUE": "Back to the apartment. The rent is still overdue.",
+	"THE FENCE  (skill tree)": "Spend your skill points. Marlow's guy takes cash too.",
+	"TROPHY CASE": "Proof you did things. Most of them were mistakes.",
+	"SETTINGS": "Volume, controls, and how much screen shake you can handle.",
+	"QUIT GAME": "Walk away from the table. (You won't.)",
+}
+var title_t0 := -1.0
+var title_last := -1.0
+var title_sel_prev := -1
+var title_sel_t := 0.0
+
+
 func _draw_title() -> void:
-	Scenery.title(self, f, t)
-	_draw_logo(150)
-	_ctxt(204, "Climb five casinos.  Win back Jules.  Know when to walk away.", 21, Color(0.95, 0.88, 0.95))
+	# Restart the intro whenever the title screen comes back.
+	if t - title_last > 0.3:
+		title_t0 = t
+	title_last = t
+	var tt := t - title_t0
+	if g.title_sel != title_sel_prev:
+		title_sel_prev = g.title_sel
+		title_sel_t = t
+	TitleScreen.draw_scene(self, f, t, tt)
+	TitleScreen.draw_logo(self, f, Vector2(86, 150), t, tt)
+	var tag_a := clampf((tt - 1.25) / 0.5, 0.0, 1.0)
+	_txt(Vector2(92, 262), "Climb five casinos.  Win back Jules.  Know when to walk away.", 18, Color(0.95, 0.88, 0.95, 0.9 * tag_a))
 	if g.intro_seen:
-		_txt(Vector2(112, 300), "Your Marker is still open. The Lobby is waiting.", 15, Color(1, 0.6, 0.6, 0.85))
+		_txt(Vector2(92, 288), "Your Marker is still open.", 14, Color(1, 0.55, 0.55, 0.8 * tag_a))
+	# Menu: each item is a neon sign. Items slide in one after another.
 	var items: Array = g.title_items()
 	for i in items.size():
 		var sel: bool = i == g.title_sel
-		var y := 350.0 + i * 46.0
+		var ka := clampf((tt - 1.35 - i * 0.08) / 0.3, 0.0, 1.0)
+		if ka <= 0.0:
+			continue
+		var slide := (1.0 - ease(ka, 0.3)) * -60.0
+		var y := 344.0 + i * 46.0 + (24.0 if i > g.title_sel else 0.0)
+		var x := 112.0 + slide
 		if sel:
-			Scenery.hgrad(self, Rect2(92, y - 32, 420, 42), Color(1, 0.75, 0.25, 0.28), Color(1, 0.75, 0.25, 0.0))
-			draw_rect(Rect2(92, y - 32, 4, 42), GOLD)
-			Scenery.chip(self, Vector2(124, y - 11), 12.0, Color(0.85, 0.12, 0.18), 0.0, absf(cos(t * 3.0)))
-		_txt(Vector2(150 if sel else 140, y), items[i], 30 if sel else 25, GOLD if sel else Color(1, 1, 1, 0.85))
-	# Runner select card.
-	var ch: Dictionary = g.CHARACTERS[g.char_i]
-	var unlocked: bool = g.char_unlocked(g.char_i)
-	var pr := Rect2(92, 586, 440, 92)
-	draw_rect(pr, Color(0.02, 0.0, 0.05, 0.75))
-	draw_rect(pr, Color(0.75, 0.6, 1.0, 0.55), false, 1.5)
-	var pc := Rect2(pr.position + Vector2(8, 8), Vector2(76, 76))
-	draw_rect(pc, Color(0.12, 0.06, 0.16))
-	if unlocked:
-		Art.npc_portrait(self, pc.get_center() + Vector2(0, 2), ch["name"], t, 4.6)
-	else:
-		_txt(Vector2(pc.position.x, pc.position.y + 54), "?", 48, DIM, HORIZONTAL_ALIGNMENT_CENTER, pc.size.x)
-	_txt(Vector2(pr.position.x + 100, pr.position.y + 32), "RUNNER", 13, DIM)
-	_txt(Vector2(pr.position.x + 160, pr.position.y + 33), "<  " + (ch["name"] if unlocked else "???") + "  >", 22, Color(0.85, 0.75, 1.0))
-	draw_multiline_string(f, Vector2(pr.position.x + 100, pr.position.y + 58), ch["desc"] if unlocked else ch["lock"], HORIZONTAL_ALIGNMENT_LEFT, 330, 14, 2, DIM)
-	# Stats ribbon.
-	var stats := "WALLET %s     LEVEL %d     BEST %s     RUNS %d     BOSSES %d/3     TROPHIES %d/%d" % [
-		_money(g.wallet), g.level_num, _money(g.best), g.runs, mini(5, g.bosses_beaten / g.boss_every), g.trophies.size(), g.TROPHIES.size()]
-	_txt(Vector2(600, 672), "UP / DOWN choose     LEFT / RIGHT runner     JUMP select", 15, Color(DIM, 0.85), HORIZONTAL_ALIGNMENT_RIGHT, 640)
-	_txt(Vector2(600, 700), stats, 15, Color(1, 0.9, 0.7, 0.9), HORIZONTAL_ALIGNMENT_RIGHT, 640)
+			x += 14.0 * ease(clampf((t - title_sel_t) / 0.15, 0.0, 1.0), 0.4)
+		var label := String(items[i])
+		if sel:
+			# The sign ignites: a quick flicker, then a steady buzz-glow.
+			var since := t - title_sel_t
+			var lit := 1.0
+			if since < 0.18:
+				lit = 0.35 if int(since * 40.0) % 2 == 0 else 1.0
+			var w := f.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, 32).x
+			Scenery.hgrad(self, Rect2(80, y - 36, w + 150, 48), Color(1, 0.35, 0.5, 0.22 * lit), Color(1, 0.35, 0.5, 0.0))
+			draw_rect(Rect2(80, y - 36, 4, 48), Color(1.0, 0.8, 0.3, lit))
+			Scenery.glow(self, Vector2(x + w * 0.5, y - 12), w * 0.75, 30.0, Color(1.0, 0.45, 0.55, 0.22 * lit))
+			draw_string_outline(f, Vector2(x, y), label, HORIZONTAL_ALIGNMENT_LEFT, -1, 32, 10, Color(1.0, 0.3, 0.5, 0.3 * lit * ka))
+			draw_string_outline(f, Vector2(x, y), label, HORIZONTAL_ALIGNMENT_LEFT, -1, 32, 4, Color(0.2, 0.02, 0.05, ka))
+			draw_string(f, Vector2(x, y), label, HORIZONTAL_ALIGNMENT_LEFT, -1, 32, Color(1.0, 0.86, 0.45, lit * ka))
+			Scenery.chip(self, Vector2(x - 22, y - 11), 11.0, Color(0.85, 0.12, 0.18), 0.0, maxf(0.15, absf(cos(t * 3.0))))
+			# Underline sweeps out, and a one-line pitch for the option appears.
+			var uk := ease(clampf((t - title_sel_t) / 0.25, 0.0, 1.0), 0.3)
+			draw_rect(Rect2(x, y + 8, w * uk, 2), Color(1.0, 0.8, 0.3, 0.85 * ka))
+			var blurb: String = TITLE_BLURBS.get(label, "")
+			if blurb != "":
+				_txt(Vector2(x, y + 28), blurb, 14, Color(0.85, 0.8, 0.95, 0.85 * uk * ka))
+		else:
+			draw_string_outline(f, Vector2(x, y), label, HORIZONTAL_ALIGNMENT_LEFT, -1, 25, 4, Color(0, 0, 0, 0.7 * ka))
+			draw_string(f, Vector2(x, y), label, HORIZONTAL_ALIGNMENT_LEFT, -1, 25, Color(0.85, 0.82, 0.92, 0.62 * ka))
+	# Runner card: a glass panel bottom-right, near Rico on the roof.
+	var ca := clampf((tt - 1.8) / 0.4, 0.0, 1.0)
+	if ca > 0.0:
+		var ch: Dictionary = g.CHARACTERS[g.char_i]
+		var unlocked: bool = g.char_unlocked(g.char_i)
+		var pr := Rect2(1280 - 430 + (1.0 - ease(ca, 0.3)) * 60.0, 586, 396, 92)
+		draw_rect(pr, Color(0.05, 0.03, 0.09, 0.72 * ca))
+		Scenery.hgrad(self, Rect2(pr.position, Vector2(pr.size.x, 2)), Color(1.0, 0.8, 0.3, 0.9 * ca), Color(1.0, 0.35, 0.55, 0.0))
+		draw_rect(pr, Color(1, 1, 1, 0.12 * ca), false, 1.0)
+		var pc := Rect2(pr.position + Vector2(8, 8), Vector2(76, 76))
+		draw_rect(pc, Color(0.12, 0.06, 0.16, ca))
+		if unlocked:
+			Art.npc_portrait(self, pc.get_center() + Vector2(0, 2), ch["name"], t, 4.6)
+		else:
+			_txt(Vector2(pc.position.x, pc.position.y + 54), "?", 48, DIM, HORIZONTAL_ALIGNMENT_CENTER, pc.size.x)
+		_txt(Vector2(pr.position.x + 98, pr.position.y + 28), "RUNNER", 12, Color(DIM, ca))
+		_txt(Vector2(pr.position.x + 158, pr.position.y + 30), "<  " + (ch["name"] if unlocked else "???") + "  >", 22, Color(1.0, 0.86, 0.5, ca))
+		draw_multiline_string(f, Vector2(pr.position.x + 98, pr.position.y + 54), ch["desc"] if unlocked else ch["lock"], HORIZONTAL_ALIGNMENT_LEFT, 286, 14, 2, Color(DIM, ca))
+	# Key-cap hints and the stats bar.
+	var ha := clampf((tt - 2.0) / 0.4, 0.0, 1.0)
+	if ha > 0.0:
+		var hx := 92.0
+		for hint in [["UP/DOWN", "Choose"], ["LEFT/RIGHT", "Runner"], ["SPACE", "Select"], ["F6", "Voice Studio"]]:
+			hx = _keycap(Vector2(hx, 674), String(hint[0]), String(hint[1]), ha) + 20.0
+		var stats := "WALLET %s   ·   LEVEL %d   ·   BEST %s   ·   RUNS %d   ·   TROPHIES %d/%d" % [
+			_money(g.wallet), g.level_num, _money(g.best), g.runs, g.trophies.size(), g.TROPHIES.size()]
+		_txt(Vector2(0, 713), stats, 13, Color(1, 0.9, 0.7, 0.7 * ha), HORIZONTAL_ALIGNMENT_CENTER, 1280)
+
+
+## A small keyboard-key style hint: [ KEY ] label. Returns the x after it.
+func _keycap(p: Vector2, key: String, label: String, a: float) -> float:
+	var kw := f.get_string_size(key, HORIZONTAL_ALIGNMENT_LEFT, -1, 13).x + 14.0
+	var r := Rect2(p.x, p.y - 15, kw, 21)
+	draw_rect(r, Color(0.9, 0.88, 0.95, 0.12 * a))
+	draw_rect(r, Color(0.9, 0.88, 0.95, 0.5 * a), false, 1.0)
+	draw_rect(Rect2(r.position.x, r.end.y - 2, r.size.x, 2), Color(0, 0, 0, 0.4 * a))
+	_txt(Vector2(r.position.x + 7, p.y), key, 13, Color(1, 1, 1, 0.9 * a))
+	var lw := f.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x
+	_txt(Vector2(r.end.x + 7, p.y), label, 14, Color(DIM, 0.85 * a))
+	return r.end.x + 7.0 + lw
 
 
 func _draw_loading() -> void:
