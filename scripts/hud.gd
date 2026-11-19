@@ -181,7 +181,7 @@ func _draw_map() -> void:
 	for gm in lv.games:
 		var gp: Vector2 = (gm[0] as Vector2) / 16.0
 		if lv.seen[clampi(int(gp.y) - 1, 0, lv.h - 1) * lv.w + clampi(int(gp.x), 0, lv.w - 1)] == 1:
-			var lab := "SHOP" if gm[1] == "vera" else ("BAR" if gm[1] == "bar" else "TABLE")
+			var lab: String = {"vera": "CHARMS", "bar": "BAR", "tailor": "CLOTHES", "fizz": "DOC FIZZ", "gunny": "WEAPONS", "shady": "SHADY"}.get(gm[1], "TABLE")
 			draw_circle(gp * sc + mr.position + Vector2(0, -sc), 5.0, CYAN)
 			_txt(gp * sc + mr.position + Vector2(8, -2), lab, 12, CYAN)
 	for mk in g.map_markers:

@@ -382,6 +382,7 @@ var dialog_spoken: Array = []
 var dialog_clip := 0.0
 var dialog_clip_wait := 0.0
 var recent_death := false
+var wobble_t := 0.0
 ## Map screen (M): markers you drop (floor-local world positions).
 var map_markers: Array = []
 var voice_test_on := false
@@ -930,6 +931,15 @@ func _build_floor() -> void:
 			{"do": "say", "lines": Story.MAGS_CHASE},
 			{"do": "pan", "to": "player", "zoom": cam_zoom, "t": 0.7}, {"do": "bars", "v": 0.0},
 		], "mags")
+	if not in_hub and not level.is_boss and floor_num > 1 and state == "play":
+		# 1-2 buffs per floor, Risk of Rain style: a pick of three, sometimes a free bonus.
+		var picks: Array = charms.roll(rng, 3)
+		if picks.size() > 0:
+			charm_queue.append({"pick": picks, "title": "FLOOR %d BUFF" % floor_num})
+		if rng.randf() < 0.35:
+			var bonus_b: Array = charms.roll(rng, 1)
+			if bonus_b.size() > 0:
+				charm_queue.append({"charm": bonus_b[0]})
 	if not in_hub and state == "play" and not is_boss_floor() and Cities.floor_in_city(floor_num) == (0 if floor_num > 5 else 0) and floor_num <= 25:
 		var cn := Cities.city_of(floor_num) + 1
 		var sid := "city%d_arrive" % cn
@@ -1323,6 +1333,10 @@ func _process(delta: float) -> void:
 				casino.achievement = ""
 			if casino.charm_tier != "":
 				var won: Array = charms.roll(rng, 1, casino.charm_tier)
+				if casino.slot_bad:
+					var badc := charms.roll_bad(rng)
+					won = [badc] if badc != "" else []
+					casino.slot_bad = false
 				casino.charm_tier = ""
 				if won.size() > 0:
 					charm_queue.append({"charm": won[0]})
@@ -1600,6 +1614,10 @@ func _tick_play(delta: float) -> void:
 	run_time += delta
 	_focus_tick(delta)
 	_weapon_tick(delta)
+	if wobble_t > 0.0:
+		wobble_t -= delta
+		if int(wobble_t * 4.0) % 2 == 0:
+			trauma = maxf(trauma, 0.12)
 	_check_trophies()
 	_update_flow(delta)
 	_update_camera(delta)
@@ -1634,7 +1652,7 @@ func _tick_play(delta: float) -> void:
 
 
 func _add_nerve(n: float) -> void:
-	nerve = minf(NERVE_MAX, nerve + n)
+	nerve = minf(NERVE_MAX, nerve + n * (1.5 if charms.has("overdraft") else 1.0))
 
 
 ## Hold FOCUS (E / L) while standing still: 0.9s later, spend Nerve to heal one life.
@@ -2029,6 +2047,14 @@ func _check_world(delta: float) -> void:
 					"vera":
 						interact_text = "UP: VERA'S CHARM TABLE"
 						interact_pos = gp + Vector2(0, -48)
+					"tailor":
+						interact_text = "UP: SILAS THE TAILOR"
+					"fizz":
+						interact_text = "UP: DOC FIZZ (no questions)"
+					"gunny":
+						interact_text = "UP: GUNNY'S ARMORY"
+					"shady":
+						interact_text = "UP: SHADY UPGRADE"
 					"bets":
 						interact_text = "SIDE BET PLACED" if bet_used else "UP: SIDE BETS"
 					"vault":
@@ -2046,6 +2072,9 @@ func _check_world(delta: float) -> void:
 					match k:
 						"vera":
 							_open_menu("shop")
+						"tailor", "fizz", "gunny", "shady":
+							_open_menu(k)
+							Voice.speak_ctx(k, voice_state())
 						"bets":
 							if not bet_used:
 								_open_menu("bets")
@@ -2181,6 +2210,7 @@ func _enemy_killed(e) -> void:
 		_callout("ELITE DOWN", Color(1, 0.82, 0.3))
 		unlock("elite")
 	_add_nerve(14.0)
+	charms.kill_stack += 1
 	_spawn_loose(e.global_position + Vector2(0, -6), chips_for(bonus, 6))
 	stats["kills"] = stats.get("kills", 0) + 1
 	fx.text(e.global_position + Vector2(0, -14), "+%d" % bonus, Color(1, 0.85, 0.4), 10)
@@ -2269,6 +2299,21 @@ func _on_boss_slam(pos: Vector2) -> void:
 
 
 const HERO_NAME := "RICO"
+
+## Doc Fizz sells unlabeled drugs and booze. Each bottle has a hidden random effect.
+const FIZZ_STOCK := [
+	{"name": "GREEN VIAL", "flavor": "It glows. Mildly."}, {"name": "SUSPICIOUS PILL", "flavor": "Blue on one side."},
+	{"name": "BATHTUB GIN", "flavor": "Smells like a lawsuit."}, {"name": "MYSTERY POWDER", "flavor": "Do NOT ask."},
+	{"name": "CLEARISH SHOT", "flavor": "Might be water."}, {"name": "PURPLE DRANK", "flavor": "Thick. It moves."},
+	{"name": "BACKROOM BOURBON", "flavor": "Aged in a boot."}, {"name": "ENERGY GUMMY", "flavor": "Chew. Regret."},
+]
+## id -> [good?, label]. The label is only shown AFTER you drink it.
+const FIZZ_EFFECTS := {
+	"heal": [true, "PATCHED UP  +1 life"], "nerve": [true, "NERVE SURGE  Nerve full"], "chips2": [true, "SEEING DOLLAR SIGNS  chips x2 for 40s"],
+	"ghost": [true, "UNTOUCHABLE  invincible for 12s"], "gift": [true, "FREE BUFF  a charm falls out of the bottle"],
+	"hurt": [false, "WRONG PILL  -1 life"], "numb": [false, "NUMB  Nerve drained"], "wobble": [false, "THE ROOM SPINS  screen sways for 25s"],
+	"curse": [false, "UGLY SIDE EFFECT  you grow a shitty buff"], "tax": [false, "LIGHT FINGERS  you lose 20% of your Pot"],
+}
 
 
 func boss_intro_lines(def: Dictionary) -> Array:
@@ -2941,8 +2986,15 @@ func _talk(who: String, then_menu := "") -> void:
 
 
 ## What the NPCs react to: clothes, money, recent death, boss kills.
-func voice_state() -> Dictionary:
+func run_swag() -> int:
 	var sw := Wardrobe.swag(worn, floor_num)
+	for id in charms.equipped:
+		sw += Charms.swag_of(id)
+	return sw
+
+
+func voice_state() -> Dictionary:
+	var sw := run_swag()
 	var rich := pot >= 500 or wallet >= 1500
 	var broke := pot < 30 and wallet < 100
 	var st := {"died": recent_death, "boss": bosses_beaten > 0 and int(stats.get("bosses", 0)) > 0, "ugly": sw <= -3, "sharp": sw >= 8, "rich": rich, "broke": broke}
@@ -2984,6 +3036,31 @@ func _charm_item(id: String, tag := "") -> Dictionary:
 		"icon": String(inf["tags"][0]).left(1) if inf["tags"].size() > 0 else "?"}
 
 
+func _drink_fizz() -> void:
+	var ids: Array = FIZZ_EFFECTS.keys()
+	var eid: String = ids[rng.randi_range(0, ids.size() - 1)]
+	var eff: Array = FIZZ_EFFECTS[eid]
+	match eid:
+		"heal": hp = mini(start_hp, hp + 1)
+		"nerve": nerve = NERVE_MAX
+		"chips2": dice_chip_t = 40.0
+		"ghost": player.invuln = 12.0
+		"gift":
+			var g: Array = charms.roll(rng, 1)
+			if g.size() > 0:
+				charm_queue.append({"charm": g[0]})
+		"hurt": hp = maxi(1, hp - 1)
+		"numb": nerve = 0.0
+		"wobble": wobble_t = 25.0
+		"curse":
+			var bc := charms.roll_bad(rng)
+			if bc != "" and not charms.full():
+				_give_charm(bc)
+		"tax": pot = int(pot * 0.8)
+	toasts.append({"text": ("LUCKY!  " if eff[0] else "OH NO.  ") + String(eff[1]), "sub": "Doc Fizz: \"Side effects may include... everything.\"", "t": 4.5})
+	Sfx.play("buy" if eff[0] else "deny", 1.0)
+
+
 func _wear_item(id: String) -> Dictionary:
 	var inf: Dictionary = Wardrobe.info(id)
 	var price := int(round(float(inf["price"]) * _price_mult()))
@@ -3020,6 +3097,7 @@ func _apply_worn() -> void:
 	var ab: Dictionary = Wardrobe.abilities(worn)
 	player.abil = ab
 	player.worn = worn
+	player.charm_ids = charms.equipped
 	player.outfit_floor = floor_num
 	player.dash_enabled = not rules.has("grounded")
 
@@ -3143,6 +3221,52 @@ func _build_menu(kind: String, sub_override: String, keep_sel: int) -> void:
 				var cost := int(pot * float(o[2]))
 				items.append({"id": "r%s" % String(o[0]).to_lower().replace(" ", ""), "name": String(o[0]), "desc": String(o[1]), "tag": "-$%d" % cost if cost > 0 else "FREE",
 					"col": Color(1, 0.8, 0.3) if cost > 0 else Color(0.6, 0.6, 0.7), "icon": "$", "cost": cost, "mult": float(o[3]), "pct": float(o[2])})
+		"fizz":
+			title = "DOC FIZZ'S PHARMACY"
+			lay = "cards"
+			sub = "Unlabeled. Unlicensed. Each bottle: a random good OR bad effect. Pot: $%d." % pot
+			if not data.has("stock") or int(data.get("floor", -1)) != floor_num:
+				var pool: Array = FIZZ_STOCK.duplicate()
+				pool.shuffle()
+				data = {"stock": pool.slice(0, 3), "floor": floor_num}
+			for i in (data["stock"] as Array).size():
+				var bt: Dictionary = data["stock"][i]
+				var price := int(round(40.0 * _price_mult() * (1.0 + floor_num * 0.05)))
+				items.append({"id": "f%d" % i, "name": bt["name"], "desc": bt["flavor"] + " Effect: ???", "tag": "$%d" % price, "price": price, "col": Color(0.5, 1.0, 0.4), "icon": "?", "disabled": pot < price})
+		"tailor":
+			title = "SILAS STITCH, TAILOR"
+			sub = "Clothes grant abilities. Paid from your Pot: $%d. Wearing swag: %d (%s)." % [pot, Wardrobe.swag(worn, floor_num), Wardrobe.swag_label(Wardrobe.swag(worn, floor_num))]
+			if not data.has("stock") or int(data.get("floor", -1)) != floor_num:
+				data = {"stock": _roll_wear(4), "floor": floor_num}
+			for wid in data["stock"]:
+				var wit := _wear_item(wid)
+				wit["disabled"] = pot < int(wit["price"])
+				items.append(wit)
+		"gunny":
+			title = "GUNNY'S ARMORY"
+			sub = "Weapons and ammo. Paid from your Pot: $%d." % pot
+			if not data.has("stock") or int(data.get("floor", -1)) != floor_num:
+				var wp: Array = Weapons.ids().filter(func(k): return not owned_weapons.has(k))
+				wp.shuffle()
+				var st: Array = wp.slice(0, 3)
+				for oid in owned_weapons:
+					if int(Weapons.info(oid).get("ammo", 0)) > 0:
+						st.append(oid)
+				data = {"stock": st, "floor": floor_num}
+			for aid in data["stock"]:
+				var wi: Dictionary = Weapons.info(aid)
+				var owned := owned_weapons.has(aid)
+				var wprice := int(round(float(wi["price"]) * 0.8 * _price_mult())) if not owned else int(round(30 * _price_mult()))
+				items.append({"id": "w:" + aid, "name": String(wi["name"]) + ("  AMMO" if owned else ""), "desc": String(wi["desc"]), "tag": "$%d" % wprice, "price": wprice, "col": Color(wi["col"]), "icon": "G", "disabled": pot < wprice})
+		"shady":
+			title = "SHADY UPGRADE"
+			lay = "list"
+			sub = "A guy in a trench coat will 'improve' one of your buffs. Costs $%d. Luck decides: it improves, or it backfires." % int(pot * 0.15)
+			for id in charms.equipped:
+				var it := _charm_item(id, "x%d" % charms.count(id))
+				it["disabled"] = Charms.is_bad(id) or pot < 30
+				items.append(it)
+			items.append({"id": "none", "name": "WALK AWAY", "desc": "Keep your hands and your chips.", "col": Color(0.6, 0.6, 0.7), "icon": "-"})
 		"loan":
 			title = "MAGS' LOAN DESK"
 			var interest := 150 if _stake("shark") else 100
@@ -3213,6 +3337,57 @@ func _menu_result(res: Dictionary) -> void:
 	var it: Dictionary = res["choose"]
 	var id: String = it["id"]
 	match menu.kind:
+		"fizz":
+			var fp: int = int(it.get("price", 0))
+			if pot < fp:
+				Sfx.play("deny")
+				return
+			pot -= fp
+			var idx := int(String(id).substr(1))
+			(menu.data["stock"] as Array).remove_at(idx)
+			_drink_fizz()
+			_build_menu("fizz", "", 0)
+		"tailor":
+			var tp2: int = int(it.get("price", 0))
+			if pot < tp2:
+				Sfx.play("deny")
+				return
+			pot -= tp2
+			(menu.data["stock"] as Array).erase(id)
+			Sfx.play("buy")
+			_give_wear(id)
+			_build_menu("tailor", "", menu.sel)
+		"gunny":
+			var gp2: int = int(it.get("price", 0))
+			if pot < gp2:
+				Sfx.play("deny")
+				return
+			pot -= gp2
+			give_weapon(String(id).substr(2))
+			if not owned_weapons.has(String(id).substr(2)):
+				pass
+			_build_menu("gunny", "", menu.sel)
+		"shady":
+			if id == "none":
+				_close_menu()
+				return
+			var cost2 := int(pot * 0.15)
+			pot -= cost2
+			var roll := rng.randf()
+			var good := roll < 0.5 + minf(0.2, flow / 400.0)
+			if good:
+				charms.add_stack(id)
+				toasts.append({"text": "UPGRADED: %s  x%d" % [Charms.info(id)["name"], charms.count(id)], "sub": "The trench-coat guy actually delivered.", "t": 3.5})
+				Sfx.play("buy", 1.3)
+			else:
+				var badc := charms.roll_bad(rng)
+				if badc != "" and not charms.full():
+					_give_charm(badc)
+				elif badc != "":
+					pot = maxi(0, pot - cost2)
+				toasts.append({"text": "BACKFIRED!", "sub": "You got fleeced. And a shitty buff.", "t": 3.5})
+				Sfx.play("deny")
+			_close_menu()
 		"raise":
 			var cost: int = int(it.get("cost", 0))
 			pot -= cost
@@ -3323,7 +3498,13 @@ func _menu_result(res: Dictionary) -> void:
 # ---------------------------------------------------------------- charms
 
 func _offer_charm(id: String) -> void:
-	if id == "" or charms.has(id):
+	if id == "":
+		return
+	if charms.has(id):
+		# Risk of Rain stacking: the same buff again adds a stack.
+		charms.add_stack(id)
+		toasts.append({"text": "STACKED: %s  x%d" % [Charms.info(id)["name"], charms.count(id)], "sub": String(Charms.info(id)["desc"]), "t": 3.5})
+		Sfx.play("buy", 1.2)
 		return
 	if not charms.full():
 		_give_charm(id)

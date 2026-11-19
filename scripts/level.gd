@@ -71,12 +71,12 @@ const ZONE_WORDS := [
 ]
 ## Casino tables you can find in each zone (vera = her charm table).
 const TABLE_POOLS := [
-	["blackjack", "roulette", "hilo", "bar", "vera", "vera"],
-	["poker", "holdem", "blackjack", "baccarat", "hilo", "bar", "vera", "vera"],
-	["holdem", "baccarat", "roulette", "poker", "hilo", "bar", "vera", "vera"],
-	["holdem", "baccarat", "roulette", "poker", "hilo", "blackjack", "bar", "vera"],
-	["bar", "vera", "blackjack"],
-	["holdem", "baccarat", "roulette", "poker", "blackjack", "bar", "vera", "vera"],
+	["blackjack", "roulette", "hilo", "bar", "vera", "vera", "tailor", "gunny", "fizz", "shady"],
+	["poker", "holdem", "blackjack", "baccarat", "hilo", "bar", "vera", "vera", "tailor", "gunny", "fizz"],
+	["holdem", "baccarat", "roulette", "poker", "hilo", "bar", "vera", "vera", "tailor", "gunny", "shady"],
+	["holdem", "baccarat", "roulette", "poker", "hilo", "blackjack", "bar", "vera", "tailor", "gunny"],
+	["bar", "fizz", "fizz", "shady", "tailor", "gunny"],
+	["holdem", "baccarat", "roulette", "poker", "blackjack", "bar", "vera", "vera", "tailor", "tailor", "gunny"],
 ]
 
 var zone := 0

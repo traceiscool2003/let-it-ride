@@ -47,11 +47,21 @@ const DEFS := {
 	"fineprint": {"name": "FINE PRINT", "desc": "Keep 25% of your Pot when you bust", "rarity": "rare", "tags": ["RISK"]},
 	"allin": {"name": "ALL IN", "desc": "Let It Ride triples instead of doubling, but costs a life", "rarity": "rare", "tags": ["RISK"]},
 	"housemoney": {"name": "HOUSE MONEY", "desc": "Chips worth double while riding at x4 or higher", "rarity": "jackpot", "tags": ["RISK", "GREED"]},
+	"snowball": {"name": "SNOWBALL", "desc": "Every kill this floor makes chips worth +5% more (stacks)", "rarity": "uncommon", "tags": ["COMBAT", "GREED"]},
+	"overdraft": {"name": "OVERDRAFT", "desc": "Nerve fills 50% faster from every hit", "rarity": "common", "tags": ["COMBAT"]},
+	# Bad buffs (ugly clothes). Only slots, shady upgrades and Doc Fizz hand these out.
+	"lead_boots": {"name": "LEAD BOOTS", "desc": "Jumps are 10% lower", "rarity": "common", "tags": ["BAD"], "bad": true},
+	"itchy_wool": {"name": "ITCHY WOOL SWEATER", "desc": "Flow drains 50% faster", "rarity": "common", "tags": ["BAD"], "bad": true},
+	"cheap_shades": {"name": "CHEAP SHADES", "desc": "Chips are worth 15% less", "rarity": "common", "tags": ["BAD"], "bad": true},
+	"tight_pants": {"name": "TIGHT PANTS", "desc": "Run speed down 8%", "rarity": "common", "tags": ["BAD"], "bad": true},
 	"rabbit": {"name": "RABBIT'S FOOT", "desc": "Once per floor, a lethal hit dumps your Pot instead", "rarity": "jackpot", "tags": ["LUCK", "RISK"]},
 }
 
 var max_slots := 5
 var equipped: Array = []
+## Risk of Rain stacking: picking up a charm you already hold adds a stack.
+var stacks := {}
+var kill_stack := 0
 ## Rare/jackpot charm ids the player has licensed from Vera (persistent).
 var licensed := {}
 var seven_count := 0
@@ -79,6 +89,35 @@ func has(id: String) -> bool:
 	return equipped.has(id)
 
 
+func count(id: String) -> int:
+	return (1 + int(stacks.get(id, 0))) if equipped.has(id) else 0
+
+
+func add_stack(id: String) -> void:
+	stacks[id] = int(stacks.get(id, 0)) + 1
+
+
+static func is_bad(id: String) -> bool:
+	return bool(DEFS.get(id, {}).get("bad", false))
+
+
+## Charms that look good: swag points for the wardrobe (bad ones are ugly).
+static func swag_of(id: String) -> int:
+	if is_bad(id):
+		return -4
+	return {"common": 1, "uncommon": 2, "rare": 4, "jackpot": 6}.get(String(info(id)["rarity"]), 1)
+
+
+func roll_bad(rng: RandomNumberGenerator) -> String:
+	var bad: Array = []
+	for id in DEFS:
+		if is_bad(id) and not equipped.has(id):
+			bad.append(id)
+	if bad.is_empty():
+		return ""
+	return bad[rng.randi_range(0, bad.size() - 1)]
+
+
 func full() -> bool:
 	return equipped.size() >= max_slots
 
@@ -91,7 +130,7 @@ func unlocked(id: String) -> bool:
 func pool(rarity := "") -> Array:
 	var out: Array = []
 	for id in DEFS:
-		if equipped.has(id) or not unlocked(id):
+		if equipped.has(id) or not unlocked(id) or is_bad(id):
 			continue
 		if rarity == "" or DEFS[id]["rarity"] == rarity:
 			out.append(id)
@@ -117,6 +156,11 @@ func roll(rng: RandomNumberGenerator, n: int, rarity := "") -> Array:
 			if any.is_empty():
 				break
 			picked = any[rng.randi_range(0, any.size() - 1)]
+		# Risk of Rain: sometimes the drop is another copy of something you hold (stacks).
+		if rarity == "" and not equipped.is_empty() and rng.randf() < 0.12:
+			var held: Array = equipped.filter(func(x): return not is_bad(x))
+			if not held.is_empty():
+				picked = held[rng.randi_range(0, held.size() - 1)]
 		out.append(picked)
 	return out
 
@@ -137,12 +181,15 @@ func _roll_rarity(rng: RandomNumberGenerator) -> String:
 
 func reset_run() -> void:
 	equipped.clear()
+	stacks.clear()
+	kill_stack = 0
 	seven_count = 0
 	rabbit_used = false
 	free_spin = false
 
 
 func reset_floor() -> void:
+	kill_stack = 0
 	rabbit_used = false
 	free_spin = has("reels")
 
@@ -158,6 +205,10 @@ func chip_value(base: int, ctx: Dictionary) -> int:
 		v *= fm
 	if has("spender"):
 		v *= 1.5
+	if has("snowball"):
+		v *= 1.0 + 0.05 * kill_stack * count("snowball")
+	if has("cheap_shades"):
+		v *= 0.85
 	if has("housemoney") and int(ctx.get("pot_mult", 1)) >= 4:
 		v *= 2.0
 	if has("badcredit") and ctx.get("in_debt", false):
@@ -174,15 +225,15 @@ func chip_value(base: int, ctx: Dictionary) -> int:
 
 
 func cash_out(gain: int) -> int:
-	return int(round(gain * (1.2 if has("bankroll") else 1.0)))
+	return int(round(gain * pow(1.2, count("bankroll"))))
 
 
 func flow_drain_mult() -> float:
-	return 0.5 if has("cool") else 1.0
+	return (0.5 if has("cool") else 1.0) * (1.5 if has("itchy_wool") else 1.0)
 
 
 func magnet_mult() -> float:
-	return 2.5 if has("magnet") else 1.0
+	return pow(2.0, count("magnet")) if has("magnet") else 1.0
 
 
 func price_mult() -> float:
@@ -212,6 +263,10 @@ func insurance() -> float:
 ## Movement changes from charms, applied on top of the run's config.
 func apply_cfg(base: MovementConfig) -> MovementConfig:
 	var c: MovementConfig = base.duplicate()
+	if has("lead_boots"):
+		c.jump_velocity *= 0.9
+	if has("tight_pants"):
+		c.max_run_speed *= 0.92
 	if has("chalk"):
 		c.wall_run_time *= 1.5
 	if has("hang"):

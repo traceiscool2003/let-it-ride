@@ -134,18 +134,25 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
 - [ ] **15. Secret bosses and side bosses,** hidden behind secret rooms or off the main path.
 
 ## E. Buffs, items and gambling
-- [ ] **16. Buffs work like Balatro** (rule-bending, combo-scaling jokers) **and stack like Risk of Rain items.** Everything you get is kept for the whole run. The floor-buff picks should feel like Risk of Rain's.
-- [ ] **17. 1-2 buffs per floor**, and all buffs from earlier floors are kept.
-- [ ] **18. Slots only pay buffs, never money.**
+- [x] **16. Buffs work like Balatro
+  - DONE: `charms.gd`: new Snowball (scales per kill), Overdraft; Risk-of-Rain stacking (`stacks`, `count`, `add_stack`) and 12% stack drops; same-charm pickups stack.** (rule-bending, combo-scaling jokers) **and stack like Risk of Rain items.** Everything you get is kept for the whole run. The floor-buff picks should feel like Risk of Rain's.
+- [x] **17. 1-2 buffs per floor**
+  - DONE: `_build_floor` queues a pick-of-3 each non-boss floor plus a 35% free bonus; all buffs carry over the run., and all buffs from earlier floors are kept.
+- [x] **18. Slots only pay buffs
+  - DONE: `casino._eval_slots` pays no money: bet size sets bad-buff odds (55%/35%/18%/6%) and tier bumps; booby prize on small no-win bets; `main` hands out bad charms (`roll_bad`)., never money.**
   - A bigger bet means better odds of a good buff.
   - A small bet means better odds of a bad (shitty) buff.
-- [ ] **19. Shady upgrades** that help or hurt depending on luck.
-- [ ] **20. A sketchy vendor** sells drugs and alcohol as gamble buffs. Each one has a random good or bad effect.
-- [ ] **21. Everything is tied to items, shown as clothing:**
+- [x] **19. Shady upgrades**
+  - DONE: "shady" menu/stall: pay 15% of Pot, ~50% (+flow) stacks a buff, else backfires into a bad buff. that help or hurt depending on luck.
+- [x] **20. A sketchy vendor**
+  - DONE: Doc Fizz stall (`prop._draw_stall`, `main` "fizz" menu): unlabeled drugs/booze with hidden random good/bad effects (`FIZZ_EFFECTS`, `_drink_fizz`). sells drugs and alcohol as gamble buffs. Each one has a random good or bad effect.
+- [x] **21. Everything is tied to items
+  - DONE: wardrobe slots + `Wardrobe.draw_charm_gear`: every charm shows as an accessory, bad ones are garish; `run_swag()` sums swag; NPCs react to ugly/sharp., shown as clothing:**
   - bad buffs are ugly clothes and good buffs are nice clothes
   - each run looks and plays differently
   - the character visibly wears what they have
-- [ ] **22. Each floor you climb dresses you in nicer clothes** (a base outfit tier per floor or city).
+- [x] **22. Each floor you climb dresses you
+  - DONE: `Wardrobe.TIERS` base outfit per city (rags to Black-card tux), drawn via `outfit_floor`. in nicer clothes** (a base outfit tier per floor or city).
 
 ## F. World, levels and exploration
 - [x] **23. Levels are cities
@@ -167,7 +174,8 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
 - [ ] **27. Hidden stuff:** breakable walls, secret rooms and hidden items.
 - [x] **28. The map naturally guides you
   - DONE: removed the exit waypoint arrow (`hud.gd`); the lit exit door (lamp + glow in `level._build_lights`) and the M map guide you. Level layout bias toward the exit is unchanged. to the boss** through layout, lighting and signage, not a waypoint arrow.
-- [ ] **29. Vendor rooms are spread around the map:** a clothing or items vendor, the sketchy vendor and a weapons vendor.
+- [x] **29. Vendor rooms are spread
+  - DONE: tailor, Doc Fizz, Gunny, shady stalls added to every zone's `level.TABLE_POOLS`; map labels them. around the map:** a clothing or items vendor, the sketchy vendor and a weapons vendor.
 - [x] **30. Silksong-style map screen
   - DONE: `state "map"` (M key): `hud._draw_map` draws only seen cells, you, exit, shops/tables, boss, SPACE drops markers (`main.map_markers`). on M** that shows only rooms you've visited, plus your position and markers.
 - [x] **31. Each city earns you

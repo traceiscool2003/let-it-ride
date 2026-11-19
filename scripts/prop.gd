@@ -9,7 +9,7 @@ var broken := false
 var vault_state := "closed"
 
 const Art := preload("res://scripts/art.gd")
-const ANIMATED := ["safe", "poker", "holdem", "baccarat", "hilo", "blackjack", "case", "roulette", "bar", "lucky", "vera", "mags", "phone", "cat", "vault", "bets", "jules", "daily", "board", "fence"]
+const ANIMATED := ["tailor", "fizz", "gunny", "shady", "safe", "poker", "holdem", "baccarat", "hilo", "blackjack", "case", "roulette", "bar", "lucky", "vera", "mags", "phone", "cat", "vault", "bets", "jules", "daily", "board", "fence"]
 
 
 func _ready() -> void:
@@ -50,6 +50,8 @@ func _draw() -> void:
 		"bar", "lucky":
 			Art.lucky_bar(self, t, true)
 			_txt_small("LUCKY'S BAR", -46, Color(0.55, 1, 0.6), 60)
+		"tailor", "fizz", "gunny", "shady":
+			_draw_stall()
 		"vera":
 			Art.vera(self, t)
 			_txt_small("VERA'S TABLE", -47, Color(1, 0.6, 0.75), 60)
@@ -228,6 +230,37 @@ func _draw_bar_npc() -> void:
 
 func _txt_small(s: String, y: float, col: Color, w := 48.0, sz := 6) -> void:
 	draw_string(ThemeDB.fallback_font, Vector2(-w * 0.5, y), s, HORIZONTAL_ALIGNMENT_CENTER, w, sz, col)
+
+
+## Vendor stalls: Silas the tailor, Doc Fizz, Gunny's armory, the shady upgrade guy.
+func _draw_stall() -> void:
+	var cfg: Array = {"tailor": ["SILAS: CLOTHES", Color(0.8, 0.3, 0.55), Color(0.95, 0.85, 0.6)], "fizz": ["DOC FIZZ", Color(0.3, 0.85, 0.35), Color(0.6, 1, 0.5)],
+		"gunny": ["GUNNY: ARMS", Color(0.45, 0.5, 0.3), Color(0.9, 0.75, 0.3)], "shady": ["SHADY UPGRADES", Color(0.3, 0.3, 0.45), Color(1, 0.5, 0.4)]}[kind]
+	var col: Color = cfg[1]
+	var acc: Color = cfg[2]
+	draw_rect(Rect2(-18, -26, 36, 26), Color(0.12, 0.08, 0.1))
+	draw_rect(Rect2(-18, -12, 36, 12), col.darkened(0.45))
+	for i in 6:
+		draw_rect(Rect2(-20 + i * 7, -34, 7, 9), col if i % 2 == 0 else col.lightened(0.5))
+	draw_rect(Rect2(-20, -26, 40, 2), Color(0, 0, 0, 0.6))
+	# the vendor behind the counter
+	var bob := sin(t * 2.0) * 0.6
+	draw_circle(Vector2(0, -19 + bob), 4.0, Color(0.85, 0.65, 0.5))
+	draw_rect(Rect2(-4, -15 + bob, 8, 6), col.lightened(0.15))
+	match kind:
+		"tailor":
+			draw_line(Vector2(10, -22), Vector2(14, -10), acc, 1.0)
+			draw_rect(Rect2(-14, -10, 6, 5), acc)
+		"fizz":
+			draw_rect(Rect2(8, -12, 3, 6), acc)
+			draw_rect(Rect2(12, -10, 3, 4), Color(1, 0.4, 0.8))
+			draw_circle(Vector2(0, -24 + bob), 1.0, Color(0.3, 1, 0.4, 0.5 + 0.5 * sin(t * 4.0)))
+		"gunny":
+			draw_rect(Rect2(8, -13, 8, 2), acc)
+			draw_rect(Rect2(-15, -12, 6, 3), acc)
+		"shady":
+			draw_rect(Rect2(-6, -22 + bob, 12, 3), Color(0.1, 0.1, 0.12))
+	_txt_small(String(cfg[0]), -38, acc, 70)
 
 
 func _draw_vera() -> void:

@@ -48,6 +48,8 @@ const DRINKS := [["shot", "SHOT OF COURAGE", "+1 life", 60], ["flow", "LIQUID FL
 const MAX_GAMBLES := 5
 
 var game := "slots"
+## Set by slots: the won buff is a bad (ugly) one.
+var slot_bad := false
 var step := "bet"
 var bet_i := 0
 var bets: Array = [5, 25, 100, -2, -1]
@@ -192,7 +194,7 @@ func title() -> String:
 
 static func how_to(g: String) -> String:
 	match g:
-		"slots": return "5 paylines. Chips are WILD. Three of a kind on any line wins a charm. Every machine has its own hidden odds."
+		"slots": return "Slots pay BUFFS, never money. Bet big for better odds of a good buff; bet small and you may get a shitty one. Chips are WILD."
 		"blackjack": return "Beat the dealer to 21. DOUBLE DOWN for one card at twice the bet. Blackjack pays 3:2."
 		"poker": return "Jacks or Better. Hold the cards you want, then DRAW once. Royal Flush pays x250."
 		"holdem": return "Ante up. See your two cards and the flop, then CALL (2x ante) or FOLD. Best five cards wins."
@@ -829,11 +831,25 @@ func _eval_slots() -> int:
 			charm_tier = "jackpot"
 	if payout >= bet * 20:
 		machine["heat"] = float(machine["heat"]) - 0.6
-	if payout == 0 and charm_tier == "":
+	# Slots never pay money, only buffs. A bigger bet means better odds of a good
+	# buff (and a better tier); a small bet means better odds of a shitty one.
+	slot_bad = false
+	var bad_p := 0.55 if bet <= 10 else (0.35 if bet <= 40 else (0.18 if bet <= 120 else 0.06))
+	if best_sym == "" and win_lines.size() == 0:
+		if rng.randf() < bad_p * 0.5:
+			slot_bad = true
+			charm_tier = "common"
+			return _finish(0, "BOOBY PRIZE: a shitty buff", Color(1, 0.55, 0.4))
 		return _finish(0, "NO DICE", Color(1, 0.5, 0.45))
+	if charm_tier == "":
+		charm_tier = "common"
+	if rng.randf() < bad_p:
+		slot_bad = true
+	elif bet >= 100 and rng.randf() < 0.3:
+		charm_tier = {"common": "uncommon", "uncommon": "rare", "rare": "jackpot"}.get(charm_tier, charm_tier)
 	var head := "JACKPOT!!" if best_sym == "SEVEN" else ("THREE %sS" % best_sym if best_sym != "" else "WINNER")
 	var lines_txt := "%d LINE%s" % [win_lines.size(), "S" if win_lines.size() != 1 else ""]
-	return _finish(payout, "%s   %s   $%d%s" % [head, lines_txt, payout, "  + CHARM" if charm_tier != "" else ""], Color(1, 0.85, 0.3) if best_sym != "" else Color(0.6, 1, 0.6))
+	return _finish(0, "%s   %s   %s" % [head, lines_txt, "BAD LUCK: a SHITTY buff" if slot_bad else "A BUFF!"], Color(1, 0.55, 0.4) if slot_bad else Color(1, 0.85, 0.3))
 
 
 # ---------------------------------------------------------------- roulette

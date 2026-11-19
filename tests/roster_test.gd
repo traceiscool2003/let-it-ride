@@ -52,8 +52,24 @@ func _process(_d: float) -> bool:
 				main.shoot_cd = 0.0
 				main._fire_weapon()
 			check(main.projectiles.size() >= 8, "all weapons fired (%d projectiles)" % main.projectiles.size())
+		20:
+			main.pot = 3000
+			main.charms.equipped = ["chalk", "cool"]
+			for k in ["tailor", "fizz", "gunny", "shady", "shop"]:
+				main._open_menu(k)
+				check(main.menu.items.size() > 0, "menu %s opens with items" % k)
+				main._menu_result(main.menu.press("confirm"))
+				main.state = "play"
+				paused = false
+			for i in 12:
+				main._drink_fizz()
+			main.hp = main.start_hp
+			check(main.run_swag() is int, "swag computed")
+			for i in 5:
+				main._offer_charm("chalk")
+			check(main.charms.count("chalk") >= 2, "charms stack")
 		70:
-			check(main.state == "play" or main.state == "dead", "still running after 60 frames: " + main.state)
+			check(main.state in ["play", "dead", "menu", "dialog", "cine"], "still running after 60 frames: " + main.state)
 			print("roster test: ", fails, " failed")
 			quit(1 if fails > 0 else 0)
 	return false

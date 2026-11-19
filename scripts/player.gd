@@ -45,6 +45,7 @@ var worn: Array = []
 var outfit_floor := 1
 var pounding := false
 var hit_flash := 0.0
+var charm_ids: Array = []
 var air_jumps := 0
 var dash_cd := 0.0
 var dash_dir := Vector2.RIGHT
@@ -1027,6 +1028,8 @@ func _draw() -> void:
 
 	rig.draw(self, xf, a)
 	Wardrobe.draw(self, rig, xf, worn, outfit_floor, a)
+	if not charm_ids.is_empty():
+		Wardrobe.draw_charm_gear(self, rig, xf, charm_ids, a)
 	if hit_flash > 0.0:
 		rig.draw_silhouette(self, xf, Color(1, 1, 1, 0.9))
 

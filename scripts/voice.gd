@@ -221,3 +221,22 @@ func blip(speaker: String, chars_shown: int, text: String) -> void:
 			bp.pitch_scale = randf_range(0.85, 1.25)
 			bp.play()
 			return
+
+
+## Vendors greet you with a state-aware line (voiced if recorded, else blips + a toast-style bark).
+func speak_ctx(vendor_kind: String, state: Dictionary) -> void:
+	var cid: String = {"tailor": "tailor", "fizz": "fizz", "gunny": "gunny", "shady": "fizz"}.get(vendor_kind, "")
+	if cid == "":
+		return
+	var rng := RandomNumberGenerator.new()
+	rng.randomize()
+	var e: Dictionary = VL.pick(cid, state, rng)
+	if e.is_empty():
+		return
+	var entry: Dictionary = VL.lookup(String(VP.P[cid]["name"]), String(e["text"]))
+	last_char = cid
+	var main = get_tree().root.get_node_or_null("Main")
+	if main:
+		main.bark_text = "%s: %s" % [VP.P[cid]["name"], e["text"]]
+		main.bark_t = 5.0
+	play_entry(entry, cid)

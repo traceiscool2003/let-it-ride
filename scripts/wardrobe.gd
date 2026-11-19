@@ -4,6 +4,7 @@ extends RefCounted
 ## = sharp, negative = ugly. Good buffs look nice, bad buffs look awful.
 ## Outfit tiers: every floor you climb dresses the base outfit nicer.
 
+const CharmsRef := preload("res://scripts/charms.gd")
 const SLOTS := ["head", "face", "neck", "torso", "legs", "feet", "hands", "back"]
 
 ## id -> {name, slot, desc, abil, swag, col, col2, price, rarity}
@@ -105,6 +106,33 @@ static func wear(worn: Array, id: String) -> Array:
 
 
 ## Draw worn clothes on the rig. ci = CanvasItem, xf = rig transform.
+## Every buff is clothing: each charm shows as an accessory. Good ones are sharp
+## (gold pins, bright badges); bad ones are garish and ugly (see charms.gd swag_of).
+static func draw_charm_gear(ci: CanvasItem, rig, xf: Transform2D, charm_ids: Array, alpha: float) -> void:
+	var hip: Vector2 = rig.pose["hip"]
+	var tor: float = rig.pose["torso"]
+	var torso_len: float = rig.s["torso_len"]
+	ci.draw_set_transform_matrix(xf * Transform2D(tor, hip))
+	var i := 0
+	for id in charm_ids:
+		var bad: bool = bool(CharmsRef.DEFS.get(id, {}).get("bad", false))
+		var rar: String = String(CharmsRef.DEFS.get(id, {}).get("rarity", "common"))
+		var base: Color = Color(0.95, 0.2, 0.75) if bad else (CharmsRef.RARITY_COL.get(rar, Color.WHITE) as Color)
+		var h: int = absi(hash(id))
+		var pos := Vector2(-2.4 + (i % 3) * 2.4, -torso_len + 2.0 + (i / 3) * 2.6 + (h % 2) * 0.4)
+		if bad:
+			# Ugly: a lime patch and a mismatched pink button.
+			ci.draw_rect(Rect2(pos.x - 1.0, pos.y, 2.2, 1.8), Color(0.55, 0.9, 0.2, alpha))
+			ci.draw_circle(pos + Vector2(1.2, 1.0), 0.8, Color(base, alpha))
+		else:
+			ci.draw_circle(pos, 1.0, Color(0.1, 0.08, 0.12, alpha))
+			ci.draw_circle(pos, 0.75, Color(base, alpha))
+			if rar == "rare" or rar == "jackpot":
+				ci.draw_circle(pos, 0.3, Color(1, 1, 1, alpha))
+		i += 1
+	ci.draw_set_transform_matrix(xf)
+
+
 static func draw(ci: CanvasItem, rig, xf: Transform2D, worn: Array, floor_num: int, alpha: float) -> void:
 	var tier: Dictionary = TIERS[tier_for(floor_num)]
 	var hip: Vector2 = rig.pose["hip"]
