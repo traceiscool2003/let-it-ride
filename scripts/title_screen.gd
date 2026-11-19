@@ -201,24 +201,6 @@ static func _rico(ci: CanvasItem, feet: Vector2, t: float) -> void:
 	ci.draw_polyline(PackedVector2Array([Vector2(9, -72 + by), Vector2(8, -66 + by), Vector2(11, -62 + by), Vector2(15, -56 + by),
 		Vector2(14, -34), Vector2(11, -27), Vector2(9, -30), Vector2(8, 0)]), rim, 0.9)
 	Scenery.glow(ci, Vector2(12, -50), 6.0, 22.0, Color(1.0, 0.7, 0.4, 0.12))
-	# Scarf: two red tails streaming back in the wind, tapering to the tips.
-	for tail in 2:
-		var root := Vector2(-6, -62 + by)
-		var tl := 34.0 if tail == 0 else 26.0
-		var top := PackedVector2Array()
-		var bot := PackedVector2Array()
-		for k in 10:
-			var kk := float(k) / 9.0
-			var wave := sin(t * 7.0 - kk * 5.0 + tail * 1.3) * 4.0 * kk
-			var c := root + Vector2(-kk * tl, kk * (4.0 + tail * 5.0) + wave)
-			var w := lerpf(2.6, 0.6, kk)
-			top.append(c + Vector2(0, -w))
-			bot.append(c + Vector2(0, w))
-		bot.reverse()
-		var poly := top + bot
-		ci.draw_colored_polygon(poly, Color(0.7, 0.07, 0.12) if tail == 0 else Color(0.55, 0.05, 0.1))
-		ci.draw_polyline(top, Color(1.0, 0.35, 0.35, 0.6), 0.6)
-	ci.draw_rect(Rect2(-9, -63 + by, 18, 4), Color(0.75, 0.08, 0.13))   # scarf wrapped at the neck
 	ci.draw_set_transform(Vector2.ZERO)
 
 

@@ -12,14 +12,14 @@ extends RefCounted
 
 const Wardrobe := preload("res://scripts/wardrobe.gd")
 
-const OUTLINE := Color(0.08, 0.05, 0.07)
+const OUTLINE := Color(0.12, 0.07, 0.1, 0.78)   # soft, slightly transparent ink
 const SKIN := Color(0.93, 0.74, 0.6)
 const SKIN_SH := Color(0.78, 0.55, 0.44)
 const SKIN_HI := Color(1.0, 0.86, 0.74)
 const STUBBLE := Color(0.42, 0.32, 0.28)
 const HAIR := Color(0.18, 0.12, 0.09)
 const HAIR_HI := Color(0.36, 0.25, 0.18)
-const OW := 0.45   # outline width: thin and clean
+const OW := 0.4    # outline width: thin and clean
 
 ## Per tier: top (shirt/jacket), its trim, under-shirt, pants, shoes, shoe accent, shoe style.
 const TIERS := [
@@ -75,6 +75,7 @@ static func dress_rig(rig, lk: Dictionary) -> void:
 	rig.s["outline_w"] = OW
 	rig.s["arm"] = SKIN if (tier == 0 and lk["torso_item"] == "") else lk["jacket"]
 	rig.s["leg"] = lk["legs"]
+	rig.s["shin_col"] = SKIN if String(lk.get("legs_item", "")) == "cargo_shorts" else Color(0, 0, 0, 0)
 	rig.s["shoe"] = lk["shoe"]
 	rig.s["shoe2"] = lk["shoe2"]
 	rig.s["shoe_style"] = lk["shoe_style"]
@@ -86,7 +87,7 @@ static func dress_rig(rig, lk: Dictionary) -> void:
 
 # ---------------------------------------------------------------- helpers
 
-static func smooth(pts: PackedVector2Array, closed := true, steps := 5) -> PackedVector2Array:
+static func smooth(pts: PackedVector2Array, closed := true, steps := 7) -> PackedVector2Array:
 	var out := PackedVector2Array()
 	var n := pts.size()
 	var segs := n if closed else n - 1
@@ -112,7 +113,7 @@ static func shape(ci: CanvasItem, pts: PackedVector2Array, fill: Color, a: float
 	if ow > 0.0:
 		var loop := sm.duplicate()
 		loop.append(sm[0])
-		ci.draw_polyline(loop, Color(OUTLINE, a), ow, true)
+		ci.draw_polyline(loop, Color(OUTLINE, OUTLINE.a * (a)), ow, true)
 
 
 static func soft(ci: CanvasItem, pts: PackedVector2Array, col: Color, a: float) -> void:
@@ -178,7 +179,7 @@ static func _torso(ci: CanvasItem, tl: float, a: float, lk: Dictionary, slouch: 
 			# Faded hand-me-down hoodie, hood down, frayed pocket.
 			_garment(ci, tor_shape, j, j2, a)
 			shape(ci, _v([Vector2(-3.0, top + 0.8), Vector2(0.0, top - 0.6), Vector2(0.8, top + 0.8), Vector2(-2.0, top + 2.4)]), j.darkened(0.15), a)
-			ci.draw_polyline(smooth(_v([Vector2(-1.2, -1.0), Vector2(1.0, -1.6), Vector2(2.8 + gut, -1.0)]), false), Color(OUTLINE, 0.6 * a), 0.35, true)
+			ci.draw_polyline(smooth(_v([Vector2(-1.2, -1.0), Vector2(1.0, -1.6), Vector2(2.8 + gut, -1.0)]), false), Color(OUTLINE, OUTLINE.a * (0.6 * a)), 0.35, true)
 			ci.draw_line(Vector2(1.4, top + 0.8), Vector2(1.7, top + 3.4), Color(j2, a), 0.3)
 			ci.draw_line(Vector2(2.1, top + 0.8), Vector2(2.4, top + 3.1), Color(j2, a), 0.3)
 		2:
@@ -204,13 +205,16 @@ static func _torso(ci: CanvasItem, tl: float, a: float, lk: Dictionary, slouch: 
 			# Sharp suit, white shirt with an open collar, a pocket square.
 			shape(ci, tor_shape, j, a)
 			soft(ci, _v([Vector2(0.4, top + 0.2), Vector2(3.0, top + 0.4), Vector2(2.4, top + 3.6), Vector2(1.6, top + 3.8)]), under, a)
-			ci.draw_polyline(smooth(_v([Vector2(0.4, top + 0.2), Vector2(1.4, top + 2.6), Vector2(1.9, -1.0)]), false), Color(OUTLINE, a), 0.4, true)
-			ci.draw_polyline(smooth(_v([Vector2(3.0, top + 0.4), Vector2(2.4, top + 2.6), Vector2(2.2, -0.6)]), false), Color(OUTLINE, 0.7 * a), 0.35, true)
+			ci.draw_polyline(smooth(_v([Vector2(0.4, top + 0.2), Vector2(1.4, top + 2.6), Vector2(1.9, -1.0)]), false), Color(OUTLINE, OUTLINE.a * (a)), 0.4, true)
+			ci.draw_polyline(smooth(_v([Vector2(3.0, top + 0.4), Vector2(2.4, top + 2.6), Vector2(2.2, -0.6)]), false), Color(OUTLINE, OUTLINE.a * (0.7 * a)), 0.35, true)
 			ci.draw_circle(Vector2(2.3, -2.0), 0.3, Color(j2, a))
 			soft(ci, _v([Vector2(-1.6, top + 2.0), Vector2(-0.2, top + 1.8), Vector2(-0.4, top + 3.0), Vector2(-1.6, top + 3.0)]), j2, a)   # pocket square
 			ci.draw_line(Vector2(-3.0, top + 3.4), Vector2(-2.4, -0.6), Color(1, 1, 1, 0.1 * a), 0.8)
 	# Shared soft shading: the back half darker.
 	soft(ci, _v([Vector2(-2.8, 0.9), Vector2(-1.4, 0.9), Vector2(-1.8, top + 0.6), Vector2(-2.8, top + 0.6), Vector2(-3.3, top + 3.0)]), Color(0, 0, 0, 0.16), a)
+	# Rim light down the chest and a soft shadow under the chin.
+	ci.draw_polyline(smooth(_v([Vector2(2.4, top + 0.8), Vector2(3.1, top + 2.8), Vector2(3.0 + gut * 0.8, -2.6), Vector2(2.6, 0.6)]), false), Color(1.0, 0.88, 0.72, 0.35 * a), 0.4, true)
+	soft(ci, _v([Vector2(-0.6, top - 0.2), Vector2(2.4, top + 0.2), Vector2(2.0, top + 1.4), Vector2(-0.4, top + 1.2)]), Color(0, 0, 0, 0.18), a)
 
 
 static func _garment(ci: CanvasItem, pts: PackedVector2Array, col: Color, trim: Color, a: float) -> void:
@@ -228,7 +232,7 @@ static func _item_detail(ci: CanvasItem, item: String, top: float, j: Color, j2:
 			for k in 6:
 				ci.draw_circle(Vector2(-2.2 + (k % 3) * 2.0, top + 1.8 + (k / 3) * 2.4), 0.55, Color(j2, a))
 				ci.draw_circle(Vector2(-1.5 + (k % 3) * 2.0, top + 2.6 + (k / 3) * 2.4), 0.3, Color(1, 0.95, 0.5, a))
-			ci.draw_line(Vector2(1.4, top + 0.4), Vector2(1.8, 0.8), Color(OUTLINE, 0.4 * a), 0.3)
+			ci.draw_line(Vector2(1.4, top + 0.4), Vector2(1.8, 0.8), Color(OUTLINE, OUTLINE.a * (0.4 * a)), 0.3)
 		"parkour_vest":
 			shape(ci, _v([Vector2(-2.6, -0.2), Vector2(2.8, -0.2), Vector2(3.0, top + 2.2), Vector2(-3.0, top + 2.2)]), j.darkened(0.2), a)
 			ci.draw_rect(Rect2(0.6, top + 2.8, 1.8, 1.2), Color(j2, a))
@@ -247,6 +251,10 @@ static func _head(ci: CanvasItem, a: float, lk: Dictionary) -> void:
 	shape(ci, head, SKIN, a)
 	soft(ci, _v([Vector2(-2.6, -3.2), Vector2(-2.8, -5.6), Vector2(-1.4, -7.2), Vector2(0.0, -5.0), Vector2(-0.6, -2.0)]), Color(SKIN_SH, 0.55), a)   # shadow side
 	soft(ci, _v([Vector2(2.6, -7.0), Vector2(3.8, -6.2), Vector2(3.4, -5.4), Vector2(2.4, -6.0)]), Color(SKIN_HI, 0.6), a)                          # brow highlight
+	# Rim light along the front of the face (warm key light from ahead), and
+	# ambient occlusion under the jaw so the head sits on the neck.
+	ci.draw_polyline(smooth(_v([Vector2(2.6, -8.4), Vector2(3.8, -7.6), Vector2(4.5, -5.8), Vector2(4.7, -4.4)]), false), Color(1.0, 0.9, 0.75, 0.55 * a), 0.35, true)
+	soft(ci, _v([Vector2(-0.4, -1.4), Vector2(1.4, -0.9), Vector2(3.0, -1.0), Vector2(2.4, -0.2), Vector2(0.4, -0.2)]), Color(0.25, 0.12, 0.12, 0.35), a)
 	# Stubble on the jaw for the broke years.
 	if tier <= 2:
 		var st_a: float = [0.75, 0.6, 0.35][tier]
@@ -256,8 +264,8 @@ static func _head(ci: CanvasItem, a: float, lk: Dictionary) -> void:
 	# Eye: heavy-lidded and tired early, sharp and confident later.
 	var e := Vector2(3.0, -5.2)
 	if mood == "hurt":
-		ci.draw_line(e + Vector2(-0.7, -0.5), e + Vector2(0.7, 0.4), Color(OUTLINE, a), 0.45, true)
-		ci.draw_line(e + Vector2(-0.7, 0.4), e + Vector2(0.7, -0.5), Color(OUTLINE, a), 0.45, true)
+		ci.draw_line(e + Vector2(-0.7, -0.5), e + Vector2(0.7, 0.4), Color(OUTLINE, OUTLINE.a * (a)), 0.45, true)
+		ci.draw_line(e + Vector2(-0.7, 0.4), e + Vector2(0.7, -0.5), Color(OUTLINE, OUTLINE.a * (a)), 0.45, true)
 	else:
 		var lid: float = [0.55, 0.45, 0.3, 0.2, 0.15][tier]
 		soft(ci, _v([e + Vector2(-0.8, 0.0), e + Vector2(0.0, -0.75), e + Vector2(0.85, -0.2), e + Vector2(0.1, 0.55)]), Color(1, 1, 1), a)
@@ -267,7 +275,7 @@ static func _head(ci: CanvasItem, a: float, lk: Dictionary) -> void:
 		ci.draw_circle(e + Vector2(0.18, -0.15), 0.1, Color(1, 1, 1, a))
 		# Upper lid droops lower when he's broke and tired.
 		soft(ci, _v([e + Vector2(-0.9, -0.1), e + Vector2(0.0, -0.95), e + Vector2(1.0, -0.3), e + Vector2(0.2, -0.75 + lid)]), SKIN_SH, a)
-		ci.draw_polyline(smooth(_v([e + Vector2(-0.9, -0.1), e + Vector2(0.0, -0.95 + lid * 0.6), e + Vector2(1.0, -0.3)]), false), Color(OUTLINE, a), 0.35, true)
+		ci.draw_polyline(smooth(_v([e + Vector2(-0.9, -0.1), e + Vector2(0.0, -0.95 + lid * 0.6), e + Vector2(1.0, -0.3)]), false), Color(OUTLINE, OUTLINE.a * (a)), 0.35, true)
 		if tier <= 1:
 			ci.draw_polyline(smooth(_v([e + Vector2(-0.6, 0.75), e + Vector2(0.2, 0.95), e + Vector2(0.8, 0.6)]), false), Color(SKIN_SH.darkened(0.2), 0.7 * a), 0.25, true)   # eye bags
 	# Brow: flat and unbothered, cocky arch at the top.
@@ -308,3 +316,75 @@ static func _hair(ci: CanvasItem, a: float, tier: int) -> void:
 			shape(ci, sl, HAIR, a)
 			for k in 3:
 				ci.draw_polyline(smooth(_v([Vector2(3.4 - k * 0.3, -8.4 + k * 0.4), Vector2(0.6, -8.7 + k * 0.6), Vector2(-2.2, -7.6 + k * 0.6)]), false), Color(HAIR_HI.lightened(0.3), 0.6 * a), 0.25, true)
+
+
+# ---------------------------------------------------------------- accessories
+
+## Hats, glasses, neckwear and back items, drawn in the same smooth style.
+## Called by player.gd after the rig (replaces Wardrobe's rectangle overlays).
+static func accessories(ci: CanvasItem, xf: Transform2D, rig, alpha: float, worn: Array, lk: Dictionary) -> void:
+	var a := alpha
+	var tor: float = rig.pose["torso"]
+	var hip: Vector2 = rig.pose["hip"]
+	var tl: float = rig.s["torso_len"]
+	var tier: int = lk["tier"]
+	var slouch: float = [1.0, 0.7, 0.4, 0.15, 0.0][tier]
+	var head_xf := xf * Transform2D(tor + float(rig.pose["head"]) + slouch * 0.12, rig.neck() + Vector2(slouch * 0.9, slouch * 0.8))
+	var body_xf := xf * Transform2D(tor, hip)
+	# Back items (behind nothing else here, so draw them first).
+	var bid := Wardrobe.item_in_slot(worn, "back")
+	if bid == "cape":
+		ci.draw_set_transform_matrix(body_xf)
+		var sway := sin(Time.get_ticks_msec() * 0.004) * 0.6
+		shape(ci, _v([Vector2(-1.6, -tl + 0.6), Vector2(-3.4, -tl + 1.0), Vector2(-6.4 + sway, 2.4), Vector2(-4.0 + sway, 4.4), Vector2(-1.2, 1.2)]), Color(0.5, 0.05, 0.14), a)
+		soft(ci, _v([Vector2(-2.4, -tl + 1.2), Vector2(-3.2, -tl + 1.4), Vector2(-5.4 + sway, 2.6), Vector2(-4.4 + sway, 3.4)]), Color(1.0, 0.8, 0.3, 0.8), a)
+	elif bid == "fanny_pack":
+		ci.draw_set_transform_matrix(body_xf)
+		shape(ci, _v([Vector2(-1.0, -1.8), Vector2(3.6, -1.8), Vector2(4.0, 0.0), Vector2(-0.8, 0.2)]), Color(0.9, 0.3, 0.7), a)
+		ci.draw_line(Vector2(-0.6, -0.9), Vector2(3.8, -0.9), Color(0.2, 0.9, 0.9, a), 0.35, true)
+		ci.draw_line(Vector2(-3.2, -1.6), Vector2(-1.0, -1.2), Color(0.15, 0.1, 0.12, a), 0.4, true)
+	# Neckwear.
+	var nid := Wardrobe.item_in_slot(worn, "neck")
+	ci.draw_set_transform_matrix(body_xf)
+	match nid:
+		"gold_chain":
+			var pts := PackedVector2Array()
+			for k in 9:
+				var ang := PI * (0.1 + 0.8 * float(k) / 8.0)
+				pts.append(Vector2(1.0, -tl + 0.6) + Vector2(cos(ang) * 2.4, sin(ang) * 2.2))
+			ci.draw_polyline(pts, Color(0.55, 0.38, 0.08, a), 0.7, true)
+			ci.draw_polyline(pts, Color(1.0, 0.84, 0.3, a), 0.4, true)
+			ci.draw_circle(Vector2(1.0, -tl + 3.0), 0.7, Color(0.55, 0.38, 0.08, a))
+			ci.draw_circle(Vector2(1.0, -tl + 3.0), 0.5, Color(1.0, 0.84, 0.3, a))
+			ci.draw_circle(Vector2(0.85, -tl + 2.85), 0.15, Color(1, 1, 0.9, a))
+		"bowtie":
+			shape(ci, _v([Vector2(1.6, -tl + 0.9), Vector2(0.0, -tl + 0.1), Vector2(0.0, -tl + 1.7)]), Color(0.8, 0.1, 0.2), a, 0.3)
+			shape(ci, _v([Vector2(1.6, -tl + 0.9), Vector2(3.2, -tl + 0.1), Vector2(3.2, -tl + 1.7)]), Color(0.8, 0.1, 0.2), a, 0.3)
+			ci.draw_circle(Vector2(1.6, -tl + 0.9), 0.4, Color(0.6, 0.05, 0.12, a))
+		"silk_scarf":
+			shape(ci, _v([Vector2(-2.6, -tl - 0.2), Vector2(3.0, -tl), Vector2(2.8, -tl + 1.2), Vector2(-2.8, -tl + 1.0)]), Color(0.85, 0.12, 0.3), a, 0.3)
+	# Hats.
+	var hid := Wardrobe.item_in_slot(worn, "head")
+	ci.draw_set_transform_matrix(head_xf)
+	match hid:
+		"top_hat":
+			shape(ci, _v([Vector2(-3.6, -8.2), Vector2(5.4, -8.4), Vector2(5.6, -7.6), Vector2(-3.8, -7.4)]), Color(0.06, 0.06, 0.08), a)
+			shape(ci, _v([Vector2(-2.2, -8.2), Vector2(3.8, -8.4), Vector2(3.6, -13.2), Vector2(-2.0, -13.0)]), Color(0.07, 0.07, 0.09), a)
+			ci.draw_line(Vector2(-2.1, -9.0), Vector2(3.7, -9.2), Color(0.8, 0.1, 0.2, a), 0.9, true)
+			ci.draw_line(Vector2(2.8, -12.6), Vector2(2.9, -9.6), Color(1, 1, 1, 0.18 * a), 0.4, true)
+		"bucket_hat":
+			shape(ci, _v([Vector2(-4.4, -7.0), Vector2(5.6, -7.2), Vector2(4.6, -8.0), Vector2(3.4, -10.2), Vector2(0.4, -10.8), Vector2(-2.6, -10.0), Vector2(-3.6, -8.0)]), Color(0.55, 0.6, 0.3), a)
+			ci.draw_line(Vector2(-3.4, -8.2), Vector2(4.6, -8.4), Color(0.35, 0.38, 0.18, a), 0.5, true)
+			ci.draw_circle(Vector2(2.0, -9.4), 0.35, Color(0.95, 0.4, 0.6, a))   # a sad little flower pin
+	# Face items.
+	var fid := Wardrobe.item_in_slot(worn, "face")
+	match fid:
+		"shades":
+			shape(ci, _v([Vector2(2.0, -5.8), Vector2(4.4, -5.9), Vector2(4.3, -4.7), Vector2(3.2, -4.4), Vector2(2.1, -4.8)]), Color(0.08, 0.07, 0.1), a, 0.3)
+			ci.draw_line(Vector2(2.0, -5.7), Vector2(-0.4, -5.2), Color(1.0, 0.8, 0.3, a), 0.35, true)
+			ci.draw_line(Vector2(2.4, -5.5), Vector2(3.2, -5.6), Color(1, 1, 1, 0.6 * a), 0.25, true)
+			ci.draw_polyline(smooth(_v([Vector2(2.0, -5.8), Vector2(4.4, -5.9), Vector2(4.3, -4.7), Vector2(3.2, -4.4), Vector2(2.1, -4.8)])) + PackedVector2Array([Vector2(2.0, -5.8)]), Color(1.0, 0.8, 0.3, a), 0.3, true)
+		"eyepatch":
+			shape(ci, _v([Vector2(2.2, -5.9), Vector2(3.8, -5.9), Vector2(3.9, -4.6), Vector2(2.3, -4.5)]), Color(0.08, 0.08, 0.1), a, 0.3)
+			ci.draw_line(Vector2(2.2, -5.6), Vector2(-2.8, -7.4), Color(0.08, 0.08, 0.1, a), 0.35, true)
+	ci.draw_set_transform_matrix(xf)

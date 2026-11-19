@@ -95,7 +95,7 @@ func _limb(ci: CanvasItem, a: Vector2, t: Vector2, l1: float, l2: float, bend: f
 	var w: float = s["leg_w"] if is_leg else s["arm_w"]
 	var col: Color = s["leg"] if is_leg else s["arm"]
 	col = Color(col.darkened(1.0 - shade), alpha)
-	var oc := Color(s["outline"], alpha)
+	var oc := Color(s["outline"], (s["outline"] as Color).a * alpha)
 	var ow := w + 1.6
 	ci.draw_line(a, j, oc, ow)
 	ci.draw_line(j, e, oc, ow)
@@ -134,8 +134,11 @@ func _limb_smooth(ci: CanvasItem, a: Vector2, t: Vector2, l1: float, l2: float, 
 	var ow: float = s.get("outline_w", 0.6)
 	var col: Color = s["leg"] if is_leg else s["arm"]
 	col = Color(col.darkened((1.0 - shade) * 0.85), alpha)
-	var oc := Color(s["outline"], alpha)
-	var segs := [[a, j, w * 0.55, w * 0.47], [j, e, w * 0.47, w * 0.36]]
+	var oc := Color(s["outline"], (s["outline"] as Color).a * alpha)
+	var segs := [[a, j, w * 0.55, w * 0.47, col], [j, e, w * 0.47, w * 0.36, col]]
+	var shc: Color = s.get("shin_col", Color(0, 0, 0, 0))
+	if is_leg and shc.a > 0.0:
+		segs[1][4] = Color(shc.darkened((1.0 - shade) * 0.6), alpha)
 	# Outline pass (slightly larger, anti-aliased), then the fill pass.
 	for sg in segs:
 		var p0: Vector2 = sg[0]
@@ -151,11 +154,12 @@ func _limb_smooth(ci: CanvasItem, a: Vector2, t: Vector2, l1: float, l2: float, 
 		var n := (p1 - p0).normalized().orthogonal()
 		var r0: float = sg[2]
 		var r1: float = sg[3]
-		ci.draw_colored_polygon(PackedVector2Array([p0 + n * r0, p1 + n * r1, p1 - n * r1, p0 - n * r0]), col)
-		ci.draw_circle(p0, r0, col)
-		ci.draw_circle(p1, r1, col)
-		ci.draw_line(p0 - n * r0 * 0.5, p1 - n * r1 * 0.5, Color(col.lightened(0.18), alpha * 0.6), maxf(0.25, r1 * 0.4), true)
-		ci.draw_line(p0 + n * r0 * 0.55, p1 + n * r1 * 0.55, Color(col.darkened(0.25), alpha * 0.5), maxf(0.25, r1 * 0.35), true)
+		var sc: Color = sg[4]
+		ci.draw_colored_polygon(PackedVector2Array([p0 + n * r0, p1 + n * r1, p1 - n * r1, p0 - n * r0]), sc)
+		ci.draw_circle(p0, r0, sc)
+		ci.draw_circle(p1, r1, sc)
+		ci.draw_line(p0 - n * r0 * 0.5, p1 - n * r1 * 0.5, Color(sc.lightened(0.18), alpha * 0.6), maxf(0.25, r1 * 0.4), true)
+		ci.draw_line(p0 + n * r0 * 0.55, p1 + n * r1 * 0.55, Color(sc.darkened(0.25), alpha * 0.5), maxf(0.25, r1 * 0.35), true)
 	if is_leg:
 		_foot(ci, e, alpha, shade, oc, ow)
 	else:

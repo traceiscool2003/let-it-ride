@@ -1014,7 +1014,7 @@ func _draw() -> void:
 		rig.draw_silhouette(self, Transform2D(0.0, trail[i] - global_position) * xf, Color(ghost, 0.2 * k * a))
 
 	draw_set_transform(Vector2.ZERO)
-	if scarf.size() == SCARF_N:
+	if false and scarf.size() == SCARF_N:  # scarf removed from the design
 		var oc := Color(0.06, 0.03, 0.09, a)
 		var sc := Color(0.92, 0.15, 0.25, a)
 		for pass_i in 2:
@@ -1034,7 +1034,7 @@ func _draw() -> void:
 		lk["mood"] = "fired"
 	RicoArt.dress_rig(rig, lk)
 	rig.draw(self, xf, a, RicoArt.body.bind(lk))
-	Wardrobe.draw(self, rig, xf, worn, outfit_floor, a, true)
+	RicoArt.accessories(self, xf, rig, a, worn, lk)
 	if not charm_ids.is_empty():
 		Wardrobe.draw_charm_gear(self, rig, xf, charm_ids, a)
 	if hit_flash > 0.0:
