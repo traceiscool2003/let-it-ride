@@ -2012,6 +2012,7 @@ func _resolve_strike() -> void:
 				_callout("GUARD BREAK!", Color(1, 0.8, 0.4))
 			var killed: bool = e.hurt(dmg, player.global_position.x)
 			fx.burst(e.global_position, 8, Color(1, 0.95, 0.7), 120.0, 0.25, 2.0, 0.0)
+			_hit_juice(e.global_position, dmg, fin, killed, player.global_position.x)
 			if killed:
 				_enemy_killed(e)
 				_on_move("KO")
@@ -2065,6 +2066,20 @@ func _resolve_strike() -> void:
 			_on_move("FINISHER" if fin else "STRIKE")
 		# Each swing only connects once per target set.
 		player.atk_t = minf(player.atk_t, movement.attack_time - movement.attack_active)
+
+
+## Shared "feel" for every melee hit: damage number, directional sparks, ring,
+## pitched impact, stagger on the target, a bigger boom on kills and finishers.
+func _hit_juice(at: Vector2, dmg: int, fin: bool, killed: bool, from_x: float) -> void:
+	var dir := Vector2(signf(at.x - from_x), -0.15)
+	fx.burst(at, 7 + dmg * 2, Color(1, 0.9, 0.5), 200.0, 0.3, 2.2, 160.0, dir, 0.7)
+	fx.burst(at, 4, Color(1, 1, 1), 260.0, 0.14, 1.4, 0.0, dir, 0.25)
+	fx.text(at + Vector2(0, -14), str(dmg), Color(1, 0.95, 0.6) if not fin else Color(1, 0.6, 0.25), 9 + dmg + (3 if fin else 0))
+	if killed or fin:
+		fx.burst(at, 16, Color(1, 0.55, 0.25), 220.0, 0.5, 3.0, 220.0)
+		Sfx.play("stomp", 0.9 if killed else 1.1)
+		hitstop(0.08 if killed else 0.06)
+		shake(0.32)
 
 
 func _boss_hit_fx(dealt: int, at: Vector2) -> void:
