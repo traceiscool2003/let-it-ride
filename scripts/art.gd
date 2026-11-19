@@ -907,8 +907,8 @@ static func npc_portrait(ci: CanvasItem, center: Vector2, who: String, t: float,
 			fill(ci, pts([Vector2(-2.6, 8), Vector2(2.6, 8), Vector2(2.4, 3.0), Vector2(-2.4, 3.0)]), Color(0.12, 0.1, 0.12))
 			ci.draw_line(Vector2(0, 3.2), Vector2(0, 8), Color(0.95, 0.95, 0.9), 0.4)
 			jules_head(ci, Vector2(0, 3.0), t)
-		"ROOK", "DICE":
-			var hood := Color(0.30, 0.18, 0.45) if who == "ROOK" else Color(0.15, 0.45, 0.55)
+		"RICO", "DICE":
+			var hood := Color(0.30, 0.18, 0.45) if who == "RICO" else Color(0.15, 0.45, 0.55)
 			fill(ci, pts([Vector2(-6.6, 8), Vector2(6.6, 8), Vector2(5.4, 2.4), Vector2(-5.4, 2.4)]), hood)
 			ci.draw_line(Vector2(-1.4, 3.4), Vector2(-1.6, 8), Color(0.9, 0.9, 0.85, 0.8), 0.35)
 			ci.draw_line(Vector2(1.4, 3.4), Vector2(1.6, 8), Color(0.9, 0.9, 0.85, 0.8), 0.35)

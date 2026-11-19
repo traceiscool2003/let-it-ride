@@ -59,7 +59,7 @@ func _process(_delta: float) -> bool:
 			main.state = "title"
 			main._loading("lobby", "THE LOBBY", "", func(): main._enter_lobby(false))
 			main._loading_tick(10.0)
-			# Fast-forward the intro to the first cast card (Rook).
+			# Fast-forward the intro to the first cast card (Rico).
 			for i in 200:
 				if main.cine_step.get("do", "") == "who":
 					break

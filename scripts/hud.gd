@@ -39,7 +39,7 @@ func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	size = Vector2(1280, 720)
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	portraits["ROOK"] = Sprites.bake(Sprites.R_HEAD, Sprites.RUNNER_PAL)
+	portraits["RICO"] = Sprites.bake(Sprites.R_HEAD, Sprites.RUNNER_PAL)
 	var jp: Dictionary = Sprites.RUNNER_PAL.duplicate()
 	jp["P"] = Color(0.2, 0.45, 0.3)
 	jp["p"] = Color(0.3, 0.6, 0.4)
@@ -486,7 +486,7 @@ func _draw_dialog() -> void:
 			draw_circle(c + Vector2(20, 22), 3.0, RED)
 	var name_col := GOLD
 	match who:
-		"ROOK", "JULES", "DICE":
+		"RICO", "JULES", "DICE":
 			name_col = Color(0.75, 0.6, 1.0)
 		"MARLOW":
 			name_col = CYAN
@@ -835,6 +835,32 @@ func _draw_common() -> void:
 		draw_multiline_string(f, r.position + Vector2(22, 52), g.tip_text, HORIZONTAL_ALIGNMENT_LEFT, r.size.x - 40, 16, 3, Color(DIM, a))
 	if g.debug_overlay:
 		_draw_debug()
+	if g.voice_test_on:
+		_draw_voice_test()
+
+
+## F3 voice test overlay.
+func _draw_voice_test() -> void:
+	draw_rect(Rect2(0, 0, 1280, 720), Color(0, 0, 0, 0.86))
+	var cid: String = g.VoiceProfiles.ORDER[g.vt_char % g.VoiceProfiles.ORDER.size()]
+	var prof: Dictionary = g.VoiceProfiles.P[cid]
+	_txt(Vector2(40, 52), "VOICE TEST", 30, GOLD)
+	_txt(Vector2(40, 82), "LEFT/RIGHT: character    UP/DOWN: line    ENTER: play    F3/ESC: close", 15, DIM)
+	_txt(Vector2(40, 130), "%s   (%s)" % [prof["name"], cid], 26, Color.WHITE)
+	_txt(Vector2(40, 156), String(prof["role"]), 16, DIM)
+	_txt(Vector2(40, 178), "Filter: " + g.VoiceProfiles.recipe(cid), 14, CYAN)
+	var lines: Array = g.voice_test_lines()
+	var first := clampi(g.vt_line - 8, 0, maxi(0, lines.size() - 17))
+	for i in range(first, mini(lines.size(), first + 17)):
+		var e: Dictionary = lines[i]
+		var rec: bool = Voice.has_file(e)
+		var y := 222.0 + (i - first) * 26.0
+		if i == g.vt_line:
+			draw_rect(Rect2(30, y - 18, 1220, 24), Color(1, 1, 1, 0.12))
+		_txt(Vector2(40, y), "[x]" if rec else "[ ]", 15, GREEN if rec else DIM)
+		_txt(Vector2(80, y), String(e["id"]), 15, GOLD if i == g.vt_line else Color(0.8, 0.8, 0.9))
+		_txt(Vector2(380, y), String(e["text"]).left(100), 15, Color.WHITE if i == g.vt_line else DIM)
+	_txt(Vector2(40, 690), "%d lines for this character. [x] = a recorded file was found in res://voice/%s/" % [lines.size(), cid], 14, DIM)
 
 
 func _draw_objectives(x: float, y: float) -> void:
@@ -989,7 +1015,7 @@ func _draw_cast_card() -> void:
 	var who: String = g.cast_name
 	var accent := GOLD
 	match who:
-		"ROOK": accent = Color(0.75, 0.6, 1.0)
+		"RICO": accent = Color(0.75, 0.6, 1.0)
 		"MAGS": accent = Color(1, 0.5, 0.5)
 		"VERA": accent = Color(1, 0.6, 0.75)
 		"LUCKY": accent = GREEN

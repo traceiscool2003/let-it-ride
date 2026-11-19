@@ -1,16 +1,16 @@
 extends RefCounted
-## Story text. Speakers: ROOK (you), MARLOW (your fixer, on the radio),
+## Story text. Speakers: RICO (you), MARLOW (your fixer, on the radio),
 ## and the three bosses of The Pit. Each line is [speaker, text].
 
 ## Plays the first time you enter the Lobby.
 const INTRO := [
-	["ROOK", "They call it The Pit. Twelve floors of dirty money, buried under the city."],
-	["ROOK", "Three years ago my brother Jules sat down at its tables. He never came back up."],
+	["RICO", "They call it The Pit. Twelve floors of dirty money, buried under the city."],
+	["RICO", "Three years ago my brother Jules sat down at its tables. He never came back up."],
 	["MAGS", "Nobody walks into the Pit without a Marker, kid. Sign here. And here. And... there."],
 	["THE HOUSE", "Welcome, valued guest. House rules: no one dies owing the House. Bust down there, and you wake up right here. With interest."],
-	["ROOK", "So I can't die. I just owe you forever."],
+	["RICO", "So I can't die. I just owe you forever."],
 	["THE HOUSE", "Now you're getting it."],
-	["MARLOW", "Radio check. Rook, you hear me? Every chip you grab rides in your Pot. At each door you bank it, or let it ride for double."],
+	["MARLOW", "Radio check. Rico, you hear me? Every chip you grab rides in your Pot. At each door you bank it, or let it ride for double."],
 	["MARLOW", "Talk to the folks up here between runs. When you're ready, take the DESCEND door on the far right. Jules is waiting."],
 ]
 
@@ -21,7 +21,7 @@ const CAST := {
 }
 
 const RADIO := [
-	["MARLOW", "Same deal as always, Rook. Grab, run, don't get cute."],
+	["MARLOW", "Same deal as always, Rico. Grab, run, don't get cute."],
 	["MARLOW", "Word is Sal's been doubling security. Parry the big lugs when they wind up."],
 	["MARLOW", "You know what they say: the House always wins. So stop being the House's guest."],
 	["MARLOW", "Slot machines on every floor. Bet the Pot if you're feeling lucky. I wouldn't."],
@@ -38,18 +38,18 @@ const FIRST_EXIT := [
 const BOSS_INTRO := {
 	1: [
 		["BIG SAL", "So you're the rat tripping my alarms. Nobody walks outta The Pit, kid."],
-		["ROOK", "Your boss took my brother. I'm taking it back. With interest."],
+		["RICO", "Your boss took my brother. I'm taking it back. With interest."],
 		["BIG SAL", "Cute. Let's see you dance."],
 	],
 	2: [
 		["MADAME ROULETTE", "Round and round, little runner. Where it stops... nobody knows."],
-		["ROOK", "Where's Jules?"],
+		["RICO", "Where's Jules?"],
 		["MADAME ROULETTE", "Spin the wheel and find out, darling."],
 	],
 	3: [
 		["THE HOUSE", "Every gambler comes home to me eventually. Your brother did."],
 		["THE HOUSE", "He bet everything. He lost. Now he deals at my tables, forever."],
-		["ROOK", "Then I'm cashing him out."],
+		["RICO", "Then I'm cashing him out."],
 	],
 }
 
@@ -81,17 +81,17 @@ const BOSS_DEFEAT := {
 }
 
 const ENDING := [
-	["ROOK", "The vault door groans open. Behind it, a man shuffling cards in the dark."],
-	["JULES", "...Rook? You came down here? For me?"],
-	["ROOK", "Somebody had to cash you out. Come on. We're going home."],
-	["MARLOW", "Rook... the floor's still going down. There's more Pit below The Pit."],
-	["ROOK", "...Let it ride."],
+	["RICO", "The vault door groans open. Behind it, a man shuffling cards in the dark."],
+	["JULES", "...Rico? You came down here? For me?"],
+	["RICO", "Somebody had to cash you out. Come on. We're going home."],
+	["MARLOW", "Rico... the floor's still going down. There's more Pit below The Pit."],
+	["RICO", "...Let it ride."],
 ]
 
 ## The first time Mags comes collecting on a late loan.
 const MAGS_CHASE := [
 	["MAGS", "Payday, kid. You're late. I hate late."],
-	["ROOK", "...Can we talk about this?"],
+	["RICO", "...Can we talk about this?"],
 	["MAGS", "We ARE talking. This is me talking. The swimming is me collecting. Cash out and pay me, or keep running."],
 ]
 
@@ -99,14 +99,14 @@ const MAGS_CHASE := [
 ## freeing Vera, and hearing Marlow's confession.
 const TRUE_ENDING := [
 	["THE HOUSE", "Again? You beat me AGAIN? Fine. Double or nothing. One more hand."],
-	["ROOK", "No. I read your tickets, Eddie. All twenty of them."],
+	["RICO", "No. I read your tickets, Eddie. All twenty of them."],
 	["THE HOUSE", "...Nobody has called me that in twenty years."],
-	["ROOK", "You never learned to walk away. So I'm teaching you. Cash out, Eddie. Take the win."],
+	["RICO", "You never learned to walk away. So I'm teaching you. Cash out, Eddie. Take the win."],
 	["THE HOUSE", "If I stop playing... what's left of me?"],
 	["VERA", "Whatever you were before the tables, Eddie. That's what's left. It's enough."],
 	["THE HOUSE", "...Cashing out. Huh. It feels like falling. The good kind."],
-	["MARLOW", "Rook, the lights just went warm up here. Every Marker in the Lobby burned up at once. Everyone's free."],
-	["ROOK", "The floors are still down there, though."],
+	["MARLOW", "Rico, the lights just went warm up here. Every Marker in the Lobby burned up at once. Everyone's free."],
+	["RICO", "The floors are still down there, though."],
 	["MARLOW", "Course they are. It's still a casino. Now it's ours. Let it ride, kid."],
 ]
 

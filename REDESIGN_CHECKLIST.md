@@ -262,3 +262,8 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - **A "go down the list" recording checklist** per character: a numbered table of every line with its file name, the exact text, how to say it, and a `[ ]` box for the user to tick. Order it character by character, so the user records one character's whole session in one sitting.
   - **"Test it in game" steps:** drop the file, open Godot, press F5, and go to where the line plays (or use a debug "voice test" menu that plays any line by ID). Build that menu.
 - The VOICE NOTIFICATION should only fire after 42b is also [x].
+
+- **2026-11-19 (run 1):**
+  - Finished items 2-14 and 23-25 (see notes above). New files: wardrobe.gd, weapons.gd, enemy_types.gd, cities.gd, boss_defs.gd, voice*.gd.
+  - DEVIATION: jumped ahead to the voice kit (items 34, 36-42b) so the user can start recording sooner. Items 15-22, 26-33, 35, 40 partly, 43-45 come after.
+  - PROGRESS on voice: voice.gd autoload, voice_profiles.gd, voice_lines*.gd (921 lines), F3 voice test menu, settings, tests/voice_test.gd are done. Next: tools/gen_voice_kit.gd -> voice/ folders, VOICE_CAST.md, VOICE_SCRIPT.md, HOW_TO_RECORD.md.

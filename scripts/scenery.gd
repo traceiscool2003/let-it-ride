@@ -297,7 +297,7 @@ static func _pit(ci: CanvasItem, f: Font, c: Vector2, t: float) -> void:
 			chip(ci, Vector2(x, y), 7.0 + rnd(i + 730) * 5.0, Color(cc, a), t * 2.0 + i, 0.4 + 0.6 * absf(cos(t * 2.0 + i)))
 
 
-## Rook from behind and to the side, scarf blowing up in the pit's draft.
+## Rico from behind and to the side, scarf blowing up in the pit's draft.
 static func _rook_silhouette(ci: CanvasItem, feet: Vector2, t: float, sc: float) -> void:
 	var k := Color(0.04, 0.01, 0.05)
 	var rim := Color(1, 0.6, 0.35, 0.9)

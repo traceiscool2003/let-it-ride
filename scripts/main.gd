@@ -20,6 +20,8 @@ const Charms := preload("res://scripts/charms.gd")
 const Wardrobe := preload("res://scripts/wardrobe.gd")
 const Weapons := preload("res://scripts/weapons.gd")
 const Cities := preload("res://scripts/cities.gd")
+const VoiceLines := preload("res://scripts/voice_lines.gd")
+const VoiceProfiles := preload("res://scripts/voice_profiles.gd")
 const BossDefs := preload("res://scripts/boss_defs.gd")
 const EnemyTypes := preload("res://scripts/enemy_types.gd")
 const Dialogue := preload("res://scripts/dialogue.gd")
@@ -103,7 +105,7 @@ const SKILLS := [
 
 ## Playable runners.
 const CHARACTERS := [
-	{"name": "ROOK", "desc": "Balanced. Fast hands, faster feet.", "lock": "", "hood": Color(0.30, 0.18, 0.45), "hood_l": Color(0.47, 0.31, 0.64), "speed": 1.0, "hp": 0, "dmg": 0, "flow": 0.0},
+	{"name": "RICO", "desc": "Balanced. Fast hands, faster feet.", "lock": "", "hood": Color(0.30, 0.18, 0.45), "hood_l": Color(0.47, 0.31, 0.64), "speed": 1.0, "hp": 0, "dmg": 0, "flow": 0.0},
 	{"name": "DICE", "desc": "Glass cannon speedster. +12% speed, starts hot, -1 life.", "lock": "Beat Big Sal to unlock.", "hood": Color(0.15, 0.45, 0.55), "hood_l": Color(0.25, 0.65, 0.75), "speed": 1.12, "hp": -1, "dmg": 0, "flow": 40.0},
 	{"name": "JULES", "desc": "The brother. Heavy hitter: +1 life, +1 damage, a bit slower.", "lock": "Finish the story to unlock.", "hood": Color(0.2, 0.45, 0.3), "hood_l": Color(0.3, 0.6, 0.4), "speed": 0.93, "hp": 1, "dmg": 1, "flow": 0.0},
 ]
@@ -375,6 +377,13 @@ var stats := {}
 # Dialogue.
 var dialog: Array = []
 var dialog_chars := 0.0
+var dialog_spoken: Array = []
+var dialog_clip := 0.0
+var dialog_clip_wait := 0.0
+var recent_death := false
+var voice_test_on := false
+var vt_char := 0
+var vt_line := 0
 var dialog_after := ""
 # Menus.
 var title_sel := 0
@@ -653,6 +662,7 @@ func _start_run(daily := false) -> void:
 	revive_used = false
 	run_dmg_bonus = ch["dmg"]
 	charms.reset_run()
+	recent_death = false
 	boss_order.clear()
 	worn = Wardrobe.START_OUTFIT.duplicate()
 	nerve = 0.0
@@ -1036,6 +1046,7 @@ func _choose(i: int) -> void:
 
 
 func _die(reason: String) -> void:
+	recent_death = true
 	state = "dead"
 	dead_t = 0.0
 	death_reason = reason
@@ -1109,15 +1120,34 @@ func _dialog_tick(delta: float) -> void:
 func _dialog_advance(delta: float) -> bool:
 	if dialog.is_empty():
 		return true
-	var line: String = dialog[0][1]
-	dialog_chars += delta * float(settings.val("text_speed"))
-	if _jp("jump") or _jp("confirm") or _jp("attack"):
+	var cur: Array = dialog[0]
+	var line: String = cur[1]
+	# New line: start its voice clip (or fall back to blips).
+	if not is_same(dialog_spoken, cur):
+		dialog_spoken = cur
+		dialog_clip = Voice.speak(String(cur[0]), line)
+		dialog_clip_wait = 0.0
+	var cps := float(settings.val("text_speed"))
+	if dialog_clip > 0.0 and cps < 9000.0:
+		cps = maxf(cps, float(line.length()) / maxf(0.4, dialog_clip * 0.9))   # type in time with the voice
+	var before := int(dialog_chars)
+	dialog_chars += delta * cps
+	if int(dialog_chars) != before:
+		Voice.blip(String(cur[0]), mini(int(dialog_chars), line.length()), line)
+	# Cutscene dialogue waits for the clip to finish, then moves on by itself.
+	var auto_next := false
+	if state == "cine" and dialog_clip > 0.0 and dialog_chars >= line.length():
+		dialog_clip_wait += delta
+		auto_next = not Voice.is_playing() and dialog_clip_wait > 0.6
+	if _jp("jump") or _jp("confirm") or _jp("attack") or auto_next:
 		if dialog_chars < line.length():
 			dialog_chars = line.length()
 		else:
+			Voice.stop()
 			dialog.pop_front()
 			dialog_chars = 0.0
-			if settings.val("blips"):
+			dialog_spoken = []
+			if settings.val("blips") and dialog_clip <= 0.0:
 				Sfx.play("blip", 1.4)
 			return dialog.is_empty()
 	return false
@@ -2829,6 +2859,14 @@ func _back_from_menu_screen() -> void:
 ## Talk to a Lobby character. `then_menu` opens their menu afterwards.
 func _talk(who: String, then_menu := "") -> void:
 	var e: Dictionary = Dialogue.pick(who, _dialog_ctx(), seen, flags, rng)
+	if e.is_empty() or e.get("rep", false):
+		# Nothing new to say: react to the player's state with a voiced pool line.
+		var vp: Dictionary = VoiceLines.pick(VoiceProfiles.id_for(who), voice_state(), rng)
+		if not vp.is_empty():
+			e = {"id": "vp", "rep": true, "lines": [[who, String(vp["text"])]]}
+			if then_menu == "":
+				e["rep"] = false
+				e["id"] = "vp_" + str(rng.randi())
 	if e.is_empty():
 		if then_menu != "":
 			_open_menu(then_menu)
@@ -2844,6 +2882,15 @@ func _talk(who: String, then_menu := "") -> void:
 	pending_menu = then_menu
 	_say(e["lines"], "")
 	_refresh_hub_new()
+
+
+## What the NPCs react to: clothes, money, recent death, boss kills.
+func voice_state() -> Dictionary:
+	var sw := Wardrobe.swag(worn, floor_num)
+	var rich := pot >= 500 or wallet >= 1500
+	var broke := pot < 30 and wallet < 100
+	var st := {"died": recent_death, "boss": bosses_beaten > 0 and int(stats.get("bosses", 0)) > 0, "ugly": sw <= -3, "sharp": sw >= 8, "rich": rich, "broke": broke}
+	return st
 
 
 func _pet_cat() -> void:
@@ -3712,7 +3759,7 @@ func _intro_steps() -> Array:
 		{"do": "card", "text": "LET IT RIDE", "sub": "", "t": 2.4},
 		{"do": "card", "text": "THE PIT", "sub": "Twelve floors of dirty money, buried under the city.", "t": 3.0},
 		{"do": "pan", "to": "player", "zoom": 3.4, "t": 3.0},
-		{"do": "who", "name": "ROOK", "role": "THE RUNNER", "line": "Fast hands, faster feet, and a brother to bring home.", "t": 3.0},
+		{"do": "who", "name": "RICO", "role": "THE RUNNER", "line": "Fast hands, faster feet, and a brother to bring home.", "t": 3.0},
 		{"do": "say", "lines": [I[0], I[1]]},
 		{"do": "sfx", "name": "door"},
 		{"do": "pan", "to": "mags", "zoom": 3.8, "t": 1.3},
@@ -3779,7 +3826,60 @@ func _settings_result(res: String) -> void:
 
 
 ## Capture the next key press while rebinding a control.
+## Voice test menu (F3): pick a character, pick a line, ENTER plays it (the recorded
+## file if present, otherwise the fallback blips). Shows which lines are recorded.
+func voice_test_lines() -> Array:
+	var cid: String = VoiceProfiles.ORDER[vt_char % VoiceProfiles.ORDER.size()]
+	return VoiceLines.registry().filter(func(e): return e["char"] == cid)
+
+
+func _voice_test_input(event: InputEvent) -> bool:
+	if not (event is InputEventKey) or not event.pressed:
+		return false
+	var k: int = (event as InputEventKey).physical_keycode
+	var lines := voice_test_lines()
+	match k:
+		KEY_F3, KEY_ESCAPE:
+			voice_test_on = false
+			Voice.stop()
+		KEY_LEFT:
+			vt_char = (vt_char - 1 + VoiceProfiles.ORDER.size()) % VoiceProfiles.ORDER.size()
+			vt_line = 0
+		KEY_RIGHT:
+			vt_char = (vt_char + 1) % VoiceProfiles.ORDER.size()
+			vt_line = 0
+		KEY_UP:
+			vt_line = maxi(0, vt_line - 1)
+		KEY_DOWN:
+			vt_line = mini(maxi(0, lines.size() - 1), vt_line + 1)
+		KEY_PAGEUP:
+			vt_line = maxi(0, vt_line - 10)
+		KEY_PAGEDOWN:
+			vt_line = mini(maxi(0, lines.size() - 1), vt_line + 10)
+		KEY_ENTER, KEY_KP_ENTER:
+			Voice.clear_cache()
+			if vt_line < lines.size():
+				var e: Dictionary = lines[vt_line]
+				var len_s := Voice.play_entry(e, String(e["char"]))
+				if len_s <= 0.0:
+					Voice.last_char = String(e["char"])
+					for i in range(1, mini(40, String(e["text"]).length()), 2):
+						get_tree().create_timer(0.03 * i, true, false, true).timeout.connect(Voice.blip.bind(String(e["speaker"]), i, String(e["text"])))
+		_:
+			return false
+	return true
+
+
 func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo and (event as InputEventKey).physical_keycode == KEY_F3 and not voice_test_on and state != "settings":
+		voice_test_on = true
+		Voice.clear_cache()
+		get_viewport().set_input_as_handled()
+		return
+	if voice_test_on:
+		if _voice_test_input(event):
+			get_viewport().set_input_as_handled()
+		return
 	if state != "settings" or settings == null or settings.rebinding == "":
 		return
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -3847,6 +3947,9 @@ func _apply_settings() -> void:
 	sfx_vol = float(v["sfx"])
 	Music.volume = music_vol
 	Sfx.volume = sfx_vol
+	Voice.set_volume(float(v["voice"]))
+	Voice.set_filters(bool(v["voice_filters"]))
+	Voice.blips_on = bool(v["blips"])
 	AudioServer.set_bus_volume_db(0, linear_to_db(maxf(0.0001, float(v["master"]))))
 	AudioServer.set_bus_mute(0, float(v["master"]) <= 0.0)
 	# Assist.
@@ -4003,7 +4106,7 @@ func _wipe_tick(delta: float) -> void:
 		_enter_lobby(true)
 		state = "wipe"
 		get_tree().paused = true
-		# Start Rook up by the ceiling, over the trapdoor.
+		# Start Rico up by the ceiling, over the trapdoor.
 		if player and level:
 			player.position = Vector2(level.start_pos.x + 32.0, level.T * 1.0 + 14.0)
 			player.velocity = Vector2.ZERO

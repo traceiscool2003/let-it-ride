@@ -370,7 +370,7 @@ func _process(_delta: float) -> bool:
 			main.settings.set_val("cutscenes", "off")
 			main.state = "play"
 			paused = false
-			main._cinematic([{"do": "bars", "v": 1.0}, {"do": "say", "lines": [["ROOK", "test"]]}])
+			main._cinematic([{"do": "bars", "v": 1.0}, {"do": "say", "lines": [["RICO", "test"]]}])
 			check(main.state == "dialog" and main.dialog.size() == 1, "Cutscenes off: dialogue still plays")
 			main.dialog.clear()
 			main._dialog_end()

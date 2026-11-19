@@ -20,12 +20,12 @@ extends RefCounted
 const LINES := [
 	# ------------------------------------------------------------ MARLOW (payphone)
 	{"id": "marlow_intro", "who": "MARLOW", "pri": 100, "flags": ["met_marlow"], "lines": [
-		["MARLOW", "Rook! You picked up. So the rumors are true: the House doesn't let debtors die down there."],
+		["MARLOW", "Rico! You picked up. So the rumors are true: the House doesn't let debtors die down there."],
 		["MARLOW", "You bust, it drags you back up to the Lobby and adds interest to your Marker. Every run is a do-over."],
-		["ROOK", "So I can't die. Great. What's the catch?"],
+		["RICO", "So I can't die. Great. What's the catch?"],
 		["MARLOW", "The catch is you never stop owing. Learn the floors, find Jules, and get out before the interest eats you."]]},
 	{"id": "marlow_spikes", "who": "MARLOW", "pri": 60, "req": {"cause": "spikes"}, "lines": [
-		["MARLOW", "Spikes again? They don't move, Rook. That's kind of their whole thing."]]},
+		["MARLOW", "Spikes again? They don't move, Rico. That's kind of their whole thing."]]},
 	{"id": "marlow_guard", "who": "MARLOW", "pri": 60, "req": {"cause": "guard"}, "lines": [
 		["MARLOW", "Those bouncers telegraph every punch. Parry right before it lands and they'll be eating carpet."]]},
 	{"id": "marlow_bat", "who": "MARLOW", "pri": 60, "req": {"cause": "bat"}, "lines": [
@@ -39,7 +39,7 @@ const LINES := [
 		["MARLOW", "You made it all the way to the House. That's further than Jules ever got."],
 		["MARLOW", "Don't you dare quit now."]]},
 	{"id": "marlow_mags", "who": "MARLOW", "pri": 70, "req": {"cause": "mags"}, "lines": [
-		["MARLOW", "Mags got you? You borrowed from a SHARK, Rook. In a SUIT. There were signs."]]},
+		["MARLOW", "Mags got you? You borrowed from a SHARK, Rico. In a SUIT. There were signs."]]},
 	{"id": "marlow_greedy", "who": "MARLOW", "pri": 75, "req": {"min": {"last_mult": 8}}, "lines": [
 		["MARLOW", "You were riding at times eight when you went down. Times eight."],
 		["MARLOW", "Breathe. Bank once in a while. Jules never did, and look where he ended up."]]},
@@ -48,7 +48,7 @@ const LINES := [
 	{"id": "marlow_confess", "who": "MARLOW", "pri": 90, "req": {"min": {"runs": 9}}, "flags": ["marlow_confessed"], "lines": [
 		["MARLOW", "There's something I should've told you before you went in."],
 		["MARLOW", "I used to deal for the House. I'm the one who got Jules a seat at its table. I thought he'd win. He always won."],
-		["ROOK", "...You sent my brother down there."],
+		["RICO", "...You sent my brother down there."],
 		["MARLOW", "And I'm talking you back out of it, one floor at a time. That's the only apology I've got that's worth anything."]]},
 	{"id": "marlow_vault", "who": "MARLOW", "pri": 50, "req": {"min": {"vaults": 1}}, "lines": [
 		["MARLOW", "You cracked a Vault Door! They only open if you get there fast. Speed pays down there. Remember that."]]},
@@ -68,7 +68,7 @@ const LINES := [
 	{"id": "vera_intro", "who": "VERA", "pri": 100, "flags": ["met_vera"], "lines": [
 		["VERA", "Fresh Marker, still wet. I'm Vera Vex. I deal charms now, not cards."],
 		["VERA", "Charms bend the odds down there. Win them on slots, crack them out of vaults, take them off bosses, or buy them at my table on the floors."],
-		["ROOK", "And up here?"],
+		["RICO", "And up here?"],
 		["VERA", "Up here I sell licenses. Pay me from your wallet and I'll start slipping the good charms into the Pit."]]},
 	{"id": "vera_bust", "who": "VERA", "pri": 70, "req": {"min": {"deaths": 1}}, "lines": [
 		["VERA", "You came back. Everyone comes back. That's the problem with this place."]]},
@@ -85,7 +85,7 @@ const LINES := [
 	{"id": "vera_queen_found", "who": "VERA", "pri": 98, "req": {"flag": ["queen_found"]}, "flags": ["vera_free"], "lines": [
 		["VERA", "...That's her. That's my Queen."],
 		["VERA", "Twenty years I've owed the House this card, and you found it folded in a losing ticket. Of course you did."],
-		["VERA", "You just paid my Marker, Rook. I'm free to walk out that door."],
+		["VERA", "You just paid my Marker, Rico. I'm free to walk out that door."],
 		["VERA", "I'm staying. Somebody has to keep you lucky. Licenses are 25% off for you, forever."]]},
 	{"id": "vera_ending", "who": "VERA", "pri": 90, "req": {"flag": ["ending"]}, "lines": [
 		["VERA", "You got Jules out. Do you know how many runners I've watched try that?"],
@@ -103,7 +103,7 @@ const LINES := [
 		["MAGS", "Name's Mags. I hold the Markers at the door, and yours says the House owns your bones until you settle up."],
 		["MAGS", "Short on chips? I lend. Two hundred now, three hundred back by the end of floor three."],
 		["MAGS", "Pay me when you cash out. Miss the date and I come collecting. Personally. Through walls."],
-		["ROOK", "You're a shark. In a suit."],
+		["RICO", "You're a shark. In a suit."],
 		["MAGS", "And you're a runner with no money. We all have our problems."]]},
 	{"id": "mags_repaid", "who": "MAGS", "pri": 70, "req": {"min": {"repaid": 1}}, "lines": [
 		["MAGS", "You paid me back on time. Respect. You'd be amazed how few do."]]},
@@ -133,12 +133,12 @@ const LINES := [
 
 	# ------------------------------------------------------------ JULES (after the ending)
 	{"id": "jules_home", "who": "JULES", "pri": 100, "req": {"flag": ["ending"]}, "lines": [
-		["JULES", "Rook. I keep waking up in this Lobby. Old habits. The House still thinks I owe it."],
+		["JULES", "Rico. I keep waking up in this Lobby. Old habits. The House still thinks I owe it."],
 		["JULES", "Thanks for coming for me. Now let me come with you. Pick me on the title screen. I hit harder than you."]]},
 	{"id": "jules_eddie", "who": "JULES", "pri": 80, "req": {"flag": ["ending"], "min": {"tickets": 10}}, "lines": [
 		["JULES", "Those losing tickets are Eddie Duval's trail. I dealt to that voice every night for three years."],
 		["JULES", "He doesn't want our money. He wants somebody to finally beat him so he can stop."]]},
-	{"id": "jules_rep1", "who": "JULES", "pri": 0, "rep": true, "req": {"flag": ["ending"]}, "lines": [["JULES", "Bank it, Rook. I didn't. Look where it got me."]]},
+	{"id": "jules_rep1", "who": "JULES", "pri": 0, "rep": true, "req": {"flag": ["ending"]}, "lines": [["JULES", "Bank it, Rico. I didn't. Look where it got me."]]},
 	{"id": "jules_rep2", "who": "JULES", "pri": 0, "rep": true, "req": {"flag": ["ending"]}, "lines": [["JULES", "The House cheats. So we cheat better."]]},
 ]
 
@@ -146,7 +146,7 @@ const LINES := [
 const BARKS := {
 	"lobby": ["Welcome to the Lobby of The Pit. Your Marker is our pleasure.", "No one dies owing the House. That would be bad for business."],
 	"wake": ["Welcome back, valued guest. Your tab has been adjusted.", "Back so soon? The House never forgets a debtor.", "Interest applied. Smile, it's compounding."],
-	"wake_spikes": ["Attention guests: Rook was defeated by a spike. The spike's drinks are on the house."],
+	"wake_spikes": ["Attention guests: Rico was defeated by a spike. The spike's drinks are on the house."],
 	"wake_guard": ["Security reminds guests that punching is a privilege, not a right."],
 	"wake_bat": ["The bats thank you for your generous contribution."],
 	"wake_boss1": ["Big Sal sends his regards. And an invoice."],

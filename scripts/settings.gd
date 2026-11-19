@@ -66,6 +66,8 @@ func _build() -> void:
 			{"id": "master", "label": "Master Volume", "vals": _pct(), "def": 1.0, "desc": "Everything."},
 			{"id": "music", "label": "Music Volume", "vals": _pct(), "def": 0.8, "desc": "The piano and the drum-and-bass."},
 			{"id": "sfx", "label": "Sound Effects Volume", "vals": _pct(), "def": 0.8, "desc": "Chips, hits, slots, doors."},
+			{"id": "voice", "label": "Voice Volume", "vals": _pct(), "def": 1.0, "desc": "Recorded voice acting and the character blips."},
+			{"id": "voice_filters", "label": "Voice Filters", "vals": onoff, "def": true, "desc": "Per-character effects (pitch, EQ, radio grit, reverb). Turn off if you baked the effects in with Audacity."},
 			{"id": "blips", "label": "Dialogue Blips", "vals": onoff, "def": true, "desc": "The little sound when dialogue advances."},
 			{"id": "mute_unfocused", "label": "Mute When Unfocused", "vals": onoff, "def": true, "desc": "Silence the game when you tab out."},
 		],
