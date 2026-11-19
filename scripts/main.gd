@@ -1277,7 +1277,7 @@ func _process(delta: float) -> void:
 				match title_sel:
 					0:
 						if char_unlocked(char_i):
-							_loading("lobby", "THE LOBBY", "Where every debtor wakes up.", func(): _enter_lobby(false))
+							_loading("lobby", "HOME SWEET HOVEL", "Apartment 4B. Rent is overdue.", func(): _enter_lobby(false))
 						else:
 							Sfx.play("deny")
 					1:
@@ -2918,7 +2918,7 @@ func _enter_lobby(woke: bool) -> void:
 		_save()
 		_cinematic(_intro_steps(), "play", "intro")
 		return
-	_tip("lobby", "THE LOBBY", "You wake up here after every bust. Talk to anyone with a  !  over their head. The DESCEND door on the far right starts a run.")
+	_tip("lobby", "THE LOBBY", "Home sweet hovel. You wake up in bed after every bust. Step out the front door and walk down the block; talk to anyone with a  !  over their head. The bus stop at the far end starts the climb.")
 	if woke:
 		var ev := "wake_" + last_cause
 		if lost_pot >= 1000:
@@ -2940,7 +2940,7 @@ func _hub_world() -> void:
 	interact_text = ""
 	if pr.intersects(level.exit_rect()):
 		interact_pos = level.exit_pos + Vector2(0, -50)
-		interact_text = "UP: DESCEND INTO THE PIT"
+		interact_text = "UP: CATCH THE BUS TO " + String(Cities.CITIES[0]["name"])
 		if Input.is_action_pressed("up") and player.is_on_floor():
 			_begin_run()
 		return
@@ -3861,7 +3861,7 @@ func objective_lines() -> Array:
 		for v in hub_new.values():
 			if v:
 				any_new = true
-		out.append("Take the DESCEND door on the far right to start a run")
+		out.append("Walk out the front door to the bus stop at the end of the block to start a run")
 		if any_new:
 			out.append("Optional: talk to anyone with a  !  over their head")
 		if skill_points > 0:
@@ -4126,7 +4126,7 @@ func _intro_steps() -> Array:
 
 func _after_intro() -> void:
 	_refresh_hub_new()
-	_tip("lobby", "THE LOBBY", "You wake up here after every bust. Talk to anyone with a  !  over their head. The DESCEND door on the far right starts a run.")
+	_tip("lobby", "HOME", "You wake up here after every bust. Talk to anyone with a  !  over their head. The DESCEND door on the far right starts a run.")
 
 
 # ---------------------------------------------------------------- settings

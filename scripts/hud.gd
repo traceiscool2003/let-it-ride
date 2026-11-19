@@ -994,7 +994,7 @@ func _draw_hub() -> void:
 	# --- Lobby panel.
 	var pr := Rect2(16, 14, 380, 110)
 	_panel(pr, Color(1, 0.6, 0.75))
-	_txt(Vector2(34, 44), "THE LOBBY", 26, Color(1, 0.75, 0.85))
+	_txt(Vector2(34, 44), "HOME SWEET HOVEL", 26, Color(1, 0.75, 0.85))
 	_txt(Vector2(34, 74), "WALLET  " + _money(g.wallet), 19, GREEN)
 	_txt(Vector2(214, 74), "BEST  " + _money(g.best), 19, GOLD)
 	_txt(Vector2(34, 104), "RUNS %d     TICKETS %d/%d     HEAT %d" % [g.runs, g.tickets.size(), g.Dialogue.TICKETS.size(), g.heat()], 15, DIM)
@@ -1018,7 +1018,7 @@ func _draw_hub() -> void:
 				_txt(sp + Vector2(-20, 9), "!", 26, Color(0.15, 0.05, 0.1), HORIZONTAL_ALIGNMENT_CENTER, 40)
 		# Bouncing arrow over the DESCEND door when that's the goal.
 		var lines: Array = g.objective_lines()
-		if lines.size() > 0 and String(lines[0]).contains("DESCEND"):
+		if lines.size() > 0 and String(lines[0]).contains("bus stop"):
 			var ep: Vector2 = g.to_screen(g.level.exit_pos + Vector2(0, -78))
 			ep.y += sin(t * 6.0) * 7.0
 			draw_colored_polygon(PackedVector2Array([ep + Vector2(-14, -10), ep + Vector2(14, -10), ep + Vector2(0, 8)]), GOLD)

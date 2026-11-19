@@ -11,7 +11,7 @@ const INTRO := [
 	["RICO", "So I can't die. I just owe you forever. Honestly? Best terms I've ever been offered."],
 	["THE HOUSE", "Now you're getting it."],
 	["MARLOW", "Radio check, Rico. Every chip you grab rides in your Pot. At each door you bank it, or let it ride for double. You'll let it ride. You always let it ride."],
-	["MARLOW", "Talk to the folks up here between runs. Wear something. Anything. When you're ready, take the DESCEND door. And Rico: please don't bet the shoes."],
+	["MARLOW", "Talk to the folks up here between runs. Wear something. Anything. When you're ready, catch the bus at the end of the block. And Rico: please don't bet the shoes."],
 ]
 
 ## Character introductions during the opening cutscene.

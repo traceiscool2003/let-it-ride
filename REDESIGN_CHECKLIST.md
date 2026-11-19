@@ -306,3 +306,5 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - Voice kit done (36-42b). VOICE_READY.md written and notification sent. Next: 15-22, 26-33, 35, 40 placement, 43-45.
 
 - **2026-11-19 (run 1 end):** All items 1-45 and 42b are [x]. Remaining known gaps: screenshots not regenerated (no display in the cloud run); ability-only base-kit completability was reasoned about (downward flow) but not bot-verified; hub-based NPC placement of minor NPCs is on floors only. Next: playtest by hand, record voices (see HOW_TO_RECORD.md).
+
+- **2026-11-19 (lobby makeover):** The lobby is now Rico's apartment (bed, window, wardrobe, couch/TV, front door APT 4B) opening onto a night street (skyline, storefronts for Pawn/Lucky/Vera/Mags/News, lamps, bus stop to Atlantic Shitty). `level.generate_lobby`, `_draw_home_bg`, `_draw_home_tile`; screenshots via `xvfb-run ... tests/capture_home.gd`. Voice IDs unchanged; one Marlow intro line's text changed.

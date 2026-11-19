@@ -60,6 +60,10 @@ const ZONE_PAL := [
 	{"wall": Color(0.03, 0.02, 0.07), "motif": Color(0.12, 0.04, 0.16), "seam": Color(0.02, 0.01, 0.05),
 		"tile_a": Color(0.1, 0.08, 0.16), "tile_b": Color(0.07, 0.05, 0.12), "top": Color(0.9, 0.7, 0.25), "edge": Color(1.0, 0.3, 0.7),
 		"moss": false, "mod": Color(0.6, 0.5, 0.75), "ground": Color(0.04, 0.02, 0.08)},
+	# 6: Home (Rico's apartment, then the street outside).
+	{"wall": Color(0.16, 0.12, 0.17), "motif": Color(0.2, 0.15, 0.21), "seam": Color(0.1, 0.07, 0.11),
+		"tile_a": Color(0.36, 0.22, 0.13), "tile_b": Color(0.3, 0.18, 0.1), "top": Color(0.45, 0.3, 0.17), "edge": Color(0.7, 0.5, 0.3),
+		"moss": false, "mod": Color(0.62, 0.56, 0.78), "ground": Color(0.07, 0.06, 0.09)},
 ]
 const ZONE_WORDS := [
 	["777", "BAR", "LUCK", "JACKPOT", "ALL IN", "$$$", "HOUSE", "CASH", "BET", "WIN", "ODDS"],
@@ -496,49 +500,160 @@ func generate_boss(r: RandomNumberGenerator, tier: int, rule_list: Array, zone_ 
 
 ## The hub between runs. Busted debtors wake up here. Characters stand on the
 ## floor as `games` entries; main.gd filters out the ones not unlocked yet.
+## The hub is Rico's apartment (left) and the street outside (right). Walk out the
+## front door at HOME_DOOR and down the block; the bus stop at the end is the start
+## of the climb. Tile x < HOME_DOOR is indoors.
+const HOME_DOOR := 23
+
+
 func generate_lobby(r: RandomNumberGenerator) -> void:
-	w = 50
+	w = 62
 	h = 16
 	is_lobby = true
-	exit_label = "DESCEND"
+	zone = 6
+	exit_label = "HEAD OUT"
 	_setup_common(r, [])
 	for y in range(1, h - 1):
 		for x in range(1, w - 1):
 			grid[idx(x, y)] = EMPTY
 	var fy := h - 2
-	# A few platforms so moving around the hub still feels good.
-	for x in range(9, 14):
+	# Shelves indoors, fire-escape landings outside: platforms to keep movement fun.
+	for x in range(8, 12):
 		grid[idx(x, fy - 4)] = SOLID
-	for x in range(18, 21):
-		grid[idx(x, fy - 7)] = SOLID
-	for x in range(27, 32):
+	for x in range(15, 19):
+		grid[idx(x, fy - 6)] = SOLID
+	for x in range(30, 35):
 		grid[idx(x, fy - 5)] = SOLID
-	for x in range(38, 41):
-		grid[idx(x, fy - 8)] = SOLID
-	grid[idx(24, fy)] = SOLID
+	for x in range(40, 44):
+		grid[idx(x, fy - 7)] = SOLID
 	start_pos = Vector2(3 * T + 8, (fy + 1) * T - 11)
-	exit_pos = Vector2((w - 3) * T + 8, (fy + 1) * T)
+	exit_pos = Vector2((w - 4) * T + 8, (fy + 1) * T)
 	var fl := (fy + 1) * T
 	var spots := [
-		[6, "phone"], [9, "cat"], [13, "lucky"], [17, "jules"], [21, "vera"], [27, "mags"],
-		[31, "tickets"], [35, "board"], [39, "trophies"], [42, "fence"], [45, "daily"],
+		[7, "phone"], [10, "cat"], [13, "tickets"], [20, "trophies"],
+		[27, "fence"], [31, "lucky"], [36, "vera"], [40, "mags"], [44, "jules"], [47, "board"], [49, "daily"],
 	]
-	for s in spots:
-		games.append([Vector2(int(s[0]) * T + 8, fl), s[1]])
-	for x in range(4, w - 4, 6):
-		lamps.append(Vector2(x * T + 8, T))
-	for x in [8, 20, 33, 44]:
-		bg_pillars.append([x * T, T, fl])
-	for x in [5, 15, 25, 36, 47]:
-		banners.append(Vector2(x * T, T))
-	neons.append([Vector2(w * T * 0.5, 4 * T), "THE LOBBY", NEON_COLS[2], 12])
-	neons.append([Vector2(14 * T, 3 * T), "NO ONE DIES OWING THE HOUSE", NEON_COLS[0], 8])
-	neons.append([Vector2(36 * T, 3 * T), "ALL MARKERS PAYABLE ON DEMAND", NEON_COLS[1], 8])
-	neons.append([exit_pos + Vector2(0, -60), "DESCEND", NEON_COLS[0], 10])
-	for x in range(2, w - 2):
-		if rng.randf() < 0.35:
-			grass.append([Vector2(x * T + rng.randf_range(2, 14), fl), rng.randf_range(3, 6), rng.randf()])
+	for sp in spots:
+		games.append([Vector2(int(sp[0]) * T + 8, fl), sp[1]])
+	# Warm lamps at home, cold sodium lamps on the street.
+	for x in [5, 14, 19]:
+		lamps.append(Vector2(x * T + 8, 2 * T))
+	for x in [27, 35, 43, 51, 58]:
+		lamps.append(Vector2(x * T + 8, 3 * T))
+	neons.append([Vector2(30 * T, 3 * T), "OPEN LATE", NEON_COLS[1], 8])
+	neons.append([Vector2(41 * T, 3 * T), "LOANS: NO QUESTIONS", NEON_COLS[0], 8])
 	_finish()
+
+
+## Everything behind the player in the lobby: night sky, skyline, street, and the apartment.
+func _draw_home_bg() -> void:
+	var split := HOME_DOOR * T
+	var hh := h * T
+	var ww := w * T
+	var fl := (h - 1) * T
+	# ---- Night sky over the whole width (visible outside).
+	for i in 16:
+		var k := float(i) / 15.0
+		draw_rect(Rect2(split, i * hh / 16.0, ww - split, hh / 16.0 + 1), Color(0.05, 0.04, 0.14).lerp(Color(0.38, 0.14, 0.32), k * k))
+	for i in 40:
+		var sx := split + fposmod(float(i) * 97.3, ww - split)
+		draw_rect(Rect2(sx, fposmod(float(i) * 41.7, hh * 0.45), 1, 1), Color(1, 1, 1, 0.35 + 0.3 * sin(t * 2.0 + i)))
+	draw_circle(Vector2(split + (ww - split) * 0.82, 40), 14.0, Color(0.95, 0.93, 0.8, 0.9))
+	draw_circle(Vector2(split + (ww - split) * 0.82 + 5, 37), 12.0, Color(0.07, 0.05, 0.16, 0.45))
+	# Skyline: two layers of buildings with lit windows, and a far casino glow.
+	for layer in 2:
+		var col := Color(0.09, 0.06, 0.16) if layer == 0 else Color(0.05, 0.03, 0.1)
+		var x := split + 4.0
+		var seed_i := layer * 13
+		while x < ww:
+			var bw := 22.0 + float((seed_i * 37) % 28)
+			var bh := 70.0 + float((seed_i * 53) % 90) - layer * 18.0
+			draw_rect(Rect2(x, fl - bh - (30 if layer == 0 else 0), bw, bh + 30), col)
+			for wy in range(int(fl - bh - (20 if layer == 0 else 0)), int(fl - 18), 10):
+				for wx in range(int(x) + 3, int(x + bw) - 4, 7):
+					if ((wx * 7 + wy * 13 + seed_i) % 5) < 2:
+						draw_rect(Rect2(wx, wy, 3, 4), Color(1.0, 0.82, 0.45, 0.55 if layer == 0 else 0.3))
+			x += bw + 3.0
+			seed_i += 1
+	# A glowing casino sign on the horizon: where you're headed.
+	var cx := ww - 60.0
+	draw_rect(Rect2(cx - 28, fl - 150, 56, 120), Color(0.12, 0.05, 0.16))
+	draw_rect(Rect2(cx - 28, fl - 150, 56, 4), Color(1.0, 0.3, 0.7))
+	draw_string(ThemeDB.fallback_font, Vector2(cx - 26, fl - 130), "CASINO", HORIZONTAL_ALIGNMENT_CENTER, 52, 10, Color(1.0, 0.85, 0.4, 0.7 + 0.3 * sin(t * 3.0)))
+	# ---- Storefronts behind the street NPCs.
+	var shops := [[25, 29, "PAWN", Color(0.45, 0.35, 0.2)], [29, 34, "", Color(0.2, 0.55, 0.3)], [34, 38, "", Color(0.7, 0.25, 0.45)],
+		[38, 42, "", Color(0.25, 0.35, 0.6)], [42, 46, "", Color(0.2, 0.2, 0.28)], [46, 52, "NEWS & LOTTO", Color(0.6, 0.5, 0.2)]]
+	for sh in shops:
+		var x0: float = float(sh[0]) * T
+		var x1: float = float(sh[1]) * T
+		var c: Color = sh[3]
+		draw_rect(Rect2(x0, fl - 96, x1 - x0, 80), c.darkened(0.55))
+		draw_rect(Rect2(x0 + 4, fl - 56, x1 - x0 - 8, 40), Color(1.0, 0.8, 0.45, 0.14))
+		for i in int((x1 - x0) / 8.0):
+			draw_rect(Rect2(x0 + i * 8.0, fl - 62, 8, 12), c.darkened(0.2) if i % 2 == 0 else c.darkened(0.55))
+		draw_rect(Rect2(x0, fl - 98, x1 - x0, 3), c.lightened(0.2))
+		if sh[2] != "":
+			draw_string(ThemeDB.fallback_font, Vector2(x0, fl - 70), sh[2], HORIZONTAL_ALIGNMENT_CENTER, x1 - x0, 9, Color(1, 0.95, 0.8))
+	# Street furniture: lamp posts, a parked car, a bus stop at the end of the block.
+	for lx in [27, 35, 43, 51]:
+		var px: float = lx * T + 8
+		draw_rect(Rect2(px - 1, fl - 70, 2, 62), Color(0.1, 0.1, 0.13))
+		draw_rect(Rect2(px - 5, fl - 72, 10, 3), Color(0.14, 0.14, 0.18))
+		draw_circle(Vector2(px, fl - 68), 5.0, Color(1.0, 0.7, 0.3, 0.16))
+	draw_rect(Rect2(53 * T - 30, fl - 14, 40, 8), Color(0.12, 0.14, 0.2))
+	draw_rect(Rect2(53 * T - 22, fl - 20, 22, 7), Color(0.14, 0.17, 0.25))
+	draw_circle(Vector2(53 * T - 22, fl - 6), 3.0, Color(0.03, 0.03, 0.05))
+	draw_circle(Vector2(53 * T - 0, fl - 6), 3.0, Color(0.03, 0.03, 0.05))
+	var bx := (w - 8) * T
+	draw_rect(Rect2(bx, fl - 58, 3, 46), Color(0.2, 0.2, 0.25))
+	draw_rect(Rect2(bx - 8, fl - 62, 56, 4), Color(0.25, 0.25, 0.32))
+	draw_rect(Rect2(bx + 4, fl - 58, 40, 30), Color(0.4, 0.7, 0.9, 0.12))
+	draw_string(ThemeDB.fallback_font, Vector2(bx - 20, fl - 70), "TO ATLANTIC SHITTY", HORIZONTAL_ALIGNMENT_CENTER, 90, 8, Color(1.0, 0.85, 0.4))
+	# ---- The apartment (indoors, x < HOME_DOOR).
+	draw_rect(Rect2(0, 0, split, hh), Color(0.17, 0.13, 0.19))
+	for x in range(0, int(split), 12):
+		draw_rect(Rect2(x, 0, 5, hh), Color(0.2, 0.15, 0.22))
+	draw_rect(Rect2(0, fl - 30, split, 2), Color(0.45, 0.3, 0.2))
+	draw_rect(Rect2(0, fl - 28, split, 28), Color(0.12, 0.08, 0.1))
+	# A big window onto the city.
+	var wx0 := 16.0 * T
+	draw_rect(Rect2(wx0 - 2, 36, 74, 70), Color(0.3, 0.22, 0.14))
+	draw_rect(Rect2(wx0, 38, 70, 66), Color(0.07, 0.05, 0.16))
+	for i in 9:
+		draw_rect(Rect2(wx0 + 4 + (i * 17) % 60, 60 + (i * 11) % 38, 3, 4), Color(1.0, 0.8, 0.4, 0.7))
+	draw_rect(Rect2(wx0 + 34, 38, 2, 66), Color(0.3, 0.22, 0.14))
+	draw_rect(Rect2(wx0, 70, 70, 2), Color(0.3, 0.22, 0.14))
+	# Bed (you wake up here).
+	var bx0 := 1.0 * T
+	draw_rect(Rect2(bx0, fl - 26, 62, 20), Color(0.35, 0.2, 0.14))
+	draw_rect(Rect2(bx0 + 2, fl - 36, 58, 14), Color(0.55, 0.15, 0.2))
+	draw_rect(Rect2(bx0 + 2, fl - 40, 16, 8), Color(0.9, 0.88, 0.85))
+	draw_rect(Rect2(bx0, fl - 42, 3, 36), Color(0.3, 0.17, 0.12))
+	draw_rect(Rect2(bx0 + 60, fl - 34, 3, 28), Color(0.3, 0.17, 0.12))
+	# Nightstand, lamp, the payphone's cord.
+	draw_rect(Rect2(5.4 * T, fl - 22, 14, 16), Color(0.3, 0.18, 0.12))
+	draw_rect(Rect2(5.4 * T + 3, fl - 32, 8, 10), Color(1.0, 0.8, 0.4, 0.8))
+	# Wardrobe with a mirror.
+	draw_rect(Rect2(12.4 * T, fl - 74, 30, 70), Color(0.25, 0.15, 0.1))
+	draw_rect(Rect2(12.4 * T + 3, fl - 70, 24, 40), Color(0.6, 0.75, 0.85, 0.5))
+	# Couch and TV.
+	draw_rect(Rect2(19.4 * T, fl - 20, 44, 16), Color(0.3, 0.16, 0.3))
+	draw_rect(Rect2(19.4 * T, fl - 30, 44, 12), Color(0.38, 0.2, 0.38))
+	draw_rect(Rect2(21.2 * T, fl - 48, 26, 16), Color(0.05, 0.05, 0.07))
+	draw_rect(Rect2(21.2 * T + 2, fl - 46, 22, 12), Color(0.3, 0.6, 0.9, 0.5 + 0.25 * sin(t * 6.0)))
+	# Posters: a lucky horseshoe and a crossed-out "STOP GAMBLING" notice.
+	draw_rect(Rect2(8.6 * T, 52, 22, 28), Color(0.7, 0.55, 0.2))
+	draw_rect(Rect2(8.6 * T + 2, 54, 18, 24), Color(0.12, 0.08, 0.1))
+	draw_string(ThemeDB.fallback_font, Vector2(8.6 * T, 70), "ALL IN", HORIZONTAL_ALIGNMENT_CENTER, 22, 6, Color(1, 0.85, 0.4))
+	# Front door (the way out) at the building edge.
+	var dx := split - 18.0
+	draw_rect(Rect2(dx - 2, fl - 62, 26, 62), Color(0.28, 0.17, 0.1))
+	draw_rect(Rect2(dx + 1, fl - 58, 20, 58), Color(0.5, 0.3, 0.16))
+	draw_circle(Vector2(dx + 17, fl - 28), 1.6, Color(1, 0.85, 0.3))
+	draw_string(ThemeDB.fallback_font, Vector2(dx - 6, fl - 66), "APT 4B", HORIZONTAL_ALIGNMENT_CENTER, 38, 7, Color(1, 0.9, 0.7))
+	draw_rect(Rect2(split - 3, 0, 3, hh), Color(0.1, 0.07, 0.1))
+	# Stoop awning outside the door.
+	draw_rect(Rect2(split, fl - 70, 30, 4), Color(0.5, 0.1, 0.15))
 
 
 # ---------------------------------------------------------------- helpers
@@ -860,7 +975,10 @@ func _build_lights() -> void:
 	var dim := rules.has("lights")
 	var lamp_col: Color = [Color(1.0, 0.74, 0.45), Color(1.0, 0.88, 0.55), Color(0.75, 0.88, 1.0), Color(1.0, 0.8, 0.4), Color(1.0, 0.62, 0.3), Color(1.0, 0.45, 0.8)][clampi(zone, 0, 5)]
 	for l in lamps:
-		make_light((l as Vector2) + Vector2(0, 13), lamp_col, 0.35 if dim else 1.25, 1.15, true)
+		var lc := lamp_col
+		if is_lobby:
+			lc = Color(1.0, 0.78, 0.5) if (l as Vector2).x < HOME_DOOR * T else Color(1.0, 0.62, 0.3)
+		make_light((l as Vector2) + Vector2(0, 13), lc, 0.35 if dim else 1.25, 1.15, true)
 	make_light(exit_pos + Vector2(0, -20), Color(1.0, 0.45, 0.3), 1.2, 0.75, true)
 	if not dim:
 		for n in neons:
@@ -938,6 +1056,10 @@ func _draw() -> void:
 	draw_rect(Rect2(-160, h * T, w * T + 320, 200), gcol)
 	for x in range(-160, w * T + 160, 32):
 		draw_rect(Rect2(x, h * T + 8 + (x / 32 % 2) * 8, 30, 1), gcol.darkened(0.3))
+	if is_lobby:
+		draw_rect(Rect2(0, 0, w * T, h * T), P["wall"])
+		_draw_home_bg()
+		return
 	# Back wall, patterned per zone.
 	var dc: Color = P["motif"]
 	draw_rect(Rect2(0, 0, w * T, h * T), P["wall"])
@@ -1013,8 +1135,9 @@ func _draw() -> void:
 
 
 func draw_tiles(ci: CanvasItem) -> void:
-	_draw_door(ci, start_pos + Vector2(0, 11), Color(0.45, 0.42, 0.5), false)
-	_draw_door(ci, exit_pos, Color(1, 0.78, 0.25), true)
+	if not is_lobby:
+		_draw_door(ci, start_pos + Vector2(0, 11), Color(0.45, 0.42, 0.5), false)
+		_draw_door(ci, exit_pos, Color(1, 0.78, 0.25), true)
 	for y in h:
 		for x in w:
 			var v := grid[idx(x, y)]
@@ -1035,8 +1158,36 @@ func draw_tiles(ci: CanvasItem) -> void:
 					_draw_crumble(ci, x, y, off)
 
 
+func _draw_home_tile(ci: CanvasItem, x: int, y: int, r: Rect2) -> void:
+	var indoor := x < HOME_DOOR
+	var hsh := ((x * 73856093) ^ (y * 19349663)) & 255
+	var up := not solid(x, y - 1)
+	if indoor:
+		var wood := Color(0.36, 0.22, 0.13).lerp(Color(0.3, 0.18, 0.1), float(hsh % 5) / 5.0)
+		ci.draw_rect(r, wood if up or y > 2 else wood.darkened(0.3))
+		ci.draw_rect(Rect2(r.position + Vector2(5 + hsh % 6, 0), Vector2(1, T)), wood.darkened(0.3))
+		if up:
+			ci.draw_rect(Rect2(r.position, Vector2(T, 3)), Color(0.5, 0.33, 0.19))
+			ci.draw_rect(Rect2(r.position, Vector2(T, 1)), Color(0.75, 0.55, 0.32))
+	else:
+		var con := Color(0.27, 0.27, 0.31).lerp(Color(0.22, 0.22, 0.26), float(hsh % 5) / 5.0)
+		if not up and y <= 2:
+			con = Color(0.2, 0.1, 0.1).lerp(Color(0.26, 0.12, 0.1), float(hsh % 4) / 4.0)   # brick overhang
+		ci.draw_rect(r, con)
+		if up:
+			ci.draw_rect(Rect2(r.position, Vector2(T, 4)), Color(0.4, 0.4, 0.45))
+			ci.draw_rect(Rect2(r.position, Vector2(T, 1)), Color(0.6, 0.6, 0.66))
+			if x % 4 == 0:
+				ci.draw_rect(Rect2(r.position + Vector2(5, 6), Vector2(6, 1)), Color(0.85, 0.7, 0.2, 0.5))
+		elif hsh % 4 == 0:
+			ci.draw_rect(Rect2(r.position + Vector2(2, 3), Vector2(5, 2)), con.darkened(0.25))
+
+
 func _draw_tile(ci: CanvasItem, x: int, y: int, off: Vector2) -> void:
 	var r := Rect2(Vector2(x * T, y * T) + off, Vector2(T, T))
+	if is_lobby:
+		_draw_home_tile(ci, x, y, r)
+		return
 	var hsh := ((x * 73856093) ^ (y * 19349663)) & 255
 	var P := pal()
 	var base: Color = (P["tile_a"] as Color).lerp(P["tile_b"], float(hsh % 7) / 7.0)
