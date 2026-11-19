@@ -242,7 +242,7 @@ func _process(_delta: float) -> bool:
 			check(main.in_hub and main.bark_text != "", "woke in the Lobby, the House comments")
 			main._hub_interact("phone")
 			var said: String = main.dialog[0][1] if main.dialog.size() > 0 else ""
-			check(said.contains("Spikes") or said.contains("times eight"), "Marlow reacts to the last bust")
+			check(said.to_lower().contains("spike") or said.contains("times eight"), "Marlow reacts to the last bust")
 			_clear_dialog()
 			main._hub_interact("vera")
 			while main.state == "dialog":
