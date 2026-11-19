@@ -19,6 +19,7 @@ const Story := preload("res://scripts/story.gd")
 const Charms := preload("res://scripts/charms.gd")
 const Wardrobe := preload("res://scripts/wardrobe.gd")
 const Weapons := preload("res://scripts/weapons.gd")
+const EnemyTypes := preload("res://scripts/enemy_types.gd")
 const Dialogue := preload("res://scripts/dialogue.gd")
 const Menus := preload("res://scripts/menus.gd")
 const MagsScript := preload("res://scripts/mags.gd")
@@ -940,18 +941,12 @@ func _spawn_loose(pos: Vector2, values: Array) -> void:
 func _spawn_enemy(pos: Vector2, kind: int) -> void:
 	var e = EnemyScript.new()
 	var th := threat()
-	if kind == 0 and not level.is_boss:
-		# Each zone brings its own mix: card-throwing Dealers in the Back
-		# Rooms, riot-shield Heavies guarding the Vault.
-		var z := zone_of(floor_num)
-		var dealer_p: float = [0.2, 0.32, 0.3, 0.32][z] if floor_num >= 2 else 0.0
-		var heavy_p: float = [0.1, 0.15, 0.26, 0.3][z] if floor_num >= 3 else 0.0
-		var r := rng.randf()
-		if r < dealer_p:
-			kind = 2
-		elif r < dealer_p + heavy_p:
-			kind = 3
-	var elite: bool = not level.is_boss and kind != 1 and rng.randf() < clampf((floor_num - 3) * 0.03 * th, 0.0, 0.3)
+	if not level.is_boss and (kind == 0 or kind == 1):
+		# Enemies get more professional as you climb (enemy_types.gd): alley
+		# junkies and rats first, pit bosses and suited security later,
+		# snipers and drones on the Strip.
+		kind = EnemyTypes.pick(floor_num, kind == 1, rng)
+	var elite: bool = not level.is_boss and kind != 1 and not EnemyTypes.info(kind).get("air", false) and rng.randf() < clampf((floor_num - 3) * 0.03 * th, 0.0, 0.3)
 	e.position = pos
 	e.setup(kind, level, player, floor_num, th, elite)
 	world.add_child(e)
@@ -1845,7 +1840,7 @@ func _check_world(delta: float) -> void:
 				else:
 					e.stun(1.2, player.global_position.x)
 				continue
-			_hurt(e.global_position.x, "Escorted out by security" if e.kind == 0 else "Bitten by a pit bat")
+			_hurt(e.global_position.x, "Escorted out by security" if e.kind == 0 else ("Bitten by a pit bat" if e.kind == 1 else "Rolled by " + EnemyTypes.name_of(e.kind).to_lower()))
 			if state != "play":
 				return
 	enemies = enemies.filter(func(e): return is_instance_valid(e))

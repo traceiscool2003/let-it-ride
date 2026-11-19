@@ -7,6 +7,7 @@ signal fire(kind: String, pos: Vector2, vel: Vector2)
 
 const Sprites := preload("res://scripts/sprites.gd")
 const Rig := preload("res://scripts/rig.gd")
+const ET := preload("res://scripts/enemy_types.gd")
 
 var rig
 var walk_phase := 0.0
@@ -28,6 +29,15 @@ var ai_t := 0.0
 var punch_cd := 0.0
 var flash := 0.0
 var knock := 0.0
+## Per-instance moveset variation (rolled in setup): speed, burst size, aim lead, cooldown.
+var T := {}
+var beh := ""
+var v_speed := 1.0
+var v_shots := 0
+var v_lead := 0.0
+var v_cd := 1.0
+var shot_cd := 1.5
+var ground_y := 0.0
 
 
 ## Elite security: gold trim, double health, a bit faster, pays double.
@@ -40,7 +50,25 @@ func setup(k: int, lvl, pl, floor_num: int, threat := 1.0, elite_ := false) -> v
 	player = pl
 	collision_layer = 4
 	collision_mask = 1
-	if kind == 1:
+	T = ET.info(kind)
+	beh = String(T.get("beh", ""))
+	if kind == 13:
+		kind = 1
+		T = {}
+	v_speed = randf_range(0.85, 1.2)
+	v_lead = randf_range(0.0, 1.0)
+	v_cd = randf_range(0.8, 1.25)
+	if beh != "":
+		size = T.get("size", Vector2(12, 21))
+		speed = float(T["speed"]) * v_speed + floor_num * 0.6
+		hp = int(T["hp"]) + floor_num / 10
+		v_shots = int(T.get("shots", 1)) + (1 if randf() < 0.3 and beh == "burst" else 0)
+		if beh != "rat":
+			rig = Rig.new(Rig.enemy_style(kind))
+		if bool(T.get("air", false)):
+			size = Vector2(12, 10)
+		shot_cd = randf_range(0.8, 2.0)
+	elif kind == 1:
 		size = Vector2(10, 8)
 		speed = 68.0 + floor_num * 4.0
 		hp = 1
@@ -147,7 +175,9 @@ func _physics_process(delta: float) -> void:
 		if dead_t > 1.2:
 			queue_free()
 		return
-	if kind == 1:
+	if beh != "":
+		_ranged(delta)
+	elif kind == 1:
 		_bat(delta)
 	else:
 		_guard(delta)
@@ -215,6 +245,106 @@ func _guard(delta: float) -> void:
 		dir = -dir
 
 
+## Ranged / pattern enemies (see enemy_types.gd). Every attack has a visible
+## telegraph ("aim" state, the "!" marker, and a laser line for snipers).
+func _ranged(delta: float) -> void:
+	ai_t -= delta
+	shot_cd -= delta
+	knock = move_toward(knock, 0.0, 600.0 * delta)
+	var to: Vector2 = player.global_position - global_position
+	if beh == "drone":
+		var hover: Vector2 = player.global_position + Vector2(signf(sin(t * 0.7)) * 70.0, -48.0)
+		velocity = velocity.move_toward((hover - global_position).limit_length(speed) + Vector2(0, sin(t * 4.0) * 14.0), 200.0 * delta)
+		if ai == "walk" and shot_cd <= 0.0 and to.length() < 200.0:
+			_begin_aim()
+		_ranged_ai()
+		dir = 1 if to.x >= 0.0 else -1
+		move_and_slide()
+		return
+	velocity.y = minf(velocity.y + 900.0 * delta, 400.0)
+	match ai:
+		"walk":
+			if beh == "rat":
+				dir = 1 if to.x >= 0.0 else -1
+				velocity.x = dir * (speed if absf(to.x) < 150.0 else speed * 0.4) * (1.0 if int(t * 2.0) % 3 != 0 else 0.3)
+			elif beh == "snipe":
+				velocity.x = 0.0
+				dir = 1 if to.x >= 0.0 else -1
+			else:
+				# Keep a comfortable distance: back off when close, edge in when far.
+				var want := 90.0 if beh in ["lob", "needle"] else 120.0
+				dir = 1 if to.x >= 0.0 else -1
+				var dist := absf(to.x)
+				velocity.x = -dir * speed if dist < want * 0.6 else (dir * speed * 0.6 if dist > want * 1.5 else 0.0)
+			if is_on_floor() and velocity.x != 0.0:
+				var mv := int(signf(velocity.x))
+				var ahead := global_position + Vector2(mv * (size.x * 0.5 + 2.0), 0)
+				var below := ahead + Vector2(0, size.y * 0.5 + 4.0)
+				if level.solid_at(ahead) or not level.solid_at(below):
+					velocity.x = 0.0
+			var rng_ok: bool = absf(to.x) < (230.0 if beh == "snipe" else 170.0) and absf(to.y) < (90.0 if beh == "snipe" else 50.0)
+			if beh != "rat" and shot_cd <= 0.0 and rng_ok and player.state != 7:
+				_begin_aim()
+		"aim", "recover", "stun":
+			velocity.x = 0.0
+	_ranged_ai()
+	velocity.x += knock
+	move_and_slide()
+	if beh == "rat" and ai == "walk" and is_on_wall() and is_on_floor():
+		velocity.y = -170.0
+
+
+func _begin_aim() -> void:
+	ai = "aim"
+	ai_t = float(T["tele"]) * v_cd
+	dir = 1 if player.global_position.x >= global_position.x else -1
+	Sfx.play("windup", 1.6 if beh != "snipe" else 0.8)
+
+
+func _ranged_ai() -> void:
+	if ai_t > 0.0:
+		return
+	match ai:
+		"aim":
+			var from := global_position + Vector2(dir * 8, -4)
+			var pspeed := float(T["pspeed"])
+			var tp: Vector2 = player.global_position + Vector2(0, -5)
+			# Aim lead varies per instance: some enemies shoot where you are, some where you'll be.
+			var dist := from.distance_to(tp)
+			tp += (player.velocity as Vector2) * (dist / pspeed) * v_lead * 0.8
+			var base := (tp - from).normalized()
+			match beh:
+				"lob", "needle":
+					var dx := tp.x - from.x
+					var tt := clampf(absf(dx) / pspeed, 0.35, 1.2)
+					fire.emit(String(T["proj"]), from, Vector2(dx / tt, (tp.y - from.y) / tt - 0.5 * 520.0 * tt))
+				"fan":
+					for i in v_shots:
+						var a := lerpf(-0.35, 0.35, float(i) / maxf(1.0, v_shots - 1.0)) if v_shots > 1 else 0.0
+						fire.emit(String(T["proj"]), from, base.rotated(a) * pspeed)
+				"burst":
+					for i in v_shots:
+						get_tree().create_timer(0.12 * i).timeout.connect(_burst_shot.bind(pspeed))
+				_:
+					fire.emit(String(T["proj"]), from, base * pspeed)
+			Sfx.play("swing", 1.4)
+			ai = "recover"
+			ai_t = 0.4
+		"recover", "stun":
+			ai = "walk"
+			shot_cd = randf_range(float(T.get("cd", [1.5, 2.0])[0]), float(T.get("cd", [1.5, 2.0])[1])) * v_cd
+
+
+func _burst_shot(pspeed: float) -> void:
+	if not alive or player == null or not is_instance_valid(player):
+		return
+	var from := global_position + Vector2(dir * 8, -4)
+	var tp: Vector2 = player.global_position + Vector2(0, -5)
+	var dist := from.distance_to(tp)
+	tp += (player.velocity as Vector2) * (dist / pspeed) * v_lead * 0.8
+	fire.emit(String(T["proj"]), from, (tp - from).normalized() * pspeed)
+
+
 func _bat(delta: float) -> void:
 	var to: Vector2 = player.global_position - global_position
 	if not awake:
@@ -270,7 +400,49 @@ func _process(delta: float) -> void:
 	rig.blend(tp, 40.0 if ai == "punch" or ai == "windup" or ai == "aim" else 30.0, delta)
 
 
+func _draw_special() -> bool:
+	var col: Color = T.get("col", Color.WHITE)
+	if beh == "rat":
+		draw_set_transform(Vector2.ZERO, 0.0, Vector2(float(dir), 1.0))
+		draw_ellipse_like(Vector2(0, 1), Vector2(5, 3), col)
+		draw_circle(Vector2(5, 0), 2.4, col.lightened(0.1))
+		draw_circle(Vector2(6.2, -0.6), 0.6, Color(1, 0.2, 0.2))
+		draw_line(Vector2(-5, 1), Vector2(-10, -1.0 + sin(t * 14.0) * 2.0), col.darkened(0.2), 1.0)
+		for i in 2:
+			draw_line(Vector2(-2 + i * 4, 3), Vector2(-3 + i * 4 + sin(t * 25.0 + i * 3.0) * 2.0, 5), col.darkened(0.3), 1.0)
+		draw_set_transform(Vector2.ZERO)
+		return true
+	if beh == "drone":
+		var b := sin(t * 5.0) * 1.0
+		draw_rect(Rect2(-6, -3 + b, 12, 6), Color(0.1, 0.12, 0.16))
+		draw_rect(Rect2(-5, -2 + b, 10, 4), col)
+		draw_circle(Vector2(0, b), 1.8, Color(1, 0.2, 0.2) if int(t * 4.0) % 2 == 0 or ai == "aim" else Color(0.4, 0.1, 0.1))
+		for sx in [-1.0, 1.0]:
+			draw_line(Vector2(sx * 5, -3 + b), Vector2(sx * 9, -5 + b), Color(0.8, 0.85, 0.9), 1.0)
+			draw_rect(Rect2(sx * 9 - 3, -6 + b, 6, 1), Color(0.8, 0.85, 0.9, 0.5 + 0.4 * sin(t * 40.0)))
+		if flash > 0.0:
+			draw_rect(Rect2(-6, -3, 12, 6), Color(1, 1, 1, 0.7))
+		if ai == "aim":
+			draw_string(ThemeDB.fallback_font, Vector2(-5, -12), "!", HORIZONTAL_ALIGNMENT_CENTER, 10, 12, Color(1, 0.25, 0.2))
+		return true
+	return false
+
+
+func draw_ellipse_like(c: Vector2, r: Vector2, col: Color) -> void:
+	var pts := PackedVector2Array()
+	for i in 14:
+		var a := TAU * i / 14.0
+		pts.append(c + Vector2(cos(a) * r.x, sin(a) * r.y))
+	draw_colored_polygon(pts, col)
+
+
 func _draw() -> void:
+	if beh != "" and _draw_special():
+		return
+	if beh == "snipe" and alive and ai == "aim":
+		var from := Vector2(dir * 8, -4)
+		var toward: Vector2 = (player.global_position + Vector2(0, -5)) - global_position
+		draw_line(from, toward, Color(1, 0.15, 0.15, 0.25 + 0.6 * (1.0 - ai_t / maxf(0.01, float(T["tele"]) * v_cd))), 1.0)
 	if kind != 1:
 		if alive:
 			draw_set_transform(Vector2(0, size.y * 0.5), 0.0, Vector2(1.0, 0.28))
@@ -279,6 +451,11 @@ func _draw() -> void:
 			var gp := 0.5 + 0.5 * sin(t * 4.0)
 			draw_circle(Vector2(0, 0), size.y * 0.75, Color(1, 0.8, 0.25, 0.08 + 0.06 * gp))
 		rig.draw(self, Transform2D(0.0, Vector2(float(dir), 1.0) * _scale(), 0.0, Vector2(0, size.y * 0.5)))
+		if beh != "" and alive:
+			var tc: Color = T.get("col", Color.GRAY)
+			draw_set_transform(Vector2(0, size.y * 0.5) , 0.0, Vector2(float(dir), 1.0))
+			draw_rect(Rect2(-3.5, -size.y + 8.0, 7, 7), Color(tc, 0.55))
+			draw_set_transform(Vector2.ZERO)
 		draw_set_transform(Vector2.ZERO)
 		if elite and alive:
 			var cy := -size.y * 0.5 - 9.0

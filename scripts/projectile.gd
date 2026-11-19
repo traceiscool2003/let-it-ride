@@ -42,6 +42,9 @@ func setup(k: String, lvl, v: Vector2) -> void:
 		"wave":
 			size = Vector2(10, 14)
 			life = 4.0
+		"needle", "bottle", "chip", "bullet":
+			size = Vector2(5, 5)
+			life = 3.0
 
 
 func rect() -> Rect2:
@@ -86,6 +89,17 @@ func _physics_process(delta: float) -> void:
 				vel.y = absf(vel.y)
 				np.y = position.y
 			position = np
+		"needle", "bottle":
+			vel.y += 520.0 * delta
+			position += vel * delta
+			if level.solid_at(position):
+				die()
+				return
+		"chip", "bullet":
+			position += vel * delta
+			if level.solid_at(position):
+				die()
+				return
 		"wave":
 			position += vel * delta
 			if level.solid_at(position + Vector2(signf(vel.x) * 6.0, -4.0)) or not level.solid_at(position + Vector2(0, 4.0)):
@@ -197,6 +211,23 @@ func _draw() -> void:
 			draw_circle(Vector2.ZERO, 3.8, Color(0.05, 0.02, 0.05))
 			draw_circle(Vector2.ZERO, 3.0, Color(0.85, 0.1, 0.15) if red else Color(0.12, 0.12, 0.14))
 			draw_circle(Vector2(-1, -1), 1.0, Color(1, 1, 1, 0.8))
+		"needle":
+			draw_set_transform(Vector2.ZERO, vel.angle(), Vector2.ONE)
+			draw_line(Vector2(-4, 0), Vector2(3, 0), Color(0.8, 0.85, 0.9), 1.2)
+			draw_circle(Vector2(-4, 0), 1.3, Color(0.9, 0.3, 0.3))
+			draw_set_transform(Vector2.ZERO)
+		"bottle":
+			draw_set_transform(Vector2.ZERO, t * 10.0, Vector2.ONE)
+			draw_rect(Rect2(-2, -3.5, 4, 7), Color(0.3, 0.55, 0.25))
+			draw_rect(Rect2(-1, -5.5, 2, 2.5), Color(0.4, 0.65, 0.3))
+			draw_set_transform(Vector2.ZERO)
+		"chip":
+			draw_circle(Vector2.ZERO, 4.5, Color(1, 0.3, 0.3, 0.2))
+			draw_circle(Vector2.ZERO, 3.2, Color(0.1, 0.02, 0.04))
+			draw_circle(Vector2.ZERO, 2.6, Color(0.85, 0.12, 0.2) if int(t * 10.0) % 2 == 0 else Color(0.95, 0.85, 0.3))
+		"bullet":
+			draw_line(-vel.normalized() * 7.0, Vector2.ZERO, Color(1, 0.5, 0.3, 0.5), 2.0)
+			draw_circle(Vector2.ZERO, 2.0, Color(1, 0.8, 0.5))
 		"wave":
 			var a := clampf(life, 0.0, 1.0)
 			var s := signf(vel.x)

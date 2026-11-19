@@ -106,9 +106,11 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - satisfying sound effects and particles on every hit
 
 ## C. Enemies
-- [ ] **7. Every regular enemy is basic and ranged** (simple patterns, readable telegraphs), plus a few melee variants.
-- [ ] **8. Distinct enemy types with different movesets** (at least 10 across the cities). Regular enemies get small moveset *variations* per instance (speed, burst count, aim lead).
-- [ ] **9. Enemies change from nasty to professional as you climb:**
+- [x] **7. Every regular enemy is basic and ranged**
+  - DONE: new `enemy_types.gd` + `enemy.gd _ranged()`: 10 ranged kinds with telegraphs (aim state, "!", sniper laser) plus melee Guard/Rat/Heavy; `projectile.gd` has needle, bottle, chip, bullet. `tests/roster_test.gd` covers all. (simple patterns, readable telegraphs), plus a few melee variants.
+- [x] **8. Distinct enemy types with different movesets** (at least 10 across the cities). DONE: 13 kinds; per-instance variation `v_speed`, `v_shots`, `v_lead`, `v_cd` in `enemy.gd`. Regular enemies get small moveset *variations* per instance (speed, burst count, aim lead).
+- [x] **9. Enemies change from nasty to professional as you climb:**
+  - DONE: `EnemyTypes.pick(floor, air, rng)` weights kinds by city (junkies/rats/thugs/bottle thrower, then dealers/bouncers/pit bosses, then suited security/snipers/drones). City = (floor-1)/5.
   - City 1: junkies, rats, alley thugs, a bottle thrower
   - Middle cities: dealers, bouncers, pit bosses
   - Vegas: suited security, snipers, drones
