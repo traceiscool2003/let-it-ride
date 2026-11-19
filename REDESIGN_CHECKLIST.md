@@ -176,3 +176,63 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - Wrote this checklist and set up the auto-resume scheduled task.
   - Later the same night: item 1 done. Parse, smoke, systems and casino_test all pass.
   - Next: item 2 (clothing items that grant `player.abil`).
+
+---
+
+# PART 2 (added 2026-11-18): do these after items 1-35 are all [x]
+
+## J. Voice acting kit (the user voices EVERY character himself)
+- [ ] **36. `voice/` folder.**
+  - Create one folder per character: `voice/<character_id>/`.
+  - Each folder gets a `README.txt` that lists every line file it expects: `<line_id>.ogg` (or `.wav`), with the line text and a direction note.
+  - Also add `voice/_cutscenes/<cutscene_id>/` folders.
+  - Add an empty `.gitkeep` so the folders exist.
+- [ ] **37. `VOICE_CAST.md`: one card per character**, so the user knows how to perform each voice. Each card has:
+  - The name with a signature quote, for example: `RICO "Let it ride, baby!"`.
+  - Characteristics: age, accent, pitch (low/mid/high), speed, energy, attitude, a real-world voice reference type (for example "raspy old boxing trainer"), and mouth tricks (gravel, nasal, smile, lisp).
+  - A suggested in-engine voice filter preset. The user performs all characters, so the game must help them sound different.
+- [ ] **38. Per-character voice filters in Godot.**
+  - Each character gets an AudioServer bus (`Voice_<id>`) with effects: AudioEffectPitchShift, EQ, Distortion (radio/phone), Reverb, Chorus. The presets are defined in one data table (`scripts/voice_profiles.gd`).
+  - Voice playback goes through `scripts/voice.gd` (an autoload). It plays `res://voice/<char>/<line_id>.ogg` if the file exists. Otherwise it falls back to synthesized gibberish blips pitched per character, Animal Crossing-style.
+  - Add a Settings toggle for the voice volume and for "voice filters on/off".
+- [ ] **39. `VOICE_SCRIPT.md`: the full recording script.**
+  - It is grouped by character, then by scene.
+  - Every line has: `line_id`, the text, an emotion/direction note, and where it plays.
+  - The dialogue code must reference the same `line_id`s, so dropping a file in makes it play with no code changes.
+- [ ] **40. Lots of NPCs with lots of lines.**
+  - At least 12 named NPCs: vendors, the sketchy dealer, the bartender, alley bums, rival gamblers, a lounge singer, security, the cat, and so on.
+  - At least 40 lines each for the main NPCs, and 15+ for minor ones.
+  - At least 60 random "barks" for generic crowd/mob NPCs per city: drunk tourists, junkies, pit bosses and others.
+  - Lines react to the player's state: winning, losing, ugly clothes, rich, broke, recently died, boss beaten, and so on.
+- [ ] **41. Voiced cutscenes.**
+  - An intro, one per city arrival, a boss intro and boss defeat for every boss, secret boss cutscenes and the ending.
+  - Each cutscene line has a `line_id`, so it can be voiced (`voice/_cutscenes/...`).
+  - Cutscenes wait for the voice clip to finish when one exists, and are skippable.
+- [ ] **42. `HOW_TO_RECORD.md`: a step-by-step guide for the user.**
+  - What to install: Audacity (free).
+  - Mic tips, and how to record one line per file.
+  - File naming, export settings (OGG, 44.1 kHz, mono).
+  - Where to drop the files and how to test them in game.
+  - How to make one person sound like many characters: acting tips, plus the in-engine filters.
+  - A per-character progress checklist.
+
+## K. Research-driven "what players loved" pass
+- [ ] **43. Research.** Use WebSearch/WebFetch to research what players loved most in top roguelikes and platformers:
+  - Hollow Knight and Silksong, Hades and Hades II, Dead Cells, Balatro, Risk of Rain 2, Spelunky 2, Celeste
+  - Enter the Gungeon, Binding of Isaac, Slay the Spire, Rogue Legacy 2, Blasphemous, Ori
+  - Sources: Steam reviews, Reddit and design talks.
+  - Write the findings to `RESEARCH_PLAYERS_LOVED.md` with sources. The aim is a NEW game idea built heavily on proven ideas.
+- [ ] **44. Implement the top 10-15 loved features from the research** that fit this game, as original takes. Examples to judge:
+  - synergy discovery moments and item descriptions with personality
+  - a hub that grows between runs
+  - NPCs who remember you
+  - boss rematch or hard modes
+  - a bestiary / hunter's journal
+  - fast restart
+  - secrets that the community shares
+  - daily seeds
+  - unlockable characters
+  - accessibility options
+  - satisfying "breaking the game" builds
+  - Add each as its own `[ ]` item below as you plan it, then do them one by one.
+- [ ] **45. A final full-game polish pass,** then update README.md, `AAA_CHECKLIST.md` and every test.
