@@ -16,6 +16,10 @@ const LEAD := [0, 3, 5, 7, 10, 12]
 var intensity := 0.0
 var mix := 0.0
 var boss_mode := false
+## Each boss has its own track (boss_defs music: bpm, root, mode, lead) that
+## escalates with the phase (1..3): faster, busier drums, harmony, higher lead.
+var boss_music: Dictionary = {}
+var boss_phase := 1
 var volume := 1.0
 
 var player: AudioStreamPlayer
@@ -43,6 +47,7 @@ var bass_lp := 0.0
 var bass_env := 0.0
 var lead_phase := 0.0
 var lead_freq := 440.0
+var lead_wave := "saw"
 var lead_env := 0.0
 var noise_prev := 0.0
 
@@ -115,25 +120,40 @@ func _sample() -> float:
 
 	# ---- battle layer
 	if mix > 0.01:
+		var bm := boss_mode and not boss_music.is_empty()
 		var bpm := 168.0 if boss_mode else 152.0
+		if bm:
+			bpm = float(boss_music["bpm"]) + (boss_phase - 1) * 9.0
 		step_samples = int(RATE * 60.0 / bpm / 4.0)
 		step_count += 1
 		if step_count >= step_samples:
 			step_count = 0
 			step = (step + 1) % 64
 			var s16 := step % 16
-			if s16 % 4 == 0 or (boss_mode and s16 == 10):
+			if s16 % 4 == 0 or (boss_mode and s16 == 10) or (bm and boss_phase >= 3 and s16 % 2 == 1 and s16 > 8):
 				kick_env = 1.0
 				kick_phase = 0.0
 			if s16 == 4 or s16 == 12:
 				snare_env = 1.0
-			if s16 % 2 == 0:
+			if s16 % 2 == 0 or (bm and boss_phase >= 2):
 				hat_env = 0.6 if s16 % 4 == 2 else 0.35
 			var root: float = BATTLE_ROOTS[(step / 16) % 4]
-			bass_freq = root * pow(2.0, BATTLE_ARP[s16 % 8] / 12.0)
+			var arp: Array = BATTLE_ARP
+			var lead_set: Array = LEAD
+			if bm:
+				var mode_phryg: bool = boss_music["mode"] == "phrygian"
+				var prog: Array = [0.0, -4.0, 3.0, -2.0] if not mode_phryg else [0.0, 1.0, -2.0, 1.0]
+				root = float(boss_music["root"]) * pow(2.0, float(prog[(step / 16) % 4]) / 12.0)
+				arp = [0, 12, 7, 12, 3, 12, 7, 15] if not mode_phryg else [0, 12, 1, 12, 7, 12, 8, 13]
+				lead_set = LEAD if not mode_phryg else [0, 1, 5, 7, 8, 12]
+				lead_wave = String(boss_music["lead"])
+			bass_freq = root * pow(2.0, arp[s16 % 8] / 12.0)
 			bass_env = 1.0
-			if s16 % 8 == 6 and randf() < 0.8:
-				lead_freq = root * 8.0 * pow(2.0, LEAD[randi() % LEAD.size()] / 12.0)
+			var lead_chance := 0.8 if not bm else (0.8 + 0.1 * boss_phase)
+			var lead_every := 8 if not bm or boss_phase < 2 else 4
+			if s16 % lead_every == (6 if lead_every == 8 else 2) and randf() < lead_chance:
+				var oct := 8.0 if not bm or boss_phase < 3 else 16.0
+				lead_freq = root * oct * pow(2.0, lead_set[randi() % lead_set.size()] / 12.0)
 				lead_env = 1.0
 		var b := 0.0
 		kick_phase += lerpf(48.0, 150.0, kick_env * kick_env) / RATE
@@ -151,8 +171,13 @@ func _sample() -> float:
 		b += bass_lp * 0.16 * (0.4 + 0.6 * bass_env)
 		bass_env *= 0.9997
 		lead_phase += lead_freq / RATE
-		var saw := fmod(lead_phase, 1.0) * 2.0 - 1.0
-		b += saw * lead_env * 0.06
+		var lp := fmod(lead_phase, 1.0)
+		var lw := lp * 2.0 - 1.0
+		if boss_mode and not boss_music.is_empty():
+			match lead_wave:
+				"square": lw = 1.0 if lp < 0.5 else -1.0
+				"tri": lw = absf(lp * 4.0 - 2.0) - 1.0
+		b += lw * lead_env * 0.06
 		lead_env *= 0.99985
 		out += b * mix
 	return clampf(out * volume, -1.0, 1.0)

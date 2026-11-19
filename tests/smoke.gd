@@ -15,9 +15,9 @@ func _initialize() -> void:
 		var lv = L.new()
 		root.add_child(lv)
 		if s % 10 == 0:
-			lv.generate_boss(rng, 1 + s % 3, [])
+			lv.generate_boss(rng, 1 + s % 3, [], s % 6)
 		else:
-			lv.generate(rng, 1 + s % 12, ["edge", "security"] if s % 3 == 0 else [])
+			lv.generate(rng, 1 + s % 25, ["edge", "security"] if s % 3 == 0 else [], 1.0, s % 6)
 		var sp: Vector2 = lv.start_pos
 		if lv.solid_at(sp) or lv.solid_at(sp + Vector2(0, -8)) or not lv.solid_at(sp + Vector2(0, 14)):
 			bad += 1
@@ -102,7 +102,7 @@ func _process(_delta: float) -> bool:
 			main.state = "play"
 			paused = false
 		260:
-			main.floor_num = 3
+			main.floor_num = 4
 			main._reach_exit()
 			main.dialog.clear()
 			main.state = "choice"

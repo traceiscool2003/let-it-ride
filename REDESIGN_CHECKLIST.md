@@ -116,16 +116,21 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - Vegas: suited security, snipers, drones
 
 ## D. Bosses
-- [ ] **10. Each city's floor 5 is a boss, and every boss is a table/poker game.**
+- [x] **10. Each city's floor 5
+  - DONE: `boss_defs.gd` POOL of 8 poker/table bosses (4 random per run via `boss_order`), FINAL = THE HOUSE Hold'em on floor 25; boss floors every 5 (`main.boss_every`). is a boss, and every boss is a table/poker game.**
   - Bosses 1-4 are randomized each run from a pool of poker-game bosses: Five Card Draw, Seven Card Stud, Omaha, Three Card Poker, Razz, Pai Gow, Blackjack and so on.
   - The **final boss is always THE HOUSE, playing Texas Hold'em.**
-- [ ] **11. Bosses are named after slightly-off gambling websites and casinos**, for example DraftQueens, FanDool, PokerStarz, BetMGN, Steak.com and Bovado.
-- [ ] **12. Bosses have multiple phases and fixed, learnable movesets.**
+- [x] **11. Bosses are named after
+  - DONE: DRAFTQUEENS, FANDOOL, POKERSTARZ, BETMGN, STEAKE.COM, BOVADOH, SEEZER'S CLUB, WYNNER'S CIRCLE (`boss_defs.gd`). slightly-off gambling websites and casinos**, for example DraftQueens, FanDool, PokerStarz, BetMGN, Steak.com and Bovado.
+- [x] **12. Bosses have multiple phases
+  - DONE: `boss.gd`: fixed attack `deck` per phase (cycles in order, `deal` volley named per game), on-screen attack labels, stagger at phase change, slow-mo kill. `tests/boss_test.gd` runs every boss through all phases. and fixed, learnable movesets.**
   - Each attack has a clear telegraph and a consistent pattern, so players can memorize the fight.
   - Attacks change per phase.
   - The fights must feel super satisfying: a stagger, a big finish, a slow-mo kill.
-- [ ] **13. Use your earnings and buffs from the 4 floors in the boss fight.** Spend chips at the table, for example a Buy-in or Raise at phase changes that multiplies your damage, and every buff carries over.
-- [ ] **14. Really good boss music:** its own intense track per boss that escalates per phase. It's synthesized in `music.gd`.
+- [x] **13. Use your earnings
+  - DONE: Phase-change RAISE menu (`main._on_boss_phase_raise`, kind "raise"): Call/Raise/All-in spend Pot for x1.5/x2/x3 damage (`boss.dmg_mult`), refunded x1.5 on win; all charms/clothes carry over. and buffs from the 4 floors in the boss fight.** Spend chips at the table, for example a Buy-in or Raise at phase changes that multiplies your damage, and every buff carries over.
+- [x] **14. Really good boss music
+  - DONE: `music.gd boss_music`: each boss has bpm/root/mode/lead wave in `boss_defs.gd`; escalates per phase (tempo, hats, kick, octave lead).:** its own intense track per boss that escalates per phase. It's synthesized in `music.gd`.
 - [ ] **15. Secret bosses and side bosses,** hidden behind secret rooms or off the main path.
 
 ## E. Buffs, items and gambling
@@ -143,7 +148,8 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
 - [ ] **22. Each floor you climb dresses you in nicer clothes** (a base outfit tier per floor or city).
 
 ## F. World, levels and exploration
-- [ ] **23. Levels are cities, and each city has a casino.**
+- [x] **23. Levels are cities
+  - DONE: `cities.gd` CITIES (parody casino names), `main.ZONES`, `level.gd` zone palettes 4 (alley) and 5 (strip)., and each city has a casino.**
   - They progress from nasty places with crappy casinos up to the nicest Vegas casino.
   - Each casino has a parody name of a real American casino, for example:
     1. Atlantic Shitty: Resortz
@@ -151,8 +157,10 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
     3. Biloxi: Hard Rok
     4. Fremont, Las Vegas: Goldun Nugget
     5. The Strip: Bellagiro
-- [ ] **24. The run starts in a grimy, nasty alleyway.** Each floor gets nicer, and you eventually make it into the casino.
-- [ ] **25. Each city is 5 floors you climb up,** with 4 explore floors and a boss on floor 5.
+- [x] **24. The run starts in a grimy
+  - DONE: `Cities.is_alley`: floors 1-2 use the new alley zone palette (brick, grime), then the Atlantic Shitty casino interior., nasty alleyway.** Each floor gets nicer, and you eventually make it into the casino.
+- [x] **25. Each city is 5 floors
+  - DONE: `boss_every = 5`, `Cities.city_of`; floor 5/10/15/20/25 are bosses. you climb up,** with 4 explore floors and a boss on floor 5.
 - [ ] **26. Exploration is most of the game, not casino gameplay.**
   - Bigger, deeper, Hollow Knight-style interconnected maps.
   - The pace is grounded and slower, rewarding players who take their time.

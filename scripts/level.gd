@@ -52,12 +52,22 @@ const ZONE_PAL := [
 	{"wall": Color(0.05, 0.04, 0.02), "motif": Color(0.13, 0.1, 0.04), "seam": Color(0.03, 0.02, 0.01),
 		"tile_a": Color(0.14, 0.11, 0.07), "tile_b": Color(0.1, 0.08, 0.05), "top": Color(0.22, 0.16, 0.05), "edge": Color(1.0, 0.85, 0.35),
 		"moss": false, "mod": Color(0.56, 0.48, 0.42), "ground": Color(0.07, 0.05, 0.02)},
+	# 4: the Alley (grimy brick, sodium light, trash).
+	{"wall": Color(0.09, 0.07, 0.07), "motif": Color(0.16, 0.1, 0.08), "seam": Color(0.05, 0.04, 0.04),
+		"tile_a": Color(0.22, 0.2, 0.19), "tile_b": Color(0.17, 0.15, 0.15), "top": Color(0.28, 0.26, 0.2), "edge": Color(0.6, 0.55, 0.4),
+		"moss": true, "mod": Color(0.5, 0.5, 0.45), "ground": Color(0.06, 0.05, 0.05)},
+	# 5: the Strip (black glass, hot neon, gold trim).
+	{"wall": Color(0.03, 0.02, 0.07), "motif": Color(0.12, 0.04, 0.16), "seam": Color(0.02, 0.01, 0.05),
+		"tile_a": Color(0.1, 0.08, 0.16), "tile_b": Color(0.07, 0.05, 0.12), "top": Color(0.9, 0.7, 0.25), "edge": Color(1.0, 0.3, 0.7),
+		"moss": false, "mod": Color(0.6, 0.5, 0.75), "ground": Color(0.04, 0.02, 0.08)},
 ]
 const ZONE_WORDS := [
 	["777", "BAR", "LUCK", "JACKPOT", "ALL IN", "$$$", "HOUSE", "CASH", "BET", "WIN", "ODDS"],
 	["POKER", "21", "HOLD'EM", "BACCARAT", "CARDS", "HIGH STAKES", "NO LIMIT", "DEAL"],
 	["VAULT", "SECURE", "NO ENTRY", "$$$", "GOLD", "RESERVE", "AUTHORIZED ONLY"],
 	["HIGH LIMIT", "VIP", "ALL IN", "$$$$", "JACKPOT", "PRIVATE"],
+	["NO LOITERING", "BAR", "LIQUOR", "OPEN", "CASH 4 GOLD", "PAWN", "ROOMS $9"],
+	["THE STRIP", "VEGAS", "JACKPOT", "$$$$", "SHOW", "HIGH ROLLER", "BELLAGIRO"],
 ]
 ## Casino tables you can find in each zone (vera = her charm table).
 const TABLE_POOLS := [
@@ -65,6 +75,8 @@ const TABLE_POOLS := [
 	["poker", "holdem", "blackjack", "baccarat", "hilo", "bar", "vera", "vera"],
 	["holdem", "baccarat", "roulette", "poker", "hilo", "bar", "vera", "vera"],
 	["holdem", "baccarat", "roulette", "poker", "hilo", "blackjack", "bar", "vera"],
+	["bar", "vera", "blackjack"],
+	["holdem", "baccarat", "roulette", "poker", "blackjack", "bar", "vera", "vera"],
 ]
 
 var zone := 0
@@ -356,8 +368,8 @@ func generate(r: RandomNumberGenerator, floor_num: int, rule_list: Array, threat
 
 	# Casino tables (one or two per floor) and breakable props.
 	var used: Array = []
-	var tables := 1 + (1 if rng.randf() < 0.5 else 0) + (1 if zone >= 1 else 0)
-	var pool: Array = (TABLE_POOLS[clampi(zone, 0, 3)] as Array).duplicate()
+	var tables := 1 + (1 if rng.randf() < 0.5 else 0) + (1 if zone >= 1 and zone != 4 else 0)
+	var pool: Array = (TABLE_POOLS[clampi(zone, 0, 5)] as Array).duplicate()
 	_shuffle(pool)
 	for c in floor_cells:
 		if tables <= 0:
@@ -434,8 +446,8 @@ func generate(r: RandomNumberGenerator, floor_num: int, rule_list: Array, threat
 
 # ---------------------------------------------------------------- boss arena
 
-func generate_boss(r: RandomNumberGenerator, tier: int, rule_list: Array) -> void:
-	zone = [0, 1, 3][clampi(tier - 1, 0, 2)]
+func generate_boss(r: RandomNumberGenerator, tier: int, rule_list: Array, zone_ := -1) -> void:
+	zone = zone_ if zone_ >= 0 else [0, 1, 3][clampi(tier - 1, 0, 2)]
 	w = 44
 	h = 20
 	is_boss = true
@@ -680,13 +692,14 @@ func _room_dressing() -> void:
 			var x0 := rx * RW
 			var y0 := ry * RH
 			var fy := y0 + RH - 2
-			var words: Array = ZONE_WORDS[clampi(zone, 0, 3)]
+			var words: Array = ZONE_WORDS[clampi(zone, 0, 5)]
 			if rng.randf() < 0.4:
 				var word: String = words[rng.randi_range(0, words.size() - 1)]
 				var col: Color = NEON_COLS[rng.randi_range(0, NEON_COLS.size() - 1)]
 				neons.append([Vector2((x0 + rng.randi_range(4, RW - 5)) * T, (y0 + 2) * T + 6), word, col, 8])
 			if rng.randf() < 0.5:
-				var art_kind: String = [["painting", "chandelier"], ["painting", "cardtable", "lampshade"], ["vaultdoor", "goldbars", "goldbars"], ["painting", "goldbars", "chandelier"]][clampi(zone, 0, 3)][rng.randi_range(0, 1 + (1 if zone >= 1 else 0))]
+				var art_opts: Array = [["painting", "chandelier"], ["painting", "cardtable", "lampshade"], ["vaultdoor", "goldbars", "goldbars"], ["painting", "goldbars", "chandelier"], ["painting", "lampshade"], ["painting", "chandelier", "goldbars"]][clampi(zone, 0, 5)]
+				var art_kind: String = art_opts[rng.randi_range(0, art_opts.size() - 1)]
 				var ax := (x0 + rng.randi_range(3, RW - 4)) * T + 8
 				match art_kind:
 					"painting", "vaultdoor":
@@ -840,7 +853,7 @@ func make_light(pos: Vector2, col: Color, energy: float, scale_: float, shadows:
 
 func _build_lights() -> void:
 	var dim := rules.has("lights")
-	var lamp_col: Color = [Color(1.0, 0.74, 0.45), Color(1.0, 0.88, 0.55), Color(0.75, 0.88, 1.0), Color(1.0, 0.8, 0.4)][clampi(zone, 0, 3)]
+	var lamp_col: Color = [Color(1.0, 0.74, 0.45), Color(1.0, 0.88, 0.55), Color(0.75, 0.88, 1.0), Color(1.0, 0.8, 0.4), Color(1.0, 0.62, 0.3), Color(1.0, 0.45, 0.8)][clampi(zone, 0, 5)]
 	for l in lamps:
 		make_light((l as Vector2) + Vector2(0, 13), lamp_col, 0.35 if dim else 1.25, 1.15, true)
 	make_light(exit_pos + Vector2(0, -20), Color(1.0, 0.45, 0.3), 1.2, 0.75, true)
@@ -924,6 +937,18 @@ func _draw() -> void:
 	var dc: Color = P["motif"]
 	draw_rect(Rect2(0, 0, w * T, h * T), P["wall"])
 	match zone:
+		4:
+			# Alley: brick courses with grime streaks.
+			for y in range(0, h * T, 8):
+				for x in range(-(y / 8 % 2) * 8, w * T, 16):
+					draw_rect(Rect2(x + 1, y + 1, 14, 6), dc)
+			for x in range(0, w * T, 70):
+				draw_rect(Rect2(x, 0, 3, h * T), Color(0, 0, 0, 0.18))
+		5:
+			# Strip: black glass with vertical neon pinstripes.
+			for x in range(0, w * T, 24):
+				draw_rect(Rect2(x, 0, 2, h * T), Color(dc, 0.9))
+				draw_rect(Rect2(x + 1, 0, 1, h * T), Color(1.0, 0.3, 0.7, 0.07))
 		1:
 			# Back Rooms: striped wallpaper over a wood wainscot.
 			for x in range(0, w * T, 12):

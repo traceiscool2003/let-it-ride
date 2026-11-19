@@ -552,7 +552,7 @@ func _draw_title() -> void:
 	draw_multiline_string(f, Vector2(pr.position.x + 100, pr.position.y + 58), ch["desc"] if unlocked else ch["lock"], HORIZONTAL_ALIGNMENT_LEFT, 330, 14, 2, DIM)
 	# Stats ribbon.
 	var stats := "WALLET %s     LEVEL %d     BEST %s     RUNS %d     BOSSES %d/3     TROPHIES %d/%d" % [
-		_money(g.wallet), g.level_num, _money(g.best), g.runs, mini(3, g.bosses_beaten / g.boss_every), g.trophies.size(), g.TROPHIES.size()]
+		_money(g.wallet), g.level_num, _money(g.best), g.runs, mini(5, g.bosses_beaten / g.boss_every), g.trophies.size(), g.TROPHIES.size()]
 	_txt(Vector2(600, 672), "UP / DOWN choose     LEFT / RIGHT runner     JUMP select", 15, Color(DIM, 0.85), HORIZONTAL_ALIGNMENT_RIGHT, 640)
 	_txt(Vector2(600, 700), stats, 15, Color(1, 0.9, 0.7, 0.9), HORIZONTAL_ALIGNMENT_RIGHT, 640)
 

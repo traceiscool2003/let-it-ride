@@ -199,7 +199,7 @@ func _process(_delta: float) -> bool:
 			main.debt_principal = 200
 			main.debt_interest = 100
 			main.debt_deadline = 3
-			main.floor_num = 5
+			main.floor_num = 7
 			main.run_seed += 7
 			main._build_floor()
 			_skip_cine()
@@ -278,7 +278,7 @@ func _process(_delta: float) -> bool:
 				main.tickets[i] = true
 			main.flags["vera_free"] = true
 			main.flags["marlow_confessed"] = true
-			main.floor_num = 12
+			main.floor_num = 25
 			main._build_floor()
 		37:
 			if main.state != "cine" and wait < 600:

@@ -19,6 +19,8 @@ const Story := preload("res://scripts/story.gd")
 const Charms := preload("res://scripts/charms.gd")
 const Wardrobe := preload("res://scripts/wardrobe.gd")
 const Weapons := preload("res://scripts/weapons.gd")
+const Cities := preload("res://scripts/cities.gd")
+const BossDefs := preload("res://scripts/boss_defs.gd")
 const EnemyTypes := preload("res://scripts/enemy_types.gd")
 const Dialogue := preload("res://scripts/dialogue.gd")
 const Menus := preload("res://scripts/menus.gd")
@@ -176,10 +178,12 @@ const LOAN_PRINCIPAL := 200
 ## Back Rooms (Madame Roulette on 8), 9-12 the Vault (The House on 12), and
 ## everything below is High Limit.
 const ZONES := [
-	{"name": "THE SLOT HALL", "paint": "slots", "sub": "Velvet, brass, and a thousand hungry machines."},
-	{"name": "THE BACK ROOMS", "paint": "back", "sub": "Card tables, cigar smoke, and nobody's friends."},
-	{"name": "THE VAULT", "paint": "vault", "sub": "Steel, lasers, and everything the House ever took."},
-	{"name": "HIGH LIMIT", "paint": "deep", "sub": "Below The Pit there's always more Pit."},
+	{"name": "ATLANTIC SHITTY: RESORTZ", "paint": "slots", "sub": "Velvet, brass, and a thousand hungry machines."},
+	{"name": "RENO: CIRRCUS CIRRCUS", "paint": "back", "sub": "The biggest little city. The smallest little odds."},
+	{"name": "BILOXI: HARD ROK", "paint": "vault", "sub": "Guitars on the wall. Sharks in the water."},
+	{"name": "FREMONT: GOLDUN NUGGET", "paint": "deep", "sub": "Old Vegas. Neon, gold, and a tank full of sharks."},
+	{"name": "THE ALLEY", "paint": "back", "sub": "Wet cardboard, a flickering sign, and the smell of a bad decision."},
+	{"name": "THE STRIP: BELLAGIRO", "paint": "deep", "sub": "The nicest casino in Vegas. The fountain alone costs more than you."},
 ]
 const GAME_NAMES := {
 	"slots": "SLOTS", "blackjack": "BLACKJACK", "roulette": "ROULETTE", "poker": "VIDEO POKER",
@@ -195,7 +199,7 @@ const COACH := [
 	["SLIDE", "down", "Hold DOWN while running to slide."],
 	["PARRY", "parry", "Press it the moment an enemy flashes !"],
 ]
-const BOSS_ARENAS := ["SAL'S OFFICE", "THE ROULETTE BALLROOM", "THE PENTHOUSE"]
+const BOSS_ARENAS := ["THE HIGH-STAKES ROOM", "THE PRIVATE TABLE", "THE HOUSE'S PENTHOUSE"]
 const LOAD_TIPS := [
 	"Cash out at a door and the money is yours forever. Ride it and the Pot doubles, but so does the risk.",
 	"Watch for the wind-up flash, then PARRY. Parried cards and roulette balls fly back at whoever threw them.",
@@ -285,7 +289,7 @@ void fragment() {
 @export var base_hp := 3
 @export var last_call_time := 40.0
 @export var last_call_bleed := 0.08
-@export var boss_every := 4
+@export var boss_every := 5
 
 ## Tests point this at a throwaway file so they never touch your real save.
 var save_path := "user://save.cfg"
@@ -649,6 +653,7 @@ func _start_run(daily := false) -> void:
 	revive_used = false
 	run_dmg_bonus = ch["dmg"]
 	charms.reset_run()
+	boss_order.clear()
 	worn = Wardrobe.START_OUTFIT.duplicate()
 	nerve = 0.0
 	focus_t = 0.0
@@ -763,7 +768,8 @@ func _build_floor() -> void:
 		level.generate_lobby(grng)
 		level.games = level.games.filter(func(gm): return _hub_kind_available(gm[1]))
 	elif is_boss_floor():
-		level.generate_boss(grng, ((floor_num / boss_every) - 1) % 3 + 1, rules)
+		var bdef := boss_def_for(floor_num)
+		level.generate_boss(grng, int(bdef["tier"]), rules, Cities.zone_of(floor_num))
 	else:
 		level.generate(grng, floor_num, rules, threat(), zone_of(floor_num))
 		level.games = level.games.filter(func(gm): return _floor_kind_available(gm[1]))
@@ -836,7 +842,8 @@ func _build_floor() -> void:
 	if level.is_boss:
 		boss = BossScript.new()
 		boss.position = level.boss_spawn + Vector2(0, -18)
-		boss.setup(floor_num, level, player)
+		raise_paid = 0
+		boss.setup(floor_num, level, player, boss_def_for(floor_num))
 		world.add_child(boss)
 		boss.fire.connect(_on_boss_fire)
 		boss.summon.connect(_on_boss_summon)
@@ -916,7 +923,7 @@ func _build_floor() -> void:
 			{"do": "bars", "v": 1.0}, {"do": "sfx", "name": "windup"},
 			{"do": "pan", "to": "boss_low", "zoom": 3.0, "t": 1.4}, {"do": "shake", "v": 0.45}, {"do": "sfx", "name": "slam"},
 			{"do": "card", "text": boss.bname, "sub": boss.title, "t": 2.2},
-			{"do": "say", "lines": Story.BOSS_INTRO[tier]},
+			{"do": "say", "lines": boss_intro_lines(boss.def)},
 			{"do": "pan", "to": "player", "zoom": cam_zoom, "t": 0.8}, {"do": "bars", "v": 0.0},
 		], "boss%d" % tier)
 		_bark("boss", true)
@@ -1543,7 +1550,12 @@ func _tick_play(delta: float) -> void:
 				target = 0.6
 				break
 	Music.intensity = target
-	Music.boss_mode = target >= 1.0 and boss != null and boss.phase == 2
+	Music.boss_mode = target >= 1.0 and boss != null and boss.phase >= 1
+	if Music.boss_mode:
+		Music.boss_music = boss.def.get("music", {})
+		Music.boss_phase = boss.phase
+	else:
+		Music.boss_music = {}
 
 
 func _add_nerve(n: float) -> void:
@@ -2181,8 +2193,31 @@ func _on_boss_slam(pos: Vector2) -> void:
 	fx.burst(pos, 18, Color(0.8, 0.7, 0.6, 0.8), 140.0, 0.5, 2.5, 300.0, Vector2.UP, 1.3)
 
 
+const HERO_NAME := "RICO"
+
+
+func boss_intro_lines(def: Dictionary) -> Array:
+	return [[String(def["name"]), String(def["line_intro"])],
+		[HERO_NAME, "%s? I've lost bigger pots to dumber tables. Deal me in." % String(def["game"]).capitalize()]]
+
+
+func boss_defeat_lines(def: Dictionary) -> Array:
+	return [[String(def["name"]), String(def["line_defeat"])],
+		[HERO_NAME, "Read 'em and weep, pal."]]
+
+
+## Raise: at each phase change you may put chips on the table to multiply damage.
+func _on_boss_phase_raise(p: int) -> void:
+	if pot < 10:
+		return
+	menu.kind = "raise"
+	menu.data = {"phase": p}
+	_open_menu("raise")
+
+
 func _on_boss_phase(p: int) -> void:
-	boss_shout = (Story.BOSS_PHASE3 if p >= 3 else Story.BOSS_PHASE).get(boss.tier, "")
+	_on_boss_phase_raise(p)
+	boss_shout = String(boss.def.get("line_phase", Story.BOSS_PHASE3.get(boss.tier, "") if p >= 3 else Story.BOSS_PHASE.get(boss.tier, "")))
 	boss_shout_t = 3.0
 	_callout("FINAL PHASE" if p >= 3 else "PHASE 2", Color(1, 0.35, 0.35))
 	if p >= 3:
@@ -2194,6 +2229,10 @@ func _on_boss_phase(p: int) -> void:
 
 func _on_boss_defeated() -> void:
 	var tier: int = boss.tier
+	if raise_paid > 0:
+		pot += int(raise_paid * 1.5)
+		toasts.append({"text": "THE RAISE PAID OFF", "sub": "+$%d back from the table" % int(raise_paid * 1.5), "t": 3.5})
+		raise_paid = 0
 	stats["bosses"] = stats.get("bosses", 0) + 1
 	unlock("boss%d" % tier)
 	_gain_xp(150 * tier, "BOSS DOWN")
@@ -2225,7 +2264,7 @@ func _on_boss_defeated() -> void:
 	var steps: Array = [
 		{"do": "bars", "v": 1.0},
 		{"do": "pan", "to": boss.global_position + Vector2(0, -20), "zoom": 2.8, "t": 1.0},
-		{"do": "say", "lines": Story.BOSS_DEFEAT[tier]},
+		{"do": "say", "lines": boss_defeat_lines(boss.def)},
 	]
 	if tier == 3:
 		if heat_run >= 5:
@@ -2991,6 +3030,16 @@ func _build_menu(kind: String, sub_override: String, keep_sel: int) -> void:
 				var pay := _bet_pay(float(pending_bet.get("pay", 2.0)), i)
 				items.append({"id": "s%d" % i, "size": i, "name": "%s   $%d" % [sizes[i][0], st], "desc": sizes[i][1], "tag": "WIN $%d  (x%.1f)" % [int(st * pay), pay], "col": [Color(0.45, 0.9, 1.0), Color(1, 0.8, 0.3), Color(1, 0.4, 0.4)][i], "icon": "$", "disabled": pot < st or st <= 0})
 			items.append({"id": "none", "name": "NEVER MIND", "desc": "Keep your chips.", "col": Color(0.6, 0.6, 0.7), "icon": "-"})
+		"raise":
+			title = "%s RAISES. YOUR MOVE." % (boss.bname if boss else "THE TABLE")
+			lay = "list"
+			sub = "Put chips on the table: your hits do more damage this phase. Your Pot: $%d. Win and the chips come back." % pot
+			var opts := [["FOLD", "Keep your chips. No bonus.", 0.0, 1.0], ["CALL", "10% of your Pot. Damage x1.5.", 0.10, 1.5],
+				["RAISE", "25% of your Pot. Damage x2.", 0.25, 2.0], ["ALL IN", "ALL of your Pot. Damage x3.", 1.0, 3.0]]
+			for o in opts:
+				var cost := int(pot * float(o[2]))
+				items.append({"id": "r%s" % String(o[0]).to_lower().replace(" ", ""), "name": String(o[0]), "desc": String(o[1]), "tag": "-$%d" % cost if cost > 0 else "FREE",
+					"col": Color(1, 0.8, 0.3) if cost > 0 else Color(0.6, 0.6, 0.7), "icon": "$", "cost": cost, "mult": float(o[3]), "pct": float(o[2])})
 		"loan":
 			title = "MAGS' LOAN DESK"
 			var interest := 150 if _stake("shark") else 100
@@ -3061,6 +3110,16 @@ func _menu_result(res: Dictionary) -> void:
 	var it: Dictionary = res["choose"]
 	var id: String = it["id"]
 	match menu.kind:
+		"raise":
+			var cost: int = int(it.get("cost", 0))
+			pot -= cost
+			if boss and is_instance_valid(boss):
+				boss.dmg_mult = float(it.get("mult", 1.0))
+				raise_paid = cost
+				if cost > 0:
+					_callout("x%.1f DAMAGE" % boss.dmg_mult, Color(1, 0.8, 0.3))
+					Sfx.play("coins")
+			_close_menu()
 		"shop":
 			var price: int = it.get("price", 0)
 			if pot < price:
@@ -3828,9 +3887,27 @@ func _notification(what: int) -> void:
 # ---------------------------------------------------------------- loading screens
 
 func zone_of(fl: int) -> int:
-	if fl > boss_every * 3:
-		return 3
-	return clampi((fl - 1) / boss_every, 0, 2)
+	return Cities.zone_of(fl)
+
+
+## Bosses 1-4 are random per run (seeded); floor 25 and every 25th after is THE HOUSE.
+var boss_order: Array = []
+var raise_paid := 0
+
+
+func boss_def_for(fl: int) -> Dictionary:
+	if fl % 25 == 0:
+		return BossDefs.final_def()
+	if boss_order.size() < 4:
+		boss_order = BossDefs.roll_order(run_seed)
+	var idx := ((fl / 5) - 1) % 5
+	if idx >= 4:
+		idx = 3
+	var def: Dictionary = BossDefs.by_id(boss_order[idx])
+	if fl > 25:
+		# High Roller loops: rotate through the pool deterministically.
+		def = BossDefs.POOL[((fl / 5) + hash(str(run_seed))) % BossDefs.POOL.size()]
+	return def
 
 
 ## Show an illustrated loading screen, run `fn` (which builds the next place)
@@ -3855,8 +3932,9 @@ func _loading(kind: String, title: String, sub: String, fn: Callable) -> void:
 ## Loading screen for the floor `floor_num` is about to become.
 func _loading_floor(fn: Callable) -> void:
 	if is_boss_floor():
-		var tier := ((floor_num / boss_every) - 1) % 3 + 1
-		_loading("boss%d" % tier, BOSS_ARENAS[tier - 1], "BOSS FLOOR  -  FLOOR %d" % floor_num, fn)
+		var bd := boss_def_for(floor_num)
+		var tier := int(bd["tier"])
+		_loading("boss%d" % tier, String(bd["name"]) + "  -  " + String(bd["game"]), "BOSS FLOOR  -  FLOOR %d  -  %s" % [floor_num, Cities.info(floor_num)["full"]], fn)
 	else:
 		var z: Dictionary = ZONES[zone_of(floor_num)]
 		_loading(z["paint"], z["name"], "FLOOR %d  -  %s" % [floor_num, z["sub"]], fn)

@@ -12,6 +12,7 @@ signal defeated
 
 const Rig := preload("res://scripts/rig.gd")
 const Art := preload("res://scripts/art.gd")
+const BossDefs := preload("res://scripts/boss_defs.gd")
 ## Signature attacks, unlocked from phase 2.
 const SIGNATURE := {1: "rain", 2: "wheel", 3: "jackpot"}
 const NAMES := [["BIG SAL", "The Pit Boss"], ["MADAME ROULETTE", "The Croupier"], ["THE HOUSE", "Owner of The Pit"]]
@@ -41,17 +42,26 @@ var walk_phase := 0.0
 var t := 0.0
 var dead_t := 0.0
 var rain_xs: Array = []
+## Boss definition (boss_defs.gd): its game, fixed attack deck per phase, music.
+var def: Dictionary = {}
+var deck_i := 0
+var attack_label := ""
+var label_t := 0.0
+## Spend chips at the table: the player's Raise multiplies damage for a phase.
+var dmg_mult := 1.0
+var stagger_t := 0.0
 
 
-func setup(floor_num: int, lvl, pl) -> void:
-	var n := floor_num / 4
-	tier = (n - 1) % 3 + 1
-	loop = (n - 1) / 3
-	bname = NAMES[tier - 1][0]
-	title = NAMES[tier - 1][1]
+func setup(floor_num: int, lvl, pl, boss_def := {}) -> void:
+	var n := floor_num / 5
+	def = boss_def if not boss_def.is_empty() else (BossDefs.final_def() if floor_num % 25 == 0 else BossDefs.POOL[(n - 1) % BossDefs.POOL.size()])
+	tier = int(def["tier"])
+	loop = maxi(0, (floor_num - 1) / 25)
+	bname = String(def["name"])
+	title = String(def["title"])
 	if loop > 0:
 		title += "  (High Roller x%d)" % (loop + 1)
-	max_hp = [24, 32, 44][tier - 1] + loop * 12
+	max_hp = int(def["hp"]) + loop * 14
 	hp = max_hp
 	level = lvl
 	player = pl
@@ -96,6 +106,7 @@ func hurt(dmg: int) -> int:
 		return 0
 	if state == "stun":
 		dmg *= 2
+	dmg = maxi(1, int(round(dmg * dmg_mult)))
 	hp = maxi(0, hp - dmg)
 	flash = 0.12
 	iframes = 0.16
@@ -105,16 +116,26 @@ func hurt(dmg: int) -> int:
 		if tier == 1:
 			rig.s["arm"] = Color(0.93, 0.92, 0.88)
 		phase_changed.emit(2)
+		_stagger()
 	elif phase == 2 and hp <= max_hp / 4 and hp > 0:
 		phase = 3
 		speed_mult = 1.5 + loop * 0.1
 		phase_changed.emit(3)
+		_stagger()
 	if hp <= 0:
 		state = "dead"
 		st = 0.0
 		collision_layer = 0
 		defeated.emit()
 	return dmg
+
+
+## Phase change: the boss reels for a beat (a free window, and the Raise prompt).
+func _stagger() -> void:
+	state = "stun"
+	st = 0.0
+	_stun_time = 1.4
+	deck_i = 0
 
 
 func stun(time: float) -> void:
@@ -134,19 +155,18 @@ func _face_player() -> void:
 		dir = int(signf(dx))
 
 
+## Fixed, learnable pattern: the deck for the current phase plays in order and loops.
 func _pick_attack() -> String:
-	var opts: Array = ["cards", "charge", "slam"]
-	if tier >= 2:
-		opts.append("balls")
-	if tier >= 3 and summoned_phase < phase:
-		opts.append("summon")
-	if phase >= 2:
-		opts.append(SIGNATURE[tier])
-	if phase >= 3:
-		opts.append(SIGNATURE[tier])
-	opts.erase(last_attack)
-	var a: String = opts[randi() % opts.size()]
+	var decks: Array = def["deck"]
+	var d: Array = decks[clampi(phase - 1, 0, decks.size() - 1)]
+	var a: String = d[deck_i % d.size()]
+	deck_i += 1
 	last_attack = a
+	if a == "deal":
+		attack_label = String(def["deal"]["label"])
+	else:
+		attack_label = {"charge": "ALL IN!", "slam": "RAISE!", "balls": "SPIN!", "wheel": "WHEEL OF FATE!", "rain": "CASH OUT!", "jackpot": "JACKPOT!", "summon": "SECURITY!"}.get(a, "")
+	label_t = 1.1
 	return a
 
 
@@ -154,6 +174,7 @@ func _physics_process(delta: float) -> void:
 	t += delta
 	st += delta
 	flash = maxf(0.0, flash - delta)
+	label_t = maxf(0.0, label_t - delta)
 	iframes = maxf(0.0, iframes - delta)
 	velocity.y = minf(velocity.y + 1100.0 * delta, 600.0)
 	var sm := speed_mult
@@ -175,6 +196,16 @@ func _physics_process(delta: float) -> void:
 				_throw_cards()
 				fired += 1
 			if st > 0.5 / sm + volleys * 0.45:
+				_go("idle")
+		"deal":
+			velocity.x = 0.0
+			_face_player()
+			var dp: Dictionary = def["deal"]
+			var vol := int(dp.get("volleys", 1)) + (1 if phase >= 3 else 0)
+			if fired < vol and st > 0.55 / sm + fired * 0.5:
+				_deal_volley(dp)
+				fired += 1
+			if st > 0.6 / sm + vol * 0.5:
 				_go("idle")
 		"balls":
 			velocity.x = 0.0
@@ -279,6 +310,24 @@ func _go(s: String) -> void:
 	fired = 0
 
 
+## The game's signature volley (see boss_defs deal params).
+func _deal_volley(dp: Dictionary) -> void:
+	var n := int(dp["n"]) + (1 if phase >= 2 and int(dp["n"]) < 8 else 0)
+	var spd: float = float(dp["speed"]) * (1.0 + 0.06 * (phase - 1)) + loop * 10.0
+	var origin: Vector2 = global_position + Vector2(dir * 12, -12)
+	var base: float = ((player.global_position as Vector2) - origin).angle() if dp.get("aim", false) else (-0.5 * PI + dir * 0.9)
+	for i in n:
+		var frac: float = float(i) / maxf(1.0, n - 1.0)
+		if dp.get("floor", false):
+			# Razz: low cards skid along the floor from both sides at staggered speeds.
+			var side := -1.0 if i % 2 == 0 else 1.0
+			fire.emit("wave", global_position + Vector2(side * 14, size.y * 0.5), Vector2(side * spd * (0.7 + 0.12 * i), 0))
+			continue
+		var a: float = base + (frac - 0.5) * float(dp["spread"]) * (n - 1) if dp.get("aim", false) else (-PI + 0.3 + frac * (PI - 0.6) if dp.get("arc", false) else base + (frac - 0.5) * float(dp["spread"]) * 2.0)
+		fire.emit("card", origin, Vector2.from_angle(a) * spd)
+	Sfx.play("swing", 1.3)
+
+
 func _throw_cards() -> void:
 	var n := 2 + tier + (1 if phase == 2 else 0)
 	var to: Vector2 = (player.global_position as Vector2) - (global_position + Vector2(0, -12))
@@ -307,7 +356,7 @@ func _process(delta: float) -> void:
 			tp["hand_f"] = sh + Vector2(6, -4)
 			tp["hand_b"] = sh + Vector2(-6, -4)
 			tp["head"] = -0.15
-		"cards", "balls":
+		"cards", "balls", "deal":
 			var k := clampf(st / 0.45, 0.0, 1.0)
 			tp["hand_f"] = sh + Vector2(lerpf(-6.0, 8.0, k * k), lerpf(-5.0, 0.0, k))
 			tp["torso"] = lerpf(-0.25, 0.3, k * k)
@@ -389,5 +438,14 @@ func _draw() -> void:
 		for i in 4:
 			var a := t * 5.0 + i * TAU / 4.0
 			draw_circle(Vector2(cos(a) * 10.0, -size.y * 0.5 - 6 + sin(a) * 3.0), 1.8, Color(1, 0.9, 0.3))
-	if (state == "charge" and st < 0.6) or (state == "slam" and fired == 0) or (state == "wheel" and fired == 0):
+	if label_t > 0.0 and attack_label != "" and state != "dead":
+		var fa := clampf(label_t / 0.4, 0.0, 1.0)
+		draw_string_outline(ThemeDB.fallback_font, Vector2(-60, -size.y * 0.5 - 22), attack_label, HORIZONTAL_ALIGNMENT_CENTER, 120, 10, 3, Color(0, 0, 0, fa))
+		draw_string(ThemeDB.fallback_font, Vector2(-60, -size.y * 0.5 - 22), attack_label, HORIZONTAL_ALIGNMENT_CENTER, 120, 10, Color(def.get("col", Color.WHITE), fa))
+	if state == "deal" and fired == 0:
+		var nn := int(def["deal"]["n"])
+		for i in nn:
+			var px := (i - (nn - 1) * 0.5) * 6.0
+			draw_rect(Rect2(px - 2, -size.y * 0.5 - 12 - sin(t * 20.0 + i) , 4, 6), Color(1, 1, 1, 0.9))
+	if (state == "charge" and st < 0.6) or (state == "slam" and fired == 0) or (state == "wheel" and fired == 0) or (state == "deal" and fired == 0):
 		draw_string(ThemeDB.fallback_font, Vector2(-8, -size.y * 0.5 - 8), "!!", HORIZONTAL_ALIGNMENT_CENTER, 16, 14, Color(1, 0.25, 0.2))
