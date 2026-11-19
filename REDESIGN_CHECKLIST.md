@@ -491,3 +491,21 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
     - DOC FIZZ (buy): "Excellent choice. By law I have to tell you this may cause luck, liver failure or a brief conversation with God. He's a big fan of yours, actually. Bit of a gambler."
     - LUCKY (died): "Welcome back! I had you dying on the stairs, so honestly, thank you. Drinks are on the guy who bet 'spikes.'"
     - THE HOUSE (PA): "Attention, guests: Rico has died for the forty-third time. As a valued member, he has earned one complimentary... nothing. Thank you for your loyalty."
+
+- [ ] **53. Polish pass on item 52's lines: rhythm variety and tightening.** (Do this after 52; the review step can fold into it.)
+  - **What item 52 got right:** the story lines in `story.gd` are clear AND funny. Keep that style. Example: "Then he lost, which means he now works there, which means my family finally has a steady job."
+  - **What still needs fixing in the NPC pools** (`voice_lines_main.gd` / `voice_lines_misc.gd`):
+    1. **The new tic is the comma-spliced ramble:** ", and ..., and ..., and ...". It's on almost every line, which is as repetitive as the old "Thing. Thing. Thing."
+       - Rule: at most ONE "and"-chain per line.
+       - Use real sentence breaks.
+       - Mix lengths. About 40% short punchy one-liners (under 14 words), 40% medium (1-2 sentences), 20% longer riffs. The riffs are for the characters who ramble (Marlow, Doc Fizz, Silas, Gunny).
+    2. **Cut lines that still don't make sense:**
+       - "the shoes are in debt, and the debt is in love with the shoes"
+       - "I'm winning now, and the winning feels so, so different"
+       - "or did, they blur together, like all my mistakes, and I'm winning, so I'm taking credit"
+       - "I'll be the guy who loses, again"
+       - Any line where the last clause changes the subject. A punchline must PAY OFF the setup, not wander off.
+    3. **Jules:** he is hooked and happy at The House's table, and talks like a cheerful addict in denial. His lines must clearly say he doesn't want to leave, in a funny way. Example: "I'm not trapped, Rico, I'm employed. There's a difference. The difference is dental."
+    4. **Trim every line by ~20%.** If a phrase doesn't set up or deliver the joke, delete it.
+  - Then run the review step from item 52 on the result: score every line, rewrite the failures, and write `COMEDY_REVIEW.md`.
+  - Regenerate the kits. Run `voice_test` and `studio_test`.
