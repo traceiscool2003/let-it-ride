@@ -36,12 +36,18 @@ static func draw(ci: CanvasItem, f: Font, city: int, t: float) -> void:
 	var sky: Array = L["sky"]
 	Scenery.vgrad(ci, Rect2(0, 0, 1280, HORIZON + 10), [[0.0, sky[0]], [0.6, sky[1]], [1.0, sky[2]]])
 	_stars_or_moon(ci, city, L, t)
+	_fireworks(ci, city, t)
 	_skyline(ci, f, city, L, t)
 	ci.draw_rect(Rect2(0, HORIZON - 30, 1280, 60), Color(L["haze"], (L["haze"] as Color).a * 0.6))
 	_roadside(ci, f, city, L, t)
 	_road(ci, city, L, t)
+	_wet_road(ci, city, t)
+	_overhead_lights(ci, city, t)
 	_car(ci, city, Vector2(450, 524), t)
+	_rain(ci, city, t)
+	_foreground(ci, city, t)
 	_exit_sign(ci, f, city, L, t)
+	_finish(ci, t)
 
 
 # ---------------------------------------------------------------- sky + skyline
@@ -252,40 +258,71 @@ static func _road(ci: CanvasItem, city: int, L: Dictionary, t: float) -> void:
 
 # ---------------------------------------------------------------- the car
 
-## City 0: scruffy hatchback. 1: tidy sedan. 2: muscle car.
+## City 0: scruffy 80s hatchback. 1: tidy sedan. 2: muscle car.
 ## 3: teal grand tourer. 4: gold-trimmed supercar.
-## Draw the car 1.5x size so it reads as the star of the scene.
+## Drawn 1.5x so the car is the star of the scene.
 static func _car(ci: CanvasItem, city: int, base: Vector2, t: float) -> void:
 	_car_body(ci, city, base, t)
 	ci.draw_set_transform(Vector2.ZERO)
 
 
-## Car designs, nicest last. Profile points: x along the car (0 = rear), y up is
-## negative, wheel centres sit on y = 0. Windows are tinted, so no driver shows.
+## Car profiles, nicest last. x runs rear (0) to nose; y is up-negative with the
+## wheel centres sitting r below y = 0 (the body's floor line). "top" is the
+## silhouette from rear-bottom over the roof to front-bottom, smoothed into curves.
+## "glass" is the side greenhouse, "pillars" window pillars, "doors" door seams.
 const CARS := [
-	{"name": "junker", "len": 200.0, "r": 15.0, "paint": Color(0.62, 0.44, 0.26), "trim": Color(0.55, 0.52, 0.48), "rim": Color(0.6, 0.6, 0.62),
-		"body": [[0, -6], [1, -22], [6, -30], [40, -34], [62, -60], [140, -62], [170, -40], [194, -34], [200, -22], [198, -6]],
-		"glass": [[68, -56], [104, -56], [104, -38], [54, -38]], "glass2": [[110, -56], [137, -56], [158, -40], [110, -38]]},
-	{"name": "sedan", "len": 220.0, "r": 15.0, "paint": Color(0.36, 0.45, 0.52), "trim": Color(0.75, 0.76, 0.8), "rim": Color(0.78, 0.78, 0.82),
-		"body": [[0, -8], [2, -26], [10, -32], [52, -36], [78, -62], [150, -62], [178, -38], [214, -34], [220, -24], [218, -8]],
-		"glass": [[84, -58], [114, -58], [114, -40], [66, -40]], "glass2": [[120, -58], [146, -58], [168, -40], [120, -40]]},
-	{"name": "muscle", "len": 240.0, "r": 17.0, "paint": Color(0.72, 0.1, 0.12), "trim": Color(0.92, 0.92, 0.95), "rim": Color(0.88, 0.88, 0.92),
-		"body": [[0, -8], [2, -28], [12, -32], [80, -34], [104, -56], [160, -56], [186, -34], [232, -30], [240, -20], [238, -8]],
-		"glass": [[108, -52], [136, -52], [136, -36], [92, -36]], "glass2": [[142, -52], [158, -52], [176, -36], [142, -36]]},
-	{"name": "gt", "len": 245.0, "r": 17.0, "paint": Color(0.06, 0.45, 0.48), "trim": Color(0.95, 0.95, 1.0), "rim": Color(0.92, 0.92, 0.96),
-		"body": [[0, -10], [4, -26], [20, -30], [84, -34], [112, -56], [152, -58], [196, -36], [236, -30], [245, -18], [242, -8]],
-		"glass": [[100, -38], [116, -53], [150, -54], [186, -38]], "glass2": []},
-	{"name": "super", "len": 260.0, "r": 18.0, "paint": Color(0.12, 0.16, 0.42), "trim": Color(1.0, 0.82, 0.35), "rim": Color(1.0, 0.84, 0.4),
-		"body": [[0, -10], [4, -24], [30, -30], [96, -48], [150, -50], [206, -30], [252, -22], [260, -14], [256, -6]],
-		"glass": [[104, -45], [148, -47], [190, -32], [96, -32]], "glass2": []},
+	{"len": 200.0, "r": 14.0, "wheels": [38.0, 162.0], "paint": Color(0.66, 0.47, 0.28), "trim": Color(0.62, 0.6, 0.56), "rim": Color(0.66, 0.66, 0.68),
+		"top": [[2, -7], [0, -22], [4, -30], [14, -34], [34, -58], [120, -60], [146, -38], [186, -33], [198, -26], [200, -13], [198, -7]],
+		"glass": [[38, -54], [117, -56], [138, -39], [28, -38]], "pillars": [80.0], "doors": [80.0, 140.0], "mirror": 140.0},
+	{"len": 220.0, "r": 15.0, "wheels": [42.0, 178.0], "paint": Color(0.38, 0.47, 0.56), "trim": Color(0.8, 0.81, 0.85), "rim": Color(0.8, 0.8, 0.84),
+		"top": [[2, -8], [0, -24], [6, -32], [46, -36], [70, -58], [140, -60], [166, -38], [208, -33], [219, -25], [220, -13], [217, -7]],
+		"glass": [[74, -54], [138, -56], [160, -39], [58, -39]], "pillars": [106.0], "doors": [62.0, 106.0, 160.0], "mirror": 160.0},
+	{"len": 240.0, "r": 17.0, "wheels": [46.0, 194.0], "paint": Color(0.75, 0.1, 0.12), "trim": Color(0.94, 0.94, 0.97), "rim": Color(0.9, 0.9, 0.94),
+		"top": [[2, -8], [0, -26], [8, -32], [62, -34], [96, -54], [148, -55], [172, -35], [232, -31], [240, -22], [240, -12], [237, -7]],
+		"glass": [[100, -50], [146, -51], [164, -37], [84, -37]], "pillars": [128.0], "doors": [128.0, 168.0], "mirror": 168.0},
+	{"len": 245.0, "r": 17.0, "wheels": [47.0, 198.0], "paint": Color(0.07, 0.48, 0.52), "trim": Color(0.96, 0.96, 1.0), "rim": Color(0.94, 0.94, 0.98),
+		"top": [[2, -10], [0, -24], [10, -31], [60, -34], [110, -54], [150, -55], [190, -36], [234, -30], [244, -20], [244, -12], [241, -7]],
+		"glass": [[112, -50], [148, -51], [180, -37], [92, -37]], "pillars": [], "doors": [118.0, 184.0], "mirror": 184.0},
+	{"len": 260.0, "r": 18.0, "wheels": [52.0, 212.0], "paint": Color(0.14, 0.18, 0.46), "trim": Color(1.0, 0.82, 0.35), "rim": Color(1.0, 0.84, 0.42),
+		"top": [[2, -10], [0, -22], [14, -30], [80, -40], [112, -48], [150, -49], [196, -32], [246, -24], [260, -16], [258, -8], [254, -6]],
+		"glass": [[116, -45], [148, -46], [184, -33], [100, -36]], "pillars": [], "doors": [110.0, 186.0], "mirror": 188.0},
 ]
 
 
-static func _pts(arr: Array, dx := 0.0, dy := 0.0) -> PackedVector2Array:
+static func _pts(arr: Array) -> PackedVector2Array:
 	var out := PackedVector2Array()
 	for p in arr:
-		out.append(Vector2(float(p[0]) + dx, float(p[1]) + dy))
+		out.append(Vector2(float(p[0]), float(p[1])))
 	return out
+
+
+## Catmull-Rom through the points, so the silhouette reads as curved sheet metal.
+static func _smooth(pts: PackedVector2Array, steps := 6) -> PackedVector2Array:
+	var out := PackedVector2Array()
+	var n := pts.size()
+	for i in n - 1:
+		var p0 := pts[maxi(i - 1, 0)]
+		var p1 := pts[i]
+		var p2 := pts[i + 1]
+		var p3 := pts[mini(i + 2, n - 1)]
+		for s in steps:
+			var u := float(s) / steps
+			var u2 := u * u
+			var u3 := u2 * u
+			out.append(0.5 * ((2.0 * p1) + (-p0 + p2) * u + (2.0 * p0 - 5.0 * p1 + 4.0 * p2 - p3) * u2 + (-p0 + 3.0 * p1 - 3.0 * p2 + p3) * u3))
+	out.append(pts[n - 1])
+	return out
+
+
+## How brightly the overhead highway lights are hitting screen x right now (0..1).
+static func street_light(t: float, x: float, city: int) -> float:
+	var gap := 560.0
+	var off := fmod(t * (900.0 + city * 60.0), gap)
+	var k := 0.0
+	for i in 5:
+		var lx := 1400.0 - i * gap + off - gap
+		k = maxf(k, 1.0 - absf(lx - x) / 230.0)
+	return clampf(k, 0.0, 1.0)
 
 
 static func _car_body(ci: CanvasItem, city: int, base: Vector2, t: float) -> void:
@@ -295,98 +332,121 @@ static func _car_body(ci: CanvasItem, city: int, base: Vector2, t: float) -> voi
 	var paint: Color = C["paint"]
 	var trim: Color = C["trim"]
 	var rim: Color = C["rim"]
-	# Ride: the junker rattles and sags at the back, the supercar glides.
-	var rattle: float = [2.2, 1.3, 0.8, 0.4, 0.2][city]
-	var bob := sin(t * (19.0 if city == 0 else 11.0)) * rattle
-	var tilt := 0.025 if city == 0 else 0.0
-	var origin := Vector2(0, bob - r)
+	var wheels: Array = C["wheels"]
+	var lit := street_light(t, base.x + length * 0.75, city)
+	# Ride: the junker jitters on old springs, the supercar glides.
+	var rattle: float = [1.6, 1.0, 0.7, 0.35, 0.15][city]
+	var bob := sin(t * (17.0 if city == 0 else 10.0)) * rattle + (sin(t * 41.0) * 0.6 if city == 0 else 0.0)
 	var M := Transform2D(0.0, Vector2(1.5, 1.5), 0.0, base)
 	ci.draw_set_transform_matrix(M)
-	var body: Array = C["body"]
-	var wx := [length * 0.2, length * 0.8]
-	# Soft ground shadow.
-	Scenery.glow(ci, Vector2(length * 0.5, 2), length * 0.58, 9, Color(0, 0, 0, 0.55))
+	# Ground shadow, the supercar's underglow, and the tail-light streaks.
+	Scenery.glow(ci, Vector2(length * 0.5, 1), length * 0.56, 7, Color(0, 0, 0, 0.6))
 	if city == 4:
-		Scenery.glow(ci, Vector2(length * 0.5, 0), length * 0.55, 8, Color(1.0, 0.8, 0.35, 0.35 + 0.1 * sin(t * 4.0)))
-	# Exhaust: sooty puffs from the junker, faint vapour from the mid cars.
+		Scenery.glow(ci, Vector2(length * 0.5, 0), length * 0.5, 7, Color(1.0, 0.78, 0.3, 0.35 + 0.1 * sin(t * 4.0)))
+	var body_y := -r + 5.0 + bob  # body coords: y = 0 is the floor line, just below the axles
+	for k in 5:
+		ci.draw_line(Vector2(-4 - k * 26, body_y - 22), Vector2(-28 - k * 26, body_y - 22), Color(1.0, 0.15, 0.15, 0.22 * (1.0 - k / 5.0)), 2.0)
+	# Exhaust: sooty puffs from the junker, a faint vapour trail from the mid cars.
 	for k in 6:
 		var age := fmod(t * 1.4 + k * 0.17, 1.0)
-		var ep := origin + Vector2(-6 - age * 110.0, -8 - age * 22.0)
+		var ep := Vector2(-4 - age * 110.0, body_y - 6 - age * 20.0)
 		if city == 0:
-			Scenery.glow(ci, ep, 8 + age * 24, 6 + age * 18, Color(0.18, 0.17, 0.16, 0.5 * (1.0 - age)))
+			Scenery.glow(ci, ep, 7 + age * 22, 5 + age * 16, Color(0.2, 0.19, 0.18, 0.45 * (1.0 - age)))
 		elif city <= 2:
-			Scenery.glow(ci, ep, 5 + age * 12, 3 + age * 8, Color(0.7, 0.7, 0.75, 0.16 * (1.0 - age)))
-	ci.draw_set_transform_matrix(M * Transform2D(tilt, origin))
-	var poly := _pts(body)
-	# Body: base paint, a darker lower half, a bright shoulder line.
-	ci.draw_colored_polygon(poly, paint)
+			Scenery.glow(ci, ep, 4 + age * 10, 3 + age * 7, Color(0.75, 0.75, 0.8, 0.13 * (1.0 - age)))
+	# Headlight beam reaching down the road ahead.
+	var flick := 1.0 if city != 0 or sin(t * 6.0) > -0.7 else 0.35
+	var beam_a := (0.12 if city > 0 else 0.08) * flick
+	for b in 4:
+		var w := 10.0 + b * 9.0
+		var hy := body_y - 22.0
+		ci.draw_colored_polygon(PackedVector2Array([Vector2(length - 2, hy), Vector2(length + 150 + b * 20, hy - w * 0.4), Vector2(length + 150 + b * 20, hy + w)]), Color(1.0, 0.95, 0.75, beam_a * 0.5))
+	ci.draw_set_transform_matrix(M * Transform2D(0.02 if city == 0 else 0.0, Vector2(0, body_y)))
+	# ---- Body.
+	var top: PackedVector2Array = _smooth(_pts(C["top"]))
+	ci.draw_colored_polygon(top, paint)
+	# Sheet-metal shading: lighter shoulders and roof, darker sills.
+	var upper := PackedVector2Array()
+	for p in top:
+		upper.append(Vector2(p.x, minf(p.y, -26.0)))
+	ci.draw_colored_polygon(upper, paint.lightened(0.12))
 	var lower := PackedVector2Array()
-	for p in poly:
-		lower.append(Vector2(p.x, maxf(p.y, -16.0)))
-	ci.draw_colored_polygon(lower, paint.darkened(0.28))
-	ci.draw_line(Vector2(6, -17), Vector2(length - 6, -17), paint.lightened(0.25), 1.5)
-	var top := PackedVector2Array()
-	for i in range(1, poly.size() - 1):
-		top.append(poly[i] + Vector2(0, 1.5))
-	ci.draw_polyline(top, Color(paint.lightened(0.45), 0.8), 1.5)
-	# Bumpers.
-	ci.draw_rect(Rect2(-3, -16, 8, 6), trim.darkened(0.15))
-	ci.draw_rect(Rect2(length - 6, -16, 9, 6), trim.darkened(0.15))
-	# Tinted glass with a light streak (nobody visible inside).
-	for gk in ["glass", "glass2"]:
-		var g: Array = C[gk]
-		if g.is_empty():
-			continue
-		var gp := _pts(g)
-		ci.draw_colored_polygon(gp, Color(0.05, 0.07, 0.12, 0.96))
-		var b := gp[0]
-		ci.draw_line(b + Vector2(10, 2), b + Vector2(2, 14), Color(1, 1, 1, 0.22), 3.0)
-		ci.draw_polyline(gp + PackedVector2Array([gp[0]]), trim.darkened(0.2), 1.0)
+	for p in top:
+		lower.append(Vector2(p.x, maxf(p.y, -14.0)))
+	ci.draw_colored_polygon(lower, paint.darkened(0.3))
+	# Shoulder crease and a roof-line highlight.
+	ci.draw_line(Vector2(8, -26), Vector2(length - 10, -25), paint.lightened(0.35), 1.2)
+	var rim_line := PackedVector2Array()
+	for i in range(2, top.size() - 3):
+		rim_line.append(top[i] + Vector2(0, 1.2))
+	ci.draw_polyline(rim_line, Color(paint.lightened(0.5), 0.7), 1.2)
+	# A glint slides along the body when a street light passes overhead.
+	if lit > 0.02:
+		var rx := length * (1.0 - fmod(t * 0.9, 1.0))
+		ci.draw_colored_polygon(PackedVector2Array([Vector2(rx - 12, -24), Vector2(rx + 4, -24), Vector2(rx - 8, -12), Vector2(rx - 24, -12)]), Color(1, 1, 1, 0.22 * lit))
+	# Greenhouse: tinted glass, nobody visible inside.
+	var glass := _pts(C["glass"])
+	ci.draw_colored_polygon(glass, Color(0.04, 0.06, 0.11, 0.97))
+	ci.draw_colored_polygon(PackedVector2Array([glass[0] + Vector2(6, 2), glass[0] + Vector2(16, 2), glass[3] + Vector2(10, -2), glass[3] + Vector2(2, -2)]), Color(0.6, 0.75, 1.0, 0.16 + 0.2 * lit))
+	ci.draw_polyline(glass + PackedVector2Array([glass[0]]), trim.darkened(0.25), 1.0)
+	for px in C["pillars"]:
+		var gtop := minf(glass[0].y, glass[1].y) + 1.0
+		ci.draw_rect(Rect2(float(px) - 2.5, gtop, 5, glass[3].y - gtop), paint.darkened(0.1))
+	# Door seams, a handle and the side mirror.
+	var doors: Array = C["doors"]
+	for dx in doors:
+		ci.draw_line(Vector2(float(dx), -37), Vector2(float(dx) - 1, -10), paint.darkened(0.45), 1.0)
+	ci.draw_rect(Rect2(float(doors[0]) + 6, -31, 8, 2), trim)
+	var mx: float = C["mirror"]
+	ci.draw_colored_polygon(PackedVector2Array([Vector2(mx - 2, -40), Vector2(mx + 8, -42), Vector2(mx + 8, -36), Vector2(mx - 2, -36)]), paint.darkened(0.2))
+	# Bumpers sit inside the silhouette, with a chrome lip.
+	ci.draw_line(Vector2(2, -12), Vector2(14, -12), trim, 2.0)
+	ci.draw_line(Vector2(length - 14, -12), Vector2(length - 1, -12), trim, 2.0)
 	# Per-car character.
 	match city:
 		0:
-			# Faded primer door, a few rust freckles. Scruffy, but still charming.
-			ci.draw_colored_polygon(PackedVector2Array([Vector2(104, -36), Vector2(138, -36), Vector2(138, -8), Vector2(104, -8)]), Color(0.55, 0.55, 0.52))
-			for k in 6:
-				ci.draw_circle(Vector2(18 + k * 30, -10 + (k % 2) * 3), 2.0 + k % 2, Color(0.45, 0.22, 0.08, 0.75))
-			ci.draw_line(Vector2(60, -30), Vector2(96, -30), Color(0.2, 0.15, 0.1, 0.4), 1.0)
-		1:
-			ci.draw_line(Vector2(66, -36), Vector2(66, -10), paint.darkened(0.4), 1.0)
-			ci.draw_line(Vector2(118, -38), Vector2(118, -10), paint.darkened(0.4), 1.0)
+			# Grey primer door and rust freckles. Rough, but it runs. Mostly.
+			ci.draw_colored_polygon(PackedVector2Array([Vector2(81, -37), Vector2(139, -38), Vector2(139, -9), Vector2(81, -9)]), Color(0.56, 0.56, 0.53))
+			for k in 7:
+				ci.draw_circle(Vector2(12 + k * 27, -10 + (k % 2) * 2), 1.6 + (k % 3) * 0.6, Color(0.45, 0.22, 0.08, 0.8))
 		2:
-			# Twin racing stripes and a hood scoop.
-			ci.draw_rect(Rect2(0, -27, length, 3), Color(0.95, 0.95, 0.95))
-			ci.draw_rect(Rect2(0, -22, length, 3), Color(0.95, 0.95, 0.95))
-			ci.draw_colored_polygon(PackedVector2Array([Vector2(196, -32), Vector2(200, -37), Vector2(218, -37), Vector2(220, -31)]), paint.darkened(0.35))
+			# Twin racing stripes down the long body.
+			ci.draw_line(Vector2(12, -29), Vector2(length - 16, -27), Color(0.97, 0.97, 0.97), 2.0)
+			ci.draw_line(Vector2(12, -25), Vector2(length - 16, -23), Color(0.97, 0.97, 0.97), 2.0)
 		3:
-			ci.draw_line(Vector2(20, -28), Vector2(236, -26), trim, 1.5)
-			ci.draw_rect(Rect2(110, -24, 18, 2), trim)
+			ci.draw_line(Vector2(14, -19), Vector2(length - 8, -19), trim, 1.5)
 		4:
-			ci.draw_line(Vector2(4, -20), Vector2(254, -18), trim, 2.0)
-			ci.draw_line(Vector2(96, -48), Vector2(150, -50), trim, 1.5)
-			ci.draw_colored_polygon(PackedVector2Array([Vector2(-4, -28), Vector2(26, -28), Vector2(26, -24), Vector2(-4, -24)]), paint.darkened(0.3))  # spoiler
-			ci.draw_colored_polygon(PackedVector2Array([Vector2(150, -24), Vector2(180, -24), Vector2(176, -14), Vector2(154, -14)]), Color(0.04, 0.05, 0.1))  # side intake
-	# Lights: warm headlight beam at the front, red tail light at the back.
-	var hy := -24.0
-	var flick := 1.0 if city != 0 or sin(t * 6.0) > -0.7 else 0.35
-	ci.draw_rect(Rect2(length - 7, hy, 6, 5), Color(1.0, 0.97, 0.85, flick))
-	Scenery.glow(ci, Vector2(length + 40, hy + 4), 52, 10, Color(1.0, 0.95, 0.75, 0.16 * flick))
-	ci.draw_rect(Rect2(1, hy, 5, 5), Color(1.0, 0.15, 0.15))
-	Scenery.glow(ci, Vector2(0, hy + 2), 10, 6, Color(1.0, 0.2, 0.2, 0.35))
-	# Wheels: dark arch, tyre, rim with turning spokes.
+			# Gold pinstripe and a ducktail spoiler.
+			ci.draw_line(Vector2(6, -19), Vector2(length - 8, -19), trim, 1.6)
+			ci.draw_colored_polygon(PackedVector2Array([Vector2(0, -30), Vector2(22, -31), Vector2(18, -27), Vector2(2, -26)]), paint.darkened(0.3))
+	# Lights.
+	ci.draw_colored_polygon(PackedVector2Array([Vector2(length - 9, -25), Vector2(length - 1, -24), Vector2(length - 1, -20), Vector2(length - 9, -21)]), Color(1.0, 0.97, 0.86, flick))
+	Scenery.glow(ci, Vector2(length - 2, -22), 10, 6, Color(1.0, 0.95, 0.75, 0.5 * flick))
+	ci.draw_rect(Rect2(1, -25, 5, 5), Color(1.0, 0.16, 0.16))
+	Scenery.glow(ci, Vector2(2, -22), 9, 6, Color(1.0, 0.2, 0.2, 0.45))
+	# Wheel arches cut into the body, then tyres and spinning rims.
 	var spin := t * (13.0 + city * 3.0)
 	for i in 2:
-		var wc := Vector2(wx[i], 0)
-		ci.draw_circle(wc + Vector2(0, -2), r + 4.0, Color(0.03, 0.03, 0.04))
-		ci.draw_circle(wc, r, Color(0.07, 0.07, 0.08))
+		var wc := Vector2(float(wheels[i]), -5.0)
+		var arch := PackedVector2Array()
+		for s in 13:
+			arch.append(wc + Vector2.from_angle(PI + s * PI / 12.0) * (r + 3.0))
+		ci.draw_colored_polygon(arch, Color(0.02, 0.02, 0.03))
+		ci.draw_circle(wc, r, Color(0.06, 0.06, 0.07))
+		ci.draw_arc(wc, r - 1.5, 0, TAU, 24, Color(0.16, 0.16, 0.17), 1.5)
 		var rc := rim
 		if city == 0 and i == 0:
-			rc = Color(0.25, 0.25, 0.27)  # the mismatched spare
-		ci.draw_circle(wc, r * 0.62, rc)
+			rc = Color(0.22, 0.22, 0.24)  # the mismatched spare
+		ci.draw_circle(wc, r * 0.6, rc.darkened(0.25))
 		var spokes := 5 if city >= 2 else 4
 		for s in spokes:
-			ci.draw_line(wc, wc + Vector2.from_angle(spin + s * TAU / spokes) * r * 0.6, rc.darkened(0.45), 2.0)
-		ci.draw_circle(wc, r * 0.18, rc.lightened(0.3))
+			var a := spin + s * TAU / spokes
+			ci.draw_line(wc + Vector2.from_angle(a) * r * 0.15, wc + Vector2.from_angle(a) * r * 0.56, rc, 2.4)
+		# Motion-blur ring and a centre cap.
+		ci.draw_arc(wc, r * 0.4, 0, TAU, 20, Color(rc, 0.35), r * 0.3)
+		ci.draw_circle(wc, r * 0.14, rc.lightened(0.3))
+		if city >= 3:
+			ci.draw_arc(wc, r * 0.6, -2.4, -1.4, 6, Color(1, 1, 1, 0.5), 1.2)
 	ci.draw_set_transform_matrix(M)
 
 
@@ -405,3 +465,98 @@ static func _exit_sign(ci: CanvasItem, f: Font, city: int, L: Dictionary, t: flo
 		# Bullet holes and graffiti on the sign.
 		for b in 4:
 			ci.draw_circle(r.position + Vector2(30 + b * 70, 20 + (b % 2) * 50), 3, Color(0, 0, 0, 0.8))
+
+
+# ---------------------------------------------------------------- cinematic layer
+
+## Tall overhead highway lights rushing past in the foreground. Each throws a
+## pool of light on the road; the car brightens as it drives through (street_light).
+static func _overhead_lights(ci: CanvasItem, city: int, t: float) -> void:
+	var gap := 560.0
+	var off := fmod(t * (900.0 + city * 60.0), gap)
+	var warm := Color(1.0, 0.78, 0.45) if city < 3 else Color(1.0, 0.92, 0.75)
+	for i in 5:
+		var lx := 1400.0 - i * gap + off - gap
+		# Pool of light on the asphalt.
+		Scenery.glow(ci, Vector2(lx, 520), 210, 46, Color(warm, 0.16 if city > 0 else 0.1))
+		# Cone from the lamp head.
+		ci.draw_colored_polygon(PackedVector2Array([Vector2(lx - 8, 60), Vector2(lx + 8, 60), Vector2(lx + 150, 520), Vector2(lx - 150, 520)]), Color(warm, 0.045))
+
+
+## Foreground pole and rail blurs, closest to the camera and fastest.
+static func _foreground(ci: CanvasItem, city: int, t: float) -> void:
+	var gap := 560.0
+	var off := fmod(t * (900.0 + city * 60.0), gap)
+	for i in 5:
+		var lx := 1400.0 - i * gap + off - gap
+		# Motion-blurred pole: a smear rather than a crisp line.
+		for k in 4:
+			ci.draw_rect(Rect2(lx - 10 + k * 7, 40, 7, 690), Color(0.02, 0.02, 0.03, 0.22 - k * 0.04))
+		ci.draw_rect(Rect2(lx - 40, 52, 80, 9), Color(0.03, 0.03, 0.04, 0.8))
+		Scenery.glow(ci, Vector2(lx, 62), 40, 12, Color(1.0, 0.9, 0.7, 0.5))
+	# Low concrete barrier streaking by along the bottom edge.
+	ci.draw_rect(Rect2(0, 690, 1280, 30), Color(0.05, 0.05, 0.06, 0.9))
+	var soff := fmod(t * 1400.0, 160.0)
+	for k in 10:
+		ci.draw_rect(Rect2(k * 160.0 - soff, 692, 90, 3), Color(1.0, 1.0, 1.0, 0.06))
+
+
+## Wet asphalt in the grimy cities: lights smear into long reflections.
+static func _wet_road(ci: CanvasItem, city: int, t: float) -> void:
+	if city > 1:
+		return
+	var gap := 560.0
+	var off := fmod(t * (900.0 + city * 60.0), gap)
+	for i in 5:
+		var lx := 1400.0 - i * gap + off - gap
+		for k in 6:
+			ci.draw_rect(Rect2(lx - 3 + sin(t * 9.0 + k) * 2.0, 560 + k * 22, 6, 16), Color(1.0, 0.8, 0.5, 0.08 - k * 0.012))
+	# The car's own lights in the puddles.
+	ci.draw_rect(Rect2(450 + 200 * 1.5, 560, 8, 60), Color(1.0, 0.95, 0.75, 0.07))
+	ci.draw_rect(Rect2(452, 560, 6, 50), Color(1.0, 0.2, 0.2, 0.08))
+
+
+## Rain in Atlantic Shitty, a light drizzle in Reno.
+static func _rain(ci: CanvasItem, city: int, t: float) -> void:
+	if city > 1:
+		return
+	var n := 160 if city == 0 else 60
+	var a := 0.22 if city == 0 else 0.12
+	for i in n:
+		var x := fmod(Scenery.rnd(i * 5) * 1500.0 - t * 380.0, 1500.0)
+		if x < 0.0:
+			x += 1500.0
+		var y := fmod(Scenery.rnd(i * 9 + 3) * 760.0 + t * 1100.0, 760.0) - 20.0
+		ci.draw_line(Vector2(x, y), Vector2(x - 7, y + 22), Color(0.75, 0.8, 0.9, a), 1.0)
+
+
+## Fireworks over the Strip.
+static func _fireworks(ci: CanvasItem, city: int, t: float) -> void:
+	if city < 4:
+		return
+	for b in 3:
+		var period := 2.6 + b * 0.7
+		var k := fmod(t + b * 1.1, period) / period
+		if k > 0.6:
+			continue
+		var bx := 200.0 + Scenery.rnd(int((t + b * 1.1) / period) * 7 + b) * 880.0
+		var by := 70.0 + b * 40.0
+		var rad := ease(k / 0.6, 0.4) * 70.0
+		var col := Color.from_hsv(Scenery.rnd(b * 13 + int(t / period)), 0.6, 1.0, 1.0 - k / 0.6)
+		for s in 16:
+			var d := Vector2.from_angle(s * TAU / 16.0)
+			ci.draw_line(Vector2(bx, by) + d * rad * 0.6, Vector2(bx, by) + d * rad + Vector2(0, rad * 0.15), col, 2.0)
+		Scenery.glow(ci, Vector2(bx, by), rad, rad, Color(col, col.a * 0.15))
+
+
+## Cinematic finish: letterbox bar on top, vignette, film grain.
+static func _finish(ci: CanvasItem, t: float) -> void:
+	Scenery.hgrad(ci, Rect2(0, 0, 220, 720), Color(0, 0, 0, 0.55), Color(0, 0, 0, 0.0))
+	Scenery.hgrad(ci, Rect2(1060, 0, 220, 720), Color(0, 0, 0, 0.0), Color(0, 0, 0, 0.55))
+	Scenery.vgrad(ci, Rect2(0, 0, 1280, 160), [[0.0, Color(0, 0, 0, 0.6)], [1.0, Color(0, 0, 0, 0.0)]])
+	ci.draw_rect(Rect2(0, 0, 1280, 26), Color(0, 0, 0, 1.0))
+	var seed := int(t * 24.0)
+	for i in 220:
+		var gx := Scenery.rnd(seed * 977 + i * 3) * 1280.0
+		var gy := Scenery.rnd(seed * 571 + i * 7) * 720.0
+		ci.draw_rect(Rect2(gx, gy, 1, 1), Color(1, 1, 1, 0.07))
