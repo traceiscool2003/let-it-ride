@@ -792,6 +792,7 @@ func _build_floor() -> void:
 		level.games = level.games.filter(func(gm): return _hub_kind_available(gm[1]))
 	elif is_boss_floor():
 		var bdef := boss_def_for(floor_num)
+		level.boss_id = String(bdef["id"])
 		level.generate_boss(grng, int(bdef["tier"]), rules, Cities.zone_of(floor_num))
 	else:
 		level.generate(grng, floor_num, rules, threat(), zone_of(floor_num))

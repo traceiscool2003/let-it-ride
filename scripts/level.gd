@@ -43,12 +43,14 @@ const ZONE_PAL := [
 	{"wall": Color(0.10, 0.055, 0.13), "motif": Color(0.15, 0.08, 0.19), "seam": Color(0.07, 0.035, 0.09),
 		"tile_a": Color(0.33, 0.1, 0.16), "tile_b": Color(0.26, 0.075, 0.13), "top": Color(0.09, 0.40, 0.25), "edge": Color(0.95, 0.76, 0.32),
 		"moss": true, "mod": Color(0.52, 0.44, 0.6), "ground": Color(0.2, 0.055, 0.1)},
-	{"wall": Color(0.045, 0.085, 0.06), "motif": Color(0.065, 0.12, 0.085), "seam": Color(0.03, 0.05, 0.035),
-		"tile_a": Color(0.3, 0.17, 0.08), "tile_b": Color(0.23, 0.12, 0.06), "top": Color(0.08, 0.42, 0.24), "edge": Color(0.85, 0.62, 0.28),
-		"moss": true, "mod": Color(0.5, 0.5, 0.46), "ground": Color(0.12, 0.07, 0.03)},
-	{"wall": Color(0.06, 0.08, 0.11), "motif": Color(0.09, 0.12, 0.16), "seam": Color(0.03, 0.04, 0.06),
-		"tile_a": Color(0.25, 0.29, 0.35), "tile_b": Color(0.19, 0.22, 0.27), "top": Color(0.42, 0.47, 0.54), "edge": Color(1.0, 0.8, 0.3),
-		"moss": false, "mod": Color(0.44, 0.47, 0.6), "ground": Color(0.08, 0.1, 0.13)},
+	# 1: Reno, Cirrcus Cirrcus (tired carnival: tent red and cream).
+	{"wall": Color(0.1, 0.04, 0.07), "motif": Color(0.17, 0.06, 0.1), "seam": Color(0.06, 0.02, 0.04),
+		"tile_a": Color(0.52, 0.14, 0.16), "tile_b": Color(0.4, 0.1, 0.13), "top": Color(0.88, 0.8, 0.58), "edge": Color(1.0, 0.85, 0.4),
+		"moss": false, "mod": Color(0.62, 0.5, 0.55), "ground": Color(0.1, 0.04, 0.05)},
+	# 2: Biloxi, Hard Rok (wood and leather, stage glow).
+	{"wall": Color(0.1, 0.055, 0.035), "motif": Color(0.15, 0.085, 0.05), "seam": Color(0.05, 0.03, 0.02),
+		"tile_a": Color(0.38, 0.21, 0.1), "tile_b": Color(0.29, 0.16, 0.08), "top": Color(0.22, 0.1, 0.07), "edge": Color(0.95, 0.68, 0.3),
+		"moss": false, "mod": Color(0.66, 0.54, 0.46), "ground": Color(0.08, 0.05, 0.03)},
 	{"wall": Color(0.05, 0.04, 0.02), "motif": Color(0.13, 0.1, 0.04), "seam": Color(0.03, 0.02, 0.01),
 		"tile_a": Color(0.14, 0.11, 0.07), "tile_b": Color(0.1, 0.08, 0.05), "top": Color(0.22, 0.16, 0.05), "edge": Color(1.0, 0.85, 0.35),
 		"moss": false, "mod": Color(0.56, 0.48, 0.42), "ground": Color(0.07, 0.05, 0.02)},
@@ -109,6 +111,8 @@ var exit_locked := false
 var exit_label := "EXIT"
 var is_boss := false
 var is_lobby := false
+var boss_id := ""
+const ZoneFx := preload("res://scripts/zone_fx.gd")
 ## Optional per-floor spots (Vector2.ZERO = none). Vault Doors and side-bet
 ## kiosks are also added to `games`; main.gd decides whether to use them.
 var vault_spot := Vector2.ZERO
@@ -666,8 +670,20 @@ func _draw_home_bg() -> void:
 
 # ---------------------------------------------------------------- helpers
 
+func _build_fx() -> void:
+	if is_lobby:
+		return
+	for which in ["back", "ao", "mid", "front"]:
+		var n = ZoneFx.new()
+		n.setup(self, which)
+		add_child(n)
+		if which == "back":
+			move_child(n, 0)
+
+
 func _finish() -> void:
 	_build_collision()
+	_build_fx()
 	_build_lights()
 	queue_redraw()
 	tile_layer.queue_redraw()
@@ -1085,22 +1101,19 @@ func _draw() -> void:
 				draw_rect(Rect2(x, 0, 2, h * T), Color(dc, 0.9))
 				draw_rect(Rect2(x + 1, 0, 1, h * T), Color(1.0, 0.3, 0.7, 0.07))
 		1:
-			# Back Rooms: striped wallpaper over a wood wainscot.
-			for x in range(0, w * T, 12):
-				draw_rect(Rect2(x, 0, 5, h * T), dc)
+			# Reno: big-top canvas stripes with a scalloped valance.
+			for x in range(0, w * T, 32):
+				draw_rect(Rect2(x, 0, 16, h * T), dc)
 			for y in range(0, h * T, RH * T):
-				draw_rect(Rect2(0, y + RH * T - 70, w * T, 54), Color(0.14, 0.08, 0.04))
-				draw_rect(Rect2(0, y + RH * T - 70, w * T, 2), Color(0.5, 0.32, 0.12, 0.6))
-				for x in range(0, w * T, 40):
-					draw_rect(Rect2(x + 4, y + RH * T - 62, 32, 38), Color(0.18, 0.1, 0.05))
+				for x in range(0, w * T, 16):
+					draw_circle(Vector2(x + 8, y + 6), 8.0, Color(0.55, 0.12, 0.14, 0.5))
 		2:
-			# Vault: riveted steel plates.
+			# Biloxi: dark wood paneling with leather studs.
 			for y in range(0, h * T, 40):
-				for x in range(0, w * T, 56):
-					var o := Vector2(x + (28 if (y / 40) % 2 == 1 else 0), y)
-					draw_rect(Rect2(o + Vector2(1, 1), Vector2(54, 38)), dc)
-					for c in [Vector2(4, 4), Vector2(51, 4), Vector2(4, 35), Vector2(51, 35)]:
-						draw_rect(Rect2(o + c, Vector2(2, 2)), Color(0.25, 0.3, 0.38))
+				for x in range(0, w * T, 40):
+					draw_rect(Rect2(x + 2, y + 2, 36, 36), dc)
+					draw_rect(Rect2(x + 5, y + 5, 30, 30), Color(dc, 0.5).darkened(0.25))
+					draw_circle(Vector2(x + 20, y + 20), 1.2, Color(0.6, 0.45, 0.25, 0.5))
 		3:
 			# High Limit: black lacquer with gold art-deco fans.
 			for y in range(0, h * T, 48):
@@ -1215,9 +1228,7 @@ func _draw_tile(ci: CanvasItem, x: int, y: int, off: Vector2) -> void:
 		ci.draw_rect(Rect2(r.position, Vector2(1, T)), base.lightened(0.25))
 	if rt:
 		ci.draw_rect(Rect2(r.position + Vector2(T - 1, 0), Vector2(1, T)), base.darkened(0.35))
-	if zone == 2 and hsh % 2 == 0:
-		ci.draw_rect(Rect2(r.position + Vector2(2, 2), Vector2(1, 1)), base.lightened(0.35))
-		ci.draw_rect(Rect2(r.position + Vector2(T - 3, T - 3), Vector2(1, 1)), base.lightened(0.35))
+	ZoneFx.tile_detail(self, ci, x, y, r, base, up, dn, lf, rt, hsh)
 	if dn:
 		ci.draw_rect(Rect2(r.position + Vector2(0, T - 2), Vector2(T, 2)), base.darkened(0.4))
 		if hsh % 3 == 0 and P["moss"]:
@@ -1227,8 +1238,6 @@ func _draw_tile(ci: CanvasItem, x: int, y: int, off: Vector2) -> void:
 	if up:
 		ci.draw_rect(Rect2(r.position, Vector2(T, 4)), P["top"])
 		ci.draw_rect(Rect2(r.position, Vector2(T, 1)), P["edge"])
-		if zone == 2 and (x % 4) == 0:
-			ci.draw_rect(Rect2(r.position + Vector2(0, 1), Vector2(4, 3)), Color(0.9, 0.75, 0.15, 0.6))
 
 
 func _draw_cracks(ci: CanvasItem, x: int, y: int) -> void:
