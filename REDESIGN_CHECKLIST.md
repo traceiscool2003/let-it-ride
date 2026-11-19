@@ -509,3 +509,8 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
     4. **Trim every line by ~20%.** If a phrase doesn't set up or deliver the joke, delete it.
   - Then run the review step from item 52 on the result: score every line, rewrite the failures, and write `COMEDY_REVIEW.md`.
   - Regenerate the kits. Run `voice_test` and `studio_test`.
+
+> **Note (LOCAL session, 2026-11-19):** the user chose a MEDIUM recording list.
+> - `scripts/voice_plan.gd` decides which lines go on it, about 486 lines plus 33 grunts.
+> - The F6 studio and `voice/ALL_LINES.md` show only that list. Press A in the studio to see the extras.
+> - When rewriting lines, put the BEST joke in the recorded versions (version 1 and 2 of each moment, the story lines, and boss intro, defeat and phase lines). Don't change `voice_plan.gd`.

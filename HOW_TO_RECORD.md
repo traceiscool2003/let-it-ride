@@ -26,7 +26,7 @@ You don't need Audacity at all. The game can record you itself.
 | F6 / ESC | Close the studio |
 
 - **Where takes go:** studio takes save into `voice/all/` in your project. Grunts go into each character's folder.
-- **Progress:** the top of the screen shows how many of the 954 lines and grunts you've recorded.
+- **Progress:** the top of the screen shows how many lines on your recording list you've done (about 486 lines plus 33 grunts). Press **A** to also see the optional extra lines.
 - **The whole list on paper:** `voice/ALL_LINES.md` has every line, numbered, in the same order as the studio.
 - **Prefer your own app?** Save everything into the single folder `voice/all/`, using the names in `voice/ALL_LINES.md`.
 

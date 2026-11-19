@@ -7,6 +7,7 @@ extends CanvasLayer
 ##   N        jump to the next line you haven't recorded yet
 ##   LEFT/RIGHT  show only one character (or ALL)
 ##   U        toggle "only show unrecorded lines"
+##   A        also show the optional extra lines (not on the recording list)
 ##   DELETE   delete the take for this line
 ##   F6 / ESC close
 ## Takes save as WAV into res://voice/all/ when you run the game from the Godot
@@ -15,6 +16,7 @@ extends CanvasLayer
 
 const VL := preload("res://scripts/voice_lines.gd")
 const VP := preload("res://scripts/voice_profiles.gd")
+const PLAN := preload("res://scripts/voice_plan.gd")
 
 ## Grunt takes recorded in the studio (Rico, the shared enemy voice, every boss).
 const GRUNT_SLOTS := {
@@ -32,6 +34,8 @@ var view: Array = []             # indices into entries after filters
 var cur := 0
 var char_filter := -1            # -1 = ALL, else index into VP.ORDER
 var only_missing := false
+var show_all := false        # false = only the recording list (voice_plan.gd)
+var plan_total := 0
 var msg := ""
 var msg_t := 0.0
 var recording := false
@@ -109,6 +113,8 @@ func _refilter() -> void:
 		var e: Dictionary = entries[i]
 		if want != "" and String(e.get("who", e["char"])) != want and String(e["char"]) != want:
 			continue
+		if not show_all and not PLAN.should_record(e):
+			continue
 		if only_missing and has_take(e):
 			continue
 		view.append(i)
@@ -146,7 +152,11 @@ func has_take(e: Dictionary) -> bool:
 
 func _recorded_count() -> int:
 	var n := 0
+	plan_total = 0
 	for e in entries:
+		if not PLAN.should_record(e):
+			continue
+		plan_total += 1
 		if has_take(e):
 			n += 1
 	return n
@@ -294,6 +304,11 @@ func _input(event: InputEvent) -> void:
 				char_filter = -1
 			cur = 0
 			_refilter()
+		KEY_A:
+			show_all = not show_all
+			cur = 0
+			_refilter()
+			_flash("Showing EVERY line (extras are optional)." if show_all else "Showing your recording list.")
 		KEY_U:
 			only_missing = not only_missing
 			_refilter()
@@ -334,13 +349,13 @@ func _draw_ui() -> void:
 	ui.draw_rect(Rect2(0, 0, 1280, 64), Color(0.08, 0.04, 0.12))
 	_t(Vector2(32, 42), "VOICE STUDIO", 30, GOLD)
 	var done := done_count
-	_t(Vector2(300, 42), "%d / %d recorded" % [done, entries.size()], 20, Color.WHITE)
-	var pk := float(done) / maxf(1.0, float(entries.size()))
+	_t(Vector2(300, 42), "%d / %d on your list" % [done, plan_total], 20, Color.WHITE)
+	var pk := float(done) / maxf(1.0, float(plan_total))
 	ui.draw_rect(Rect2(520, 26, 300, 14), Color(1, 1, 1, 0.1))
 	ui.draw_rect(Rect2(520, 26, 300 * pk, 14), GREEN)
 	var filt := "ALL CHARACTERS" if char_filter < 0 else String(VP.P[VP.ORDER[char_filter]]["name"])
 	_t(Vector2(1248, 30), "Showing: " + filt + ("  (unrecorded only)" if only_missing else ""), 15, DIM, HORIZONTAL_ALIGNMENT_RIGHT, 400)
-	_t(Vector2(1248, 52), "%d lines in view" % view.size(), 14, DIM, HORIZONTAL_ALIGNMENT_RIGHT, 400)
+	_t(Vector2(1248, 52), ("ALL %d lines (A: back to your list)" if show_all else "%d lines (A: show extras too)") % view.size(), 14, DIM, HORIZONTAL_ALIGNMENT_RIGHT, 400)
 	var e := _current()
 	if e.is_empty():
 		_t(Vector2(0, 360), "Nothing left to record here. Nice work!", 28, GREEN, HORIZONTAL_ALIGNMENT_CENTER, 1280)
@@ -382,4 +397,4 @@ func _draw_ui() -> void:
 	if msg_t > 0.0:
 		_t(Vector2(0, 668), msg, 18, GOLD, HORIZONTAL_ALIGNMENT_CENTER, 1280)
 	ui.draw_rect(Rect2(0, 684, 1280, 36), Color(0.08, 0.04, 0.12))
-	_t(Vector2(0, 708), "R record/stop   SPACE play   ENTER next   UP/DOWN move   N next unrecorded   LEFT/RIGHT character   U unrecorded only   DEL delete   F6 close", 14, DIM, HORIZONTAL_ALIGNMENT_CENTER, 1280)
+	_t(Vector2(0, 708), "R record/stop   SPACE play   ENTER next   UP/DOWN move   N next unrecorded   LEFT/RIGHT character   U unrecorded only   A extras   DEL delete   F6 close", 14, DIM, HORIZONTAL_ALIGNMENT_CENTER, 1280)

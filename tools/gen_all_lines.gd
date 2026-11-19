@@ -6,7 +6,10 @@ extends SceneTree
 func _initialize() -> void:
 	var VL = load("res://scripts/voice_lines.gd")
 	var VP = load("res://scripts/voice_profiles.gd")
-	var reg: Array = VL.registry()
+	var PLAN = load("res://scripts/voice_plan.gd")
+	var every: Array = VL.registry()
+	var reg: Array = every.filter(func(x): return PLAN.should_record(x))
+	var extras := every.size() - reg.size()
 	var order: Array = VP.ORDER.duplicate()
 	var by_char := {}
 	for e in reg:
@@ -17,7 +20,8 @@ func _initialize() -> void:
 				order.append(c)
 		by_char[c].append(e)
 	var s := "# Every voice line: record straight down this list\n\n"
-	s += "There are **%d lines**. Work through them in order, one character at a time.\n\n" % reg.size()
+	s += "Your recording list has **%d lines**. Work through them in order, one character at a time.\n\n" % reg.size()
+	s += "It covers every story line, cutscene and boss moment, plus 2 versions of each moment for the main cast. The other %d lines (extra variations and crowd chatter) are **optional**. They play in the game as text with voice blips unless you record them. In the studio, press **A** to see them.\n\n" % extras
 	s += "## Two ways to record\n\n"
 	s += "### Easiest: the in-game Voice Studio\n"
 	s += "1. Open the project in Godot and press **F5**.\n"
