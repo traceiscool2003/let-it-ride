@@ -132,8 +132,8 @@ func _process(_delta: float) -> bool:
 			main.pot = 2000
 			main.charms.equipped = ["chalk"]
 			main._open_menu("shop")
-			check(main.menu.items.size() == 6, "Vera's table: 3 charms + 2 clothes + reroll")
-			main.menu.sel = 3
+			check(main.menu.items.size() == 7, "Vera's table: 3 charms + 2 clothes + weapon + reroll")
+			main.menu.sel = 6
 			main._menu_result(main.menu.press("confirm"))
 			check(main.pot < 2000 and main.state == "menu", "reroll charged the Pot")
 			main.menu.sel = 0

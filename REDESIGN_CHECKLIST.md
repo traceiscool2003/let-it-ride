@@ -96,7 +96,8 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - knockback and recoil on both sides
   - i-frames, and a hold-to-heal focus that uses a meter filled by hitting enemies ("Nerve")
   - The existing parry can stay as an item.
-- [ ] **5. Lots of ranged weapons for the player.** At least 8, each with its own feel, for example:
+- [x] **5. Lots of ranged weapons for the player.**
+  - DONE: 8 weapons in new `weapons.gd` (G fires, TAB cycles), `projectile.gd` weapon kind (arc, bounce, boomerang, explode, pierce), ammo/pot/nerve costs, Vera sells one, bosses drop one, HUD shows weapon. At least 8, each with its own feel, for example:
   - chip flick, card throw, dice bomb, bottle toss, snub revolver, roulette-ball cannon, cash-band boomerang, coin shotgun
   - They use ammo or Nerve, are found and bought, and have one equipped slot (more from items).
 - [ ] **6. Amazing combat feel:**

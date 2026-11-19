@@ -18,6 +18,7 @@ const CasinoScript := preload("res://scripts/casino.gd")
 const Story := preload("res://scripts/story.gd")
 const Charms := preload("res://scripts/charms.gd")
 const Wardrobe := preload("res://scripts/wardrobe.gd")
+const Weapons := preload("res://scripts/weapons.gd")
 const Dialogue := preload("res://scripts/dialogue.gd")
 const Menus := preload("res://scripts/menus.gd")
 const MagsScript := preload("res://scripts/mags.gd")
@@ -32,6 +33,7 @@ const DEFAULT_KEYS := {
 	"attack": [KEY_F, KEY_J],
 	"parry": [KEY_Q, KEY_K],
 	"focus": [KEY_E, KEY_L],
+	"shoot": [KEY_G, KEY_O], "weapon": [KEY_TAB],
 	"confirm": [KEY_ENTER, KEY_KP_ENTER],
 	"restart": [KEY_R], "pause": [KEY_ESCAPE, KEY_P],
 	"choose1": [KEY_1], "choose2": [KEY_2],
@@ -312,6 +314,11 @@ var nerve := 0.0
 const NERVE_MAX := 99.0
 const NERVE_COST := 33.0
 var focus_t := 0.0
+## Ranged weapons (weapons.gd): owned ids, the equipped one, per-weapon ammo.
+var owned_weapons: Array = ["chip_flick"]
+var weapon_id := "chip_flick"
+var weapon_ammo := {}
+var shoot_cd := 0.0
 ## Worn clothing ids for this run (see wardrobe.gd). Abilities come from here.
 var worn: Array = []
 var menu: Menus
@@ -591,7 +598,7 @@ func _setup_input() -> void:
 		"left": [JOY_BUTTON_DPAD_LEFT], "right": [JOY_BUTTON_DPAD_RIGHT],
 		"up": [JOY_BUTTON_DPAD_UP], "down": [JOY_BUTTON_DPAD_DOWN],
 		"jump": [JOY_BUTTON_A], "dash": [JOY_BUTTON_B, JOY_BUTTON_RIGHT_SHOULDER],
-		"attack": [JOY_BUTTON_X], "focus": [JOY_BUTTON_RIGHT_STICK], "parry": [JOY_BUTTON_LEFT_SHOULDER, JOY_BUTTON_Y],
+		"attack": [JOY_BUTTON_X], "focus": [JOY_BUTTON_RIGHT_STICK], "shoot": [JOY_BUTTON_LEFT_STICK], "parry": [JOY_BUTTON_LEFT_SHOULDER, JOY_BUTTON_Y],
 		"pause": [JOY_BUTTON_START], "restart": [JOY_BUTTON_BACK],
 	}
 	var axes := {
@@ -644,6 +651,9 @@ func _start_run(daily := false) -> void:
 	worn = Wardrobe.START_OUTFIT.duplicate()
 	nerve = 0.0
 	focus_t = 0.0
+	owned_weapons = ["chip_flick"]
+	weapon_id = "chip_flick"
+	weapon_ammo = {}
 	heat_run = heat()
 	hp = 99
 	_recalc_max_hp()
@@ -804,6 +814,7 @@ func _build_floor() -> void:
 	player.dash_enabled = not rules.has("grounded")
 	player.dash_max = 1 + perk("dash") + charms.dash_bonus()
 	player.dashes = player.dash_max
+	level.set_meta("player", player)
 	_apply_worn()
 	player.pounded.connect(_on_pound)
 	player.parry_bonus = perk("parry") * 0.05
@@ -1511,6 +1522,7 @@ func _tick_play(delta: float) -> void:
 			return
 	run_time += delta
 	_focus_tick(delta)
+	_weapon_tick(delta)
 	_check_trophies()
 	_update_flow(delta)
 	_update_camera(delta)
@@ -1566,6 +1578,154 @@ func _focus_tick(delta: float) -> void:
 		Sfx.play("buy", 1.3)
 		fx.burst(player.global_position + Vector2(0, -6), 20, Color(0.5, 1.0, 0.9), 120.0, 0.6, 2.5, -40.0)
 		fx.text(player.global_position + Vector2(0, -26), "+1 LIFE", Color(0.6, 1.0, 0.9), 11)
+
+
+func weapon_ammo_of(id: String) -> int:
+	return int(weapon_ammo.get(id, Weapons.info(id).get("ammo", 0)))
+
+
+func give_weapon(id: String) -> void:
+	var w: Dictionary = Weapons.info(id)
+	if owned_weapons.has(id):
+		if int(w.get("ammo", 0)) > 0:
+			weapon_ammo[id] = int(w["ammo"])
+			toasts.append({"text": "AMMO: " + String(w["name"]), "sub": "Refilled.", "t": 2.5})
+		return
+	owned_weapons.append(id)
+	weapon_id = id
+	weapon_ammo[id] = int(w.get("ammo", 0))
+	toasts.append({"text": "WEAPON: " + String(w["name"]), "sub": String(w["desc"]), "t": 4.0})
+	Sfx.play("buy")
+
+
+func _weapon_tick(delta: float) -> void:
+	shoot_cd = maxf(0.0, shoot_cd - delta)
+	if player == null or not is_instance_valid(player) or player.state == PlayerScript.S.DEAD:
+		return
+	if Input.is_action_just_pressed("weapon") and owned_weapons.size() > 1:
+		weapon_id = owned_weapons[(owned_weapons.find(weapon_id) + 1) % owned_weapons.size()]
+		Sfx.play("tick", 1.4)
+		_callout(String(Weapons.info(weapon_id)["name"]), Color(0.9, 0.95, 1.0))
+	if Input.is_action_pressed("shoot") and shoot_cd <= 0.0:
+		_fire_weapon()
+
+
+func _fire_weapon() -> void:
+	var w: Dictionary = Weapons.info(weapon_id)
+	var amt := int(w["amt"])
+	match String(w["cost"]):
+		"pot":
+			if pot < amt:
+				shoot_cd = 0.3
+				Sfx.play("deny")
+				return
+			pot -= amt
+		"ammo":
+			if weapon_ammo_of(weapon_id) < amt:
+				shoot_cd = 0.3
+				Sfx.play("deny")
+				fx.text(player.global_position + Vector2(0, -22), "EMPTY", Color(1, 0.5, 0.4), 9)
+				return
+			weapon_ammo[weapon_id] = weapon_ammo_of(weapon_id) - amt
+		"nerve":
+			if nerve < amt:
+				shoot_cd = 0.3
+				Sfx.play("deny")
+				return
+			nerve -= amt
+	shoot_cd = float(w["cd"])
+	var up: bool = Input.is_action_pressed("up")
+	var base := Vector2(player.facing, 0.0)
+	if up:
+		base = Vector2(player.facing * 0.5, -0.85).normalized()
+	var origin: Vector2 = player.global_position + Vector2(player.facing * 7.0, -9.0)
+	var arc: float = float(w.get("arc", 0.0))
+	for i in int(w["shots"]):
+		var ang := 0.0
+		if int(w["shots"]) > 1:
+			ang = lerpf(-float(w["spread"]), float(w["spread"]), float(i) / float(int(w["shots"]) - 1))
+		else:
+			ang = rng.randf_range(-float(w["spread"]), float(w["spread"]))
+		var dir := (base + Vector2(0, arc)).normalized().rotated(ang * player.facing) if arc != 0.0 else base.rotated(ang * player.facing)
+		var p = ProjScript.new()
+		p.position = origin
+		p.setup_weapon(w.duplicate(), level, dir * float(w["speed"]) * rng.randf_range(0.92, 1.08))
+		p.material = unshaded
+		world.add_child(p)
+		projectiles.append(p)
+	if w.has("recoil"):
+		player.velocity.x -= player.facing * float(w["recoil"])
+	var snd := "hit" if String(w["shape"]) in ["bullet", "coin"] else "swing"
+	Sfx.play(snd, 1.5 if String(w["shape"]) == "bullet" else 1.2)
+	shake(0.1 if w.has("recoil") else 0.04)
+	fx.burst(origin, 4, Color(w["col"]), 90.0, 0.15, 1.8, 0.0, Vector2(player.facing, 0), 0.6)
+
+
+## Weapon projectile touched something: damage, explode, ricochet.
+func _weapon_proj_step(p) -> void:
+	var w: Dictionary = p.wp
+	var rc: Rect2 = p.rect()
+	var pierce := int(w.get("pierce", 0))
+	var done := false
+	for e in enemies:
+		if not is_instance_valid(e) or not e.alive or p.hit_set.has(e.get_instance_id()):
+			continue
+		if rc.intersects(e.get_rect()):
+			p.hit_set[e.get_instance_id()] = true
+			_weapon_damage_enemy(e, int(w["dmg"]), p.global_position.x, w)
+			if p.hit_set.size() > pierce:
+				done = true
+				break
+	if not done and boss and is_instance_valid(boss) and boss.alive() and not p.hit_set.has(-1) and rc.intersects(boss.get_rect()):
+		p.hit_set[-1] = true
+		var dealt: int = boss.hurt(int(w["dmg"]))
+		if dealt > 0:
+			_boss_hit_fx(dealt, p.global_position)
+		done = p.hit_set.size() > pierce
+	if not done:
+		for pr in props:
+			if is_instance_valid(pr) and not pr.broken and rc.intersects(pr.rect()):
+				_break_prop(pr)
+				done = not w.get("boomerang", false)
+				break
+	if (done or w.get("hit_wall", false)) and w.has("explode"):
+		_weapon_explode(p.global_position, w)
+	if done or w.get("hit_wall", false):
+		fx.burst(p.global_position, 6, Color(w["col"]), 100.0, 0.25, 2.0, 100.0)
+		p.die()
+
+
+func _weapon_damage_enemy(e, dmg: int, from_x: float, w: Dictionary) -> void:
+	if e.hurt(dmg, from_x):
+		_enemy_killed(e)
+		if rng.randf() < 0.35:
+			var ammo_ids := ["card_throw", "dice_bomb", "bottle_toss", "snub", "shotgun"]
+			for oid in owned_weapons:
+				if ammo_ids.has(oid) and rng.randf() < 0.5:
+					weapon_ammo[oid] = mini(int(Weapons.info(oid)["ammo"]), weapon_ammo_of(oid) + int(Weapons.info(oid)["ammo"] * 0.2) + 1)
+					fx.text(e.global_position + Vector2(0, -22), "+AMMO", Color(0.8, 0.9, 1.0), 8)
+					break
+	elif w.has("stun") and e.has_method("stun"):
+		e.stun(float(w["stun"]), from_x)
+	fx.text(e.global_position + Vector2(0, -16), "-%d" % dmg, Color(1, 0.9, 0.5), 9)
+	_add_nerve(6.0)
+	Sfx.play("hit", 1.2)
+	hitstop(0.03)
+
+
+func _weapon_explode(at: Vector2, w: Dictionary) -> void:
+	var r := float(w["explode"])
+	fx.burst(at, 18, Color(1.0, 0.8, 0.4), 160.0, 0.4, 3.0, 60.0)
+	fx.burst(at, 10, Color(w["col"]), 120.0, 0.5, 2.5, 120.0)
+	Sfx.play("slam", 1.4)
+	shake(0.25)
+	for e in enemies:
+		if is_instance_valid(e) and e.alive and e.global_position.distance_to(at) < r + 6.0:
+			_weapon_damage_enemy(e, int(w["dmg"]), at.x, w)
+	if boss and is_instance_valid(boss) and boss.alive() and boss.global_position.distance_to(at) < r + 20.0:
+		var dealt: int = boss.hurt(int(w["dmg"]))
+		if dealt > 0:
+			_boss_hit_fx(dealt, at)
 
 
 func _physics_process(delta: float) -> void:
@@ -1732,6 +1892,9 @@ func _check_world(delta: float) -> void:
 		if not is_instance_valid(p) or not p.alive:
 			continue
 		var prc: Rect2 = p.rect()
+		if p.owner_tag == "weapon":
+			_weapon_proj_step(p)
+			continue
 		if p.owner_tag == "boss" and pr.intersects(prc):
 			if _try_parry(p.global_position):
 				if p.kind != "wave" and boss and is_instance_valid(boss) and boss.alive():
@@ -2036,6 +2199,9 @@ func _on_boss_defeated() -> void:
 	for e in enemies:
 		if is_instance_valid(e) and e.alive:
 			e.kill(0.0)
+	var wdrop: Array = Weapons.ids().filter(func(k): return not owned_weapons.has(k))
+	if not wdrop.is_empty():
+		give_weapon(wdrop[rng.randi_range(0, wdrop.size() - 1)])
 	var drop := _roll_wear(1)
 	if not drop.is_empty():
 		_give_wear(drop[0])
@@ -2766,6 +2932,14 @@ func _build_menu(kind: String, sub_override: String, keep_sel: int) -> void:
 				var wit := _wear_item(wid)
 				wit["disabled"] = pot < int(wit["price"])
 				items.append(wit)
+			if not data.has("arms"):
+				var apool: Array = Weapons.ids().filter(func(k): return not owned_weapons.has(k) or int(Weapons.info(k).get("ammo", 0)) > 0)
+				apool.shuffle()
+				data["arms"] = apool.slice(0, 1)
+			for aid in data["arms"]:
+				var wi: Dictionary = Weapons.info(aid)
+				var wprice := int(round(float(wi["price"]) * 0.8 * _price_mult())) if not owned_weapons.has(aid) else int(round(30 * _price_mult()))
+				items.append({"id": "w:" + aid, "name": String(wi["name"]) + ("" if not owned_weapons.has(aid) else "  AMMO"), "desc": String(wi["desc"]), "tag": "$%d" % wprice, "price": wprice, "col": Color(wi["col"]), "icon": "G", "disabled": pot < wprice})
 			var rr := int(round(20 * (1 + int(data["rerolls"])) * _price_mult()))
 			items.append({"id": "reroll", "name": "REROLL", "desc": "Vera shuffles new charms onto the table.", "tag": "$%d" % rr, "price": rr, "col": Color(0.6, 0.6, 0.7), "icon": "R", "disabled": pot < rr})
 		"pick":
@@ -2882,6 +3056,12 @@ func _menu_result(res: Dictionary) -> void:
 			if pot < price:
 				menu.set_msg("Vera: \"Your Pot's light, sugar.\"", Color(1, 0.5, 0.45))
 				Sfx.play("deny")
+				return
+			if id.begins_with("w:"):
+				pot -= price
+				(menu.data["arms"] as Array).erase(id.substr(2))
+				give_weapon(id.substr(2))
+				_build_menu("shop", "", menu.sel)
 				return
 			if Wardrobe.ITEMS.has(id):
 				pot -= price

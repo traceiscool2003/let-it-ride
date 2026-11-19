@@ -15,7 +15,7 @@ const CYAN := Color(0.45, 0.9, 1.0)
 ## Keyboard actions the player can rebind, with display names.
 const BINDABLE := [
 	["left", "Move Left"], ["right", "Move Right"], ["up", "Up / Interact"], ["down", "Down / Slide"],
-	["jump", "Jump / Confirm"], ["dash", "Air Dash"], ["attack", "Strike"], ["parry", "Parry"], ["focus", "Focus (Heal)"],
+	["jump", "Jump / Confirm"], ["dash", "Air Dash"], ["attack", "Strike"], ["parry", "Parry"], ["focus", "Focus (Heal)"], ["shoot", "Fire Weapon"], ["weapon", "Next Weapon"],
 	["pause", "Pause / Back"], ["restart", "Quick Restart"],
 ]
 

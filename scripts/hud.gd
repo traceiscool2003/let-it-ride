@@ -270,6 +270,16 @@ func _draw_run_hud() -> void:
 	draw_rect(Rect2(nr.position, Vector2(nr.size.x * nf, nr.size.y)), Color(0.4, 0.95, 1.0) if g.nerve >= g.NERVE_COST else Color(0.25, 0.5, 0.65))
 	draw_rect(Rect2(nr.position.x + nr.size.x * (g.NERVE_COST / g.NERVE_MAX) - 1, nr.position.y, 2, nr.size.y), Color(1, 1, 1, 0.6))
 	_txt(Vector2(1000, 42), "NERVE", 12, DIM)
+	var wd: Dictionary = g.Weapons.info(g.weapon_id)
+	var wtxt := String(wd["name"])
+	match String(wd["cost"]):
+		"ammo":
+			wtxt += "  x%d" % g.weapon_ammo_of(g.weapon_id)
+		"pot":
+			wtxt += "  $%d" % int(wd["amt"])
+		"nerve":
+			wtxt += "  %d NERVE" % int(wd["amt"])
+	_txt(Vector2(1040, 42), wtxt, 12, Color(wd["col"]))
 	if g.focus_t > 0.0:
 		draw_rect(Rect2(nr.position + Vector2(0, 12), Vector2(nr.size.x * clampf(g.focus_t / 0.9, 0, 1), 4)), Color(1, 1, 1, 0.9))
 	if g.player and is_instance_valid(g.player):
