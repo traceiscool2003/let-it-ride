@@ -83,7 +83,8 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - Super dash: a Track Jacket
   - Ground pound: Steel-toe Boots
   - Hover or glide: a Silk Scarf
-- [ ] **3. Hollow Knight-style animations:**
+- [x] **3. Hollow Knight-style animations:**
+  - DONE (`player.gd`): run lean, attack windup rock-back + stretch + dust, white hit-flash and hit squash, landing/pound dust. Slash arc, squash/stretch and rig IK were already present.
   - squash and stretch, anticipation frames, a nail-slash arc
   - recoil on hits, hit-flash, landing dust, a run cycle with lean
   - Use the existing `rig.gd`.

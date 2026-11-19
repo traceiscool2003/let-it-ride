@@ -44,6 +44,7 @@ var abil := {"dash": true}
 var worn: Array = []
 var outfit_floor := 1
 var pounding := false
+var hit_flash := 0.0
 var air_jumps := 0
 var dash_cd := 0.0
 var dash_dir := Vector2.RIGHT
@@ -168,6 +169,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	invuln = maxf(0.0, invuln - delta)
+	hit_flash = maxf(0.0, hit_flash - delta)
 	spawn_lock = maxf(0.0, spawn_lock - delta)
 	ledge_cd = maxf(0.0, ledge_cd - delta)
 	slide_cd = maxf(0.0, slide_cd - delta)
@@ -679,7 +681,9 @@ func _start_attack(iy: int) -> void:
 	atk_id += 1
 	if kind == "fwd" and is_on_floor() and state == S.NORMAL:
 		velocity.x += facing * (cfg.finisher_lunge if combo == 2 else 35.0)
-	squash = Vector2(1.15, 0.9) if kind == "fwd" else Vector2(0.9, 1.15)
+	squash = Vector2(1.22, 0.86) if kind == "fwd" else Vector2(0.88, 1.2)
+	if kind == "fwd":
+		_dust(Vector2(global_position.x - facing * 4.0, _bottom()), 2, Vector2(-facing, -0.4), 0.7)
 	Sfx.play("swing", 1.0 + combo * 0.15)
 
 
@@ -764,6 +768,8 @@ func bounce() -> void:
 
 func take_hit(from_x: float) -> void:
 	invuln = 1.2
+	hit_flash = 0.12
+	squash = Vector2(0.7, 1.25)
 	if state == S.SLIDE and _can_stand():
 		_set_body(false)
 	if state != S.SLIDE:
@@ -941,6 +947,12 @@ func _target_pose() -> Array:
 		tp["hand_f"] = sh2 + Vector2(6.0, 0.0)
 		tp["hand_b"] = sh2 + Vector2(5.5, -2.5)
 		rate = 60.0
+	# Hollow Knight-style lean: tilt into the run, flare back when skidding,
+	# and rock back during the attack windup.
+	if state == S.NORMAL and grounded and rot == 0.0:
+		rot = clampf(velocity.x / maxf(1.0, cfg.max_run_speed), -1.2, 1.2) * 0.12
+	if atk_t > 0.0 and atk_kind == "fwd" and atk_t > cfg.attack_time * 0.85:
+		rot -= facing * 0.1
 	return [tp, rate, rot]
 
 
@@ -1015,6 +1027,8 @@ func _draw() -> void:
 
 	rig.draw(self, xf, a)
 	Wardrobe.draw(self, rig, xf, worn, outfit_floor, a)
+	if hit_flash > 0.0:
+		rig.draw_silhouette(self, xf, Color(1, 1, 1, 0.9))
 
 	if flow_ratio > 0.25:
 		draw_set_transform_matrix(xf)
