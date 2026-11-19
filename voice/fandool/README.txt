@@ -22,47 +22,47 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 11 lines:
 
 intro_1.ogg
-    SAY: "Three down, four up. Everything you do is face up, pal."
+    SAY: "Three down, four up. Everything you do is face up, pal. Including the begging."
     HOW: Boss intro cutscene. Menacing. Seven Card Stud themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "The river... wasn't supposed to... bleed."
+    SAY: "The river... wasn't supposed to... bleed. Replay. Please. Slow-mo."
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "Now it's a REAL game!"
+    SAY: "Now it's a REAL game! Strap in, rookie!"
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "FINAL QUARTER! LET'S GOOOOO!"
+    SAY: "FINAL QUARTER! LET'S GOOOOO! Somebody call a timeout on this idiot!"
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Everything's face up, buddy!"
+    SAY: "Everything's face up, buddy! Including your mistakes! Including that haircut!"
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "I've seen your hole cards. They're shaking."
+    SAY: "I've seen your hole cards. They're shaking. They want a trade."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "Replay that! Replay it!"
+    SAY: "Replay that! Replay it! Slow-mo! Look at that guy fall!"
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "Foul! That's a foul!"
+    SAY: "Foul! That's a foul! I'm calling a foul on the whole building!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "REF!"
+    SAY: "REF! REF! I'M BLEEDING, REF!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "Another one bites the dust!"
+    SAY: "Another one bites the dust! Insert horn noise!"
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "Sudden death. For you."
+    SAY: "Sudden death. For you. The commercial break's mine."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 

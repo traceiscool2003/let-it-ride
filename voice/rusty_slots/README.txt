@@ -22,47 +22,47 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 11 lines:
 
 intro_1.ogg
-    SAY: "Pull my arm. Go on. I dare you."
+    SAY: "Pull my arm. Go on. I dare you. I'm a very lonely arm."
     HOW: Boss intro cutscene. Menacing. The Slot Machine themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "Jackpot... for YOU?"
+    SAY: "Jackpot... for YOU? That's... that's the first time. I'm so proud. I'm so sad."
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "JACKPOT. JACKPOT. JACKPOT."
+    SAY: "JACKPOT. JACKPOT. JACKPOT. Please insert your life savings."
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "ERROR. ERROR. LUCKY SEVEN."
+    SAY: "ERROR. ERROR. LUCKY SEVEN. ERROR. YOU ARE A SEVEN. ERROR."
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Insert coin to continue dying."
+    SAY: "Insert coin to continue dying. No coin? Continue dying anyway."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "Spin. Spin. Spin."
+    SAY: "Spin. Spin. Spin. I'm not a machine. I'm an addiction with a handle."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "Pull my arm. Go on. I dare you."
+    SAY: "Pull my arm. Go on. I dare you. It's the only thing I've ever wanted."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "BZZZT. Ow."
+    SAY: "BZZZT. Ow. BZZZT. Is that my arm? Is that YOUR arm?"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "Tilt. Tilt. Tilt."
+    SAY: "Tilt. Tilt. Tilt. Someone call my mother. She's a toaster."
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "Three bars. You lose."
+    SAY: "Three bars. You lose. Three bars. You also lose. Three."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "OUT OF ORDER."
+    SAY: "OUT OF ORDER. OUT OF ORDER. HOPE: OUT OF ORDER."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 

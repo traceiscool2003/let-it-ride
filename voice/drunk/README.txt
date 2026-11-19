@@ -22,90 +22,90 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 22 lines:
 
 bark_1.ogg
-    SAY: "I love you, man. I love everybody!"
+    SAY: "I love you, man. I love everybody! I love that lamp!"
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_2.ogg
-    SAY: "Shhhh. The slot machine is sleeping."
+    SAY: "Shhhh. The slot machine is sleeping. It's had a long night. Bless it."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_3.ogg
-    SAY: "I'm not drunk. The floor is spinning."
+    SAY: "I'm not drunk. The floor is spinning. It's the floor's fault. It's the floor's drinking problem."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_4.ogg
-    SAY: "One more. Just one more. Hic."
+    SAY: "One more. Just one more. Hic. Just one. Then one. Then one more."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_5.ogg
-    SAY: "Where's my wife? Where's my shirt?"
+    SAY: "Where's my wife? Where's my shirt? Where's the wife who owned the shirt?"
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_6.ogg
-    SAY: "I used to be somebody. Now I'm... everybody."
+    SAY: "I used to be somebody. Now I'm... everybody. A group of somebodies. A drunken committee."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_7.ogg
-    SAY: "Cheers! To whatever that was!"
+    SAY: "Cheers! To whatever that was! May it never come back! May it come back with a snack!"
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_8.ogg
-    SAY: "Never bet on red. Always bet on whiskey."
+    SAY: "Never bet on red. Always bet on whiskey. Whiskey's got better odds. Whiskey's got me."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_9.ogg
-    SAY: "I think I'm in the wrong casino."
+    SAY: "I think I'm in the wrong casino. I think I'm in the wrong marriage."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_10.ogg
-    SAY: "I lost my keys. Or my car. Or my wife."
+    SAY: "I lost my keys. Or my car. Or my wife. One of them was in the lake. I think it was the lake."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_11.ogg
-    SAY: "Don't tell my kids. Don't tell my kids' kids."
+    SAY: "Don't tell my kids. Don't tell my kids' kids. Don't tell my kids' kids' accountants."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_12.ogg
-    SAY: "Everything's fine. Fine. FINE."
+    SAY: "Everything's fine. Fine. FINE. Is that a bear? That's a bear. Everything's fine."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 city1_4.ogg
-    SAY: "Saltwater taffy and bad decisions!"
+    SAY: "Saltwater taffy and bad decisions! Both stick to your teeth for years!"
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city1_10.ogg
-    SAY: "This casino was voted 'adequate'."
+    SAY: "This casino was voted 'adequate.' By the casino. At gunpoint."
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city2_4.ogg
-    SAY: "The trapeze is for the high rollers. Literally."
+    SAY: "The trapeze is for the high rollers. Literally. They roll. They fall. We clap."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city2_10.ogg
-    SAY: "Don't take the lion's tickets."
+    SAY: "Don't take the lion's tickets. He has a temper. And a lawyer."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city3_4.ogg
-    SAY: "The drums are for decoration. Mostly."
+    SAY: "The drums are for decoration. Mostly. Also for the cops."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city3_10.ogg
-    SAY: "They serve a burger shaped like an amp."
+    SAY: "They serve a burger shaped like an amp. It's loud. Also lethal."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city4_4.ogg
-    SAY: "I haven't seen daylight since the Clinton administration."
+    SAY: "I haven't seen daylight since the Clinton administration. It's fine. I'm tan from the slots."
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city4_10.ogg
-    SAY: "The nugget in the lobby is fake. So is the man guarding it."
+    SAY: "A note was left at the front desk, handwritten. 'Don't come for me. I'm finally winning.' Looks like a gambler's brother."
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city5_4.ogg
-    SAY: "Everything here costs a hundred dollars. Even the air."
+    SAY: "Everything here costs a hundred dollars. Even the air. Even the apologies."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 
 city5_10.ogg
-    SAY: "I haven't seen my family in six years. The poker's good."
+    SAY: "The House challenged some guy to a hand. Jules is the pot. Pot's a person. Allegedly."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 

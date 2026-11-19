@@ -56,9 +56,9 @@ static func registry() -> Array:
 		var bid: String = d["id"] if d["id"] != "house" else "the_house"
 		var bn: String = d["name"]
 		_add(out, bid, "intro_1", bid, String(d["line_intro"]), bn, "Boss intro cutscene. Menacing. " + String(d["title"]) + " themed.", "Boss intro")
-		_add(out, "rico", "boss_intro_" + bid, "rico", "%s? I've lost bigger pots to dumber tables. Deal me in." % String(d["game"]).capitalize(), "RICO", "Hero cockily answers the boss.", "Boss intro (hero reply)")
+		_add(out, "rico", "boss_intro_" + bid, "rico", String(d.get("rico_intro", "Deal me in.")), "RICO", "Hero cockily answers the boss.", "Boss intro (hero reply)")
 		_add(out, bid, "defeat_1", bid, String(d["line_defeat"]), bn, "Boss defeat. Falling apart.", "Boss defeat")
-		_add(out, "rico", "boss_defeat_" + bid, "rico", "Read 'em and weep, pal.", "RICO", "Hero victory line. Smug.", "Boss defeat (hero reply)")
+		_add(out, "rico", "boss_defeat_" + bid, "rico", String(d.get("rico_defeat", "Read 'em and weep, pal.")), "RICO", "Hero victory line. Smug.", "Boss defeat (hero reply)")
 		var key: String = bid
 		if Misc.BOSS.has(key):
 			var arr3: Array = Misc.BOSS[key]

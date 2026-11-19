@@ -15,7 +15,7 @@ const Art := preload("res://scripts/art.gd")
 const BossDefs := preload("res://scripts/boss_defs.gd")
 ## Signature attacks, unlocked from phase 2.
 const SIGNATURE := {1: "rain", 2: "wheel", 3: "jackpot"}
-const NAMES := [["BIG SAL", "The Pit Boss"], ["MADAME ROULETTE", "The Croupier"], ["THE HOUSE", "Owner of The Pit"]]
+const NAMES := [["THE DEALER", "Table Boss"], ["THE PIT BOSS", "Table Boss"], ["THE HOUSE", "Owner of Everything"]]
 const SCALE := 1.75
 
 var tier := 1

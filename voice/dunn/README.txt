@@ -22,66 +22,66 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 16 lines:
 
 idle_1.ogg
-    SAY: "Sir, you can't do that here."
+    SAY: "Sir, you can't do that here. I don't know what you're doing. But you can't."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_2.ogg
-    SAY: "I'm just doing my job. Which is you."
+    SAY: "I'm just doing my job. Which is you. All of you. Your whole life."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_3.ogg
-    SAY: "Please keep your hands where I can see them. And your chips."
+    SAY: "Please keep your hands where I can see them. And your chips. And your guilt."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_4.ogg
-    SAY: "Management reserves the right to refuse. Everything."
+    SAY: "Management reserves the right to refuse. Everything. Including, today, me."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 greet_1.ogg
-    SAY: "Evening, sir. Behave."
+    SAY: "Evening, sir. Behave. Or whatever the opposite of this is. Behave anyway."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_2.ogg
-    SAY: "ID, please. And your life story."
+    SAY: "ID, please. And your life story. And a character reference. And a note from the House."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_3.ogg
-    SAY: "Move along, citizen. Or stand still. I'm confused."
+    SAY: "Move along, citizen. Or stand still. I'm confused. Pick one. Either."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 farewell_1.ogg
-    SAY: "Have a nice day. Or don't. It's not my department."
+    SAY: "Have a nice day. Or don't. It's not my department. My department is paperwork."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_2.ogg
-    SAY: "Exit's that way. Not that way. That way."
+    SAY: "Exit's that way. Not that way. That way. No, THAT way. That's a window. Oh well."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_3.ogg
-    SAY: "Enjoy your stay. Quietly."
+    SAY: "Enjoy your stay. Quietly. Or loudly. It's not like I'll remember."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 rich_1.ogg
-    SAY: "That's a lot of money, sir. I'll be watching."
+    SAY: "That's a lot of money, sir. I'll be watching. I'll be sweating. I'll be watching."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_2.ogg
-    SAY: "Winning is fine. Winning loudly is a violation."
+    SAY: "Winning is fine. Winning loudly is a violation. Winning while smiling is a felony."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 broke_1.ogg
-    SAY: "No funds? The exit's that way."
+    SAY: "No funds? The exit's that way. The exit's always that way. It's my favorite sentence."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_2.ogg
-    SAY: "Loitering without chips is discouraged."
+    SAY: "Loitering without chips is discouraged. Loitering with chips is slightly less discouraged."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 died_1.ogg
-    SAY: "Sir, you can't die here. It's against policy."
+    SAY: "Sir, you can't die here. It's against policy. Policy 47: 'No dying before nine.'"
     HOW: The player just died.  (NPC talk (died))
 
 boss_1.ogg
-    SAY: "You hit a boss? That's... that's an incident."
+    SAY: "You hit a boss? That's... that's an incident. I'll need a form. And a bandage. For me."
     HOW: The player just beat a boss.  (NPC talk (boss))
 

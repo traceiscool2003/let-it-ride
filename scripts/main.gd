@@ -107,7 +107,7 @@ const SKILLS := [
 ## Playable runners.
 const CHARACTERS := [
 	{"name": "RICO", "desc": "Balanced. Fast hands, faster feet.", "lock": "", "hood": Color(0.30, 0.18, 0.45), "hood_l": Color(0.47, 0.31, 0.64), "speed": 1.0, "hp": 0, "dmg": 0, "flow": 0.0},
-	{"name": "DICE", "desc": "Glass cannon speedster. +12% speed, starts hot, -1 life.", "lock": "Beat Big Sal to unlock.", "hood": Color(0.15, 0.45, 0.55), "hood_l": Color(0.25, 0.65, 0.75), "speed": 1.12, "hp": -1, "dmg": 0, "flow": 40.0},
+	{"name": "DICE", "desc": "Glass cannon speedster. +12% speed, starts hot, -1 life.", "lock": "Beat the first boss to unlock.", "hood": Color(0.15, 0.45, 0.55), "hood_l": Color(0.25, 0.65, 0.75), "speed": 1.12, "hp": -1, "dmg": 0, "flow": 40.0},
 	{"name": "JULES", "desc": "The brother. Heavy hitter: +1 life, +1 damage, a bit slower.", "lock": "Finish the story to unlock.", "hood": Color(0.2, 0.45, 0.3), "hood_l": Color(0.3, 0.6, 0.4), "speed": 0.93, "hp": 1, "dmg": 1, "flow": 0.0},
 ]
 
@@ -118,8 +118,8 @@ const TROPHIES := [
 	{"id": "chain30", "name": "Unbroken", "desc": "Chain 30 moves"},
 	{"id": "parry10", "name": "Iron Wall", "desc": "Parry 10 times in one run"},
 	{"id": "smash25", "name": "Bull In A Casino", "desc": "Smash 25 things in one run"},
-	{"id": "boss1", "name": "Sal's Out", "desc": "Defeat Big Sal"},
-	{"id": "boss2", "name": "Wheel Stops", "desc": "Defeat Madame Roulette"},
+	{"id": "boss1", "name": "Sal's Out", "desc": "Defeat the first boss"},
+	{"id": "boss2", "name": "Wheel Stops", "desc": "Defeat the second boss"},
 	{"id": "boss3", "name": "House Falls", "desc": "Defeat The House"},
 	{"id": "jackpot", "name": "Triple Seven", "desc": "Hit the slot machine jackpot", "secret": true},
 	{"id": "blackjack", "name": "Natural", "desc": "Win with a blackjack"},
@@ -127,7 +127,7 @@ const TROPHIES := [
 	{"id": "greedy", "name": "Should've Banked", "desc": "Bust with $1,000+ at risk", "secret": true},
 	{"id": "drinks", "name": "Regular", "desc": "Buy a drink from Lucky"},
 	{"id": "charms5", "name": "Lucky Charms", "desc": "Hold 5 charms at once"},
-	{"id": "vault", "name": "Safecracker", "desc": "Crack a Vault Door"},
+	{"id": "vault", "name": "Safecracker", "desc": "Crack a Safe Door"},
 	{"id": "bet", "name": "Side Hustle", "desc": "Win a side bet"},
 	{"id": "loan", "name": "Square With Mags", "desc": "Pay back a loan"},
 	{"id": "pet", "name": "Good Kitty", "desc": "Pet Comp the cat"},
@@ -177,7 +177,7 @@ const HUB_KINDS := {
 	"fence": ["THE FENCE  (skill tree)", ""], "daily": ["DAILY DEAL", ""],
 }
 const LOAN_PRINCIPAL := 200
-## Zones of The Pit. Floors 1-4 are the Slot Hall (Big Sal on 4), 5-8 the
+## Zones of the climb. Floors 1-4 are the Slot Hall (Big Sal on 4), 5-8 the
 ## Back Rooms (Madame Roulette on 8), 9-12 the Vault (The House on 12), and
 ## everything below is High Limit.
 const ZONES := [
@@ -205,14 +205,14 @@ const COACH := [
 const BOSS_ARENAS := ["THE HIGH-STAKES ROOM", "THE PRIVATE TABLE", "THE HOUSE'S PENTHOUSE"]
 const LOAD_TIPS := [
 	"Cash out at a door and the money is yours forever. Ride it and the Pot doubles, but so does the risk.",
-	"Watch for the wind-up flash, then PARRY. Parried cards and roulette balls fly back at whoever threw them.",
+	"Watch for the wind-up flash, then PARRY. Parried cards and chips fly back at whoever threw them.",
 	"Chaining moves without touching the ground fills Flow. Higher Flow means every chip is worth more.",
 	"Cracked walls hide stash rooms. Strike them, or dash through with Flow behind you.",
 	"Every slot machine has its own hidden odds. Some are loose. Some are cold. None of them tell you which.",
 	"In Hi-Lo, every right guess climbs the ladder. Walk away before the cards turn on you.",
 	"Video Poker pays best on a Royal Flush. Hold your pairs, chase your flushes.",
 	"Banker wins slightly more often in Baccarat. The House still takes its 5%.",
-	"Vault Doors seal on a timer. Run straight there and press UP for a free charm.",
+	"Safe Doors seal on a timer. Run straight there and press UP for a free charm.",
 	"Mags will lend you $200. Pay her back on time or she swims through the walls to collect.",
 	"Level up to earn SKILL POINTS, then spend them at The Fence in the Lobby.",
 	"Lucky's Shot of Courage gives you an extra life. It's usually cheaper than a bust.",
@@ -953,9 +953,14 @@ func _build_floor() -> void:
 	if not in_hub and state == "play" and not is_boss_floor() and Cities.floor_in_city(floor_num) == (0 if floor_num > 5 else 0) and floor_num <= 25:
 		var cn := Cities.city_of(floor_num) + 1
 		var sid := "city%d_arrive" % cn
+		pstats["max_floor"] = maxi(int(pstats.get("max_floor", 1)), floor_num)
 		if VoiceMisc.SCENES.has(sid):
-			_cinematic_later([{"do": "bars", "v": 1.0}, {"do": "card", "text": String(Cities.info(floor_num)["name"]), "sub": String(Cities.info(floor_num)["full"]), "t": 2.2},
-				{"do": "say", "lines": VoiceMisc.SCENES[sid]}, {"do": "bars", "v": 0.0}], sid)
+			var arrive_steps: Array = [{"do": "bars", "v": 1.0}, {"do": "card", "text": String(Cities.info(floor_num)["name"]), "sub": String(Cities.info(floor_num)["full"]), "t": 2.2},
+				{"do": "say", "lines": VoiceMisc.SCENES[sid]}]
+			if cn == 3:
+				flags["marlow_confessed"] = true   # the mid-game twist: Marlow confesses on reaching Biloxi
+			arrive_steps.append({"do": "bars", "v": 0.0})
+			_cinematic_later(arrive_steps, sid)
 	if is_boss_floor() and state == "play" and not in_hub:
 		var tier: int = boss.tier
 		_tip("boss", "BOSS FLOOR", "The exit stays locked until the boss goes down. Watch for the wind-up, then parry (Q / K) or get out of the way.")
@@ -1972,7 +1977,7 @@ func _check_world(delta: float) -> void:
 				else:
 					e.stun(1.2, player.global_position.x)
 				continue
-			_hurt(e.global_position.x, "Escorted out by security" if e.kind == 0 else ("Bitten by a pit bat" if e.kind == 1 else "Rolled by " + EnemyTypes.name_of(e.kind).to_lower()))
+			_hurt(e.global_position.x, "Escorted out by security" if e.kind == 0 else ("Chewed by a rat" if e.kind == 1 else "Rolled by " + EnemyTypes.name_of(e.kind).to_lower()))
 			if state != "play":
 				return
 	enemies = enemies.filter(func(e): return is_instance_valid(e))
@@ -2358,12 +2363,12 @@ const FIZZ_EFFECTS := {
 
 func boss_intro_lines(def: Dictionary) -> Array:
 	return [[String(def["name"]), String(def["line_intro"])],
-		[HERO_NAME, "%s? I've lost bigger pots to dumber tables. Deal me in." % String(def["game"]).capitalize()]]
+		[HERO_NAME, String(def.get("rico_intro", "Deal me in."))]]
 
 
 func boss_defeat_lines(def: Dictionary) -> Array:
 	return [[String(def["name"]), String(def["line_defeat"])],
-		[HERO_NAME, "Read 'em and weep, pal."]]
+		[HERO_NAME, String(def.get("rico_defeat", "Read 'em and weep, pal."))]]
 
 
 ## Raise: at each phase change you may put chips on the table to multiply damage.
@@ -2433,6 +2438,9 @@ func _on_boss_defeated() -> void:
 		{"do": "pan", "to": boss.global_position + Vector2(0, -20), "zoom": 2.8, "t": 1.0},
 		{"do": "say", "lines": boss_defeat_lines(boss.def)},
 	]
+	var clue_id := "city%d_clue" % (Cities.city_of(floor_num) + 1)
+	if first and tier < 3 and VoiceMisc.SCENES.has(clue_id):
+		steps.append({"do": "say", "lines": VoiceMisc.SCENES[clue_id]})   # the boss drops the clue to Jules
 	if tier == 3:
 		if heat_run >= 5:
 			unlock("heat5")
@@ -2451,9 +2459,9 @@ func _on_boss_defeated() -> void:
 			ending_seen = true
 			flags["ending"] = true
 			steps.append_array([
-				{"do": "card", "text": "THE VAULT OPENS", "sub": "", "t": 2.4},
+				{"do": "card", "text": "THE PENTHOUSE", "sub": "Top of the Bellagiro", "t": 2.4},
 				{"do": "say", "lines": Story.ENDING},
-				{"do": "card", "text": "THE END?", "sub": "Jules is free. The Pit goes deeper. High Roller mode, Table Limits and Jules unlocked.", "t": 5.0},
+				{"do": "card", "text": "THE END?", "sub": "Jules cashed out. The Bellagiro has more floors. High Roller mode, Table Limits and Jules unlocked.", "t": 5.0},
 			])
 	steps.append_array([{"do": "pan", "to": "player", "zoom": cam_zoom, "t": 0.7}, {"do": "bars", "v": 0.0}])
 	_save()
@@ -2767,7 +2775,7 @@ func _nearest_enemy(from: Vector2):
 
 # ================================================================ new systems
 # Everything below was added for the Lobby, reactive dialogue, charms, side
-# bets, Vault Doors, Mags' loans, Losing Tickets, Table Limits, the Daily
+# bets, Safe Doors, Mags' loans, Losing Tickets, Table Limits, the Daily
 # Deal and Assist mode. See GAME_DESIGN.md for the reasoning behind each.
 
 func _load_extra() -> void:
@@ -2905,6 +2913,7 @@ func _dialog_ctx() -> Dictionary:
 	c["runs"] = runs
 	c["boss_tiers"] = mini(3, bosses_beaten / boss_every)
 	c["tickets"] = tickets.size()
+	c["max_city"] = Cities.city_of(int(pstats.get("max_floor", 1))) + 1
 	c["last_cause"] = last_cause if last_cause != "" else String(pstats.get("last_cause", ""))
 	return c
 
@@ -3364,7 +3373,7 @@ func _build_menu(kind: String, sub_override: String, keep_sel: int) -> void:
 		"licenses":
 			title = "VERA'S BACK ROOM"
 			lay = "list"
-			sub = "Wallet: $%d. A licensed charm can drop in the Pit from now on." % wallet
+			sub = "Wallet: $%d. A licensed charm can drop in the casinos from now on." % wallet
 			if flags.has("vera_free"):
 				sub += "  (25% off. You found her Queen.)"
 			for id in Charms.DEFS:
@@ -3565,7 +3574,7 @@ func _menu_result(res: Dictionary) -> void:
 			_save()
 			var keep: int = menu.sel
 			_build_menu("licenses", "", keep)
-			menu.set_msg("%s can drop in the Pit now." % Charms.info(id)["name"], Color(0.6, 1, 0.6))
+			menu.set_msg("%s can drop in the casinos now." % Charms.info(id)["name"], Color(0.6, 1, 0.6))
 		"tickets":
 			pass
 		"stakes":
@@ -3696,7 +3705,7 @@ func _lose_bet() -> void:
 	_bark("bet_lost")
 
 
-# ---------------------------------------------------------------- Vault Doors
+# ---------------------------------------------------------------- Safe Doors
 
 func _tick_vault() -> void:
 	if vault.is_empty() or vault["state"] != "closed":
@@ -3723,7 +3732,7 @@ func _try_vault() -> void:
 			var pos: Vector2 = vault["pos"] + Vector2(0, -16)
 			fx.burst(pos, 26, Color(1, 0.85, 0.35), 160.0, 0.6, 2.5, 200.0)
 			_spawn_loose(pos, [25, 25, 25, 5, 5, 5, 5, 5])
-			charm_queue.append({"pick": charms.roll(rng, 2), "title": "VAULT DOOR"})
+			charm_queue.append({"pick": charms.roll(rng, 2), "title": "SAFE DOOR"})
 			_bark("vault_open", true)
 		"sealed":
 			Sfx.play("deny")
@@ -3846,7 +3855,7 @@ const TIPS := {
 	"slots": ["SLOT MACHINES", "Every machine has its own hidden odds, and they drift. Three of a kind on any line wins a charm."],
 	"vera": ["VERA'S CHARM TABLE", "Buy charms with your Pot. Charms change how you play for the rest of the run."],
 	"bets": ["SIDE BETS", "Pick a challenge for this floor. Pull it off and the stake pays out into your Pot."],
-	"vault": ["VAULT DOOR", "Reach it before the timer (top left) runs out, then press UP to crack it for a free charm."],
+	"vault": ["SAFE DOOR", "Reach it before the timer (top left) runs out, then press UP to crack it for a free charm."],
 	"bar": ["LUCKY'S BAR", "Drinks are paid from your Pot: an extra life, max Flow, or double chips for this floor."],
 	"blackjack": ["BLACKJACK", "Beat the dealer to 21 using chips from your Pot. Double down for one card at twice the bet."],
 	"roulette": ["ROULETTE", "Colors and halves pay x2, dozens x3, one number x36. After any win: Double or Nothing."],
@@ -3896,7 +3905,7 @@ func objective_lines() -> Array:
 	else:
 		out.append("Reach the EXIT door" + ("  (gold diamond on the map)" if exit_seen() else ""))
 	if not vault.is_empty() and vault["state"] == "closed":
-		out.append("Vault Door seals in %ds" % ceili(float(vault["par"]) - floor_t))
+		out.append("Safe Door seals in %ds" % ceili(float(vault["par"]) - floor_t))
 	if not active_bet.is_empty() and not active_bet.get("done", false):
 		var b := ""
 		for sb in SIDE_BETS:
@@ -4107,7 +4116,7 @@ func _intro_steps() -> Array:
 		{"do": "bars", "v": 1.0},
 		{"do": "pan", "to": "exit", "zoom": 2.4, "t": 0.01},
 		{"do": "card", "text": "LET IT RIDE", "sub": "", "t": 2.4},
-		{"do": "card", "text": "THE PIT", "sub": "Five cities. Twenty-five floors. One degenerate gambler.", "t": 3.0},
+		{"do": "card", "text": "FIVE CASINOS", "sub": "Five cities. Twenty-five floors. One brother to win back.", "t": 3.0},
 		{"do": "pan", "to": "player", "zoom": 3.4, "t": 3.0},
 		{"do": "who", "name": "RICO", "role": "THE DEGENERATE", "line": "A degenerate gambler who loves risk. Fast hands, faster mouth, a brother to bring home.", "t": 3.0},
 		{"do": "say", "lines": [I[0], I[1]]},
@@ -4117,13 +4126,13 @@ func _intro_steps() -> Array:
 		{"do": "say", "lines": [I[2]]},
 		{"do": "sfx", "name": "windup"}, {"do": "shake", "v": 0.35},
 		{"do": "pan", "to": "player", "zoom": 2.6, "t": 0.9},
-		{"do": "who", "name": "THE HOUSE", "role": "OWNER OF THE PIT", "line": "Every chip, every floor, every debt. Always listening.", "t": 3.0},
+		{"do": "who", "name": "THE HOUSE", "role": "OWNER OF EVERYTHING", "line": "Every chip, every floor, every debt. Always listening.", "t": 3.0},
 		{"do": "say", "lines": [I[3], I[4], I[5]]},
 		{"do": "pan", "to": "vera", "zoom": 3.6, "t": 1.2},
 		{"do": "who", "name": "VERA", "role": "THE DEALER", "line": "Sells charms that bend the odds. Knows more than she says.", "t": 3.0},
 		{"do": "say", "lines": [Story.CAST["VERA"]]},
 		{"do": "pan", "to": "lucky", "zoom": 3.6, "t": 1.0},
-		{"do": "who", "name": "LUCKY", "role": "THE BARTENDER", "line": "Pours the drinks that keep you breathing down there.", "t": 2.8},
+		{"do": "who", "name": "LUCKY", "role": "THE BARTENDER", "line": "Pours the drinks that keep you breathing up there.", "t": 2.8},
 		{"do": "say", "lines": [Story.CAST["LUCKY"]]},
 		{"do": "pan", "to": "cat", "zoom": 4.0, "t": 0.9},
 		{"do": "who", "name": "COMP", "role": "THE CASINO CAT", "line": "Pet him before a run. He's good luck. Probably.", "t": 2.6},
@@ -4131,7 +4140,7 @@ func _intro_steps() -> Array:
 		{"do": "who", "name": "MARLOW", "role": "THE FIXER", "line": "Your voice on the radio. He got you in. He's keeping you alive.", "t": 3.0},
 		{"do": "say", "lines": [I[6], I[7]]},
 		{"do": "pan", "to": "exit", "zoom": 3.0, "t": 1.6},
-		{"do": "card", "text": "YOUR GOAL", "sub": "Go down. Grab the money. Find Jules.\nAt every door: CASH OUT to keep it, or LET IT RIDE to double it.", "t": 4.0},
+		{"do": "card", "text": "YOUR GOAL", "sub": "Climb five casinos. Get Jules. Try not to bet him.\nAt every door: CASH OUT to keep it, or LET IT RIDE to double it.", "t": 4.0},
 		{"do": "pan", "to": "player", "zoom": 3.0, "t": 1.2},
 		{"do": "card", "text": "CHAPTER ONE", "sub": "THE MARKER", "t": 2.4},
 		{"do": "bars", "v": 0.0},
@@ -4141,7 +4150,7 @@ func _intro_steps() -> Array:
 
 func _after_intro() -> void:
 	_refresh_hub_new()
-	_tip("lobby", "HOME", "You wake up here after every bust. Talk to anyone with a  !  over their head. The DESCEND door on the far right starts a run.")
+	_tip("lobby", "HOME", "You wake up here after every bust. Talk to anyone with a  !  over their head. The front door and the bus stop to Atlantic Shitty start the climb.")
 
 
 # ---------------------------------------------------------------- settings

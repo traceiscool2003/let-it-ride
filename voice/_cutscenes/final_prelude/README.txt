@@ -15,7 +15,7 @@ final_prelude_2.ogg
     SPEAKER: RICO
 
 final_prelude_3.ogg
-    SAY: "Then sit. Hole cards. Flop. Turn. River."
+    SAY: "Then sit. Hole cards. Flop. Turn. River. And the pot, Rico, is your brother."
     HOW: Cutscene: final prelude  (Cutscene final_prelude)
     SPEAKER: THE HOUSE
 

@@ -22,35 +22,35 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 53 lines:
 
 greet_1.ogg
-    SAY: "Kid. Good. You're on time. I hate late."
+    SAY: "Kid. Good. You're on time. I hate late. Late is where the bodies are."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_2.ogg
-    SAY: "I was just counting. Your debt. It's lovely."
+    SAY: "I was just counting. Your debt. It's lovely. It's grown so much. It has your eyes."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_3.ogg
-    SAY: "Sit. No, standing's fine. For now."
+    SAY: "Sit. No, standing's fine. For now. I'm lenient on the first visit."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_4.ogg
-    SAY: "Ah. My favorite investment."
+    SAY: "Ah. My favorite investment. And my favorite mistake. Mostly the first one."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 farewell_1.ogg
-    SAY: "Don't make me swim after you."
+    SAY: "Don't make me swim after you. I just did my hair. Well. The scalp."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_2.ogg
-    SAY: "I'll see you soon. You'll see me sooner."
+    SAY: "I'll see you soon. You'll see me sooner. That's just physics."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_3.ogg
-    SAY: "Pay me. Or I'll collect. Ha. No, really."
+    SAY: "Pay me. Or I'll collect. Ha. No, really. Ha."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_4.ogg
-    SAY: "Be careful out there. It would be a waste."
+    SAY: "Be careful out there. It would be a waste. Of my time. Mostly of my time."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 rich_1.ogg
@@ -58,19 +58,19 @@ rich_1.ogg
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_2.ogg
-    SAY: "A big pot. A bigger interest."
+    SAY: "A big pot. A bigger interest. A biggest me."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_3.ogg
-    SAY: "You can afford to pay me early. You won't. But you can."
+    SAY: "You can afford to pay me early. You won't. But you can. That's the spirit I love in you: none."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_4.ogg
-    SAY: "Money. My favorite chewable."
+    SAY: "Money. My favorite chewable. Tastes like retirement."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 broke_1.ogg
-    SAY: "Broke? I'll float you. A shark takes care of its fish."
+    SAY: "Broke? I'll float you. A shark takes care of its fish. Briefly. Then, dinner."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_2.ogg
@@ -78,31 +78,31 @@ broke_2.ogg
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_3.ogg
-    SAY: "I never judge. I just remember."
+    SAY: "I never judge. I just remember. Every dollar. Every missed call. Every pet name."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_4.ogg
-    SAY: "A loan keeps the family together. My family."
+    SAY: "A loan keeps the family together. My family. Yours is optional."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 ugly_1.ogg
-    SAY: "That outfit is a loan officer's nightmare."
+    SAY: "That outfit is a loan officer's nightmare. I want it framed."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_2.ogg
-    SAY: "I'd lend you a suit. Interest only."
+    SAY: "I'd lend you a suit. Interest only. Forever. Look at the cuffs, they're already forever."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_3.ogg
-    SAY: "Is that a fanny pack? I'm calling your mother."
+    SAY: "Is that a fanny pack? I'm calling your mother. I'm calling all your mothers."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_4.ogg
-    SAY: "I've collected from better dressed corpses."
+    SAY: "I've collected from better dressed corpses. Not by much. They were better dressed by a lot."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 sharp_1.ogg
-    SAY: "Nice suit. It looks expensive. I know whose."
+    SAY: "Nice suit. It looks expensive. I know whose. It's mine. You're wearing my money."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_2.ogg
@@ -110,83 +110,83 @@ sharp_2.ogg
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_3.ogg
-    SAY: "That's a lot of money on your back. I'll take a cut."
+    SAY: "That's a lot of money on your back. I'll take a cut. Of the back."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_4.ogg
-    SAY: "Now you look like a lender. Good news: you're not."
+    SAY: "Now you look like a lender. Good news: you're not. Better news: neither am I. I'm a relationship."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 died_1.ogg
-    SAY: "You died. I'm adding that to the interest."
+    SAY: "You died. I'm adding that to the interest. Death's a surcharge."
     HOW: The player just died.  (NPC talk (died))
 
 died_2.ogg
-    SAY: "No refunds in the afterlife."
+    SAY: "No refunds in the afterlife. I'd know. I've got a branch there."
     HOW: The player just died.  (NPC talk (died))
 
 died_3.ogg
-    SAY: "Dead men don't pay. But they do borrow."
+    SAY: "Dead men don't pay. But they do borrow. I've seen it. It's a whole thing."
     HOW: The player just died.  (NPC talk (died))
 
 died_4.ogg
-    SAY: "Death is just a late payment."
+    SAY: "Death is just a late payment. Of a different sort. Both lead to me."
     HOW: The player just died.  (NPC talk (died))
 
 boss_1.ogg
-    SAY: "A boss? Their debt belongs to me now."
+    SAY: "A boss? Their debt belongs to me now. Their dog too. I don't want the dog."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_2.ogg
-    SAY: "Take your spoils. I take my share."
+    SAY: "Take your spoils. I take my share. We call it a share. The law calls it something else."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_3.ogg
-    SAY: "Winning's expensive. Let me carry it."
+    SAY: "Winning's expensive. Let me carry it. In my teeth."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_4.ogg
-    SAY: "You beat the boss. Now beat the interest."
+    SAY: "You beat the boss. Now beat the interest. Good luck. Nobody has. Not even me."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 idle_1.ogg
-    SAY: "Interest compounds. So does my patience."
+    SAY: "Don't think of it as debt, sweetie. Think of it as a relationship."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_2.ogg
-    SAY: "I like you. That's the problem."
+    SAY: "I like you. That's the problem. I like everything I eat."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_3.ogg
-    SAY: "Everybody owes somebody. I just own the paperwork."
+    SAY: "Everybody owes somebody. I just own the paperwork. And the walls. And the floor."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_4.ogg
-    SAY: "I swim every day. Just in case."
+    SAY: "I swim every day. Just in case. In case of you."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 buy_1.ogg
-    SAY: "Sign here. And here. And... there."
+    SAY: "Sign here. And here. And... there. Don't read it. Nobody reads it. Nobody lives."
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_2.ogg
-    SAY: "A pleasure. I'll bill you later."
+    SAY: "A pleasure. I'll bill you later. And later. And now, actually. Now I billed you."
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_3.ogg
-    SAY: "Smart. Debt is just future money you spent early."
+    SAY: "Smart. Debt is just future money you spent early. Think of it as time travel with teeth."
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_4.ogg
-    SAY: "No refunds. No regrets. Some regrets."
+    SAY: "No refunds. No regrets. Some regrets. Almost all regrets. They're yours."
     HOW: The player just bought something.  (NPC talk (buy))
 
 mags_intro_1.ogg
-    SAY: "Name's Mags. I hold the Markers at the door, and yours says the House owns your bones until you settle up."
+    SAY: "Name's Mags. I hold the Markers at the door, and yours says The House owns your bones until you settle up."
     HOW: Conversation: mags_intro  (Lobby conversation)
 
 mags_intro_2.ogg
-    SAY: "Short on chips? I lend. Two hundred now, three hundred back by the end of floor three."
+    SAY: "Short on chips? I lend. Two hundred now, three hundred back by the end of floor three. It's a friendship with numbers."
     HOW: Conversation: mags_intro  (Lobby conversation)
 
 mags_intro_3.ogg
@@ -194,19 +194,19 @@ mags_intro_3.ogg
     HOW: Conversation: mags_intro  (Lobby conversation)
 
 mags_intro_5.ogg
-    SAY: "And you're a runner with no money. We all have our problems."
+    SAY: "And you're a runner with no money. We all have our problems. Mine are on your wrist."
     HOW: Conversation: mags_intro  (Lobby conversation)
 
 mags_repaid_1.ogg
-    SAY: "You paid me back on time. Respect. You'd be amazed how few do."
+    SAY: "You paid me back on time. Respect. You'd be amazed how few do. Most of them are in the aquarium."
     HOW: Conversation: mags_repaid  (Lobby conversation)
 
 mags_default_1.ogg
-    SAY: "About that chase. Nothing personal. Interest isn't personal, kid. It's just math with teeth."
+    SAY: "About that chase. Nothing personal. Interest isn't personal, kid. It's just math with teeth. And, tonight, a little fin."
     HOW: Conversation: mags_default  (Lobby conversation)
 
 mags_big_loss_1.ogg
-    SAY: "Saw you drop a thousand at the door. If you'd banked that, you'd have... well. You know what you'd have."
+    SAY: "Saw you drop a thousand at the door. If you'd banked that, you'd have... well. You'd have me. Nodding. Slowly."
     HOW: Conversation: mags_big_loss  (Lobby conversation)
 
 mags_rates_1.ogg
@@ -214,22 +214,22 @@ mags_rates_1.ogg
     HOW: Conversation: mags_rates  (Lobby conversation)
 
 mags_rates_2.ogg
-    SAY: "Even I think that's ugly. And I'm a loan shark. Literally."
+    SAY: "Even I think that's ugly. And I'm a loan shark. Literally. It says so on the jacket."
     HOW: Conversation: mags_rates  (Lobby conversation)
 
 mags_ending_1.ogg
-    SAY: "You beat the House and it's still standing. That's interest for you, kid. It keeps things alive."
+    SAY: "You beat The House and it's still standing. That's interest for you, kid. It keeps things alive. Like a bad marriage."
     HOW: Conversation: mags_ending  (Lobby conversation)
 
 mags_rep1_1.ogg
-    SAY: "Borrow smart. Ride dumb. That's a joke. Don't do that."
+    SAY: "Borrow smart. Ride dumb. That's a joke. Don't do that. That's also a joke. Pay up."
     HOW: Conversation: mags_rep1  (Lobby conversation)
 
 mags_rep2_1.ogg
-    SAY: "My rates are fair. The House's rates are a crime. I would know."
+    SAY: "My rates are fair. The House's rates are a crime. I would know. I'm a connoisseur."
     HOW: Conversation: mags_rep2  (Lobby conversation)
 
 mags_rep3_1.ogg
-    SAY: "A shark has to keep swimming. So do you."
+    SAY: "A shark has to keep swimming. So do you. It's a threat. It's also a life tip."
     HOW: Conversation: mags_rep3  (Lobby conversation)
 

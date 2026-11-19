@@ -21,7 +21,7 @@ Pitch numbers are semitones; EQ numbers are dB.
 | Mouth tricks | smile while you talk, lazy 'dese' and 'dose' |
 | Acting tip | Grin the whole time. Every line is a bet you already placed. |
 | In-engine filter | pitch +0 st, EQ low +0 / mid +2 / high +1 dB, distortion 0%, reverb 5%, chorus 0% |
-| Lines to record | 89 (folder `voice/rico/`) |
+| Lines to record | 100 (folder `voice/rico/`) |
 
 ## MARLOW
 > "Don't you dare quit now."
@@ -40,7 +40,7 @@ Pitch numbers are semitones; EQ numbers are dB.
 | Mouth tricks | slight rasp, talk through your nose a little |
 | Acting tip | Hold the phone away and sigh before the line. |
 | In-engine filter | pitch -2 st, EQ low -3 / mid +4 / high -6 dB, distortion 35%, reverb 0%, chorus 0% |
-| Lines to record | 87 (folder `voice/marlow/`) |
+| Lines to record | 97 (folder `voice/marlow/`) |
 
 ## VERA
 > "Bring me something shiny, sugar."
@@ -116,7 +116,7 @@ Pitch numbers are semitones; EQ numbers are dB.
 | Mouth tricks | dry mouth, crack on the high words |
 | Acting tip | Whisper like you have not slept since Tuesday. |
 | In-engine filter | pitch +0 st, EQ low -2 / mid +2 / high -1 dB, distortion 0%, reverb 30%, chorus 0% |
-| Lines to record | 47 (folder `voice/jules/`) |
+| Lines to record | 48 (folder `voice/jules/`) |
 
 ## COMP
 > "Mrrrow."
@@ -498,7 +498,7 @@ Pitch numbers are semitones; EQ numbers are dB.
 | In-engine filter | pitch +1 st, EQ low -4 / mid +5 / high +3 dB, distortion 50%, reverb 10%, chorus 50% |
 | Lines to record | 11 (folder `voice/rusty_slots/`) |
 
-## MR. LUCKY
+## KENO KEVIN
 > "Pick eighty numbers. You'll hit none."
 
 **Role:** Secret boss: Keno. Everyone's lucky charm.
@@ -629,5 +629,5 @@ Pitch numbers are semitones; EQ numbers are dB.
 | Mouth tricks | talk out of the side of your mouth |
 | Acting tip | Everything is an offer. Everything is urgent. |
 | In-engine filter | pitch +1 st, EQ low -1 / mid +2 / high +1 dB, distortion 0%, reverb 10%, chorus 0% |
-| Lines to record | 22 (folder `voice/hustler/`) |
+| Lines to record | 23 (folder `voice/hustler/`) |
 

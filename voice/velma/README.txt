@@ -22,66 +22,66 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 16 lines:
 
 idle_1.ogg
-    SAY: "Honey, I've lost more than you've bet."
+    SAY: "Honey, I've lost more than you've bet. And I got a standing ovation."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_2.ogg
-    SAY: "This next one's for the broken-hearted. And the broke."
+    SAY: "This next one's for the broken-hearted. And the broke. And the broken-hearted broke. Table four."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_3.ogg
-    SAY: "Dim the lights. The odds are shy."
+    SAY: "Dim the lights. The odds are shy. So is my husband. He's in a trunk."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_4.ogg
-    SAY: "Last call for love. Everything's last call."
+    SAY: "Last call for love. Everything's last call. Except the ones with a lawyer."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 greet_1.ogg
-    SAY: "Evening, sugar. Pull up a shadow."
+    SAY: "Evening, sugar. Pull up a shadow. They're cheaper than chairs."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_2.ogg
-    SAY: "You look like a song I forgot the end of."
+    SAY: "You look like a song I forgot the end of. A sad one. In a minor key. Mostly a minor key."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_3.ogg
-    SAY: "Take a seat. Take a chance. Take a breath."
+    SAY: "Take a seat. Take a chance. Take a breath. Not all three. You'll pass out."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 farewell_1.ogg
-    SAY: "Don't be a stranger. Be a legend."
+    SAY: "Don't be a stranger. Be a legend. Or a stranger with a legend. I'm not picky."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_2.ogg
-    SAY: "The stage'll be here. So will I."
+    SAY: "The stage'll be here. So will I. So will the debt."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_3.ogg
-    SAY: "Go. Win something. Lose something prettier."
+    SAY: "Go. Win something. Lose something prettier. Bring a hat."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 rich_1.ogg
-    SAY: "Oh, you're in the money. Sing with me."
+    SAY: "Oh, you're in the money. Sing with me. I'll do the money. You do the dying."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_2.ogg
-    SAY: "Diamonds are a girl's best chips."
+    SAY: "Diamonds are a girl's best chips. Chips are a girl's best diamonds. Hand them over."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 broke_1.ogg
-    SAY: "Broke and brave. My favorite lyric."
+    SAY: "Broke and brave. My favorite lyric. It rhymes with 'sleep outside.'"
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_2.ogg
-    SAY: "Come sit. The blues are free."
+    SAY: "Come sit. The blues are free. It's the encore that costs."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 died_1.ogg
-    SAY: "I wrote a song about you. It's mostly a sigh."
+    SAY: "I wrote a song about you. It's mostly a sigh. With a bridge. The bridge is you, falling off one."
     HOW: The player just died.  (NPC talk (died))
 
 boss_1.ogg
-    SAY: "I'll sing about that one. Twice."
+    SAY: "I'll sing about that one. Twice. Once for the win, once for the funeral."
     HOW: The player just beat a boss.  (NPC talk (boss))
 

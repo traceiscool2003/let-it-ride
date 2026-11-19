@@ -362,7 +362,8 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
 # PART 4 (added 2026-11-19): comedy pass on every line
 `scripts/voice_studio.gd`, `tools/gen_all_lines.gd` and `voice/ALL_LINES.md` (the F6 in-game recording studio and the master list) were built in a LOCAL session. You may regenerate `ALL_LINES.md` with the tool, but don't restructure the studio.
 
-- [ ] **51. Make every voice line genuinely funny: dark humor that makes people laugh out loud.**
+- [x] **51. Make every voice line genuinely funny: dark humor that makes people laugh out loud.**
+  - DONE (2026-11-19 run 3): rewrote all voice pools (`voice_lines_main/misc.gd`), `story.gd` (new INTRO/ENDING/TRUE_ENDING/quips/whispers, `STORY_SO_FAR`), `dialogue.gd` (conversations, PA barks, tickets), per-boss `rico_intro`/`rico_defeat` in `boss_defs.gd`; all existing line ids kept (25 new ids: city1-4 `_clue` scenes + longer arrival/ending scenes). Story: city beats in `SCENES` (`city1-5_arrive`, `city1-4_clue` after each boss); Marlow's confession fires on first arrival at Biloxi (flag `marlow_confessed` set in `main`, follow-up conversation needs `max_city>=3`); Big Sal/Madame Roulette/DESCEND/underground wording removed; Mr. Lucky renamed KENO KEVIN (id `mr_lucky` kept); pause menu shows STORY SO FAR (`hud._draw_pause`, `Story.STORY_SO_FAR`); 'Vault Door' renamed 'Safe Door' in UI. Regenerated kit with `tools/gen_voice_kit.gd` + `gen_all_lines.gd`, but merged only changed line text back so the local session's grunt/studio sections in HOW_TO_RECORD.md, VOICE_SCRIPT.md and voice READMEs are intact (the generator would otherwise drop them). Tests: parse, smoke, systems, casino, boss, roster, voice, studio pass. Not checked by ear/eye (no display this run).
   - The user hasn't recorded yet, so do this BEFORE they start. KEEP every line id (`greet_1`, and so on) so the studio and files still match. Only change the text and the "how to say it" notes.
   - **Voice:** Rico is a self-destructive degenerate gambler who is weirdly proud of it. Lean into gallows humor about debt, losing, bad decisions, addiction-as-personality, near-death and The House's corporate cruelty.
     - Comedy styles to draw on: deadpan, absurd escalation, callbacks, rule-of-three, punchy one-liners, characters roasting Rico.
@@ -442,3 +443,5 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
 - MAGS: "Don't think of it as debt, sweetie. Think of it as a relationship."
 - DOC FIZZ: "Side effects include luck, death, and a strong opinion about jazz."
 - MARLOW: "Good news, Jules is alive. Bad news, he's in Reno."
+
+- **2026-11-19 (run 3, scheduled):** Finished item 51 (comedy + story pass). Everything in Parts 1-4 is now [x]. NOTE: gen_voice_kit.gd overwrites HOW_TO_RECORD.md, VOICE_SCRIPT.md and voice READMEs and drops the local grunt/studio sections; merge line changes only if you rerun it. Next: playtest, record voices.

@@ -22,11 +22,11 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 22 lines:
 
 bark_1.ogg
-    SAY: "Place your bets."
+    SAY: "Place your bets. Place them quietly. Place them with remorse."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_2.ogg
-    SAY: "Cards on the table. Hands where I can see 'em."
+    SAY: "Cards on the table. Hands where I can see 'em. Heart where I can step on it."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_3.ogg
@@ -34,78 +34,78 @@ bark_3.ogg
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_4.ogg
-    SAY: "Watch your chips, sir."
+    SAY: "Watch your chips, sir. They're the only thing here that loves you. And they're leaving."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_5.ogg
-    SAY: "That's a violation. And a threat."
+    SAY: "That's a violation. And a threat. And a Tuesday."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_6.ogg
-    SAY: "Pit to floor, we have a loser."
+    SAY: "Pit to floor, we have a loser. Repeat: a loser. Bring a mop."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_7.ogg
-    SAY: "Please keep the noise to a minimum."
+    SAY: "Please keep the noise to a minimum. The losing should be silent."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_8.ogg
-    SAY: "That table's closed. Permanently."
+    SAY: "That table's closed. Permanently. We had an incident. It's a shrine now."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_9.ogg
-    SAY: "The House appreciates your patronage."
+    SAY: "The House appreciates your patronage. And your kneecaps. Thank you for both."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_10.ogg
-    SAY: "All bets are final. Unlike your life."
+    SAY: "All bets are final. Unlike your life. That has a rematch clause."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_11.ogg
-    SAY: "Don't make me call the floor."
+    SAY: "Don't make me call the floor. The floor's already here. It's under you."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_12.ogg
-    SAY: "Sir, that was a poor decision."
+    SAY: "Sir, that was a poor decision. Well, it was poor. It was also a decision. Don't get cocky."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 city1_3.ogg
-    SAY: "I lost my retirement on a slot shaped like a lobster."
+    SAY: "I lost my retirement on a slot shaped like a lobster. The lobster won."
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city1_9.ogg
-    SAY: "A mascot ate my sandwich."
+    SAY: "A mascot ate my sandwich. The mascot's a crab. The crab was on a break."
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city2_3.ogg
-    SAY: "I lost a bet to a juggler."
+    SAY: "I lost a bet to a juggler. He was juggling my kidneys. Allegedly."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city2_9.ogg
-    SAY: "The cotton candy is a lie."
+    SAY: "The cotton candy is a lie. It's insulation. We eat it anyway."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city3_3.ogg
-    SAY: "I paid fifteen bucks for a pick. I don't play."
+    SAY: "I paid fifteen bucks for a pick. I don't play. I don't know what it is. I wear it as a hat."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city3_9.ogg
-    SAY: "Rock and roll never dies. My bankroll did."
+    SAY: "Rock and roll never dies. My bankroll did. At the show."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city4_3.ogg
-    SAY: "Gold! Everything's gold! Even the toilets!"
+    SAY: "Gold! Everything's gold! Even the toilets! Even the plumbing! Even the sadness!"
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city4_9.ogg
-    SAY: "Welcome to the old days. They weren't better."
+    SAY: "Welcome to the old days. They weren't better. They were just louder. And more flammable."
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city5_3.ogg
-    SAY: "I lost a diamond ring on a hand of blackjack."
+    SAY: "I lost a diamond ring on a hand of blackjack. Technically I lost the hand. The ring just fell off."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 
 city5_9.ogg
-    SAY: "Welcome to the top. It's lonely."
+    SAY: "Welcome to the top. It's lonely. The elevator also stinks."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 

@@ -64,7 +64,7 @@ func _process(_d: float) -> bool:
 		v.set_filters(false)
 		v.set_filters(true)
 		check(v.speak("RICO", "Let it ride, baby!") == 0.0, "no file -> fallback blips")
-	var e0: Dictionary = VL.lookup("MARLOW", "Rico! You picked up. So the rumors are true: the House doesn't let debtors die down there.")
+	var e0: Dictionary = VL.lookup("MARLOW", "Rico! You picked up. So the rumors are true: The House doesn't let debtors die. It just sends them home with a bigger bill.")
 	check(not e0.is_empty() and e0["id"] == "marlow_intro_1", "dialogue line resolves to marlow_intro_1")
 	print("voice test: ", fails, " failed")
 	quit(1 if fails > 0 else 0)

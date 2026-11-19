@@ -22,47 +22,47 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 11 lines:
 
 intro_1.ogg
-    SAY: "Dealer stands on 17. I never stand. Not for you."
+    SAY: "Dealer stands on 17. I never stand. Not for you. Not for the Senate."
     HOW: Boss intro cutscene. Menacing. Blackjack themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "Twenty-two. I busted. How embarrassing."
+    SAY: "Twenty-two. I busted. How embarrassing. Rome fell on a bad hit."
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "You have wounded Caesar. Splendid."
+    SAY: "You have wounded Caesar. Splendid. I shall stab you later. In the Senate."
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "THIS IS THE END OF THE EMPIRE!"
+    SAY: "THIS IS THE END OF THE EMPIRE! AND THE START OF A BETTER BUFFET!"
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Dealer stands. YOU do not."
+    SAY: "Dealer stands. YOU do not. You will lie down. Like a Roman. Dead."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "I'd hit you on 16."
+    SAY: "I'd hit you on 16. And on 17. And on a Friday."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "Et tu, gambler?"
+    SAY: "Et tu, gambler? Et tu? Et DOUBLE-DOWN, brute!"
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "A mere scratch on the marble!"
+    SAY: "A mere scratch on the marble! Marble's expensive. I'm taking it out of your hide!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "By Jupiter!"
+    SAY: "By Jupiter! By Juno! By whoever I owe money to!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "Veni, vidi, bust."
+    SAY: "Veni, vidi, bust. You came, you saw, you busted. I'll write it on a tablet. A tablet computer."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "Hail, Caesar. And farewell."
+    SAY: "Hail, Caesar. And farewell. Hail is complimentary. Farewell costs extra."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 

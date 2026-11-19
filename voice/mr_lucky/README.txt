@@ -1,4 +1,4 @@
-VOICE FOLDER: MR. LUCKY  (mr_lucky)
+VOICE FOLDER: KENO KEVIN  (mr_lucky)
 Secret boss: Keno. Everyone's lucky charm.
 
 HOW TO PERFORM: Pick eighty numbers. You'll hit none.
@@ -22,47 +22,47 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 11 lines:
 
 intro_1.ogg
-    SAY: "Pick eighty numbers. You'll hit none. I'm Mr. Lucky."
+    SAY: "Pick eighty numbers. You'll hit none. I'm Keno Kevin. Welcome. Please don't pick Kevin."
     HOW: Boss intro cutscene. Menacing. Keno themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "Eighty out of eighty... how?"
+    SAY: "Eighty out of eighty... how? How? That's not even possible. I'm Kevin. I'm unlucky. I'm Keno."
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "My, my. You ARE lucky."
+    SAY: "My, my. You ARE lucky. Statistically unnerving. Please stop."
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "Now, now. Pick a number. Any number. Wrong."
+    SAY: "Now, now. Pick a number. Any number. Wrong. I'm a little hurt."
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Pick eighty numbers. Hit none."
+    SAY: "Pick eighty numbers. Hit none. I've done the math. Your odds are 'sorry.'"
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "Luck is just a lie told by the winning."
+    SAY: "Luck is just a lie told by the winning. I'm a very honest liar."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "Are you having fun? You will."
+    SAY: "Are you having fun? You will. Fun's a lottery. Of pain."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "Ow! Oh dear."
+    SAY: "Ow! Oh dear. I'm a very fragile gentleman."
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "That was unkind."
+    SAY: "That was unkind. I shall mention it. To someone. I'm a ghost, but still."
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "Never lucky. Always careful."
+    SAY: "Never lucky. Always careful. Careful is just luck's older, scarier brother."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "Better luck next time. Always."
+    SAY: "Better luck next time. Always. That's the slogan. Print it on the casket."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 

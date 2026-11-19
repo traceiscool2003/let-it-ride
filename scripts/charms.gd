@@ -1,7 +1,7 @@
 extends RefCounted
 ## Charms: run-long modifiers, the game's answer to Balatro's Jokers.
 ## You hold up to `max_slots`. They come from slot machines, Vera's table,
-## Vault Doors and bosses.
+## Safe Doors and bosses.
 ##
 ## Every number a charm can change goes through one of the functions below
 ## (chip_value, cash_out, flow_drain_mult, ...), so charms stack and multiply.

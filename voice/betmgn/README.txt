@@ -22,47 +22,47 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 11 lines:
 
 intro_1.ogg
-    SAY: "Three cards. Ante up. Quick, it's over fast."
+    SAY: "Three cards. Ante up. Quick, it's over fast. Like your marriage."
     HOW: Boss intro cutscene. Menacing. Three Card Poker themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "Queen high... of course."
+    SAY: "Queen high... of course. I had the commission. I HAD the commission."
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "Alright, let's raise the ante."
+    SAY: "Alright, let's raise the ante. The ante's your dignity."
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "Three cards. Three seconds. You're done."
+    SAY: "Three cards. Three seconds. You're done. The clock's mine."
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Pair plus? Pair minus."
+    SAY: "Pair plus? Pair minus. You owe me a pair. Of kneecaps."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "Ante up, folks!"
+    SAY: "Ante up, folks! The ante is everything! The ante is also my yacht!"
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "That's a Straight Flush of bad ideas."
+    SAY: "That's a Straight Flush of bad ideas. A royal one."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "Ouch! That's a bad beat!"
+    SAY: "Ouch! That's a bad beat! Where do I file a complaint?!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "No no no, my commission!"
+    SAY: "No no no, my commission! That's MY commission!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "Quick, wasn't it?"
+    SAY: "Quick, wasn't it? The house edge says hi. It also says 'bye.'"
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "The house edge says hi."
+    SAY: "The house edge says hi. It's always the house edge. That's the pitch."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 

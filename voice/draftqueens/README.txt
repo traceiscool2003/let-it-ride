@@ -22,47 +22,47 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 11 lines:
 
 intro_1.ogg
-    SAY: "Five cards. Discard what you don't like. I'll start with YOU."
+    SAY: "Five cards. Discard what you don't like. I'll start with your face."
     HOW: Boss intro cutscene. Menacing. Five Card Draw themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "A... pat hand. I had a pat hand."
+    SAY: "A... pat hand. I had a pat hand. And a fantasy league. Gone."
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "Discard? Honey, I'm just getting started."
+    SAY: "Discard? Honey, I'm just getting started. And I'm drafting YOU."
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "Oh, now it's personal. Five of a kind, bitch."
+    SAY: "Oh, now it's personal. Full house, sweetie. My lineup, my rules, your funeral."
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Is that the best you can draw?"
+    SAY: "Is that the best you can draw? My fantasy team would roast you."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "I read you at the flop. You looked boring."
+    SAY: "I read you at the flop. You looked boring. Still do."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "Cards don't lie. Neither does my eyeliner."
+    SAY: "Cards don't lie. Neither does my eyeliner. Both are perfect."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "Ow! That's a three-hundred-dollar blazer!"
+    SAY: "Ow! That's a three-hundred-dollar blazer! Also my face!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "Not the hair!"
+    SAY: "Not the hair! My hair has a better record than your whole bloodline!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "Better luck next time, sweetie."
+    SAY: "Better luck next season, sweetie."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "That's a fold. Pack it up."
+    SAY: "That's a fold. Pack it up. We'll draft you next year."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 

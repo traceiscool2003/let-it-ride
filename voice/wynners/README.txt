@@ -26,43 +26,43 @@ intro_1.ogg
     HOW: Boss intro cutscene. Menacing. Baccarat themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "Natural nine... and still I fall."
+    SAY: "Natural nine... and still I fall. The Circle breaks. How gauche."
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "A natural eight. Perhaps it's your turn."
+    SAY: "A natural eight. Perhaps it's your turn. Perhaps it's mine. It's mine."
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "Banker. Player. Tie. Doom."
+    SAY: "Banker. Player. Tie. Doom. Doom always beats the other three."
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "The shoe is cold. The room is colder."
+    SAY: "The shoe is cold. The room is colder. My heart is a fridge."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "Place your bets on the inevitable."
+    SAY: "Place your bets on the inevitable. The inevitable has a 1.06% house edge."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "Pinky out, darling. This will hurt."
+    SAY: "Pinky out, darling. This will hurt. Mostly your pride. Also your ribs."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "How... rude."
+    SAY: "How... rude. I shall tell my aunts."
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "Mon Dieu."
+    SAY: "Mon Dieu. Mon Dieu, that's a lot of blood on the baize."
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "The Circle closes. Again."
+    SAY: "The Circle closes. Again. It always closes. On you. With a click."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "Adieu."
+    SAY: "Adieu. Un-adieu. Bonne chance in the next life. You'll need it."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 

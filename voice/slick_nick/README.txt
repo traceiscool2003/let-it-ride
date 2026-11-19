@@ -22,70 +22,70 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 17 lines:
 
 idle_1.ogg
-    SAY: "I'm smarter than you and twice as handsome."
+    SAY: "I'm smarter than you and twice as handsome. Your brother had the third thing. Ha. Debt."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_2.ogg
-    SAY: "Luck? I don't need luck. I have hair."
+    SAY: "Luck? I don't need luck. I have hair. And a trust fund. And hair."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_3.ogg
-    SAY: "I read the odds. And then I rewrite them."
+    SAY: "I read the odds. And then I rewrite them. In crayon."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_4.ogg
-    SAY: "Don't take it personally. Take it to the bank."
+    SAY: "Don't take it personally. Take it to the bank. They'll laugh. In your face. Take it anyway."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 greet_1.ogg
-    SAY: "Well, well. If it isn't my favorite sucker."
+    SAY: "Well, well. If it isn't my favorite sucker. Wait, you're the only one. Wow, dismal."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_2.ogg
-    SAY: "Ah, the other gambler. Cute."
+    SAY: "Ah, the other gambler. Cute. Like a puppy. A puppy with a Marker."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_3.ogg
-    SAY: "Looking for a rival? You found one. I'm excellent."
+    SAY: "Looking for a rival? You found one. I'm excellent. Also: expensive."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 farewell_1.ogg
-    SAY: "Don't lose too early. I want to win later."
+    SAY: "Don't lose too early. I want to win later. Ideally on your grave."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_2.ogg
-    SAY: "See you at the top. I'll be there. First."
+    SAY: "See you at the top. I'll be there. First. In a better suit."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_3.ogg
-    SAY: "Try not to embarrass yourself. I'll be watching."
+    SAY: "Try not to embarrass yourself. I'll be watching. With popcorn."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 rich_1.ogg
-    SAY: "Nice pot. I have a bigger one. I always have a bigger one."
+    SAY: "Nice pot. I have a bigger one. I always have a bigger one. It's genetic."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_2.ogg
-    SAY: "You're doing great! For you."
+    SAY: "You're doing great! For you. For a normal person you're doing 'whoa, buddy.'"
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 broke_1.ogg
-    SAY: "Oof. Broke? Must be rough being you."
+    SAY: "Oof. Broke? Must be rough being you. I hear it's also a smell."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_2.ogg
-    SAY: "I'd buy you a drink. But no."
+    SAY: "I'd buy you a drink. But no. I'd buy you the idea of a drink. Cheers."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 died_1.ogg
-    SAY: "You died? I won. Again."
+    SAY: "You died? I won. Again. I didn't even play. It's that easy."
     HOW: The player just died.  (NPC talk (died))
 
 boss_1.ogg
-    SAY: "A boss? I was about to do that. Today."
+    SAY: "A boss? I was about to do that. Today. After lunch. And brunch."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_2.ogg
-    SAY: "Lucky shot. Everyone's lucky once."
+    SAY: "Lucky shot. Everyone's lucky once. You've been lucky twice. Statistically suspicious."
     HOW: The player just beat a boss.  (NPC talk (boss))
 

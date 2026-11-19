@@ -22,90 +22,90 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 22 lines:
 
 bark_1.ogg
-    SAY: "Not tonight, pal."
+    SAY: "Not tonight, pal. Not tomorrow. Not in this lifetime. Not in the next, either."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_2.ogg
-    SAY: "Name's not on the list."
+    SAY: "Name's not on the list. Nobody's name is on the list. The list is a lie."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_3.ogg
-    SAY: "Move along."
+    SAY: "Move along. Move along or move on. Either way you're moving."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_4.ogg
-    SAY: "I don't care who you know."
+    SAY: "I don't care who you know. I care who I punch. You're up."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_5.ogg
-    SAY: "ID."
+    SAY: "ID. And a birth certificate. And a signed apology from your mother."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_6.ogg
-    SAY: "Dress code. You're in violation."
+    SAY: "Dress code. You're in violation. You're in violation of several. Of many codes."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_7.ogg
-    SAY: "Step outside. Please. Not really a request."
+    SAY: "Step outside. Please. Not really a request. Mostly a countdown."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_8.ogg
-    SAY: "You have the wrong shoes."
+    SAY: "You have the wrong shoes. And the wrong face. Also the wrong shoes."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_9.ogg
-    SAY: "VIP only. You're not."
+    SAY: "VIP only. You're not. You'll never be. Not even in death. The dead have a velvet rope."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_10.ogg
-    SAY: "Keep walking."
+    SAY: "Keep walking. Eyes forward. Heart in your throat. That's the rule."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_11.ogg
-    SAY: "The line starts at the back."
+    SAY: "The line starts at the back. The back's in a different state."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_12.ogg
-    SAY: "No."
+    SAY: "No. That's the entire policy. It's very concise."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 city1_5.ogg
-    SAY: "The seagulls steal chips here."
+    SAY: "The seagulls steal chips here. They're the only ones winning."
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city1_11.ogg
-    SAY: "I came for the ocean. I stayed for the debt."
+    SAY: "I came for the ocean. I stayed for the debt. Also the ocean smells."
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city2_5.ogg
-    SAY: "Mind the clown. The clown bites."
+    SAY: "Mind the clown. The clown bites. The clown is also the manager."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city2_11.ogg
-    SAY: "Welcome to the circus. You're the show."
+    SAY: "Some guy pawned a gold watch here last week. Sad story. Said he was 'getting promoted.' To Biloxi, I think."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city3_5.ogg
-    SAY: "A bad beat sounds like a power chord."
+    SAY: "A bad beat sounds like a power chord. And looks like a rhinestone jacket."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city3_11.ogg
-    SAY: "This riff is a threat."
+    SAY: "Word is the new dealer upstairs is some guy named Jules. Dealing for The House. Doing great. Unsettlingly great."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city4_5.ogg
-    SAY: "The neon is older than I am."
+    SAY: "The neon is older than I am. And it's in better shape. I'm furious."
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city4_11.ogg
-    SAY: "Don't stare at the chandelier. It judges."
+    SAY: "Don't stare at the chandelier. It judges. And then it falls on the people it judged."
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city5_5.ogg
-    SAY: "Don't stare at the High Roller. He bites."
+    SAY: "Don't stare at the High Roller. He bites. He bites the poor ones. I've seen it."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 
 city5_11.ogg
-    SAY: "They serve a hundred-dollar water. It's the same water."
+    SAY: "They serve a hundred-dollar water. It's the same water. It's also the same tap."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 

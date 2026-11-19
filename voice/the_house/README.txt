@@ -22,63 +22,63 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 48 lines:
 
 intro_1.ogg
-    SAY: "Hole cards. Flop. Turn. River. And at the end, the House always wins."
+    SAY: "Hole cards. Flop. Turn. River. And in the pot, your brother. Sit, Rico."
     HOW: Boss intro cutscene. Menacing. Texas Hold'em themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "The House... folds?"
+    SAY: "The House... folds? I... fold? Is this what it feels like? It feels... expensive."
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "Interesting. The odds adjust."
+    SAY: "Interesting. The odds adjust. Mildly. Like a thermostat."
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "I do not lose. I RESET."
+    SAY: "I do not lose. I RESET. You, however, will be reset. Permanently. Per the Marker."
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Hole cards. Flop. Turn. River."
+    SAY: "Hole cards. Flop. Turn. River. Rico. Always the same sequence. It ends with you."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "The House always wins. It's not a boast. It's arithmetic."
+    SAY: "The House always wins. It's not a boast. It's arithmetic. It's also your brother."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "Every chip you hold is already mine."
+    SAY: "Every chip you hold is already mine. So is that shirt. So is your sense of purpose."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "A scratch. The House endures."
+    SAY: "A scratch. The House endures. The House has dental insurance."
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "That was... noted."
+    SAY: "That was... noted. In a file. Titled 'Rico: ongoing.'"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "You've been folded."
+    SAY: "You've been folded. Like a napkin. A fancy one. Then used."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "Terms and conditions apply."
+    SAY: "Terms and conditions apply. They always did. Page 400. Paragraph 'Jules.'"
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 pa_lobby_1.ogg
-    SAY: "Welcome to the Lobby of The Pit. Your Marker is our pleasure."
+    SAY: "Welcome to the apartment. The House appreciates your continued mismanagement."
     HOW: PA announcement. Polite, chilling.  (PA (lobby))
 
 pa_lobby_2.ogg
-    SAY: "No one dies owing the House. That would be bad for business."
+    SAY: "No one dies owing the House. That would be bad for business. And for the carpet."
     HOW: PA announcement. Polite, chilling.  (PA (lobby))
 
 pa_wake_1.ogg
-    SAY: "Welcome back, valued guest. Your tab has been adjusted."
+    SAY: "Welcome back, valued guest. Your tab has been adjusted. Upward."
     HOW: PA announcement. Polite, chilling.  (PA (wake))
 
 pa_wake_2.ogg
-    SAY: "Back so soon? The House never forgets a debtor."
+    SAY: "Back so soon? The House never forgets a debtor. Or their birthday."
     HOW: PA announcement. Polite, chilling.  (PA (wake))
 
 pa_wake_3.ogg
@@ -90,87 +90,87 @@ pa_wake_spikes_1.ogg
     HOW: PA announcement. Polite, chilling.  (PA (wake_spikes))
 
 pa_wake_guard_1.ogg
-    SAY: "Security reminds guests that punching is a privilege, not a right."
+    SAY: "Security reminds guests that punching is a privilege, not a right. It's also a fee."
     HOW: PA announcement. Polite, chilling.  (PA (wake_guard))
 
 pa_wake_bat_1.ogg
-    SAY: "The bats thank you for your generous contribution."
+    SAY: "The rats thank you for your generous contribution. Your femur was delicious."
     HOW: PA announcement. Polite, chilling.  (PA (wake_bat))
 
 pa_wake_boss1_1.ogg
-    SAY: "Big Sal sends his regards. And an invoice."
+    SAY: "The first table sends its regards. And an invoice. And a card."
     HOW: PA announcement. Polite, chilling.  (PA (wake_boss1))
 
 pa_wake_boss2_1.ogg
-    SAY: "Madame Roulette spun. You lost. Round and round we go."
+    SAY: "Another table won. By us. The House is pleased. The House is a little giggly."
     HOW: PA announcement. Polite, chilling.  (PA (wake_boss2))
 
 pa_wake_boss3_1.ogg
-    SAY: "So close. The House admires ambition. The House also keeps it."
+    SAY: "So close. The House admires ambition. The House also keeps it. In a drawer."
     HOW: PA announcement. Polite, chilling.  (PA (wake_boss3))
 
 pa_wake_mags_1.ogg
-    SAY: "Our partners in lending thank you for your patience."
+    SAY: "Our partners in lending thank you for your patience. And your future."
     HOW: PA announcement. Polite, chilling.  (PA (wake_mags))
 
 pa_wake_big_1.ogg
-    SAY: "That Pot was beautiful. It's mine now. Thank you."
+    SAY: "That Pot was beautiful. It's mine now. Thank you. Please come again. Please come poorer."
     HOW: PA announcement. Polite, chilling.  (PA (wake_big))
 
 pa_start_1.ogg
-    SAY: "Doors are open. Mind the spikes. Or don't."
+    SAY: "Doors are open. Mind the spikes. Or don't. The House has a bet on 'don't.'"
     HOW: PA announcement. Polite, chilling.  (PA (start))
 
 pa_start_2.ogg
-    SAY: "Another guest descends. How wonderful for me."
+    SAY: "Another guest begins the climb. How wonderful for me."
     HOW: PA announcement. Polite, chilling.  (PA (start))
 
 pa_ride_1.ogg
-    SAY: "Let it ride? Oh, I LIKE you."
+    SAY: "Let it ride? Oh, I LIKE you. You're my favorite income stream."
     HOW: PA announcement. Polite, chilling.  (PA (ride))
 
 pa_ride_2.ogg
-    SAY: "Bold. The House adores bold."
+    SAY: "Bold. The House adores bold. Bold has margins."
     HOW: PA announcement. Polite, chilling.  (PA (ride))
 
 pa_ride8_1.ogg
-    SAY: "Attention guests: we have a high roller on the floor!"
+    SAY: "Attention guests: we have a high roller on the floor! Please applaud and then pick his pockets!"
     HOW: PA announcement. Polite, chilling.  (PA (ride8))
 
 pa_cashout_1.ogg
-    SAY: "Playing it safe. How... responsible. Ugh."
+    SAY: "Playing it safe. How... responsible. Ugh. Disgusting."
     HOW: PA announcement. Polite, chilling.  (PA (cashout))
 
 pa_cashout_2.ogg
-    SAY: "Walking away? The House will remember this."
+    SAY: "Walking away? The House will remember this. The House has a spreadsheet."
     HOW: PA announcement. Polite, chilling.  (PA (cashout))
 
 pa_jackpot_1.ogg
-    SAY: "Who rigged that machine? WHO RIGGED THAT MACHINE?"
+    SAY: "Who rigged that machine? WHO RIGGED THAT MACHINE? Was it Gerald? It was Gerald."
     HOW: PA announcement. Polite, chilling.  (PA (jackpot))
 
 pa_low_hp_1.ogg
-    SAY: "One life left. The House recommends praying."
+    SAY: "One life left. The House recommends praying. The House recommends a will."
     HOW: PA announcement. Polite, chilling.  (PA (low_hp))
 
 pa_low_hp_2.ogg
-    SAY: "Feeling lucky? You shouldn't."
+    SAY: "Feeling lucky? You shouldn't. The House checked."
     HOW: PA announcement. Polite, chilling.  (PA (low_hp))
 
 pa_boss_1.ogg
-    SAY: "Ladies and gentlemen... the main event."
+    SAY: "Ladies and gentlemen... the main event. Please clap. Please bet."
     HOW: PA announcement. Polite, chilling.  (PA (boss))
 
 pa_vault_open_1.ogg
-    SAY: "Somebody check the vault. WHY IS THE VAULT OPEN."
+    SAY: "Somebody check the safe. WHY IS THE SAFE OPEN. WHO WANTS A DEMOTION."
     HOW: PA announcement. Polite, chilling.  (PA (vault_open))
 
 pa_vault_miss_1.ogg
-    SAY: "The vault has sealed. Punctuality is a virtue, guest."
+    SAY: "The safe has sealed. Punctuality is a virtue, guest. So is not losing."
     HOW: PA announcement. Polite, chilling.  (PA (vault_miss))
 
 pa_loan_due_1.ogg
-    SAY: "Attention guests: a loan is past due. Please keep hands and feet inside the Pit."
+    SAY: "Attention guests: a loan is past due. Please keep hands, feet and dignity inside the casino."
     HOW: PA announcement. Polite, chilling.  (PA (loan_due))
 
 pa_spill_1.ogg
@@ -178,35 +178,35 @@ pa_spill_1.ogg
     HOW: PA announcement. Polite, chilling.  (PA (spill))
 
 pa_spill_2.ogg
-    SAY: "Chips on the floor! Finders keepers."
+    SAY: "Chips on the floor! Finders keepers. And losers weepers."
     HOW: PA announcement. Polite, chilling.  (PA (spill))
 
 pa_bet_won_1.ogg
-    SAY: "A side bet paid out. The House is fine. Totally fine."
+    SAY: "A side bet paid out. The House is fine. Totally fine. The House needs to lie down."
     HOW: PA announcement. Polite, chilling.  (PA (bet_won))
 
 pa_bet_lost_1.ogg
-    SAY: "Side bet lost. Tragic. Delicious."
+    SAY: "Side bet lost. Tragic. Delicious. Both at once."
     HOW: PA announcement. Polite, chilling.  (PA (bet_lost))
 
 pa_cat_1.ogg
-    SAY: "Please do not pet the cat. The cat is a House employee."
+    SAY: "Please do not pet the cat. The cat is a House employee. He's on a performance review."
     HOW: PA announcement. Polite, chilling.  (PA (cat))
 
 pa_cat_2.ogg
-    SAY: "The cat likes you. The cat is wrong."
+    SAY: "The cat likes you. The cat is wrong. The cat has a bad track record with people."
     HOW: PA announcement. Polite, chilling.  (PA (cat))
 
 pa_daily_1.ogg
-    SAY: "Today's Daily Deal: the same cards for everyone. Fairness! How quaint."
+    SAY: "Today's Daily Deal: the same cards for everyone. Fairness! How quaint. How off-brand."
     HOW: PA announcement. Polite, chilling.  (PA (daily))
 
 pa_stakes_1.ogg
-    SAY: "Raising the stakes? The House salutes your poor judgment."
+    SAY: "Raising the stakes? The House salutes your poor judgment. And your life insurance."
     HOW: PA announcement. Polite, chilling.  (PA (stakes))
 
 pa_ticket_1.ogg
-    SAY: "Littering is a violation of House policy. Reading it is worse."
+    SAY: "Littering is a violation of House policy. Reading it is worse. Remembering it is murder."
     HOW: PA announcement. Polite, chilling.  (PA (ticket))
 
 pa_charm_1.ogg

@@ -26,43 +26,43 @@ intro_1.ogg
     HOW: Boss intro cutscene. Menacing. Pai Gow themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "Both hands... lost. Impossible."
+    SAY: "Both hands... lost. Impossible. I'll need a moment. Several moments. A sabbatical."
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "...Impressive. Marginally."
+    SAY: "...Impressive. Marginally. Like a cold bath. In a good way. I'm lying."
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "Both hands. Now."
+    SAY: "Both hands. Now. At once. As expected. You'll fail at once."
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Two hands. Two defeats. Do the math."
+    SAY: "Two hands. Two defeats. Do the math. I have, and you're negative."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "You push, I take."
+    SAY: "You push, I take. It's called Pai Gow. It's called your problem."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "Dull. Everything's dull. You, too."
+    SAY: "Dull. Everything's dull. You, too. Especially the dying."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "Hm. That stung."
+    SAY: "Hm. That stung. I shall feel it later. In a spa."
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "Interesting."
+    SAY: "Interesting. Do it again. I'll ignore it. Twice."
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "Predictable."
+    SAY: "Predictable. Like water. Like taxes. Like you, losing."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "As expected."
+    SAY: "As expected. I'll file this under 'Tuesday.'"
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 

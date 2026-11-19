@@ -58,7 +58,7 @@ greet_3.ogg
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 farewell_1.ogg
-    SAY: "Mrrrrow. (Goodbye. And bring fish.)"
+    SAY: "Mrrrrow. (Goodbye. And bring fish. Or Jules.)"
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_2.ogg
@@ -82,7 +82,7 @@ broke_2.ogg
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 died_1.ogg
-    SAY: "Mrrrrrow. (I saw that.)"
+    SAY: "Mrrrrrow. (I saw that. I'm telling no one. I'm a cat.)"
     HOW: The player just died.  (NPC talk (died))
 
 boss_1.ogg

@@ -10,7 +10,7 @@ secret_found_1.ogg
     SPEAKER: RICO
 
 secret_found_2.ogg
-    SAY: "That's not on the map, Rico. Be careful in there."
+    SAY: "That's not on the map, Rico. Be careful in there. By which I mean: be reckless. It's a secret table."
     HOW: Cutscene: secret found  (Cutscene secret_found)
     SPEAKER: MARLOW
 

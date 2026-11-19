@@ -5,27 +5,27 @@ The game plays the clip during the cutscene and waits for it to finish. Players 
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 8 lines:
 
 intro_1.ogg
-    SAY: "Five cities. Twenty-five floors. One long climb from a dumpster to the nicest casino in Vegas. I've bet on worse."
+    SAY: "My brother Jules sat down at The House's table and bet himself. And lost. Now he works there. It's the most Jules thing that has ever happened."
     HOW: Cutscene: intro  (Cutscene intro)
     SPEAKER: RICO
 
 intro_2.ogg
-    SAY: "My brother Jules sat down at the House's table three years ago. He never got up. Somebody has to cash him out. Might as well be the guy with no impulse control."
+    SAY: "So here's the plan: climb five casinos, from a dumpster to the Vegas Strip, and win him back. I've bet on worse. I've bet on myself. That was worse."
     HOW: Cutscene: intro  (Cutscene intro)
     SPEAKER: RICO
 
 intro_3.ogg
-    SAY: "Nobody climbs without a Marker, kid. Sign here. And here. And... there. Don't read it. Nobody reads it."
+    SAY: "Nobody climbs without a Marker, kid. Sign here. And here. And... there. Don't read it. Don't think of it as debt, sweetie. Think of it as a relationship."
     HOW: Cutscene: intro  (Cutscene intro)
     SPEAKER: MAGS
 
 intro_4.ogg
-    SAY: "Welcome, valued guest. House rules: no one dies owing the House. Bust, and you wake up right here. With interest."
+    SAY: "Welcome, valued guest. House rules: you can't die. You simply wake up back at home, owing a little more. With interest."
     HOW: Cutscene: intro  (Cutscene intro)
     SPEAKER: THE HOUSE
 
 intro_5.ogg
-    SAY: "So I can't die. I just owe you forever. Honestly? Best terms I've ever been offered."
+    SAY: "So... infinite credit? Can't die, just owe more. I've been training for this my whole life."
     HOW: Cutscene: intro  (Cutscene intro)
     SPEAKER: RICO
 
@@ -35,12 +35,12 @@ intro_6.ogg
     SPEAKER: THE HOUSE
 
 intro_7.ogg
-    SAY: "Radio check, Rico. Every chip you grab rides in your Pot. At each door you bank it, or let it ride for double. You'll let it ride. You always let it ride."
+    SAY: "Radio check, Rico. Jules is at the top of the Bellagiro, on the Strip. Every chip you grab rides in your Pot. At each door you bank it, or let it ride for double. You'll let it ride. You always let it ride."
     HOW: Cutscene: intro  (Cutscene intro)
     SPEAKER: MARLOW
 
 intro_8.ogg
-    SAY: "Talk to the folks up here between runs. Wear something. Anything. When you're ready, take the DESCEND door. And Rico: please don't bet the shoes."
+    SAY: "Wear something. Anything. Then get in that heap you call a car. The goal, in plain English: climb five casinos, get Jules, try not to bet him."
     HOW: Cutscene: intro  (Cutscene intro)
     SPEAKER: MARLOW
 

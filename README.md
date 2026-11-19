@@ -2,7 +2,7 @@
 
 A 2D parkour-and-brawling roguelike heist through The Pit, an illegal casino buried under the city. Built in Godot 4.7 with GDScript only. It needs no asset files: the art is drawn in code, and the sound effects and music are synthesized live.
 
-**Story:** Rook breaks into The Pit to get their brother Jules back. There are twelve floors and a boss every 4th floor (Big Sal, Madame Roulette, The House). Marlow talks you through it over the radio. Beating The House unlocks the ending and High Roller mode, where the floors keep going down.
+**Story:** Rico, a degenerate gambler, climbs five casinos (Atlantic Shitty, Reno, Biloxi, Fremont and the Bellagiro on the Strip) to win his brother Jules back from The House. Marlow talks you through it over the radio. Beating The House at Texas Hold'em ends the first story; High Roller mode opens after.
 
 ## Run it
 Open `project.godot` in Godot 4.7 and press F5.
@@ -33,8 +33,8 @@ Open `project.godot` in Godot 4.7 and press F5.
   - Dealers: throw cards from range
   - Heavies: a riot shield blocks frontal strikes, so flank them, stomp them, or break the guard with a finisher
 - **Bosses:** three bosses with two phases each, health bars with a ghost-damage chunk, and stun windows.
-  - Big Sal: card fans, charges and ground slams
-  - Madame Roulette: adds bouncing roulette balls
+  - Table bosses: card fans, charges and ground slams
+  - Later bosses: add bouncing balls and wheels
   - The House: adds summoned guards
 - **Economy:**
   - Pot, Flow multiplier, and the Cash Out vs Let It Ride choice at each door
@@ -74,7 +74,7 @@ Open `project.godot` in Godot 4.7 and press F5.
 - **Music:** calm generative piano while exploring; it crossfades into an intense drum-and-bass battle track near enemies and in boss fights.
 - **Meta:**
   - The Fence skill tree: 5 branches and 20 skills, paid for with SKILL POINTS from levelling up (The Fence also sells extra points for banked cash)
-  - 3 playable runners: Rook; Dice, unlocked by beating Big Sal; Jules, unlocked by finishing the story
+  - 3 playable runners: Rook; Dice, unlocked by beating the first boss; Jules, unlocked by finishing the story
   - 31 trophies
   - saved settings and stats
 

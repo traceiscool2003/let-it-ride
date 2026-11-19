@@ -98,7 +98,7 @@ const P := {
 		"ref": "a malfunctioning arcade cabinet", "mouth": "monotone with random beeps",
 		"tip": "Cheerful voice, dead eyes, glitches in the middle of words.",
 		"preset": {"pitch": 1.0, "eq_low": -4.0, "eq_mid": 5.0, "eq_high": 3.0, "dist": 0.5, "reverb": 0.1, "chorus": 0.5}, "blip": {"hz": 600.0, "wave": "square", "rate": 1}},
-	"mr_lucky": {"name": "MR. LUCKY", "role": "Secret boss: Keno. Everyone's lucky charm.", "quote": "Pick eighty numbers. You'll hit none.",
+	"mr_lucky": {"name": "KENO KEVIN", "role": "Secret boss: Keno. Everyone's lucky charm.", "quote": "Pick eighty numbers. You'll hit none.",
 		"age": "70s", "accent": "kindly old magician", "pitch": "mid", "speed": "medium", "energy": "medium", "attitude": "sweet, sinister",
 		"ref": "a children's TV host who knows too much", "mouth": "warm smile, then a cold line",
 		"tip": "Everything you say starts nice and turns evil on the last word.",
@@ -178,10 +178,10 @@ const P := {
 ## Speaker names used in existing dialogue -> character id.
 const NAME_TO_ID := {
 	"RICO": "rico", "MARLOW": "marlow", "VERA": "vera", "MAGS": "mags", "LUCKY": "lucky", "JULES": "jules",
-	"COMP": "comp", "THE HOUSE": "the_house", "BIG SAL": "seezers", "MADAME ROULETTE": "wynners",
+	"COMP": "comp", "THE HOUSE": "the_house", 
 	"DRAFTQUEENS": "draftqueens", "FANDOOL": "fandool", "POKERSTARZ": "pokerstarz", "BETMGN": "betmgn", "STEAKE.COM": "steake",
 	"BOVADOH": "bovadoh", "SEEZER'S CLUB": "seezers", "WYNNER'S CIRCLE": "wynners", "SNAKE EYES SAL": "snake_eyes",
-	"ONE-ARMED BANDIT": "rusty_slots", "MR. LUCKY": "mr_lucky", "SILAS": "tailor", "DOC FIZZ": "fizz", "GUNNY": "gunny",
+	"ONE-ARMED BANDIT": "rusty_slots", "MR. LUCKY": "mr_lucky", "KENO KEVIN": "mr_lucky", "HUSTLER": "hustler", "SILAS": "tailor", "DOC FIZZ": "fizz", "GUNNY": "gunny",
 	"VELMA": "velma", "DAN": "dumpster_dan", "NICK": "slick_nick", "LORRAINE": "lorraine", "DUNN": "dunn", "EDDIE": "the_house",
 }
 

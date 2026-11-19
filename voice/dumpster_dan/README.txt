@@ -22,66 +22,66 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 16 lines:
 
 idle_1.ogg
-    SAY: "Got any change? Got any WISDOM?"
+    SAY: "Got any change? Got any WISDOM? I'll take either. I'll take a sandwich."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_2.ogg
-    SAY: "The rats pay rent. Do you?"
+    SAY: "The rats pay rent. Do you? Because Rattigan hasn't missed a month."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_3.ogg
-    SAY: "I used to teach economics. Now I eat economics."
+    SAY: "I used to teach economics. Now I eat economics. It's mostly gristle."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_4.ogg
-    SAY: "The walls have secrets. Some are loose."
+    SAY: "The walls have secrets. Some are loose. Some are Jules's. He pawned a jacket. Ask the jacket."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 greet_1.ogg
-    SAY: "Hey there, friend. Spare a smile?"
+    SAY: "Hey there, friend. Spare a smile? I'll take a molar."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_2.ogg
-    SAY: "Ooh, a visitor! Or a hallucination. Both are nice."
+    SAY: "Ooh, a visitor! Or a hallucination. Both are nice. Both tip the same."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_3.ogg
-    SAY: "You look like a man with a destiny and a wallet."
+    SAY: "You look like a man with a destiny and a wallet. One of them is lying."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 farewell_1.ogg
-    SAY: "Come back when you're rich! Or me."
+    SAY: "Come back when you're rich! Or me. I'll be rich! Or dead!"
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_2.ogg
-    SAY: "Mind the third brick. It likes to move."
+    SAY: "Mind the third brick. It likes to move. It was my wife."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_3.ogg
-    SAY: "Don't forget me. Everybody does."
+    SAY: "Don't forget me. Everybody does. It's a whole thing. I do a bit about it."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 rich_1.ogg
-    SAY: "Look at you! The Midas of the alley!"
+    SAY: "Look at you! The Midas of the alley! Touch me. Not like that. Pay me."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_2.ogg
-    SAY: "That's more than I've seen since 1998."
+    SAY: "That's more than I've seen since 1998. I had a good '98. A year, not a person."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 broke_1.ogg
-    SAY: "Ha! Welcome to the club. We've got cardboard."
+    SAY: "Ha! Welcome to the club. We've got cardboard. And a mildew sauna."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_2.ogg
-    SAY: "Poor! It's honest."
+    SAY: "Poor! It's honest. It's also drafty."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 died_1.ogg
-    SAY: "Don't worry. Death's mostly paperwork."
+    SAY: "Don't worry. Death's mostly paperwork. I've done the paperwork. They said it was fine. They didn't say it was good."
     HOW: The player just died.  (NPC talk (died))
 
 boss_1.ogg
-    SAY: "The boss? I raised him. He was a lovely child."
+    SAY: "The boss? I raised him. He was a lovely child. Strangled the cat. A lovely child."
     HOW: The player just beat a boss.  (NPC talk (boss))
 

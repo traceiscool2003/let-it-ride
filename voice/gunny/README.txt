@@ -22,35 +22,35 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 40 lines:
 
 greet_1.ogg
-    SAY: "Welcome to the armory, recruit."
+    SAY: "Welcome to the armory, recruit. Spit out the gum. And the teeth. Whatever that is."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_2.ogg
-    SAY: "Stand up straight! That's a weapon you're holding. Your face."
+    SAY: "Stand up straight! That's a weapon you're holding. Your face. Terrifying. For the wrong reasons."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_3.ogg
-    SAY: "Rack 'em and stack 'em, gamblers!"
+    SAY: "Rack 'em and stack 'em, gamblers! Anything that goes bang, we have! Anything that goes whimper, that's you."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_4.ogg
-    SAY: "You need firepower. I can smell it."
+    SAY: "You need firepower. I can smell it. And a shower. I can smell that too."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 farewell_1.ogg
-    SAY: "Don't shoot your foot. Shoot THEIRS."
+    SAY: "Don't shoot your foot. Shoot THEIRS. It's a different foot. Concentrate."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_2.ogg
-    SAY: "Dismissed. Try to die forward."
+    SAY: "Dismissed. Try to die forward. Dying backward is how you lose the deposit."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_3.ogg
-    SAY: "Clean your guns. Wash your hands. Never your lucky socks."
+    SAY: "Clean your guns. Wash your hands. Never your lucky socks. They're load-bearing."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_4.ogg
-    SAY: "Move out, rookie."
+    SAY: "Move out, rookie. And don't bet the ammo. I know you. I KNOW you."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 rich_1.ogg
@@ -58,126 +58,126 @@ rich_1.ogg
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_2.ogg
-    SAY: "A big spender! I salute your wallet."
+    SAY: "A big spender! I salute your wallet. And your wallet's tiny spine."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_3.ogg
-    SAY: "Now THAT is purchasing power."
+    SAY: "Now THAT is purchasing power. Also, the power of someone with no plan."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_4.ogg
-    SAY: "I'll throw in a free ammo clip. And a salute."
+    SAY: "I'll throw in a free ammo clip. And a salute. And a hug. No. Not the hug. Not the hug."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 broke_1.ogg
-    SAY: "No money, no bang. It's simple."
+    SAY: "No money, no bang. It's simple. It's also the plot of your life."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_2.ogg
-    SAY: "Broke? Throw rocks. It's a classic."
+    SAY: "Broke? Throw rocks. It's a classic. Rocks have a perfect safety record. Mostly."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_3.ogg
-    SAY: "A recruit with no cash. It's a start."
+    SAY: "A recruit with no cash. It's a start. It's also a funeral."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_4.ogg
-    SAY: "I'm not a charity. I'm a battle store."
+    SAY: "I'm not a charity. I'm a battle store. The difference is the screaming."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 ugly_1.ogg
-    SAY: "Soldier, that outfit is a disciplinary action."
+    SAY: "Soldier, that outfit is a disciplinary action. And a warcrime. And a Tuesday."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_2.ogg
-    SAY: "Camouflage? You look like a bruise."
+    SAY: "Camouflage? You look like a bruise. A sad, wandering bruise."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_3.ogg
-    SAY: "I've seen better uniforms on a scarecrow."
+    SAY: "I've seen better uniforms on a scarecrow. Scarecrow had a better stance, too."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_4.ogg
-    SAY: "What happened to your pants, recruit?"
+    SAY: "What happened to your pants, recruit? Did you lose them to the House? Did the House want them?"
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 sharp_1.ogg
-    SAY: "Spit-shined! I'm almost proud."
+    SAY: "Spit-shined! I'm almost proud. I'm also a little emotional. Moving on!"
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_2.ogg
-    SAY: "That suit says 'I'm lethal in four languages.'"
+    SAY: "That suit says 'I'm lethal in four languages.' Shame you only speak panic."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_3.ogg
-    SAY: "You look like a general. Behave like one."
+    SAY: "You look like a general. Behave like one. Send others to die. It's the job."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_4.ogg
-    SAY: "A sharp dresser holds a gun better."
+    SAY: "A sharp dresser holds a gun better. A dead one holds it worst."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 died_1.ogg
-    SAY: "You're dead? Walk it off!"
+    SAY: "You're dead? Walk it off! Or crawl it off! Either way, off!"
     HOW: The player just died.  (NPC talk (died))
 
 died_2.ogg
-    SAY: "That's what the armor's for, rookie."
+    SAY: "That's what the armor's for, rookie. You forgot the armor. You always forget the armor."
     HOW: The player just died.  (NPC talk (died))
 
 died_3.ogg
-    SAY: "Retrain. Rearm. Resurrect. Repeat."
+    SAY: "Retrain. Rearm. Resurrect. Repeat. That's the whole military. And your whole career."
     HOW: The player just died.  (NPC talk (died))
 
 died_4.ogg
-    SAY: "The only bad death is the unarmed one."
+    SAY: "The only bad death is the unarmed one. Yours was the second kind."
     HOW: The player just died.  (NPC talk (died))
 
 boss_1.ogg
-    SAY: "A boss down! Medals for everyone!"
+    SAY: "A boss down! Medals for everyone! Except the boss! He gets a closed casket!"
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_2.ogg
-    SAY: "That's the kind of firepower I like!"
+    SAY: "That's the kind of firepower I like! Large, loud, and legally ambiguous!"
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_3.ogg
-    SAY: "I sold that boss his first revolver. I regret nothing."
+    SAY: "I sold that boss his first revolver. I regret nothing. I regret his trigger discipline."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_4.ogg
-    SAY: "You make me proud. Don't make it weird."
+    SAY: "You make me proud. Don't make it weird. Too late. It's weird."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 idle_1.ogg
-    SAY: "Chip flick. Card fan. Dice bomb. Pick one."
+    SAY: "Chip flick. Card fan. Dice bomb. Pick one. Pick all. Pick a fight."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_2.ogg
-    SAY: "A revolver has six reasons. Use five."
+    SAY: "A revolver has six reasons. Use five. Save one for the barista."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_3.ogg
-    SAY: "Coin shotgun's the favorite. Don't ask why."
+    SAY: "Coin shotgun's the favorite. Don't ask why. It's illegal in four countries and a Pizza Hut."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_4.ogg
-    SAY: "Weapons don't kill people. Bad odds do."
+    SAY: "Weapons don't kill people. Bad odds do. And pointy things. And Gary."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 buy_1.ogg
-    SAY: "Excellent! Point it away from yourself!"
+    SAY: "Excellent! Point it away from yourself! And me! And the cat!"
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_2.ogg
-    SAY: "That's a classic. Respect it."
+    SAY: "That's a classic. Respect it. It's seen things. Mostly foreheads."
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_3.ogg
-    SAY: "Eight out of ten customers survive."
+    SAY: "Eight out of ten customers survive. Not you. You're a nine. Of ten. Out of eight."
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_4.ogg
-    SAY: "Good choice, recruit. It kicks."
+    SAY: "Good choice, recruit. It kicks. Mostly the person holding it. Hold it tighter."
     HOW: The player just bought something.  (NPC talk (buy))
 

@@ -7,6 +7,8 @@ const Sprites := preload("res://scripts/sprites.gd")
 const Charms := preload("res://scripts/charms.gd")
 const Art := preload("res://scripts/art.gd")
 const Scenery := preload("res://scripts/scenery.gd")
+const Story := preload("res://scripts/story.gd")
+const Cities := preload("res://scripts/cities.gd")
 const BOSS_TIERS := {"BIG SAL": 1, "MADAME ROULETTE": 2, "THE HOUSE": 3}
 
 const GOLD := Color(1.0, 0.78, 0.25)
@@ -567,7 +569,7 @@ func _draw_logo(y: float) -> void:
 func _draw_title() -> void:
 	Scenery.title(self, f, t)
 	_draw_logo(150)
-	_ctxt(204, "Break into The Pit.  Rescue Jules.  Know when to walk away.", 21, Color(0.95, 0.88, 0.95))
+	_ctxt(204, "Climb five casinos.  Win back Jules.  Know when to walk away.", 21, Color(0.95, 0.88, 0.95))
 	if g.intro_seen:
 		_txt(Vector2(112, 300), "Your Marker is still open. The Lobby is waiting.", 15, Color(1, 0.6, 0.6, 0.85))
 	var items: Array = g.title_items()
@@ -714,6 +716,9 @@ func _draw_pause() -> void:
 			draw_rect(Rect2(460, y - 34, 360, 46), Color(1, 0.8, 0.3, 0.12))
 			draw_rect(Rect2(460, y - 34, 360, 46), GOLD, false, 2.0)
 		_ctxt(y, items[i], 28 if sel else 24, GOLD if sel else Color.WHITE)
+	var beat_fl: int = int(g.pstats.get("max_floor", 0)) if g.in_hub else g.floor_num
+	var beat_i: int = clampi(Cities.city_of(beat_fl) if beat_fl > 0 else 0, 0, Story.STORY_SO_FAR.size() - 1)
+	_ctxt(620, "STORY SO FAR: " + String(Story.STORY_SO_FAR[beat_i]), 15, Color(0.95, 0.88, 0.7))
 	var s: Dictionary = g.stats
 	_ctxt(660, "Kills %d    Parries %d    Smashed %d    Best chain %d" % [s.get("kills", 0), s.get("parries", 0), s.get("smashed", 0), g.best_chain], 18, DIM)
 	if not g.in_hub:
@@ -722,7 +727,7 @@ func _draw_pause() -> void:
 		_txt(Vector2(60, 282), "CHARMS  %d / %d" % [g.charms.equipped.size(), g.charms.max_slots], 20, GOLD)
 		if g.charms.equipped.is_empty():
 			_txt(Vector2(60, 318), "None yet. Win them on slots, buy them", 15, DIM)
-			_txt(Vector2(60, 338), "from Vera, crack Vault Doors, beat bosses.", 15, DIM)
+			_txt(Vector2(60, 338), "from Vera, crack Safe Doors, beat bosses.", 15, DIM)
 		for i in g.charms.equipped.size():
 			var id: String = g.charms.equipped[i]
 			var inf: Dictionary = Charms.info(id)

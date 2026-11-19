@@ -22,47 +22,47 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 11 lines:
 
 intro_1.ogg
-    SAY: "Seven, you lose. Eleven, you lose. Everything's a lose."
+    SAY: "Seven, you lose. Eleven, you lose. Everything's a lose. Also a tax."
     HOW: Boss intro cutscene. Menacing. Craps themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "Boxcars... on my own roll."
+    SAY: "Boxcars... on my own roll. Of course. Twelve. I hate twelve."
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "Boxcars! BOXCARS!"
+    SAY: "Boxcars! BOXCARS! Twelve! You hate twelve! I love twelve!"
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "Natural! Natural! You hear that?"
+    SAY: "Natural! Natural! You hear that? That's my natural. It sings!"
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Seven! You lose!"
+    SAY: "Seven! You lose! Seven always loses! That's the rule I just invented!"
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "Snake eyes! Ssssnake EYES!"
+    SAY: "Snake eyes! Ssssnake EYES! You don't even want to know what's in my pocket!"
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "Come out roll! Come OUT!"
+    SAY: "Come out roll! Come OUT! Come out, come out, wherever you suck!"
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "Hsss! Careful!"
+    SAY: "Hsss! Careful! Venom's expensive!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "Ow, ow, ow!"
+    SAY: "Ow, ow, ow! My dice! My lucky dice! Why are you hitting them?!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "Sevennn!"
+    SAY: "Sevennn! Sevennn! Your lucky number's dead!"
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "House pays. House always pays."
+    SAY: "House pays. House always pays. Sometimes in teeth."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 
