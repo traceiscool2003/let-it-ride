@@ -389,3 +389,56 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
     - Run `tests/voice_test.gd` and `tests/studio_test.gd`.
 
 - **2026-11-19 (run 2, scheduled):** Finished Part 3 items 46, 47, 48, 49 (item 50 was done locally). Music rewritten (`music.gd`, `tests/music_test.gd`); per-zone environments (`zone_fx.gd`, palettes retuned for Reno and Biloxi, `tests/capture_zones.gd`); enemy gear/city palettes (`gear.gd`) and generated portraits (`portraits.gd`). All of Parts 1-3 are now [x]. Notes: `boss_test.gd` is occasionally flaky (random; passes on rerun, also flaked-free on the old code). Music was checked offline for NaNs/clipping/CPU only, not by ear: tune `STYLES` in music.gd by listening. Next: playtest by hand, record voices (HOW_TO_RECORD.md).
+
+## 51 (extra direction from the user): funny AND moves the story forward AND simple to follow
+- **Every line should do two jobs:** make people laugh (dark humor), and remind the player where the story is or move it along. Keep it simple: a player who skips half the dialogue should still always know who Rico is chasing, why, and what just happened.
+- **Fix all 8 story issues while rewriting:**
+  1. Give each city a story beat (the outline below).
+  2. Remove the "underground Pit" wording ("down", "below", "vault door", "DESCEND door").
+  3. Remove Big Sal and Madame Roulette.
+  4. The final boss uses new phase shouts.
+  5. The first ending happens at the top of the Bellagiro.
+  6. Rename the secret boss "MR. LUCKY" to "KENO KEVIN". Keep the id `mr_lucky` so the folders still match.
+  7. Give Rico an active goal with a payoff.
+  8. Add a story beat in the middle of the game.
+
+### THE STORY (simple version: use this exactly)
+- **The one-line pitch:** Rico climbs 5 casinos, from a dumpster to the Vegas Strip, to win back his brother Jules from The House. The joke is that Rico is just as hooked as Jules was.
+- **Intro (the apartment):**
+  - Jules bet himself at The House's table and lost. Now he works for The House.
+  - Mags makes Rico sign a Marker: Rico can't die, he just wakes up at home owing more. Rico: "So... infinite credit?"
+  - Marlow tells him The House keeps Jules at the top of the Bellagiro.
+  - The goal is stated plainly: "Climb five casinos. Get Jules. Try not to bet him."
+- **City 1, Atlantic Shitty (Resortz):**
+  - Rico finds Jules's old jacket in the alley, with a pawn ticket from Reno in the pocket.
+  - The boss was holding Jules's first IOU. Taking it gives the clue: "He went to Reno."
+- **City 2, Reno (Cirrcus Cirrcus):**
+  - Jules pawned his watch here, and the pawn guy says Jules "got promoted" to Biloxi.
+  - The boss confirms it: Jules is dealing for The House now.
+- **City 3, Biloxi (Hard Rok): the MID-GAME TWIST.**
+  - Marlow confesses on the radio: he's the one who got Jules his seat at The House's table.
+  - Rico is furious, but keeps climbing, because Marlow is the only one who knows the way. Marlow's confession now fires here, the first time you reach Biloxi, not after 9 runs.
+- **City 4, Fremont (Goldun Nugget):**
+  - Rico finds a note in Jules's handwriting: "Don't come for me. I'm finally winning."
+  - Rico realizes Jules doesn't WANT to be saved, because he's hooked, just like Rico. Rico: "...Okay, that's a little relatable."
+- **City 5, the Strip (Bellagiro):**
+  - The penthouse. Jules is dealing for The House.
+  - The House challenges Rico to Texas Hold'em, with Jules as the pot.
+- **First ending:**
+  - Rico wins. But Jules only leaves if he CHOOSES to cash out.
+  - Rico, the guy who has never once cashed out, has to talk his brother into walking away from a winning table. Played funny and sweet.
+  - Jules cashes out. Rico: "...So, one more run? For fun?" Then High Roller mode opens.
+- **True ending:** unchanged (Eddie Duval, all 20 tickets, Vera freed). Make sure it says "the top of the Bellagiro".
+
+### Where the story gets told
+- **City arrival cutscenes:** one short scene per city with the beat above, in 3-6 lines, with a joke in each.
+- **Boss intros and defeats:** each boss teases the beat on intro, and drops the clue on defeat.
+- **Marlow's radio lines:** one per city that recaps "where Jules is" in a funny way.
+- **NPC chatter:** reacts to the current city's beat.
+- **The pause menu:** a one-line "STORY SO FAR" that updates per city (for example, "Jules pawned his watch in Reno. He's in Biloxi now.").
+
+### Tone examples (match this energy)
+- RICO, on getting the Marker: "Can't die, just owe more. I've been training for this my whole life."
+- MAGS: "Don't think of it as debt, sweetie. Think of it as a relationship."
+- DOC FIZZ: "Side effects include luck, death, and a strong opinion about jazz."
+- MARLOW: "Good news, Jules is alive. Bad news, he's in Reno."
