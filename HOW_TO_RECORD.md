@@ -142,7 +142,7 @@ Each card: the Audacity settings to bake in (Way B), and an acting tip. If you u
 - Acting tip: Pretend you are polishing a glass the entire time.
 - Sound like: the bartender who remembers your order
 
-**JULES** (`voice/jules/`)
+**JAMES** (`voice/james/`)
 - Audacity: Change Pitch +0 semitones, Bass -2 dB, Treble -1 dB, Mid +2 dB, Reverb 30% (Room Size 40)
 - Acting tip: Whisper like you have not slept since Tuesday.
 - Sound like: a college dropout after three days awake
@@ -329,7 +329,7 @@ Folder: `voice/rico/` (cutscene lines go in the folder shown). Voice: Grin the w
 | 33 | [ ] | `rico/idle_1.ogg` | Odds are for people who don't have a gun. Or a plan. Or a savings. | Idle chatter. Random. |
 | 34 | [ ] | `rico/idle_2.ogg` | I once bet my shoes. Won. Lost the shoes. Same thing. Zero net shoes. | Idle chatter. Random. |
 | 35 | [ ] | `rico/idle_3.ogg` | Risk is just fun with consequences. And a rash. Mostly the rash. | Idle chatter. Random. |
-| 36 | [ ] | `rico/idle_4.ogg` | Climb five casinos, get Jules, don't bet him. Three steps. I've only failed step three. In theory. | Idle chatter. Random. |
+| 36 | [ ] | `rico/idle_4.ogg` | Climb five casinos, get James, don't bet him. Three steps. I've only failed step three. In theory. | Idle chatter. Random. |
 | 37 | [ ] | `rico/buy_1.ogg` | Take my money. Take all of it! Wait, not all of it. Ah. Fine. All of it. | The player just bought something. |
 | 38 | [ ] | `rico/buy_2.ogg` | Sold! Wait, what was the price? Never mind. Sold. Sold, sold, sold. | The player just bought something. |
 | 39 | [ ] | `rico/buy_3.ogg` | Worth it. Probably. If I die, it's a charitable donation to someone with fewer problems. | The player just bought something. |
@@ -357,7 +357,7 @@ Folder: `voice/rico/` (cutscene lines go in the folder shown). Voice: Grin the w
 | 61 | [ ] | `rico/boss_intro_mr_lucky.ogg` | Keno? Hit eighty numbers? Sounds like a Tuesday. A busy one. | Hero cockily answers the boss. |
 | 62 | [ ] | `rico/boss_defeat_mr_lucky.ogg` | Good game, Kevin. May the next hell be less numerical. | Hero victory line. Smug. |
 | 63 | [ ] | `rico/boss_intro_the_house.ogg` | Texas Hold'em for my brother. I've bet worse on less. Deal. | Hero cockily answers the boss. |
-| 64 | [ ] | `rico/boss_defeat_the_house.ogg` | Read 'em and weep. Now, where's Jules? | Hero victory line. Smug. |
+| 64 | [ ] | `rico/boss_defeat_the_house.ogg` | Read 'em and weep. Now, where's James? | Hero victory line. Smug. |
 | 65 | [ ] | `_cutscenes/city1_arrive/city1_arrive_1.ogg` | Atlantic Shitty. Salt, rust and slot machines. I love it already. | Cutscene: city1 arrive |
 | 66 | [ ] | `_cutscenes/city1_arrive/city1_arrive_3.ogg` | Everything's wet, Marlow. That's the whole city. | Cutscene: city1 arrive |
 | 68 | [ ] | `_cutscenes/city2_arrive/city2_arrive_1.ogg` | Reno. The biggest little city. And that's a clown. | Cutscene: city2 arrive |
@@ -369,14 +369,14 @@ Folder: `voice/rico/` (cutscene lines go in the folder shown). Voice: Grin the w
 | 83 | [ ] | `_cutscenes/secret_defeat/secret_defeat_1.ogg` | Another secret down. Another stack of chips. | Cutscene: secret defeat |
 | 84 | [ ] | `_cutscenes/secret_defeat/secret_defeat_3.ogg` | Good. | Cutscene: secret defeat |
 | 85 | [ ] | `_cutscenes/final_prelude/final_prelude_2.ogg` | And I still got a bet on you. | Cutscene: final prelude |
-| 86 | [ ] | `_cutscenes/intro/intro_1.ogg` | My brother Jules sat down at The House's table and bet himself. And lost. Now he works there. It's the most Jules thing that has ever happened. | Cutscene: intro |
+| 86 | [ ] | `_cutscenes/intro/intro_1.ogg` | My brother James sat down at The House's table and bet himself. And lost. Now he works there. It's the most James thing that has ever happened. | Cutscene: intro |
 | 87 | [ ] | `_cutscenes/intro/intro_2.ogg` | So here's the plan: climb five casinos, from a dumpster to the Vegas Strip, and win him back. I've bet on worse. I've bet on myself. That was worse. | Cutscene: intro |
 | 88 | [ ] | `_cutscenes/intro/intro_5.ogg` | So... infinite credit? Can't die, just owe more. I've been training for this my whole life. | Cutscene: intro |
 | 89 | [ ] | `_cutscenes/mags_chase/mags_chase_2.ogg` | ...Can we talk about this? | Cutscene: mags chase |
 | 90 | [ ] | `_cutscenes/ending/ending_1.ogg` | The House folds. The penthouse goes quiet. At the far table, a man in a vest keeps dealing to nobody. My brother. Still winning. | Cutscene: ending |
-| 91 | [ ] | `_cutscenes/ending/ending_3.ogg` | Jules. Cash out. Walk away from a winning table. I know. I've never done it either. Do it for me. | Cutscene: ending |
+| 91 | [ ] | `_cutscenes/ending/ending_3.ogg` | James. Cash out. Walk away from a winning table. I know. I've never done it either. Do it for me. | Cutscene: ending |
 | 92 | [ ] | `_cutscenes/ending/ending_5.ogg` | Look, I'm the last guy who gets to say this. I once bet my shoes. Won the bet. Lost the shoes. I'm not a role model. Come home. | Cutscene: ending |
-| 94 | [ ] | `_cutscenes/true_ending/true_ending_2.ogg` | No. I read your tickets, Eddie. All twenty of them. Your handwriting's worse than Jules's. | Cutscene: true ending |
+| 94 | [ ] | `_cutscenes/true_ending/true_ending_2.ogg` | No. I read your tickets, Eddie. All twenty of them. Your handwriting's worse than James's. | Cutscene: true ending |
 | 95 | [ ] | `_cutscenes/true_ending/true_ending_4.ogg` | You never learned to walk away. So I'm teaching you. Cash out, Eddie. Take the win. | Cutscene: true ending |
 | 96 | [ ] | `_cutscenes/true_ending/true_ending_9.ogg` | Even my debt? ...That's disappointing. It was my longest relationship. | Cutscene: true ending |
 | 97 | [ ] | `rico/marlow_intro_3.ogg` | So I can't die. Great. What's the catch? | Conversation: marlow_intro |
@@ -417,27 +417,27 @@ Folder: `voice/marlow/` (cutscene lines go in the folder shown). Voice: Hold the
 | 25 | [ ] | `marlow/died_1.ogg` | Rico. Again? We have to stop meeting like this. In a morgue. Via payphone. | The player just died. |
 | 26 | [ ] | `marlow/died_2.ogg` | I heard the thud. It was a loud one. I clapped. Don't judge me. | The player just died. |
 | 27 | [ ] | `marlow/died_3.ogg` | You died. I'll light a candle. A small one. A very small one. It's a matchstick. | The player just died. |
-| 28 | [ ] | `marlow/died_4.ogg` | Good news, Rico: you're alive. Bad news: it's me, and the phone, and Jules is still missing. | The player just died. |
+| 28 | [ ] | `marlow/died_4.ogg` | Good news, Rico: you're alive. Bad news: it's me, and the phone, and James is still missing. | The player just died. |
 | 29 | [ ] | `marlow/boss_1.ogg` | A boss! I'm updating my bet. I'm betting you survive. A first. | The player just beat a boss. |
-| 30 | [ ] | `marlow/boss_2.ogg` | That's one more casino down. Jules is a little closer. Or a little farther. I'm still checking the map. | The player just beat a boss. |
+| 30 | [ ] | `marlow/boss_2.ogg` | That's one more casino down. James is a little closer. Or a little farther. I'm still checking the map. | The player just beat a boss. |
 | 31 | [ ] | `marlow/boss_3.ogg` | You did it. Don't let it go to your head. Let it go to your knees. Then bank. | The player just beat a boss. |
 | 32 | [ ] | `marlow/boss_4.ogg` | I'm proud. I hate that. I'm checking my pulse. | The player just beat a boss. |
-| 33 | [ ] | `marlow/idle_1.ogg` | Five casinos. Twenty-five floors. Jules at the top of the Bellagiro. Easy. By which I mean impossible. In order. | Idle chatter. Random. |
+| 33 | [ ] | `marlow/idle_1.ogg` | Five casinos. Twenty-five floors. James at the top of the Bellagiro. Easy. By which I mean impossible. In order. | Idle chatter. Random. |
 | 34 | [ ] | `marlow/idle_2.ogg` | Secrets everywhere. Walls that break. Doors that don't exist. Like my career. | Idle chatter. Random. |
 | 35 | [ ] | `marlow/idle_3.ogg` | Follow the light. It leads somewhere. Hopefully not a morgue. | Idle chatter. Random. |
 | 36 | [ ] | `marlow/idle_4.ogg` | Every floor has a story. Some bleed. Most are about you losing. | Idle chatter. Random. |
 | 37 | [ ] | `marlow/buy_1.ogg` | Good call. Not great. Good. Like 'good' on a report card for a goldfish. | The player just bought something. |
 | 38 | [ ] | `marlow/buy_2.ogg` | I hope you read the fine print. There's no fine print. That's the fine print. | The player just bought something. |
 | 39 | [ ] | `marlow/buy_3.ogg` | I wouldn't. But I'm not you. Thank God. Thank all of the gods. | The player just bought something. |
-| 40 | [ ] | `marlow/buy_4.ogg` | That's the one Jules would've bought. And look where that got him. | The player just bought something. |
+| 40 | [ ] | `marlow/buy_4.ogg` | That's the one James would've bought. And look where that got him. | The player just bought something. |
 | 41 | [ ] | `_cutscenes/city1_arrive/city1_arrive_2.ogg` | Rico, you're in an alley. The casino's a block up. Start walking, and don't touch anything wet. | Cutscene: city1 arrive |
 | 43 | [ ] | `_cutscenes/city2_arrive/city2_arrive_2.ogg` | That's the doorman. Smile. Don't get close. | Cutscene: city2 arrive |
 | 44 | [ ] | `_cutscenes/city3_arrive/city3_arrive_2.ogg` | Hard Rok keeps the heavies near the stage. Stay quiet. | Cutscene: city3 arrive |
 | 48 | [ ] | `_cutscenes/city4_arrive/city4_arrive_2.ogg` | Goldun Nugget's got a shark tank and a long memory. Everyone wants in. Nobody gets out. | Cutscene: city4 arrive |
 | 54 | [ ] | `_cutscenes/secret_found/secret_found_2.ogg` | That's not on the map, Rico. Be careful in there. By which I mean: be reckless. It's a secret table. | Cutscene: secret found |
 | 55 | [ ] | `_cutscenes/secret_defeat/secret_defeat_2.ogg` | You're not supposed to know about those rooms. The House won't like it. | Cutscene: secret defeat |
-| 56 | [ ] | `_cutscenes/intro/intro_7.ogg` | Radio check, Rico. Jules is at the top of the Bellagiro, on the Strip. Every chip you grab rides in your Pot. At each door you bank it, or let it ride for double. You'll let it ride. You always let it ride. | Cutscene: intro |
-| 57 | [ ] | `_cutscenes/intro/intro_8.ogg` | Wear something. Anything. Then get in that heap you call a car. The goal, in plain English: climb five casinos, get Jules, try not to bet him. | Cutscene: intro |
+| 56 | [ ] | `_cutscenes/intro/intro_7.ogg` | Radio check, Rico. James is at the top of the Bellagiro, on the Strip. Every chip you grab rides in your Pot. At each door you bank it, or let it ride for double. You'll let it ride. You always let it ride. | Cutscene: intro |
+| 57 | [ ] | `_cutscenes/intro/intro_8.ogg` | Wear something. Anything. Then get in that heap you call a car. The goal, in plain English: climb five casinos, get James, try not to bet him. | Cutscene: intro |
 | 58 | [ ] | `_cutscenes/ending/ending_4.ogg` | Rico, I've seen a lot of men walk away from a table. Zero of them were happy about it. Be gentle. | Cutscene: ending |
 | 60 | [ ] | `_cutscenes/true_ending/true_ending_8.ogg` | Rico, the lights just went warm at the top of the Bellagiro. Every Marker in the apartment burned up at once. Everyone's free. | Cutscene: true ending |
 | 61 | [ ] | `_cutscenes/true_ending/true_ending_10.ogg` | Course not. It's still a casino. Now it's ours. Let it ride, kid. | Cutscene: true ending |
@@ -446,31 +446,31 @@ Folder: `voice/marlow/` (cutscene lines go in the folder shown). Voice: Hold the
 | 64 | [ ] | `marlow/radio_3.ogg` | You know what they say: the House always wins. So stop being the House's favorite guest. | Radio/lobby: radio |
 | 65 | [ ] | `marlow/radio_4.ogg` | Slot machines on every floor. Bet the Pot if you're feeling lucky. I wouldn't. I'm broke. Correlation. | Radio/lobby: radio |
 | 66 | [ ] | `marlow/radio_5.ogg` | Smash the glass, smash the crates. Insurance won't cover it, but you will. Barely. | Radio/lobby: radio |
-| 67 | [ ] | `marlow/radio_6.ogg` | Jules left a trail of IOUs up the whole coast. Follow the money and you'll find him. Or a very sad accountant. | Radio/lobby: radio |
+| 67 | [ ] | `marlow/radio_6.ogg` | James left a trail of IOUs up the whole coast. Follow the money and you'll find him. Or a very sad accountant. | Radio/lobby: radio |
 | 68 | [ ] | `marlow/radio_7.ogg` | Back again? The Fence has new toys if you've banked enough. Also the Fence has a new face. Stop looking. | Radio/lobby: radio |
 | 69 | [ ] | `marlow/first_exit_1.ogg` | First door. Cash out and that money is yours forever, and The Fence will take it. Yes, that's the joke. | Radio/lobby: first exit |
 | 70 | [ ] | `marlow/first_exit_2.ogg` | Or let it ride: double the multiplier, but the House adds a rule. Your call, high roller. Your funeral. Your call. | Radio/lobby: first exit |
 | 71 | [ ] | `marlow/marlow_intro_1.ogg` | Rico! You picked up. So the rumors are true: The House doesn't let debtors die. It just sends them home with a bigger bill. | Conversation: marlow_intro |
 | 72 | [ ] | `marlow/marlow_intro_2.ogg` | You bust, you wake up here, and the interest on your Marker goes up. Every run is a do-over. Every do-over is a bill. | Conversation: marlow_intro |
-| 73 | [ ] | `marlow/marlow_intro_4.ogg` | The catch is you never stop owing. Climb the five casinos, get Jules, and get out before the interest gets out first. | Conversation: marlow_intro |
+| 73 | [ ] | `marlow/marlow_intro_4.ogg` | The catch is you never stop owing. Climb the five casinos, get James, and get out before the interest gets out first. | Conversation: marlow_intro |
 | 74 | [ ] | `marlow/marlow_spikes_1.ogg` | Spikes again? They don't move, Rico. That's kind of their whole thing. It's the only thing they do. | Conversation: marlow_spikes |
 | 75 | [ ] | `marlow/marlow_guard_1.ogg` | Those bouncers telegraph every punch. Parry right before it lands and they'll be eating carpet. Dry carpet. Hard carpet. | Conversation: marlow_guard |
 | 76 | [ ] | `marlow/marlow_bat_1.ogg` | Rats. You lost to rats. I'm leaving that out of the report. And the eulogy. | Conversation: marlow_bat |
 | 77 | [ ] | `marlow/marlow_sal_1.ogg` | That first boss fights like he deals: slow, then rude. Wait for the big wind-up, sidestep, then punish. | Conversation: marlow_sal |
 | 78 | [ ] | `marlow/marlow_sal_2.ogg` | Parry the big move and he's stunned wide open. Double damage. That's the whole tip. The rest is vibes. | Conversation: marlow_sal |
 | 79 | [ ] | `marlow/marlow_roulette_1.ogg` | The second table's thrown balls bounce. Hit them back at the boss. They hate that more than losing. They hate it more than their mothers. | Conversation: marlow_roulette |
-| 80 | [ ] | `marlow/marlow_house_1.ogg` | You made it all the way to the penthouse. That's further than Jules ever got. Further than me. Further than my self-respect. | Conversation: marlow_house |
+| 80 | [ ] | `marlow/marlow_house_1.ogg` | You made it all the way to the penthouse. That's further than James ever got. Further than me. Further than my self-respect. | Conversation: marlow_house |
 | 81 | [ ] | `marlow/marlow_house_2.ogg` | Don't you dare quit now. I'll be so annoyed. I'll cry. Loudly. | Conversation: marlow_house |
 | 82 | [ ] | `marlow/marlow_mags_1.ogg` | Mags got you? You borrowed from a SHARK, Rico. In a SUIT. There were signs. There was literally a fin. | Conversation: marlow_mags |
 | 83 | [ ] | `marlow/marlow_greedy_1.ogg` | You were riding at times eight when you went down. Times eight. EIGHT. | Conversation: marlow_greedy |
-| 84 | [ ] | `marlow/marlow_greedy_2.ogg` | Breathe. Bank once in a while. Jules never did, and look where it got him. A job. At a casino. As the help. | Conversation: marlow_greedy |
+| 84 | [ ] | `marlow/marlow_greedy_2.ogg` | Breathe. Bank once in a while. James never did, and look where it got him. A job. At a casino. As the help. | Conversation: marlow_greedy |
 | 85 | [ ] | `marlow/marlow_careful_1.ogg` | Three cash-outs last run. Careful money. Who are you and what did you do with my idiot? | Conversation: marlow_careful |
-| 86 | [ ] | `marlow/marlow_confess_1.ogg` | About what I said in Biloxi. I used to deal for The House. I got Jules his seat at the table. | Conversation: marlow_confess |
+| 86 | [ ] | `marlow/marlow_confess_1.ogg` | About what I said in Biloxi. I used to deal for The House. I got James his seat at the table. | Conversation: marlow_confess |
 | 87 | [ ] | `marlow/marlow_confess_2.ogg` | I thought he'd win. He always won. That's not an excuse. It's a prior bad bet. | Conversation: marlow_confess |
 | 88 | [ ] | `marlow/marlow_confess_4.ogg` | And I'm talking you back to him, one floor at a time. It's the only apology I've got. It's a bad one. It's also, considering, a pretty good one. | Conversation: marlow_confess |
 | 89 | [ ] | `marlow/marlow_vault_1.ogg` | You cracked a safe! They only open if you get there fast. Speed pays at every casino. That's the only thing they have in common. | Conversation: marlow_vault |
 | 90 | [ ] | `marlow/marlow_daily_1.ogg` | Daily Deal, huh? Same floors for everyone today. Show the rest of the world how it's done. Or how not. | Conversation: marlow_daily |
-| 91 | [ ] | `marlow/marlow_ending_1.ogg` | Jules is out, the Bellagiro is quiet, and you're still picking up this phone. | Conversation: marlow_ending |
+| 91 | [ ] | `marlow/marlow_ending_1.ogg` | James is out, the Bellagiro is quiet, and you're still picking up this phone. | Conversation: marlow_ending |
 | 92 | [ ] | `marlow/marlow_ending_2.ogg` | ...Yeah. I'd go back too. Let it ride, kid. | Conversation: marlow_ending |
 | 93 | [ ] | `marlow/marlow_true_1.ogg` | The House is quiet. First time in twenty years. You did that. | Conversation: marlow_true |
 | 94 | [ ] | `marlow/marlow_true_2.ogg` | Eddie Duval finally cashed out. I owe you a drink. I owe you about a thousand drinks. Okay, I owe you a bar. | Conversation: marlow_true |
@@ -510,7 +510,7 @@ Folder: `voice/vera/` (cutscene lines go in the folder shown). Voice: Whisper-pu
 | 24 | [ ] | `vera/sharp_4.ogg` | If you die in that, at least it's an open casket with taste. | The player is dressed sharp. |
 | 25 | [ ] | `vera/died_1.ogg` | You died. Again. It's becoming a hobby. A bad one, but yours. | The player just died. |
 | 26 | [ ] | `vera/died_2.ogg` | I saw it. Everyone saw it. The cat saw it and left the room. | The player just died. |
-| 27 | [ ] | `vera/died_3.ogg` | Dust off, sugar. Jules is still up there and you're still down here. | The player just died. |
+| 27 | [ ] | `vera/died_3.ogg` | Dust off, sugar. James is still up there and you're still down here. | The player just died. |
 | 28 | [ ] | `vera/died_4.ogg` | That was a bold way to lose. Not smart. Bold. We'll call it bold. | The player just died. |
 | 29 | [ ] | `vera/boss_1.ogg` | You beat a boss! I'll remember that when you owe me. Which is soon. | The player just beat a boss. |
 | 30 | [ ] | `vera/boss_2.ogg` | Impressive. Terrifying, but impressive. Mostly terrifying. | The player just beat a boss. |
@@ -541,7 +541,7 @@ Folder: `voice/vera/` (cutscene lines go in the folder shown). Voice: Whisper-pu
 | 55 | [ ] | `vera/vera_queen_found_2.ogg` | Twenty years I've owed The House this card, and you found it folded in a losing ticket. Of course you did. | Conversation: vera_queen_found |
 | 56 | [ ] | `vera/vera_queen_found_3.ogg` | You just paid my Marker, Rico. I'm free to walk out that door. | Conversation: vera_queen_found |
 | 57 | [ ] | `vera/vera_queen_found_4.ogg` | I'm staying. Somebody has to keep you lucky. Licenses are 25% off for you, forever. That's romance, for me. | Conversation: vera_queen_found |
-| 58 | [ ] | `vera/vera_ending_1.ogg` | You got Jules out. Do you know how many runners I've watched try that? | Conversation: vera_ending |
+| 58 | [ ] | `vera/vera_ending_1.ogg` | You got James out. Do you know how many runners I've watched try that? | Conversation: vera_ending |
 | 59 | [ ] | `vera/vera_ending_2.ogg` | None of them knew when to cash out. You did. Mostly. Twice. In a row. It's a miracle. Don't push it. | Conversation: vera_ending |
 | 60 | [ ] | `vera/vera_eddie_1.ogg` | Eddie Duval. You've been reading his tickets, haven't you. | Conversation: vera_eddie |
 | 61 | [ ] | `vera/vera_eddie_2.ogg` | Best player I ever dealt to. Never walked away from a table. Not once. Not even when it caught fire. | Conversation: vera_eddie |
@@ -668,59 +668,59 @@ Folder: `voice/lucky/` (cutscene lines go in the folder shown). Voice: Pretend y
 | 46 | [ ] | `lucky/lucky_rep1_1.ogg` | On the house? Nothing's on the house. That's the House's whole thing. It's in the name. | Conversation: lucky_rep1 |
 | 47 | [ ] | `lucky/lucky_rep2_1.ogg` | You've got the look of somebody about to let it ride. Tell me when. I'll film it. | Conversation: lucky_rep2 |
 
-### JULES: 47 lines
+### JAMES: 47 lines
 
-Folder: `voice/jules/` (cutscene lines go in the folder shown). Voice: Whisper like you have not slept since Tuesday..
+Folder: `voice/james/` (cutscene lines go in the folder shown). Voice: Whisper like you have not slept since Tuesday..
 
 | # | Done | File name | Say this | How |
 |---|---|---|---|---|
-| 1 | [ ] | `jules/greet_1.ogg` | Rico? Is it really you? I've had that hallucination before. He's usually taller. | Greeting the player. In character. |
-| 2 | [ ] | `jules/greet_2.ogg` | I knew you'd come. I just didn't know when. I did bet on 'never,' though. | Greeting the player. In character. |
-| 3 | [ ] | `jules/greet_3.ogg` | One more hand. Just one. Oh. It's you. You can have the hand. | Greeting the player. In character. |
-| 4 | [ ] | `jules/greet_4.ogg` | Is it morning? What day is it? Is there a day? Who has the clock? | Greeting the player. In character. |
-| 5 | [ ] | `jules/farewell_1.ogg` | Don't wait for me. Go. I'm busy being a cautionary tale. | Parting words as the player leaves. |
-| 6 | [ ] | `jules/farewell_2.ogg` | Say hi to Mom. Or don't. She'll worry. Then she'll ask for the money back. | Parting words as the player leaves. |
-| 7 | [ ] | `jules/farewell_3.ogg` | Take the money. Leave the cards. And the dice. And the chair. I'm attached to the chair. | Parting words as the player leaves. |
-| 8 | [ ] | `jules/farewell_4.ogg` | Come back. I'll be here. I'm always here. It's, like, a whole problem. | Parting words as the player leaves. |
-| 9 | [ ] | `jules/rich_1.ogg` | That's a lot of chips. I know the feeling. Don't trust it. It's a lie told by a sparkly liar. | The player is carrying a lot of money. |
-| 10 | [ ] | `jules/rich_2.ogg` | I had that much once. For ten minutes. Then I had a dealer's smile. | The player is carrying a lot of money. |
-| 11 | [ ] | `jules/rich_3.ogg` | Bank it. I'm begging. I'm not above begging. I'm below it. Watch. | The player is carrying a lot of money. |
-| 12 | [ ] | `jules/rich_4.ogg` | I was rich once. It didn't help. It just changed how I lost. | The player is carrying a lot of money. |
-| 13 | [ ] | `jules/broke_1.ogg` | Broke? Welcome. It's cozy. The walls are close and the rent is nothing. | The player is nearly broke. |
-| 14 | [ ] | `jules/broke_2.ogg` | I've been broke for three years. It's fine. I have a lot of hobbies. Mostly regret. | The player is nearly broke. |
-| 15 | [ ] | `jules/broke_3.ogg` | It's just money. It was never ours. It was the House's. Look at the logo. | The player is nearly broke. |
-| 16 | [ ] | `jules/broke_4.ogg` | At least we're broke together. That's called family. Or a pyramid scheme. | The player is nearly broke. |
-| 17 | [ ] | `jules/ugly_1.ogg` | Nice outfit. I love it. I'm lying. I'm so lying. | The player is wearing ugly clothes. |
-| 18 | [ ] | `jules/ugly_2.ogg` | I'd say something. But you're my brother. I'd just say it more quietly. | The player is wearing ugly clothes. |
-| 19 | [ ] | `jules/ugly_3.ogg` | You look like me. After three years. And one stain. Is that mine? | The player is wearing ugly clothes. |
-| 20 | [ ] | `jules/ugly_4.ogg` | Mom would cry. Then laugh. Then ask where you got it. Then cry again. | The player is wearing ugly clothes. |
-| 21 | [ ] | `jules/sharp_1.ogg` | You look great. Suspiciously great. Who died? Is it me? Is it me? | The player is dressed sharp. |
-| 22 | [ ] | `jules/sharp_2.ogg` | Look at you. Dad would be proud. Dad would also ask where you stole it. | The player is dressed sharp. |
-| 23 | [ ] | `jules/sharp_3.ogg` | I used to dress like that. Before. Now I dress like 'before.' | The player is dressed sharp. |
-| 24 | [ ] | `jules/sharp_4.ogg` | Did you buy that with my debts? It's got my fingerprints. And my interest. | The player is dressed sharp. |
-| 25 | [ ] | `jules/died_1.ogg` | You died? Welcome to my life. It's less dead than you'd think. More dead than I'd like. | The player just died. |
-| 26 | [ ] | `jules/died_2.ogg` | It doesn't hurt after the first twenty. Then it's just administrative. | The player just died. |
-| 27 | [ ] | `jules/died_3.ogg` | I've died here a hundred times. You get used to it. And the lighting. | The player just died. |
-| 28 | [ ] | `jules/died_4.ogg` | Get up, Rico. It's just money. And a body. And a soul. And a deposit. | The player just died. |
-| 29 | [ ] | `jules/boss_1.ogg` | You beat a boss? I never got past the third. Or did. They blur together. Like all my mistakes. | The player just beat a boss. |
-| 30 | [ ] | `jules/boss_2.ogg` | I heard the table go quiet. It was you. Or the building collapsing. Both are fine. | The player just beat a boss. |
-| 31 | [ ] | `jules/boss_3.ogg` | The House is going to notice. It notices everything. It noticed me twice. | The player just beat a boss. |
-| 32 | [ ] | `jules/boss_4.ogg` | I'm proud. And scared. And a little jealous. Mostly jealous. Win more, loser. | The player just beat a boss. |
-| 33 | [ ] | `jules/idle_1.ogg` | The cards remember everything. Especially the bad ones. Especially me. | Idle chatter. Random. |
-| 34 | [ ] | `jules/idle_2.ogg` | You hear that? The wheel. It never stops. It also never says sorry. | Idle chatter. Random. |
-| 35 | [ ] | `jules/idle_3.ogg` | I counted every floor. There's more. Always more. It's a growing business. | Idle chatter. Random. |
-| 36 | [ ] | `jules/idle_4.ogg` | Be careful with the House. It's not a person. It's a vibe with lawyers. | Idle chatter. Random. |
-| 37 | [ ] | `jules/buy_1.ogg` | Good pick. I'd have picked it too. I lost anyway. Eventually, with style. | The player just bought something. |
-| 38 | [ ] | `jules/buy_2.ogg` | Take my advice: don't. Take my advice again: don't. You're not listening. Brother. | The player just bought something. |
-| 39 | [ ] | `jules/buy_3.ogg` | It might work. Mine didn't. But I'm an optimist. By which I mean broke. | The player just bought something. |
-| 40 | [ ] | `jules/buy_4.ogg` | At least you're trying. That's what I said. Right before the funeral. | The player just bought something. |
+| 1 | [ ] | `james/greet_1.ogg` | Rico? Is it really you? I've had that hallucination before. He's usually taller. | Greeting the player. In character. |
+| 2 | [ ] | `james/greet_2.ogg` | I knew you'd come. I just didn't know when. I did bet on 'never,' though. | Greeting the player. In character. |
+| 3 | [ ] | `james/greet_3.ogg` | One more hand. Just one. Oh. It's you. You can have the hand. | Greeting the player. In character. |
+| 4 | [ ] | `james/greet_4.ogg` | Is it morning? What day is it? Is there a day? Who has the clock? | Greeting the player. In character. |
+| 5 | [ ] | `james/farewell_1.ogg` | Don't wait for me. Go. I'm busy being a cautionary tale. | Parting words as the player leaves. |
+| 6 | [ ] | `james/farewell_2.ogg` | Say hi to Mom. Or don't. She'll worry. Then she'll ask for the money back. | Parting words as the player leaves. |
+| 7 | [ ] | `james/farewell_3.ogg` | Take the money. Leave the cards. And the dice. And the chair. I'm attached to the chair. | Parting words as the player leaves. |
+| 8 | [ ] | `james/farewell_4.ogg` | Come back. I'll be here. I'm always here. It's, like, a whole problem. | Parting words as the player leaves. |
+| 9 | [ ] | `james/rich_1.ogg` | That's a lot of chips. I know the feeling. Don't trust it. It's a lie told by a sparkly liar. | The player is carrying a lot of money. |
+| 10 | [ ] | `james/rich_2.ogg` | I had that much once. For ten minutes. Then I had a dealer's smile. | The player is carrying a lot of money. |
+| 11 | [ ] | `james/rich_3.ogg` | Bank it. I'm begging. I'm not above begging. I'm below it. Watch. | The player is carrying a lot of money. |
+| 12 | [ ] | `james/rich_4.ogg` | I was rich once. It didn't help. It just changed how I lost. | The player is carrying a lot of money. |
+| 13 | [ ] | `james/broke_1.ogg` | Broke? Welcome. It's cozy. The walls are close and the rent is nothing. | The player is nearly broke. |
+| 14 | [ ] | `james/broke_2.ogg` | I've been broke for three years. It's fine. I have a lot of hobbies. Mostly regret. | The player is nearly broke. |
+| 15 | [ ] | `james/broke_3.ogg` | It's just money. It was never ours. It was the House's. Look at the logo. | The player is nearly broke. |
+| 16 | [ ] | `james/broke_4.ogg` | At least we're broke together. That's called family. Or a pyramid scheme. | The player is nearly broke. |
+| 17 | [ ] | `james/ugly_1.ogg` | Nice outfit. I love it. I'm lying. I'm so lying. | The player is wearing ugly clothes. |
+| 18 | [ ] | `james/ugly_2.ogg` | I'd say something. But you're my brother. I'd just say it more quietly. | The player is wearing ugly clothes. |
+| 19 | [ ] | `james/ugly_3.ogg` | You look like me. After three years. And one stain. Is that mine? | The player is wearing ugly clothes. |
+| 20 | [ ] | `james/ugly_4.ogg` | Mom would cry. Then laugh. Then ask where you got it. Then cry again. | The player is wearing ugly clothes. |
+| 21 | [ ] | `james/sharp_1.ogg` | You look great. Suspiciously great. Who died? Is it me? Is it me? | The player is dressed sharp. |
+| 22 | [ ] | `james/sharp_2.ogg` | Look at you. Dad would be proud. Dad would also ask where you stole it. | The player is dressed sharp. |
+| 23 | [ ] | `james/sharp_3.ogg` | I used to dress like that. Before. Now I dress like 'before.' | The player is dressed sharp. |
+| 24 | [ ] | `james/sharp_4.ogg` | Did you buy that with my debts? It's got my fingerprints. And my interest. | The player is dressed sharp. |
+| 25 | [ ] | `james/died_1.ogg` | You died? Welcome to my life. It's less dead than you'd think. More dead than I'd like. | The player just died. |
+| 26 | [ ] | `james/died_2.ogg` | It doesn't hurt after the first twenty. Then it's just administrative. | The player just died. |
+| 27 | [ ] | `james/died_3.ogg` | I've died here a hundred times. You get used to it. And the lighting. | The player just died. |
+| 28 | [ ] | `james/died_4.ogg` | Get up, Rico. It's just money. And a body. And a soul. And a deposit. | The player just died. |
+| 29 | [ ] | `james/boss_1.ogg` | You beat a boss? I never got past the third. Or did. They blur together. Like all my mistakes. | The player just beat a boss. |
+| 30 | [ ] | `james/boss_2.ogg` | I heard the table go quiet. It was you. Or the building collapsing. Both are fine. | The player just beat a boss. |
+| 31 | [ ] | `james/boss_3.ogg` | The House is going to notice. It notices everything. It noticed me twice. | The player just beat a boss. |
+| 32 | [ ] | `james/boss_4.ogg` | I'm proud. And scared. And a little jealous. Mostly jealous. Win more, loser. | The player just beat a boss. |
+| 33 | [ ] | `james/idle_1.ogg` | The cards remember everything. Especially the bad ones. Especially me. | Idle chatter. Random. |
+| 34 | [ ] | `james/idle_2.ogg` | You hear that? The wheel. It never stops. It also never says sorry. | Idle chatter. Random. |
+| 35 | [ ] | `james/idle_3.ogg` | I counted every floor. There's more. Always more. It's a growing business. | Idle chatter. Random. |
+| 36 | [ ] | `james/idle_4.ogg` | Be careful with the House. It's not a person. It's a vibe with lawyers. | Idle chatter. Random. |
+| 37 | [ ] | `james/buy_1.ogg` | Good pick. I'd have picked it too. I lost anyway. Eventually, with style. | The player just bought something. |
+| 38 | [ ] | `james/buy_2.ogg` | Take my advice: don't. Take my advice again: don't. You're not listening. Brother. | The player just bought something. |
+| 39 | [ ] | `james/buy_3.ogg` | It might work. Mine didn't. But I'm an optimist. By which I mean broke. | The player just bought something. |
+| 40 | [ ] | `james/buy_4.ogg` | At least you're trying. That's what I said. Right before the funeral. | The player just bought something. |
 | 41 | [ ] | `_cutscenes/ending/ending_2.ogg` | ...Rico? You climbed five casinos for me? I'm up eleven grand! I'm on a RUN! | Cutscene: ending |
-| 43 | [ ] | `jules/jules_home_1.ogg` | Rico. I keep waking up in the apartment. Old habits. The House still thinks I owe it. Which, to be fair, I do. | Conversation: jules_home |
-| 44 | [ ] | `jules/jules_home_2.ogg` | Thanks for coming for me. Now let me come with you. Pick me on the title screen. I hit harder than you. I also steal. | Conversation: jules_home |
-| 45 | [ ] | `jules/jules_eddie_1.ogg` | Those losing tickets are Eddie Duval's trail. I dealt to that voice every night for three years. | Conversation: jules_eddie |
-| 46 | [ ] | `jules/jules_eddie_2.ogg` | He doesn't want our money. He wants somebody to finally beat him so he can stop. It's the saddest ten-second pitch I've ever heard. | Conversation: jules_eddie |
-| 47 | [ ] | `jules/jules_rep1_1.ogg` | Bank it, Rico. I didn't. Look where it got me. A very comfortable cell with a view. | Conversation: jules_rep1 |
-| 48 | [ ] | `jules/jules_rep2_1.ogg` | The House cheats. So we cheat better. That's called family values. | Conversation: jules_rep2 |
+| 43 | [ ] | `james/james_home_1.ogg` | Rico. I keep waking up in the apartment. Old habits. The House still thinks I owe it. Which, to be fair, I do. | Conversation: james_home |
+| 44 | [ ] | `james/james_home_2.ogg` | Thanks for coming for me. Now let me come with you. Pick me on the title screen. I hit harder than you. I also steal. | Conversation: james_home |
+| 45 | [ ] | `james/james_eddie_1.ogg` | Those losing tickets are Eddie Duval's trail. I dealt to that voice every night for three years. | Conversation: james_eddie |
+| 46 | [ ] | `james/james_eddie_2.ogg` | He doesn't want our money. He wants somebody to finally beat him so he can stop. It's the saddest ten-second pitch I've ever heard. | Conversation: james_eddie |
+| 47 | [ ] | `james/james_rep1_1.ogg` | Bank it, Rico. I didn't. Look where it got me. A very comfortable cell with a view. | Conversation: james_rep1 |
+| 48 | [ ] | `james/james_rep2_1.ogg` | The House cheats. So we cheat better. That's called family values. | Conversation: james_rep2 |
 
 ### COMP: 17 lines
 
@@ -737,7 +737,7 @@ Folder: `voice/comp/` (cutscene lines go in the folder shown). Voice: Meow in di
 | 7 | [ ] | `comp/greet_1.ogg` | Mrrow! | Greeting the player. In character. |
 | 8 | [ ] | `comp/greet_2.ogg` | Prrrp? | Greeting the player. In character. |
 | 9 | [ ] | `comp/greet_3.ogg` | Mew. | Greeting the player. In character. |
-| 10 | [ ] | `comp/farewell_1.ogg` | Mrrrrow. (Goodbye. And bring fish. Or Jules.) | Parting words as the player leaves. |
+| 10 | [ ] | `comp/farewell_1.ogg` | Mrrrrow. (Goodbye. And bring fish. Or James.) | Parting words as the player leaves. |
 | 11 | [ ] | `comp/farewell_2.ogg` | Meeeeow. | Parting words as the player leaves. |
 | 12 | [ ] | `comp/rich_1.ogg` | Prrrrr. (You smell like money.) | The player is carrying a lot of money. |
 | 13 | [ ] | `comp/rich_2.ogg` | Mrow! (Share.) | The player is carrying a lot of money. |
@@ -920,7 +920,7 @@ Folder: `voice/dumpster_dan/` (cutscene lines go in the folder shown). Voice: La
 | 1 | [ ] | `dumpster_dan/idle_1.ogg` | Got any change? Got any WISDOM? I'll take either. I'll take a sandwich. | Idle chatter. Random. |
 | 2 | [ ] | `dumpster_dan/idle_2.ogg` | The rats pay rent. Do you? Because Rattigan hasn't missed a month. | Idle chatter. Random. |
 | 3 | [ ] | `dumpster_dan/idle_3.ogg` | I used to teach economics. Now I eat economics. It's mostly gristle. | Idle chatter. Random. |
-| 4 | [ ] | `dumpster_dan/idle_4.ogg` | The walls have secrets. Some are loose. Some are Jules's. He pawned a jacket. Ask the jacket. | Idle chatter. Random. |
+| 4 | [ ] | `dumpster_dan/idle_4.ogg` | The walls have secrets. Some are loose. Some are James's. He pawned a jacket. Ask the jacket. | Idle chatter. Random. |
 | 5 | [ ] | `dumpster_dan/greet_1.ogg` | Hey there, friend. Spare a smile? I'll take a molar. | Greeting the player. In character. |
 | 6 | [ ] | `dumpster_dan/greet_2.ogg` | Ooh, a visitor! Or a hallucination. Both are nice. Both tip the same. | Greeting the player. In character. |
 | 7 | [ ] | `dumpster_dan/greet_3.ogg` | You look like a man with a destiny and a wallet. One of them is lying. | Greeting the player. In character. |
@@ -1020,7 +1020,7 @@ Folder: `voice/the_house/` (cutscene lines go in the folder shown). Voice: Say i
 | 8 | [ ] | `the_house/hurt_1.ogg` | A scratch. The House endures. The House has dental insurance. | Boss gets hit. Grunt-style. |
 | 9 | [ ] | `the_house/hurt_2.ogg` | That was... noted. In a file. Titled 'Rico: ongoing.' | Boss gets hit. Grunt-style. |
 | 10 | [ ] | `the_house/kill_1.ogg` | You've been folded. Like a napkin. A fancy one. Then used. | Boss kills the player. Gloating. |
-| 11 | [ ] | `the_house/kill_2.ogg` | Terms and conditions apply. They always did. Page 400. Paragraph 'Jules.' | Boss kills the player. Gloating. |
+| 11 | [ ] | `the_house/kill_2.ogg` | Terms and conditions apply. They always did. Page 400. Paragraph 'James.' | Boss kills the player. Gloating. |
 | 12 | [ ] | `_cutscenes/city5_arrive/city5_arrive_3.ogg` | Welcome, Rico. We've been expecting you. For years. Your brother's been dealing since lunch. | Cutscene: city5 arrive |
 | 13 | [ ] | `_cutscenes/final_prelude/final_prelude_1.ogg` | You climbed my five cities. You beat my table-lords. You wore my clothes. | Cutscene: final prelude |
 | 14 | [ ] | `_cutscenes/final_prelude/final_prelude_3.ogg` | Then sit. Hole cards. Flop. Turn. River. And the pot, Rico, is your brother. | Cutscene: final prelude |
@@ -1380,7 +1380,7 @@ Folder: `voice/drunk/` (cutscene lines go in the folder shown). Voice: Hiccup mi
 | 19 | [ ] | `drunk/city4_4.ogg` | I haven't seen daylight since the Clinton administration. It's fine. I'm tan from the slots. | Crowd bark flavored for city 4. |
 | 20 | [ ] | `drunk/city4_10.ogg` | A note was left at the front desk, handwritten. 'Don't come for me. I'm finally winning.' Looks like a gambler's brother. | Crowd bark flavored for city 4. |
 | 21 | [ ] | `drunk/city5_4.ogg` | Everything here costs a hundred dollars. Even the air. Even the apologies. | Crowd bark flavored for city 5. |
-| 22 | [ ] | `drunk/city5_10.ogg` | The House challenged some guy to a hand. Jules is the pot. Pot's a person. Allegedly. | Crowd bark flavored for city 5. |
+| 22 | [ ] | `drunk/city5_10.ogg` | The House challenged some guy to a hand. James is the pot. Pot's a person. Allegedly. | Crowd bark flavored for city 5. |
 
 ### BOUNCER: 22 lines
 
@@ -1405,7 +1405,7 @@ Folder: `voice/bouncer/` (cutscene lines go in the folder shown). Voice: As low 
 | 15 | [ ] | `bouncer/city2_5.ogg` | Mind the clown. The clown bites. The clown is also the manager. | Crowd bark flavored for city 2. |
 | 16 | [ ] | `bouncer/city2_11.ogg` | Some guy pawned a gold watch here last week. Sad story. Said he was 'getting promoted.' To Biloxi, I think. | Crowd bark flavored for city 2. |
 | 17 | [ ] | `bouncer/city3_5.ogg` | A bad beat sounds like a power chord. And looks like a rhinestone jacket. | Crowd bark flavored for city 3. |
-| 18 | [ ] | `bouncer/city3_11.ogg` | Word is the new dealer upstairs is some guy named Jules. Dealing for The House. Doing great. Unsettlingly great. | Crowd bark flavored for city 3. |
+| 18 | [ ] | `bouncer/city3_11.ogg` | Word is the new dealer upstairs is some guy named James. Dealing for The House. Doing great. Unsettlingly great. | Crowd bark flavored for city 3. |
 | 19 | [ ] | `bouncer/city4_5.ogg` | The neon is older than I am. And it's in better shape. I'm furious. | Crowd bark flavored for city 4. |
 | 20 | [ ] | `bouncer/city4_11.ogg` | Don't stare at the chandelier. It judges. And then it falls on the people it judged. | Crowd bark flavored for city 4. |
 | 21 | [ ] | `bouncer/city5_5.ogg` | Don't stare at the High Roller. He bites. He bites the poor ones. I've seen it. | Crowd bark flavored for city 5. |

@@ -380,7 +380,7 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
   - **Story consistency:** while rewriting, fix the leftover story contradictions from the old "underground Pit" version so everything fits the 5-city climb from Atlantic Shitty up to the Bellagiro:
     - Remove Big Sal and Madame Roulette references, "down"/"below" wording and the "DESCEND door" tip.
     - Use the new boss roster for the `story.gd` BOSS_* fallbacks.
-    - Move Jules's ending to the top of the Bellagiro.
+    - Move James's ending to the top of the Bellagiro.
   - **Files:**
     - `scripts/voice_lines_main.gd`, `voice_lines_misc.gd`, `voice_lines.gd`
     - `story.gd`, `dialogue.gd`, `boss_defs.gd` (the boss lines)
@@ -404,45 +404,45 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
   8. Add a story beat in the middle of the game.
 
 ### THE STORY (simple version: use this exactly)
-- **The one-line pitch:** Rico climbs 5 casinos, from a dumpster to the Vegas Strip, to win back his brother Jules from The House. The joke is that Rico is just as hooked as Jules was.
+- **The one-line pitch:** Rico climbs 5 casinos, from a dumpster to the Vegas Strip, to win back his brother James from The House. The joke is that Rico is just as hooked as James was.
 - **Intro (the apartment):**
-  - Jules bet himself at The House's table and lost. Now he works for The House.
+  - James bet himself at The House's table and lost. Now he works for The House.
   - Mags makes Rico sign a Marker: Rico can't die, he just wakes up at home owing more. Rico: "So... infinite credit?"
-  - Marlow tells him The House keeps Jules at the top of the Bellagiro.
-  - The goal is stated plainly: "Climb five casinos. Get Jules. Try not to bet him."
+  - Marlow tells him The House keeps James at the top of the Bellagiro.
+  - The goal is stated plainly: "Climb five casinos. Get James. Try not to bet him."
 - **City 1, Atlantic Shitty (Resortz):**
-  - Rico finds Jules's old jacket in the alley, with a pawn ticket from Reno in the pocket.
-  - The boss was holding Jules's first IOU. Taking it gives the clue: "He went to Reno."
+  - Rico finds James's old jacket in the alley, with a pawn ticket from Reno in the pocket.
+  - The boss was holding James's first IOU. Taking it gives the clue: "He went to Reno."
 - **City 2, Reno (Cirrcus Cirrcus):**
-  - Jules pawned his watch here, and the pawn guy says Jules "got promoted" to Biloxi.
-  - The boss confirms it: Jules is dealing for The House now.
+  - James pawned his watch here, and the pawn guy says James "got promoted" to Biloxi.
+  - The boss confirms it: James is dealing for The House now.
 - **City 3, Biloxi (Hard Rok): the MID-GAME TWIST.**
-  - Marlow confesses on the radio: he's the one who got Jules his seat at The House's table.
+  - Marlow confesses on the radio: he's the one who got James his seat at The House's table.
   - Rico is furious, but keeps climbing, because Marlow is the only one who knows the way. Marlow's confession now fires here, the first time you reach Biloxi, not after 9 runs.
 - **City 4, Fremont (Goldun Nugget):**
-  - Rico finds a note in Jules's handwriting: "Don't come for me. I'm finally winning."
-  - Rico realizes Jules doesn't WANT to be saved, because he's hooked, just like Rico. Rico: "...Okay, that's a little relatable."
+  - Rico finds a note in James's handwriting: "Don't come for me. I'm finally winning."
+  - Rico realizes James doesn't WANT to be saved, because he's hooked, just like Rico. Rico: "...Okay, that's a little relatable."
 - **City 5, the Strip (Bellagiro):**
-  - The penthouse. Jules is dealing for The House.
-  - The House challenges Rico to Texas Hold'em, with Jules as the pot.
+  - The penthouse. James is dealing for The House.
+  - The House challenges Rico to Texas Hold'em, with James as the pot.
 - **First ending:**
-  - Rico wins. But Jules only leaves if he CHOOSES to cash out.
+  - Rico wins. But James only leaves if he CHOOSES to cash out.
   - Rico, the guy who has never once cashed out, has to talk his brother into walking away from a winning table. Played funny and sweet.
-  - Jules cashes out. Rico: "...So, one more run? For fun?" Then High Roller mode opens.
+  - James cashes out. Rico: "...So, one more run? For fun?" Then High Roller mode opens.
 - **True ending:** unchanged (Eddie Duval, all 20 tickets, Vera freed). Make sure it says "the top of the Bellagiro".
 
 ### Where the story gets told
 - **City arrival cutscenes:** one short scene per city with the beat above, in 3-6 lines, with a joke in each.
 - **Boss intros and defeats:** each boss teases the beat on intro, and drops the clue on defeat.
-- **Marlow's radio lines:** one per city that recaps "where Jules is" in a funny way.
+- **Marlow's radio lines:** one per city that recaps "where James is" in a funny way.
 - **NPC chatter:** reacts to the current city's beat.
-- **The pause menu:** a one-line "STORY SO FAR" that updates per city (for example, "Jules pawned his watch in Reno. He's in Biloxi now.").
+- **The pause menu:** a one-line "STORY SO FAR" that updates per city (for example, "James pawned his watch in Reno. He's in Biloxi now.").
 
 ### Tone examples (match this energy)
 - RICO, on getting the Marker: "Can't die, just owe more. I've been training for this my whole life."
 - MAGS: "Don't think of it as debt, sweetie. Think of it as a relationship."
 - DOC FIZZ: "Side effects include luck, death, and a strong opinion about jazz."
-- MARLOW: "Good news, Jules is alive. Bad news, he's in Reno."
+- MARLOW: "Good news, James is alive. Bad news, he's in Reno."
 
 - **2026-11-19 (run 3, scheduled):** Finished item 51 (comedy + story pass). Everything in Parts 1-4 is now [x]. NOTE: gen_voice_kit.gd overwrites HOW_TO_RECORD.md, VOICE_SCRIPT.md and voice READMEs and drops the local grunt/studio sections; merge line changes only if you rerun it. Next: playtest, record voices.
 
@@ -463,7 +463,7 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
     - Every character has ONE comic obsession they keep coming back to (callbacks):
       - Mags: loves Rico's debt like a pet, and is threatening in a sweet voice.
       - Doc Fizz: legally mandated side-effect disclaimers that get worse.
-      - Marlow: tired babysitter who has given up, and guilty about Jules.
+      - Marlow: tired babysitter who has given up, and guilty about James.
       - Lucky: runs a betting pool on Rico's deaths.
       - Gunny: deeply, inappropriately in love with his guns.
       - Silas: a fashion snob who judges your ugly-buff clothes.
@@ -481,7 +481,7 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
        - a story line states its story beat clearly
     3. **One clear joke per line, with the punchline LAST.** Lines can be longer and conversational (1-3 sentences, up to ~35 words). Barks and crowd lines stay short.
     4. **Sounds like a person,** not word salad. Read it out loud. If it's awkward to say, rewrite it.
-    5. **Story lines stay crystal clear:** a funny delivery is fine, but the plot fact (where Jules is, what just happened) must be stated plainly.
+    5. **Story lines stay crystal clear:** a funny delivery is fine, but the plot fact (where James is, what just happened) must be stated plainly.
   - **Review step (required):**
     - After rewriting, go through EVERY line in `voice/ALL_LINES.md` and score it against rules 1-5.
     - Rewrite anything that fails.
@@ -505,7 +505,7 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
        - "or did, they blur together, like all my mistakes, and I'm winning, so I'm taking credit"
        - "I'll be the guy who loses, again"
        - Any line where the last clause changes the subject. A punchline must PAY OFF the setup, not wander off.
-    3. **Jules:** he is hooked and happy at The House's table, and talks like a cheerful addict in denial. His lines must clearly say he doesn't want to leave, in a funny way. Example: "I'm not trapped, Rico, I'm employed. There's a difference. The difference is dental."
+    3. **James:** he is hooked and happy at The House's table, and talks like a cheerful addict in denial. His lines must clearly say he doesn't want to leave, in a funny way. Example: "I'm not trapped, Rico, I'm employed. There's a difference. The difference is dental."
     4. **Trim every line by ~20%.** If a phrase doesn't set up or deliver the joke, delete it.
   - Then run the review step from item 52 on the result: score every line, rewrite the failures, and write `COMEDY_REVIEW.md`.
   - Regenerate the kits. Run `voice_test` and `studio_test`.
@@ -557,3 +557,5 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
   - **NPCs in the apartment and street hub:** pick sheets and recolors that fit each character.
   - Bosses can keep their current art (do not swap them).
   - Verify with `tests/capture_enemies.gd` and `tests/poses.gd`. All tests must pass.
+
+> **Note (LOCAL session, 2026-11-19):** Rico's brother is now named **JAMES** (renamed from Jules everywhere, including the voice folder `voice/james` and the line ids `james_*`). Use James in all new and rewritten lines.

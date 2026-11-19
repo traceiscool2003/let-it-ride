@@ -34,7 +34,7 @@ idle_3.ogg
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_4.ogg
-    SAY: "The walls have secrets. Some are loose. Some are Jules's. He pawned a jacket. Ask the jacket."
+    SAY: "The walls have secrets. Some are loose. Some are James's. He pawned a jacket. Ask the jacket."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 greet_1.ogg

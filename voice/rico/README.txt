@@ -162,7 +162,7 @@ idle_3.ogg
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_4.ogg
-    SAY: "Climb five casinos, get Jules, don't bet him. Three steps. I've only failed step three. In theory."
+    SAY: "Climb five casinos, get James, don't bet him. Three steps. I've only failed step three. In theory."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 buy_1.ogg
@@ -274,7 +274,7 @@ boss_intro_the_house.ogg
     HOW: Hero cockily answers the boss.  (Boss intro (hero reply))
 
 boss_defeat_the_house.ogg
-    SAY: "Read 'em and weep. Now, where's Jules?"
+    SAY: "Read 'em and weep. Now, where's James?"
     HOW: Hero victory line. Smug.  (Boss defeat (hero reply))
 
 marlow_intro_3.ogg

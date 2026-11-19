@@ -1,4 +1,4 @@
-VOICE FOLDER: JULES  (jules)
+VOICE FOLDER: JAMES  (james)
 Your missing brother. Lost at the tables.
 
 HOW TO PERFORM: One more hand. Just one.
@@ -181,27 +181,27 @@ buy_4.ogg
     SAY: "At least you're trying. That's what I said. Right before the funeral."
     HOW: The player just bought something.  (NPC talk (buy))
 
-jules_home_1.ogg
+james_home_1.ogg
     SAY: "Rico. I keep waking up in the apartment. Old habits. The House still thinks I owe it. Which, to be fair, I do."
-    HOW: Conversation: jules_home  (Lobby conversation)
+    HOW: Conversation: james_home  (Lobby conversation)
 
-jules_home_2.ogg
+james_home_2.ogg
     SAY: "Thanks for coming for me. Now let me come with you. Pick me on the title screen. I hit harder than you. I also steal."
-    HOW: Conversation: jules_home  (Lobby conversation)
+    HOW: Conversation: james_home  (Lobby conversation)
 
-jules_eddie_1.ogg
+james_eddie_1.ogg
     SAY: "Those losing tickets are Eddie Duval's trail. I dealt to that voice every night for three years."
-    HOW: Conversation: jules_eddie  (Lobby conversation)
+    HOW: Conversation: james_eddie  (Lobby conversation)
 
-jules_eddie_2.ogg
+james_eddie_2.ogg
     SAY: "He doesn't want our money. He wants somebody to finally beat him so he can stop. It's the saddest ten-second pitch I've ever heard."
-    HOW: Conversation: jules_eddie  (Lobby conversation)
+    HOW: Conversation: james_eddie  (Lobby conversation)
 
-jules_rep1_1.ogg
+james_rep1_1.ogg
     SAY: "Bank it, Rico. I didn't. Look where it got me. A very comfortable cell with a view."
-    HOW: Conversation: jules_rep1  (Lobby conversation)
+    HOW: Conversation: james_rep1  (Lobby conversation)
 
-jules_rep2_1.ogg
+james_rep2_1.ogg
     SAY: "The House cheats. So we cheat better. That's called family values."
-    HOW: Conversation: jules_rep2  (Lobby conversation)
+    HOW: Conversation: james_rep2  (Lobby conversation)
 

@@ -15,7 +15,7 @@ extends RefCounted
 ## filler chats, and the rest of the crowd chatter.
 
 const GENERIC := ["greet", "farewell", "rich", "broke", "ugly", "sharp", "died", "boss", "idle", "buy"]
-const MAIN_CHARS := ["rico", "marlow", "vera", "mags", "lucky", "jules", "tailor", "fizz", "gunny"]
+const MAIN_CHARS := ["rico", "marlow", "vera", "mags", "lucky", "james", "tailor", "fizz", "gunny"]
 const CROWD := ["tourist", "junkie", "pitboss", "drunk", "bouncer", "hustler"]
 const BOSS_KEEP := ["intro", "defeat", "phase2", "phase3"]
 const BOSS_SKIP := ["hurt", "kill", "taunt"]

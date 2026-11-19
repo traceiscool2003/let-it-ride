@@ -2,7 +2,7 @@
 
 A 2D parkour-and-brawling roguelike heist through The Pit, an illegal casino buried under the city. Built in Godot 4.7 with GDScript only. It needs no asset files: the art is drawn in code, and the sound effects and music are synthesized live.
 
-**Story:** Rico, a degenerate gambler, climbs five casinos (Atlantic Shitty, Reno, Biloxi, Fremont and the Bellagiro on the Strip) to win his brother Jules back from The House. Marlow talks you through it over the radio. Beating The House at Texas Hold'em ends the first story; High Roller mode opens after.
+**Story:** Rico, a degenerate gambler, climbs five casinos (Atlantic Shitty, Reno, Biloxi, Fremont and the Bellagiro on the Strip) to win his brother James back from The House. Marlow talks you through it over the radio. Beating The House at Texas Hold'em ends the first story; High Roller mode opens after.
 
 ## Run it
 Open `project.godot` in Godot 4.7 and press F5.
@@ -74,7 +74,7 @@ Open `project.godot` in Godot 4.7 and press F5.
 - **Music:** calm generative piano while exploring; it crossfades into an intense drum-and-bass battle track near enemies and in boss fights.
 - **Meta:**
   - The Fence skill tree: 5 branches and 20 skills, paid for with SKILL POINTS from levelling up (The Fence also sells extra points for banked cash)
-  - 3 playable runners: Rook; Dice, unlocked by beating the first boss; Jules, unlocked by finishing the story
+  - 3 playable runners: Rook; Dice, unlocked by beating the first boss; James, unlocked by finishing the story
   - 31 trophies
   - saved settings and stats
 

@@ -126,7 +126,7 @@ died_2.ogg
     HOW: The player just died.  (NPC talk (died))
 
 died_3.ogg
-    SAY: "Dust off, sugar. Jules is still up there and you're still down here."
+    SAY: "Dust off, sugar. James is still up there and you're still down here."
     HOW: The player just died.  (NPC talk (died))
 
 died_4.ogg
@@ -238,7 +238,7 @@ vera_queen_found_4.ogg
     HOW: Conversation: vera_queen_found  (Lobby conversation)
 
 vera_ending_1.ogg
-    SAY: "You got Jules out. Do you know how many runners I've watched try that?"
+    SAY: "You got James out. Do you know how many runners I've watched try that?"
     HOW: Conversation: vera_ending  (Lobby conversation)
 
 vera_ending_2.ogg

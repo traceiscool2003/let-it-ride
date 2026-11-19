@@ -33,7 +33,7 @@ func _initialize() -> void:
 			b.set_physics_process(false)
 			holder.add_child(b)
 			bosses.append(b)
-	var kinds := ["vera", "mags", "lucky", "jules", "cat", "phone"]
+	var kinds := ["vera", "mags", "lucky", "james", "cat", "phone"]
 	for i in kinds.size():
 		var p = PropScript.new()
 		p.kind = kinds[i]

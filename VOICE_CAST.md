@@ -99,7 +99,7 @@ Pitch numbers are semitones; EQ numbers are dB.
 | In-engine filter | pitch +1 st, EQ low +1 / mid +1 / high +0 dB, distortion 0%, reverb 12%, chorus 0% |
 | Lines to record | 47 (folder `voice/lucky/`) |
 
-## JULES
+## JAMES
 > "One more hand. Just one."
 
 **Role:** Your missing brother. Lost at the tables.
@@ -116,7 +116,7 @@ Pitch numbers are semitones; EQ numbers are dB.
 | Mouth tricks | dry mouth, crack on the high words |
 | Acting tip | Whisper like you have not slept since Tuesday. |
 | In-engine filter | pitch +0 st, EQ low -2 / mid +2 / high -1 dB, distortion 0%, reverb 30%, chorus 0% |
-| Lines to record | 48 (folder `voice/jules/`) |
+| Lines to record | 48 (folder `voice/james/`) |
 
 ## COMP
 > "Mrrrow."

@@ -5,7 +5,7 @@ The game plays the clip during the cutscene and waits for it to finish. Players 
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 8 lines:
 
 intro_1.ogg
-    SAY: "My brother Jules sat down at The House's table and bet himself. And lost. Now he works there. It's the most Jules thing that has ever happened."
+    SAY: "My brother James sat down at The House's table and bet himself. And lost. Now he works there. It's the most James thing that has ever happened."
     HOW: Cutscene: intro  (Cutscene intro)
     SPEAKER: RICO
 
@@ -35,12 +35,12 @@ intro_6.ogg
     SPEAKER: THE HOUSE
 
 intro_7.ogg
-    SAY: "Radio check, Rico. Jules is at the top of the Bellagiro, on the Strip. Every chip you grab rides in your Pot. At each door you bank it, or let it ride for double. You'll let it ride. You always let it ride."
+    SAY: "Radio check, Rico. James is at the top of the Bellagiro, on the Strip. Every chip you grab rides in your Pot. At each door you bank it, or let it ride for double. You'll let it ride. You always let it ride."
     HOW: Cutscene: intro  (Cutscene intro)
     SPEAKER: MARLOW
 
 intro_8.ogg
-    SAY: "Wear something. Anything. Then get in that heap you call a car. The goal, in plain English: climb five casinos, get Jules, try not to bet him."
+    SAY: "Wear something. Anything. Then get in that heap you call a car. The goal, in plain English: climb five casinos, get James, try not to bet him."
     HOW: Cutscene: intro  (Cutscene intro)
     SPEAKER: MARLOW
 

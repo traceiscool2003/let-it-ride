@@ -130,7 +130,7 @@ died_3.ogg
     HOW: The player just died.  (NPC talk (died))
 
 died_4.ogg
-    SAY: "Good news, Rico: you're alive. Bad news: it's me, and the phone, and Jules is still missing."
+    SAY: "Good news, Rico: you're alive. Bad news: it's me, and the phone, and James is still missing."
     HOW: The player just died.  (NPC talk (died))
 
 boss_1.ogg
@@ -138,7 +138,7 @@ boss_1.ogg
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_2.ogg
-    SAY: "That's one more casino down. Jules is a little closer. Or a little farther. I'm still checking the map."
+    SAY: "That's one more casino down. James is a little closer. Or a little farther. I'm still checking the map."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_3.ogg
@@ -150,7 +150,7 @@ boss_4.ogg
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 idle_1.ogg
-    SAY: "Five casinos. Twenty-five floors. Jules at the top of the Bellagiro. Easy. By which I mean impossible. In order."
+    SAY: "Five casinos. Twenty-five floors. James at the top of the Bellagiro. Easy. By which I mean impossible. In order."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_2.ogg
@@ -178,7 +178,7 @@ buy_3.ogg
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_4.ogg
-    SAY: "That's the one Jules would've bought. And look where that got him."
+    SAY: "That's the one James would've bought. And look where that got him."
     HOW: The player just bought something.  (NPC talk (buy))
 
 radio_1.ogg
@@ -202,7 +202,7 @@ radio_5.ogg
     HOW: Radio/lobby: radio  (radio)
 
 radio_6.ogg
-    SAY: "Jules left a trail of IOUs up the whole coast. Follow the money and you'll find him. Or a very sad accountant."
+    SAY: "James left a trail of IOUs up the whole coast. Follow the money and you'll find him. Or a very sad accountant."
     HOW: Radio/lobby: radio  (radio)
 
 radio_7.ogg
@@ -226,7 +226,7 @@ marlow_intro_2.ogg
     HOW: Conversation: marlow_intro  (Lobby conversation)
 
 marlow_intro_4.ogg
-    SAY: "The catch is you never stop owing. Climb the five casinos, get Jules, and get out before the interest gets out first."
+    SAY: "The catch is you never stop owing. Climb the five casinos, get James, and get out before the interest gets out first."
     HOW: Conversation: marlow_intro  (Lobby conversation)
 
 marlow_spikes_1.ogg
@@ -254,7 +254,7 @@ marlow_roulette_1.ogg
     HOW: Conversation: marlow_roulette  (Lobby conversation)
 
 marlow_house_1.ogg
-    SAY: "You made it all the way to the penthouse. That's further than Jules ever got. Further than me. Further than my self-respect."
+    SAY: "You made it all the way to the penthouse. That's further than James ever got. Further than me. Further than my self-respect."
     HOW: Conversation: marlow_house  (Lobby conversation)
 
 marlow_house_2.ogg
@@ -270,7 +270,7 @@ marlow_greedy_1.ogg
     HOW: Conversation: marlow_greedy  (Lobby conversation)
 
 marlow_greedy_2.ogg
-    SAY: "Breathe. Bank once in a while. Jules never did, and look where it got him. A job. At a casino. As the help."
+    SAY: "Breathe. Bank once in a while. James never did, and look where it got him. A job. At a casino. As the help."
     HOW: Conversation: marlow_greedy  (Lobby conversation)
 
 marlow_careful_1.ogg
@@ -278,7 +278,7 @@ marlow_careful_1.ogg
     HOW: Conversation: marlow_careful  (Lobby conversation)
 
 marlow_confess_1.ogg
-    SAY: "About what I said in Biloxi. I used to deal for The House. I got Jules his seat at the table."
+    SAY: "About what I said in Biloxi. I used to deal for The House. I got James his seat at the table."
     HOW: Conversation: marlow_confess  (Lobby conversation)
 
 marlow_confess_2.ogg
@@ -298,7 +298,7 @@ marlow_daily_1.ogg
     HOW: Conversation: marlow_daily  (Lobby conversation)
 
 marlow_ending_1.ogg
-    SAY: "Jules is out, the Bellagiro is quiet, and you're still picking up this phone."
+    SAY: "James is out, the Bellagiro is quiet, and you're still picking up this phone."
     HOW: Conversation: marlow_ending  (Lobby conversation)
 
 marlow_ending_2.ogg

@@ -106,6 +106,6 @@ city5_4.ogg
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 
 city5_10.ogg
-    SAY: "The House challenged some guy to a hand. Jules is the pot. Pot's a person. Allegedly."
+    SAY: "The House challenged some guy to a hand. James is the pot. Pot's a person. Allegedly."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 

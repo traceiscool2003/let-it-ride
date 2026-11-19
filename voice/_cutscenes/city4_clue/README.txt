@@ -5,7 +5,7 @@ The game plays the clip during the cutscene and waits for it to finish. Players 
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 2 lines:
 
 city4_clue_1.ogg
-    SAY: "A chip with a name carved in it: 'JULES, PENTHOUSE.' Subtle."
+    SAY: "A chip with a name carved in it: 'JAMES, PENTHOUSE.' Subtle."
     HOW: Cutscene: city4 clue  (Cutscene city4_clue)
     SPEAKER: RICO
 

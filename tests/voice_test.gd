@@ -30,7 +30,7 @@ func _initialize() -> void:
 			print("  no profile: ", e["char"])
 			fails += 1
 	check(dups == 0, "all line ids unique (%d duplicates)" % dups)
-	for cid in ["vera", "fizz", "tailor", "gunny", "lucky", "mags", "marlow", "jules", "rico"]:
+	for cid in ["vera", "fizz", "tailor", "gunny", "lucky", "mags", "marlow", "james", "rico"]:
 		check(int(counts.get(cid, 0)) >= 40, "%s has %d lines (>= 40)" % [cid, counts.get(cid, 0)])
 	for cid in ["velma", "dumpster_dan", "slick_nick", "lorraine", "dunn", "comp"]:
 		check(int(counts.get(cid, 0)) >= 15, "%s has %d lines (>= 15)" % [cid, counts.get(cid, 0)])

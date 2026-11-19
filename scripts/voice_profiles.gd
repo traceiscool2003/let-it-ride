@@ -33,7 +33,7 @@ const P := {
 		"ref": "the bartender who remembers your order", "mouth": "smile, roll the Rs a little",
 		"tip": "Pretend you are polishing a glass the entire time.",
 		"preset": {"pitch": 1.0, "eq_low": 1.0, "eq_mid": 1.0, "eq_high": 0.0, "dist": 0.0, "reverb": 0.12, "chorus": 0.0}, "blip": {"hz": 380.0, "wave": "square", "rate": 3}},
-	"jules": {"name": "JULES", "role": "Your missing brother. Lost at the tables.", "quote": "One more hand. Just one.",
+	"james": {"name": "JAMES", "role": "Your missing brother. Lost at the tables.", "quote": "One more hand. Just one.",
 		"age": "late 20s", "accent": "same as the hero, but hoarse", "pitch": "mid", "speed": "medium", "energy": "low", "attitude": "haunted, sheepish, proud",
 		"ref": "a college dropout after three days awake", "mouth": "dry mouth, crack on the high words",
 		"tip": "Whisper like you have not slept since Tuesday.",
@@ -177,7 +177,7 @@ const P := {
 
 ## Speaker names used in existing dialogue -> character id.
 const NAME_TO_ID := {
-	"RICO": "rico", "MARLOW": "marlow", "VERA": "vera", "MAGS": "mags", "LUCKY": "lucky", "JULES": "jules",
+	"RICO": "rico", "MARLOW": "marlow", "VERA": "vera", "MAGS": "mags", "LUCKY": "lucky", "JAMES": "james",
 	"COMP": "comp", "THE HOUSE": "the_house", 
 	"DRAFTQUEENS": "draftqueens", "FANDOOL": "fandool", "POKERSTARZ": "pokerstarz", "BETMGN": "betmgn", "STEAKE.COM": "steake",
 	"BOVADOH": "bovadoh", "SEEZER'S CLUB": "seezers", "WYNNER'S CIRCLE": "wynners", "SNAKE EYES SAL": "snake_eyes",
@@ -186,7 +186,7 @@ const NAME_TO_ID := {
 }
 
 ## Order used in documents.
-const ORDER := ["rico", "marlow", "vera", "mags", "lucky", "jules", "comp", "tailor", "fizz", "gunny", "velma", "dumpster_dan", "slick_nick",
+const ORDER := ["rico", "marlow", "vera", "mags", "lucky", "james", "comp", "tailor", "fizz", "gunny", "velma", "dumpster_dan", "slick_nick",
 	"lorraine", "dunn", "the_house", "draftqueens", "fandool", "pokerstarz", "betmgn", "steake", "bovadoh", "seezers", "wynners",
 	"snake_eyes", "rusty_slots", "mr_lucky", "tourist", "junkie", "pitboss", "drunk", "bouncer", "hustler"]
 

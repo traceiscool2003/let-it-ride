@@ -20,7 +20,7 @@ city3_arrive_3.ogg
     SPEAKER: RICO
 
 city3_arrive_4.ogg
-    SAY: "Rico. Before you go in. I have to tell you something. I'm the one who got Jules his seat at The House's table."
+    SAY: "Rico. Before you go in. I have to tell you something. I'm the one who got James his seat at The House's table."
     HOW: Cutscene: city3 arrive  (Cutscene city3_arrive)
     SPEAKER: MARLOW
 

@@ -23,7 +23,7 @@ const LINES := [
 		["MARLOW", "Rico! You picked up! So the rumors are true: The House doesn't let debtors die, it just mails them home with a bigger bill, like a very rude pizza."],
 		["MARLOW", "You bust, you wake up in your apartment, and the interest on your Marker goes up. Every do-over costs money, which makes it the worst video game ever, and I say that as your babysitter."],
 		["RICO", "So I can't die. Great. What's the catch?"],
-		["MARLOW", "The catch is you never stop owing. Climb the five casinos, get Jules back from The House, and get out before the interest finishes its own climb."]]},
+		["MARLOW", "The catch is you never stop owing. Climb the five casinos, get James back from The House, and get out before the interest finishes its own climb."]]},
 	{"id": "marlow_spikes", "who": "MARLOW", "pri": 60, "req": {"cause": "spikes"}, "lines": [
 		["MARLOW", "You died to spikes again? Rico, they don't move, they don't sneak, and they have exactly one job, and you keep helping them do it."]]},
 	{"id": "marlow_guard", "who": "MARLOW", "pri": 60, "req": {"cause": "guard"}, "lines": [
@@ -36,17 +36,17 @@ const LINES := [
 	{"id": "marlow_roulette", "who": "MARLOW", "pri": 65, "req": {"cause": "boss2"}, "lines": [
 		["MARLOW", "The second boss throws balls at you, and the balls bounce, so hit them right back at her, because nothing hurts a gambler more than getting her own bad luck returned."]]},
 	{"id": "marlow_house", "who": "MARLOW", "pri": 70, "req": {"cause": "boss3"}, "lines": [
-		["MARLOW", "You made it all the way to the penthouse, which is further than Jules ever got, further than me, and a lot further than my self-respect."],
+		["MARLOW", "You made it all the way to the penthouse, which is further than James ever got, further than me, and a lot further than my self-respect."],
 		["MARLOW", "So don't you dare quit now, because I'll be so annoyed, and then I'll cry, loudly, on a payphone, in public."]]},
 	{"id": "marlow_mags", "who": "MARLOW", "pri": 70, "req": {"cause": "mags"}, "lines": [
 		["MARLOW", "Mags got you? You borrowed money from a shark in a suit, Rico, and there were warning signs, one of which was literally a fin."]]},
 	{"id": "marlow_greedy", "who": "MARLOW", "pri": 75, "req": {"min": {"last_mult": 8}}, "lines": [
 		["MARLOW", "You were riding at times eight when you busted, which is the exact kind of number I would have put on a tombstone if you could stay dead."],
-		["MARLOW", "Just bank once in a while, okay? Jules never did, and look where it got him: a job at the casino, as the help, with a name tag."]]},
+		["MARLOW", "Just bank once in a while, okay? James never did, and look where it got him: a job at the casino, as the help, with a name tag."]]},
 	{"id": "marlow_careful", "who": "MARLOW", "pri": 55, "req": {"min": {"last_cashed": 3, "deaths": 1}}, "lines": [
 		["MARLOW", "Three cash-outs last run? That's careful money, Rico, so who are you, and what did you do with my idiot?"]]},
 	{"id": "marlow_confess", "who": "MARLOW", "pri": 90, "req": {"min": {"max_city": 3}}, "flags": ["marlow_confessed"], "lines": [
-		["MARLOW", "About what I said in Biloxi: I used to deal for The House, and I'm the one who got Jules his seat at that table."],
+		["MARLOW", "About what I said in Biloxi: I used to deal for The House, and I'm the one who got James his seat at that table."],
 		["MARLOW", "I honestly thought he'd win, because he always won, and I know that's not an excuse, it's just a really bad bet that I'm still paying off."],
 		["RICO", "...You put my brother at that table."],
 		["MARLOW", "I did, and now I'm talking you back to him, one casino at a time, which is the only apology I've got, and it's a bad one, but it's also a pretty decent one, considering."]]},
@@ -55,7 +55,7 @@ const LINES := [
 	{"id": "marlow_daily", "who": "MARLOW", "pri": 50, "req": {"min": {"daily_played": 1}}, "lines": [
 		["MARLOW", "Daily Deal, huh? Everyone in the world gets the same floors today, so go show them how it's done, or at least how to die in a really creative way."]]},
 	{"id": "marlow_ending", "who": "MARLOW", "pri": 95, "req": {"flag": ["ending"]}, "lines": [
-		["MARLOW", "Jules is out, the Bellagiro is quiet, and you're still picking up this phone, which I'm choosing to find sweet instead of worrying."],
+		["MARLOW", "James is out, the Bellagiro is quiet, and you're still picking up this phone, which I'm choosing to find sweet instead of worrying."],
 		["MARLOW", "...Yeah, no, I'd go back too, honestly. Let it ride, kid."]]},
 	{"id": "marlow_true", "who": "MARLOW", "pri": 99, "req": {"flag": ["true_end"]}, "lines": [
 		["MARLOW", "The House is quiet for the first time in twenty years, and that was you, and I still can't believe I helped."],
@@ -88,7 +88,7 @@ const LINES := [
 		["VERA", "You just paid off my Marker, Rico, which means I'm free to walk out that door."],
 		["VERA", "I'm staying, though, because somebody has to keep you lucky, and licenses are 25% off for you forever, which, from me, is basically a love letter."]]},
 	{"id": "vera_ending", "who": "VERA", "pri": 90, "req": {"flag": ["ending"]}, "lines": [
-		["VERA", "You got Jules out, and do you know how many runners I've watched try that and fail?"],
+		["VERA", "You got James out, and do you know how many runners I've watched try that and fail?"],
 		["VERA", "None of them knew when to cash out, but you did, mostly, twice, in a row, and I'd call that a miracle if I didn't know how you play."]]},
 	{"id": "vera_eddie", "who": "VERA", "pri": 85, "req": {"min": {"tickets": 14}}, "lines": [
 		["VERA", "Eddie Duval. You've been reading his tickets, haven't you?"],
@@ -131,15 +131,15 @@ const LINES := [
 	{"id": "lucky_rep1", "who": "LUCKY", "pri": 0, "rep": true, "lines": [["LUCKY", "On the house? Nothing's on the house, pal, that's The House's whole thing, it's right there in the name."]]},
 	{"id": "lucky_rep2", "who": "LUCKY", "pri": 0, "rep": true, "lines": [["LUCKY", "You've got the look of somebody about to let it ride, so tell me when, and I'll film it for the pool."]]},
 
-	# ------------------------------------------------------------ JULES (after the ending)
-	{"id": "jules_home", "who": "JULES", "pri": 100, "req": {"flag": ["ending"]}, "lines": [
-		["JULES", "Rico, I keep waking up in the apartment out of habit, and The House still thinks I owe it money, which, to be fair, I do."],
-		["JULES", "Thanks for coming for me, and now let me come with you, so pick me on the title screen, because I hit harder than you, and I also steal."]]},
-	{"id": "jules_eddie", "who": "JULES", "pri": 80, "req": {"flag": ["ending"], "min": {"tickets": 10}}, "lines": [
-		["JULES", "Those losing tickets are Eddie Duval's trail, and I dealt to that voice every night for three years."],
-		["JULES", "He doesn't want our money, he wants somebody to finally beat him so he can stop, which is the saddest ten-second pitch I've ever heard."]]},
-	{"id": "jules_rep1", "who": "JULES", "pri": 0, "rep": true, "req": {"flag": ["ending"]}, "lines": [["JULES", "Bank it, Rico, because I didn't, and look where it got me: a very comfortable cell with a view."]]},
-	{"id": "jules_rep2", "who": "JULES", "pri": 0, "rep": true, "req": {"flag": ["ending"]}, "lines": [["JULES", "The House cheats, so we cheat better, and in our family that's what we call values."]]},
+	# ------------------------------------------------------------ JAMES (after the ending)
+	{"id": "james_home", "who": "JAMES", "pri": 100, "req": {"flag": ["ending"]}, "lines": [
+		["JAMES", "Rico, I keep waking up in the apartment out of habit, and The House still thinks I owe it money, which, to be fair, I do."],
+		["JAMES", "Thanks for coming for me, and now let me come with you, so pick me on the title screen, because I hit harder than you, and I also steal."]]},
+	{"id": "james_eddie", "who": "JAMES", "pri": 80, "req": {"flag": ["ending"], "min": {"tickets": 10}}, "lines": [
+		["JAMES", "Those losing tickets are Eddie Duval's trail, and I dealt to that voice every night for three years."],
+		["JAMES", "He doesn't want our money, he wants somebody to finally beat him so he can stop, which is the saddest ten-second pitch I've ever heard."]]},
+	{"id": "james_rep1", "who": "JAMES", "pri": 0, "rep": true, "req": {"flag": ["ending"]}, "lines": [["JAMES", "Bank it, Rico, because I didn't, and look where it got me: a very comfortable cell with a view."]]},
+	{"id": "james_rep2", "who": "JAMES", "pri": 0, "rep": true, "req": {"flag": ["ending"]}, "lines": [["JAMES", "The House cheats, so we cheat better, and in our family that's what we call values."]]},
 ]
 
 ## The House over the PA. Keys are events fired from main._bark().
@@ -184,7 +184,7 @@ const TICKETS := [
 	"Dealers never blink, I watched one for an hour, and then I blinked, and they made a note.",
 	"My Marker says I owe The House 'one evening,' and it's been eleven years, but the evening is going great.",
 	"Eddie Duval was here, and Eddie Duval never cashes out. -E.D.",
-	"Jules, if you're reading this, your brother's coming, so hang on, and please stop betting your shoes. -M.",
+	"James, if you're reading this, your brother's coming, so hang on, and please stop betting your shoes. -M.",
 	"The old dealers whisper that The House used to be a man, and they also whisper that he's single.",
 	"QUEEN OF SPADES. A playing card was folded inside this ticket, and the back is signed: 'V. Vex, Marker #1.'",
 	"Eddie bet the deed to his own club against The House and won, and then he bet it again, and the sequel was worse.",

@@ -10,7 +10,7 @@ city2_clue_1.ogg
     SPEAKER: RICO
 
 city2_clue_2.ogg
-    SAY: "Confirmed. Jules is dealing for The House now. Fast hands, no sleep. It's a very Jules career."
+    SAY: "Confirmed. James is dealing for The House now. Fast hands, no sleep. It's a very James career."
     HOW: Cutscene: city2 clue  (Cutscene city2_clue)
     SPEAKER: MARLOW
 

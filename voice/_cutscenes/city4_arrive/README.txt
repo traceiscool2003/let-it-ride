@@ -20,7 +20,7 @@ city4_arrive_3.ogg
     SPEAKER: MAGS
 
 city4_arrive_4.ogg
-    SAY: "...Wait. Handwriting. That's Jules. A note. 'Don't come for me. I'm finally winning.'"
+    SAY: "...Wait. Handwriting. That's James. A note. 'Don't come for me. I'm finally winning.'"
     HOW: Cutscene: city4 arrive  (Cutscene city4_arrive)
     SPEAKER: RICO
 

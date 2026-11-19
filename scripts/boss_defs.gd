@@ -64,7 +64,7 @@ const FINAL := {"id": "house", "name": "THE HOUSE", "title": "Texas Hold'em", "g
 	"deal": {"n": 5, "spread": 0.3, "speed": 215.0, "aim": true, "volleys": 2, "label": "THE FLOP!"},
 	"deck": [["deal", "charge", "slam", "deal"], ["deal", "slam", "summon", "balls", "charge"], ["deal", "wheel", "jackpot", "slam", "summon", "charge", "rain"]],
 	"line_intro": "Hole cards, flop, turn, river, and in the pot, your brother. Please sit, Rico. Your seat has been warmed by your previous losses.", "line_defeat": "The House... folds? I fold? Is this what it feels like? It feels... expensive. I'd like to speak to my manager. It's me. I'm the manager.",
-		"rico_intro": "Texas Hold'em for my brother? I've bet worse on less. Deal the cards. I am going to need a bigger stack.", "rico_defeat": "Read 'em and weep, because this time I'm all in, and so is the entire family tree. Now, where's Jules?",
+		"rico_intro": "Texas Hold'em for my brother? I've bet worse on less. Deal the cards. I am going to need a bigger stack.", "rico_defeat": "Read 'em and weep, because this time I'm all in, and so is the entire family tree. Now, where's James?",
 	"music": {"bpm": 172, "root": 49.0, "mode": "minor", "lead": "saw"}}
 
 ## Secret and side bosses (item 15). Same shape; found behind secret rooms.

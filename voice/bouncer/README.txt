@@ -90,7 +90,7 @@ city3_5.ogg
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city3_11.ogg
-    SAY: "Word is the new dealer upstairs is some guy named Jules. Dealing for The House. Doing great. Unsettlingly great."
+    SAY: "Word is the new dealer upstairs is some guy named James. Dealing for The House. Doing great. Unsettlingly great."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city4_5.ogg

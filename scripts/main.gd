@@ -108,7 +108,7 @@ const SKILLS := [
 const CHARACTERS := [
 	{"name": "RICO", "desc": "Balanced. Fast hands, faster feet.", "lock": "", "hood": Color(0.30, 0.18, 0.45), "hood_l": Color(0.47, 0.31, 0.64), "speed": 1.0, "hp": 0, "dmg": 0, "flow": 0.0},
 	{"name": "DICE", "desc": "Glass cannon speedster. +12% speed, starts hot, -1 life.", "lock": "Beat the first boss to unlock.", "hood": Color(0.15, 0.45, 0.55), "hood_l": Color(0.25, 0.65, 0.75), "speed": 1.12, "hp": -1, "dmg": 0, "flow": 40.0},
-	{"name": "JULES", "desc": "The brother. Heavy hitter: +1 life, +1 damage, a bit slower.", "lock": "Finish the story to unlock.", "hood": Color(0.2, 0.45, 0.3), "hood_l": Color(0.3, 0.6, 0.4), "speed": 0.93, "hp": 1, "dmg": 1, "flow": 0.0},
+	{"name": "JAMES", "desc": "The brother. Heavy hitter: +1 life, +1 damage, a bit slower.", "lock": "Finish the story to unlock.", "hood": Color(0.2, 0.45, 0.3), "hood_l": Color(0.3, 0.6, 0.4), "speed": 0.93, "hp": 1, "dmg": 1, "flow": 0.0},
 ]
 
 const TROPHIES := [
@@ -172,7 +172,7 @@ const STAKES := [
 ## Lobby objects: interaction prompt and who you talk to.
 const HUB_KINDS := {
 	"phone": ["CALL MARLOW", "MARLOW"], "vera": ["TALK TO VERA", "VERA"], "mags": ["TALK TO MAGS", "MAGS"],
-	"lucky": ["TALK TO LUCKY", "LUCKY"], "jules": ["TALK TO JULES", "JULES"], "cat": ["PET COMP", ""],
+	"lucky": ["TALK TO LUCKY", "LUCKY"], "james": ["TALK TO JAMES", "JAMES"], "cat": ["PET COMP", ""],
 	"tickets": ["READ LOSING TICKETS", ""], "board": ["TABLE LIMITS", ""], "trophies": ["TROPHY CASE", ""],
 	"fence": ["THE FENCE  (skill tree)", ""], "daily": ["DAILY DEAL", ""],
 }
@@ -232,7 +232,7 @@ const LOAD_TIPS := [
 ## Spotlight color over each character / booth.
 const SPOT_COLS := {
 	"vera": Color(1.0, 0.5, 0.65), "mags": Color(0.6, 0.75, 1.0), "phone": Color(0.45, 0.85, 1.0),
-	"lucky": Color(0.55, 1.0, 0.6), "bar": Color(0.55, 1.0, 0.6), "jules": Color(0.55, 1.0, 0.7),
+	"lucky": Color(0.55, 1.0, 0.6), "bar": Color(0.55, 1.0, 0.6), "james": Color(0.55, 1.0, 0.7),
 	"cat": Color(1.0, 0.75, 0.9), "tickets": Color(1.0, 0.9, 0.7), "board": Color(1.0, 0.4, 0.4),
 	"trophies": Color(0.5, 0.9, 1.0), "fence": Color(0.5, 1.0, 0.55), "daily": Color(0.45, 0.85, 1.0),
 	"bets": Color(0.45, 0.85, 1.0), "vault": Color(1.0, 0.8, 0.35),
@@ -2441,7 +2441,7 @@ func _on_boss_defeated() -> void:
 	]
 	var clue_id := "city%d_clue" % (Cities.city_of(floor_num) + 1)
 	if first and tier < 3 and VoiceMisc.SCENES.has(clue_id):
-		steps.append({"do": "say", "lines": VoiceMisc.SCENES[clue_id]})   # the boss drops the clue to Jules
+		steps.append({"do": "say", "lines": VoiceMisc.SCENES[clue_id]})   # the boss drops the clue to James
 	if tier == 3:
 		if heat_run >= 5:
 			unlock("heat5")
@@ -2462,7 +2462,7 @@ func _on_boss_defeated() -> void:
 			steps.append_array([
 				{"do": "card", "text": "THE PENTHOUSE", "sub": "Top of the Bellagiro", "t": 2.4},
 				{"do": "say", "lines": Story.ENDING},
-				{"do": "card", "text": "THE END?", "sub": "Jules cashed out. The Bellagiro has more floors. High Roller mode, Table Limits and Jules unlocked.", "t": 5.0},
+				{"do": "card", "text": "THE END?", "sub": "James cashed out. The Bellagiro has more floors. High Roller mode, Table Limits and James unlocked.", "t": 5.0},
 			])
 	steps.append_array([{"do": "pan", "to": "player", "zoom": cam_zoom, "t": 0.7}, {"do": "bars", "v": 0.0}])
 	_save()
@@ -2866,7 +2866,7 @@ func _floor_kind_available(kind: String) -> bool:
 
 func _hub_kind_available(kind: String) -> bool:
 	match kind:
-		"jules", "board":
+		"james", "board":
 			return ending_seen
 	return true
 
@@ -2955,7 +2955,7 @@ func _enter_lobby(woke: bool) -> void:
 
 func _refresh_hub_new() -> void:
 	var ctx := _dialog_ctx()
-	for who in ["MARLOW", "VERA", "MAGS", "LUCKY", "JULES"]:
+	for who in ["MARLOW", "VERA", "MAGS", "LUCKY", "JAMES"]:
 		hub_new[who] = Dialogue.has_new(who, ctx, seen, flags)
 
 
@@ -2988,8 +2988,8 @@ func _hub_interact(kind: String) -> void:
 			_talk("MARLOW")
 		"lucky":
 			_talk("LUCKY")
-		"jules":
-			_talk("JULES")
+		"james":
+			_talk("JAMES")
 		"vera":
 			_talk("VERA", "licenses")
 		"mags":
@@ -4141,7 +4141,7 @@ func _intro_steps() -> Array:
 		{"do": "who", "name": "MARLOW", "role": "THE FIXER", "line": "Your voice on the radio. He got you in. He's keeping you alive.", "t": 3.0},
 		{"do": "say", "lines": [I[6], I[7]]},
 		{"do": "pan", "to": "exit", "zoom": 3.0, "t": 1.6},
-		{"do": "card", "text": "YOUR GOAL", "sub": "Climb five casinos. Get Jules. Try not to bet him.\nAt every door: CASH OUT to keep it, or LET IT RIDE to double it.", "t": 4.0},
+		{"do": "card", "text": "YOUR GOAL", "sub": "Climb five casinos. Get James. Try not to bet him.\nAt every door: CASH OUT to keep it, or LET IT RIDE to double it.", "t": 4.0},
 		{"do": "pan", "to": "player", "zoom": 3.0, "t": 1.2},
 		{"do": "card", "text": "CHAPTER ONE", "sub": "THE MARKER", "t": 2.4},
 		{"do": "bars", "v": 0.0},

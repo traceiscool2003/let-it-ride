@@ -1,7 +1,7 @@
 extends RefCounted
 const Portraits := preload("res://scripts/portraits.gd")
 ## Detailed, animated character art drawn with vector shapes: the Lobby
-## NPCs (Vera, Mags, Lucky, Jules, Comp the cat, Marlow's payphone) and the
+## NPCs (Vera, Mags, Lucky, James, Comp the cat, Marlow's payphone) and the
 ## three bosses (Big Sal, Madame Roulette, The House), including their
 ## phase changes. Everything is drawn in code, so no image files are needed.
 ##
@@ -352,8 +352,8 @@ static func lucky_head(ci: CanvasItem, o: Vector2, t: float) -> void:
 	fill(ci, pts([o + Vector2(0.6, -7.6), o + Vector2(6.8, -7.0), o + Vector2(5.4, -7.9)]), Color(0.2, 0.75, 0.4, 0.75))
 
 
-## Jules in the Lobby: dealer's vest under his hoodie, card tricks.
-static func jules(ci: CanvasItem, t: float) -> void:
+## James in the Lobby: dealer's vest under his hoodie, card tricks.
+static func james(ci: CanvasItem, t: float) -> void:
 	var br := sin(t * 1.7) * 0.35
 	fill(ci, ell(Vector2(0, 0.6), 7, 1.2), Color(0, 0, 0, 0.35))
 	var jeans := Color(0.18, 0.22, 0.36)
@@ -384,12 +384,12 @@ static func jules(ci: CanvasItem, t: float) -> void:
 	var cx := Transform2D(ca, hand + Vector2(0, -2.6))
 	shape(ci, pts([cx * Vector2(-0.9, -1.3), cx * Vector2(0.9, -1.3), cx * Vector2(0.9, 1.3), cx * Vector2(-0.9, 1.3)]), Color(0.98, 0.96, 0.92) if cos(ca) > 0.0 else Color(0.65, 0.08, 0.15), K, 0.25)
 	ci.draw_circle(Vector2(-4.6, -12.6), 1.0, Color(0.88, 0.7, 0.56))
-	jules_head(ci, Vector2(0, -25.2), t)
+	james_head(ci, Vector2(0, -25.2), t)
 	ci.draw_set_transform(Vector2.ZERO)
 
 
-## Jules' head: messy brown hair, stubble, tired eyes. `o` is the neck.
-static func jules_head(ci: CanvasItem, o: Vector2, t: float) -> void:
+## James' head: messy brown hair, stubble, tired eyes. `o` is the neck.
+static func james_head(ci: CanvasItem, o: Vector2, t: float) -> void:
 	var skin := Color(0.9, 0.72, 0.58)
 	shape(ci, pts([o + Vector2(-3.4, -0.4), o + Vector2(3.4, -0.4), o + Vector2(3.9, -4.8), o + Vector2(3.4, -8.4), o + Vector2(-3.4, -8.4), o + Vector2(-3.9, -4.8)]), skin)
 	fill(ci, pts([o + Vector2(-3.4, -0.4), o + Vector2(3.4, -0.4), o + Vector2(3.8, -3), o + Vector2(-3.8, -3)]), Color(0.45, 0.35, 0.3, 0.35))
@@ -902,12 +902,12 @@ static func npc_portrait(ci: CanvasItem, center: Vector2, who: String, t: float,
 			shape(ci, pts([Vector2(-1.8, 2.2), Vector2(0, 3.0), Vector2(1.8, 2.2), Vector2(1.8, 3.8), Vector2(0, 3.0), Vector2(-1.8, 3.8)]), K, K, 0.2)
 			shape(ci, pts([Vector2(3.6, 2.6), Vector2(6, 3.0), Vector2(6.4, 8), Vector2(5, 8)]), Color(0.9, 0.88, 0.78), K, 0.3)
 			lucky_head(ci, Vector2(0, 2.6), t)
-		"JULES":
+		"JAMES":
 			var green := Color(0.16, 0.42, 0.26)
 			fill(ci, pts([Vector2(-6.4, 8), Vector2(6.4, 8), Vector2(5, 2.6), Vector2(-5, 2.6)]), green)
 			fill(ci, pts([Vector2(-2.6, 8), Vector2(2.6, 8), Vector2(2.4, 3.0), Vector2(-2.4, 3.0)]), Color(0.12, 0.1, 0.12))
 			ci.draw_line(Vector2(0, 3.2), Vector2(0, 8), Color(0.95, 0.95, 0.9), 0.4)
-			jules_head(ci, Vector2(0, 3.0), t)
+			james_head(ci, Vector2(0, 3.0), t)
 		"RICO", "DICE":
 			var hood := Color(0.30, 0.18, 0.45) if who == "RICO" else Color(0.15, 0.45, 0.55)
 			fill(ci, pts([Vector2(-6.6, 8), Vector2(6.6, 8), Vector2(5.4, 2.4), Vector2(-5.4, 2.4)]), hood)

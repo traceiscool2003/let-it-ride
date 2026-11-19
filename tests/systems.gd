@@ -60,13 +60,13 @@ func _process(_delta: float) -> bool:
 			check(e.get("id", "") == "marlow_intro", "first Marlow call is the intro")
 			e = D.pick("MARLOW", {"runs": 2, "deaths": 1, "last_cause": "spikes"}, {"marlow_intro": true}, {}, r)
 			check(e.get("id", "") == "marlow_spikes", "Marlow reacts to dying on spikes")
-			e = D.pick("JULES", {"runs": 5}, {}, {}, r)
-			check(e.is_empty(), "Jules has nothing to say before the ending")
+			e = D.pick("JAMES", {"runs": 5}, {}, {}, r)
+			check(e.is_empty(), "James has nothing to say before the ending")
 		5:
 			main._enter_lobby(false)
 			check(main.in_hub and main.state == "cine", "first Lobby visit plays the intro cutscene")
 			check(main.level.is_lobby and main.level.games.size() >= 8, "Lobby built with characters")
-			check(not main.level.games.any(func(gm): return gm[1] == "jules" or gm[1] == "board"), "Jules and Table Limits hidden before the ending")
+			check(not main.level.games.any(func(gm): return gm[1] == "james" or gm[1] == "board"), "James and Table Limits hidden before the ending")
 		8:
 			# Let the cutscene run a bit to exercise pans/cards, then skip.
 			for i in 40:
@@ -260,12 +260,12 @@ func _process(_delta: float) -> bool:
 			check(main.run_seed == seed_a and main.level.exit_pos == exit_a, "Daily Deal floors are identical")
 			check(not main.daily_scored, "second daily attempt is practice")
 		34:
-			# Ending unlocks: Table Limits and Jules in the Lobby.
+			# Ending unlocks: Table Limits and James in the Lobby.
 			main.ending_seen = true
 			main.flags["ending"] = true
 			main.stakes_on = {"short": true, "edge": true}
 			main._enter_lobby(false)
-			check(main.level.games.any(func(gm): return gm[1] == "board") and main.level.games.any(func(gm): return gm[1] == "jules"), "board and Jules appear after the ending")
+			check(main.level.games.any(func(gm): return gm[1] == "board") and main.level.games.any(func(gm): return gm[1] == "james"), "board and James appear after the ending")
 			check(main.heat() == 3, "Heat adds up from Table Limits")
 			main._start_run()
 			_clear_dialog()

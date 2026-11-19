@@ -20,12 +20,12 @@ city1_arrive_3.ogg
     SPEAKER: RICO
 
 city1_arrive_4.ogg
-    SAY: "Hold on. That's a jacket. That's JULES'S jacket. Stained, ripped, still smells like him. Why is there a pawn ticket in the pocket?"
+    SAY: "Hold on. That's a jacket. That's JAMES'S jacket. Stained, ripped, still smells like him. Why is there a pawn ticket in the pocket?"
     HOW: Cutscene: city1 arrive  (Cutscene city1_arrive)
     SPEAKER: RICO
 
 city1_arrive_5.ogg
-    SAY: "A pawn ticket from Reno. Good news, Rico: Jules was here. Bad news: so was a dumpster fire."
+    SAY: "A pawn ticket from Reno. Good news, Rico: James was here. Bad news: so was a dumpster fire."
     HOW: Cutscene: city1 arrive  (Cutscene city1_arrive)
     SPEAKER: MARLOW
 

@@ -12,10 +12,10 @@ ending_1.ogg
 ending_2.ogg
     SAY: "...Rico? You climbed five casinos for me? I'm up eleven grand! I'm on a RUN!"
     HOW: Cutscene: ending  (Cutscene ending)
-    SPEAKER: JULES
+    SPEAKER: JAMES
 
 ending_3.ogg
-    SAY: "Jules. Cash out. Walk away from a winning table. I know. I've never done it either. Do it for me."
+    SAY: "James. Cash out. Walk away from a winning table. I know. I've never done it either. Do it for me."
     HOW: Cutscene: ending  (Cutscene ending)
     SPEAKER: RICO
 
@@ -32,7 +32,7 @@ ending_5.ogg
 ending_6.ogg
     SAY: "...Okay. Okay. One last chip. I'm cashing out. It feels like falling. The good kind."
     HOW: Cutscene: ending  (Cutscene ending)
-    SPEAKER: JULES
+    SPEAKER: JAMES
 
 ending_7.ogg
     SAY: "Welcome home. ...So, one more run? For fun?"

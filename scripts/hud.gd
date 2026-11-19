@@ -45,7 +45,7 @@ func _ready() -> void:
 	var jp: Dictionary = Sprites.RUNNER_PAL.duplicate()
 	jp["P"] = Color(0.2, 0.45, 0.3)
 	jp["p"] = Color(0.3, 0.6, 0.4)
-	portraits["JULES"] = Sprites.bake(Sprites.R_HEAD, jp)
+	portraits["JAMES"] = Sprites.bake(Sprites.R_HEAD, jp)
 	var dp: Dictionary = Sprites.RUNNER_PAL.duplicate()
 	dp["P"] = Color(0.15, 0.45, 0.55)
 	dp["p"] = Color(0.25, 0.65, 0.75)
@@ -532,7 +532,7 @@ func _draw_dialog() -> void:
 			draw_circle(c + Vector2(20, 22), 3.0, RED)
 	var name_col := GOLD
 	match who:
-		"RICO", "JULES", "DICE":
+		"RICO", "JAMES", "DICE":
 			name_col = Color(0.75, 0.6, 1.0)
 		"MARLOW":
 			name_col = CYAN
@@ -593,7 +593,7 @@ func _draw_title() -> void:
 	TitleScreen.draw_scene(self, f, t, tt)
 	TitleScreen.draw_logo(self, f, Vector2(86, 172), t, tt)
 	var tag_a := clampf((tt - 1.25) / 0.5, 0.0, 1.0)
-	_txt(Vector2(92, 290), "Climb five casinos.  Win back Jules.  Know when to walk away.", 18, Color(0.95, 0.88, 0.95, 0.9 * tag_a))
+	_txt(Vector2(92, 290), "Climb five casinos.  Win back James.  Know when to walk away.", 18, Color(0.95, 0.88, 0.95, 0.9 * tag_a))
 	if g.intro_seen:
 		_txt(Vector2(92, 312), "Your Marker is still open.", 14, Color(1, 0.55, 0.55, 0.8 * tag_a))
 	# Menu: each item is a neon sign. Items slide in one after another.

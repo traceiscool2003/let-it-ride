@@ -62,7 +62,7 @@ kill_1.ogg
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "Terms and conditions apply. They always did. Page 400. Paragraph 'Jules.'"
+    SAY: "Terms and conditions apply. They always did. Page 400. Paragraph 'James.'"
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 pa_lobby_1.ogg

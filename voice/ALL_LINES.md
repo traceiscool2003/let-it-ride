@@ -29,11 +29,11 @@ Tick the box for each line as you go.
 | 1 | [ ] | `rico__greet_1.ogg` | Let's see what the House has left me, besides my brother, my dignity, and a very small stack of chips that I'm calling a portfolio. | Greeting the player. In character. |
 | 2 | [ ] | `rico__greet_2.ogg` | Aces up, brains out, perfect, that's the whole strategy, and I'm told it's also how the House describes its customers. | Greeting the player. In character. |
 | 3 | [ ] | `rico__farewell_1.ogg` | Wish me luck, not that I need it, I need it so much, please, and I'm saying that to a vending machine, but still. | Parting words as the player leaves. |
-| 4 | [ ] | `rico__farewell_2.ogg` | See you at the top of the Bellagiro, or at the bottom of a dumpster, same energy, and I'll bring Jules either way. | Parting words as the player leaves. |
+| 4 | [ ] | `rico__farewell_2.ogg` | See you at the top of the Bellagiro, or at the bottom of a dumpster, same energy, and I'll bring James either way. | Parting words as the player leaves. |
 | 5 | [ ] | `rico__rich_1.ogg` | I'm rich, wait, let me count again, I'm rich, wait, that's one chip, fine, still rich, and that's the House's fault for teaching me math. | The player is carrying a lot of money. |
 | 6 | [ ] | `rico__rich_2.ogg` | Look at all this, I'm going to bet it, all of it, it's the only responsible thing, and by responsible I mean exactly what you think. | The player is carrying a lot of money. |
 | 7 | [ ] | `rico__broke_1.ogg` | Broke, that's just a free roll, with a funeral, same thing, and I've never been so ready to be somebody's problem. | The player is nearly broke. |
-| 8 | [ ] | `rico__broke_2.ogg` | Zero dollars, infinite possibilities, mostly bad ones, mostly involving a pawn shop, and I've already got a ring in mind, and it's Jules's. | The player is nearly broke. |
+| 8 | [ ] | `rico__broke_2.ogg` | Zero dollars, infinite possibilities, mostly bad ones, mostly involving a pawn shop, and I've already got a ring in mind, and it's James's. | The player is nearly broke. |
 | 9 | [ ] | `rico__ugly_1.ogg` | I look like a dumpster fire and I love it, because fire is warm, and dumpsters are home, and I'm starting to think this is my brand. | The player is wearing ugly clothes. |
 | 10 | [ ] | `rico__ugly_2.ogg` | Is this fanny pack lucky, it's lucky, it's lucky, please be lucky, I'm begging a fanny pack, which is a new low, even for me. | The player is wearing ugly clothes. |
 | 11 | [ ] | `rico__sharp_1.ogg` | I look incredible, the House should be scared, the House should also be on a payment plan, and by House I mean me, and by scared I mean impressed. | The player is dressed sharp. |
@@ -45,7 +45,7 @@ Tick the box for each line as you go.
 | 17 | [ ] | `rico__idle_1.ogg` | Odds are for people who don't have a gun, or a plan, or a savings, and I'm happy to be the one guy with none of the above. | Idle chatter. Random. |
 | 18 | [ ] | `rico__idle_2.ogg` | I once bet my shoes, won, lost the shoes, same thing, zero net shoes, and I walked home barefoot, and on the way I won another bet. | Idle chatter. Random. |
 | 19 | [ ] | `rico__buy_1.ogg` | Take my money, take all of it, wait, not all of it, ah, fine, all of it, and I'll just assume the receipt is a poem. | The player just bought something. |
-| 20 | [ ] | `rico__buy_2.ogg` | Sold, wait, what was the price, never mind, sold, sold, sold, and Jules would be so proud, which is exactly the problem. | The player just bought something. |
+| 20 | [ ] | `rico__buy_2.ogg` | Sold, wait, what was the price, never mind, sold, sold, sold, and James would be so proud, which is exactly the problem. | The player just bought something. |
 | 21 | [ ] | `rico__boss_intro_draftqueens.ogg` | Five Card Draw? I've drawn worse. Last month I drew my landlord, and he had four aces and a lease. | Hero cockily answers the boss. |
 | 22 | [ ] | `rico__boss_defeat_draftqueens.ogg` | You drafted a loser, buddy, and the loser is me, and I'm keeping the pot. Fair trade. | Hero victory line. Smug. |
 | 23 | [ ] | `rico__boss_intro_fandool.ogg` | Seven Card Stud? Cute. My last seven-card stud was a Tuesday and a cry for help, and I lost both. | Hero cockily answers the boss. |
@@ -69,10 +69,10 @@ Tick the box for each line as you go.
 | 41 | [ ] | `rico__boss_intro_mr_lucky.ogg` | Keno? Hit eighty numbers? Sounds like a Tuesday. A busy one, with a lot of math, and then crying. | Hero cockily answers the boss. |
 | 42 | [ ] | `rico__boss_defeat_mr_lucky.ogg` | Good game, Kevin. May the next one be less numerical. I'd say hell, but Mags would send me the bill. | Hero victory line. Smug. |
 | 43 | [ ] | `rico__boss_intro_the_house.ogg` | Texas Hold'em for my brother? I've bet worse on less. Deal the cards. I am going to need a bigger stack. | Hero cockily answers the boss. |
-| 44 | [ ] | `rico__boss_defeat_the_house.ogg` | Read 'em and weep, because this time I'm all in, and so is the entire family tree. Now, where's Jules? | Hero victory line. Smug. |
+| 44 | [ ] | `rico__boss_defeat_the_house.ogg` | Read 'em and weep, because this time I'm all in, and so is the entire family tree. Now, where's James? | Hero victory line. Smug. |
 | 45 | [ ] | `_cutscenes-city1_arrive__city1_arrive_1.ogg` | Atlantic Shitty, home of the boardwalk, the taffy, and the world's saddest seagulls, and honestly, it's the nicest place I've been to in a week. | Cutscene: city1 arrive |
 | 46 | [ ] | `_cutscenes-city1_arrive__city1_arrive_3.ogg` | Everything here is wet, Marlow, the air is wet, the ground is wet, and I think the dumpster just winked at me. | Cutscene: city1 arrive |
-| 47 | [ ] | `_cutscenes-city1_arrive__city1_arrive_4.ogg` | Hold on, that's Jules's jacket, I'd know it anywhere, it's the one he wore for every bad decision of his life, and there's a pawn ticket in the pocket, from Reno. | Cutscene: city1 arrive |
+| 47 | [ ] | `_cutscenes-city1_arrive__city1_arrive_4.ogg` | Hold on, that's James's jacket, I'd know it anywhere, it's the one he wore for every bad decision of his life, and there's a pawn ticket in the pocket, from Reno. | Cutscene: city1 arrive |
 | 48 | [ ] | `_cutscenes-city2_arrive__city2_arrive_1.ogg` | Reno, the biggest little city in the world, and the first thing I see is a clown asking me for a cigarette, so I think the slogan is accurate. | Cutscene: city2 arrive |
 | 49 | [ ] | `_cutscenes-city2_arrive__city2_arrive_5.ogg` | Promoted to Biloxi? Marlow, that's not a promotion, that's a punishment with a river view. | Cutscene: city2 arrive |
 | 50 | [ ] | `_cutscenes-city3_arrive__city3_arrive_1.ogg` | Biloxi, home of Hard Rok, where the guitars are loud, the humidity is louder, and the whole place smells like a wet rock concert. | Cutscene: city3 arrive |
@@ -80,26 +80,26 @@ Tick the box for each line as you go.
 | 52 | [ ] | `_cutscenes-city3_arrive__city3_arrive_5.ogg` | ...You WHAT. | Cutscene: city3 arrive |
 | 53 | [ ] | `_cutscenes-city3_arrive__city3_arrive_7.ogg` | I'm going to find you when this is over, Marlow, and I'm going to be so mad, I'm going to schedule it. | Cutscene: city3 arrive |
 | 54 | [ ] | `_cutscenes-city4_arrive__city4_arrive_1.ogg` | Fremont, Old Vegas, where the neon is older than my debt and still glowing, which is more than I can say for my career. | Cutscene: city4 arrive |
-| 55 | [ ] | `_cutscenes-city4_arrive__city4_arrive_4.ogg` | Wait, what's that, a note, in Jules's handwriting? 'Don't come for me. I'm finally winning.' | Cutscene: city4 arrive |
+| 55 | [ ] | `_cutscenes-city4_arrive__city4_arrive_4.ogg` | Wait, what's that, a note, in James's handwriting? 'Don't come for me. I'm finally winning.' | Cutscene: city4 arrive |
 | 56 | [ ] | `_cutscenes-city4_arrive__city4_arrive_5.ogg` | He doesn't want to be saved, he's hooked, exactly like me, and I'd call that heartbreaking, but honestly, it's a little relatable. | Cutscene: city4 arrive |
 | 57 | [ ] | `_cutscenes-city5_arrive__city5_arrive_1.ogg` | The Strip, the nicest casino in the world, and I'm standing in it covered in alley, which is a bold look, and nobody has stopped me. | Cutscene: city5 arrive |
-| 58 | [ ] | `_cutscenes-city1_clue__city1_clue_1.ogg` | An IOU in Jules's handwriting, 'I owe the House one brother,' and I'd say that's a typo, but it isn't, and that's the problem. | Cutscene: city1 clue |
-| 59 | [ ] | `_cutscenes-city2_clue__city2_clue_1.ogg` | Another IOU, and this one says 'Dealing at Hard Rok,' so Jules isn't just gambling anymore, he's an employee of The House. | Cutscene: city2 clue |
+| 58 | [ ] | `_cutscenes-city1_clue__city1_clue_1.ogg` | An IOU in James's handwriting, 'I owe the House one brother,' and I'd say that's a typo, but it isn't, and that's the problem. | Cutscene: city1 clue |
+| 59 | [ ] | `_cutscenes-city2_clue__city2_clue_1.ogg` | Another IOU, and this one says 'Dealing at Hard Rok,' so James isn't just gambling anymore, he's an employee of The House. | Cutscene: city2 clue |
 | 60 | [ ] | `_cutscenes-city3_clue__city3_clue_1.ogg` | An IOU and a torn receipt that says 'Fremont, Goldun Nugget, sublet: one lifetime,' and I'm not even going to ask how much that costs. | Cutscene: city3 clue |
-| 61 | [ ] | `_cutscenes-city4_clue__city4_clue_1.ogg` | A chip with 'JULES, PENTHOUSE' carved into it, which is either a clue or a very specific Christmas gift. | Cutscene: city4 clue |
+| 61 | [ ] | `_cutscenes-city4_clue__city4_clue_1.ogg` | A chip with 'JAMES, PENTHOUSE' carved into it, which is either a clue or a very specific Christmas gift. | Cutscene: city4 clue |
 | 62 | [ ] | `_cutscenes-secret_found__secret_found_1.ogg` | A hidden room with a secret table, and honestly, the House having a secret is the least surprising thing that's happened today. | Cutscene: secret found |
 | 63 | [ ] | `_cutscenes-secret_defeat__secret_defeat_1.ogg` | Another secret table beaten, another stack of chips, and I think I'm starting to see why the House hid these. | Cutscene: secret defeat |
 | 64 | [ ] | `_cutscenes-secret_defeat__secret_defeat_3.ogg` | Good, I'd hate to be the only one who's upset. | Cutscene: secret defeat |
 | 65 | [ ] | `_cutscenes-final_prelude__final_prelude_2.ogg` | And I still have a bet on you, so deal. | Cutscene: final prelude |
-| 66 | [ ] | `_cutscenes-intro__intro_1.ogg` | My brother Jules sat down at The House's table and bet himself. Then he lost, which means he now works there, which means my family finally has a steady job. | Cutscene: intro |
+| 66 | [ ] | `_cutscenes-intro__intro_1.ogg` | My brother James sat down at The House's table and bet himself. Then he lost, which means he now works there, which means my family finally has a steady job. | Cutscene: intro |
 | 67 | [ ] | `_cutscenes-intro__intro_2.ogg` | So the plan is to climb five casinos, from a dumpster in Atlantic Shitty to the Strip, and win him back. I've bet on worse things. Mostly myself. | Cutscene: intro |
 | 68 | [ ] | `_cutscenes-intro__intro_5.ogg` | So... infinite credit? I can't die, I just owe more? I've been training for this my entire life. | Cutscene: intro |
 | 69 | [ ] | `_cutscenes-mags_chase__mags_chase_2.ogg` | ...Can we talk about this? | Cutscene: mags chase |
-| 70 | [ ] | `_cutscenes-ending__ending_1.ogg` | The House folds, and the penthouse goes quiet. At the far table, a man in a vest keeps dealing cards to nobody. My brother, Jules, still winning. | Cutscene: ending |
-| 71 | [ ] | `_cutscenes-ending__ending_3.ogg` | Jules, you have to cash out. Walk away from a winning table. I know, I've never done it either, but it only works if you choose it. | Cutscene: ending |
+| 70 | [ ] | `_cutscenes-ending__ending_1.ogg` | The House folds, and the penthouse goes quiet. At the far table, a man in a vest keeps dealing cards to nobody. My brother, James, still winning. | Cutscene: ending |
+| 71 | [ ] | `_cutscenes-ending__ending_3.ogg` | James, you have to cash out. Walk away from a winning table. I know, I've never done it either, but it only works if you choose it. | Cutscene: ending |
 | 72 | [ ] | `_cutscenes-ending__ending_5.ogg` | Look, I'm the last guy who should say this. I once bet my shoes, won the bet, and lost the shoes. I'm not a role model. Come home. | Cutscene: ending |
 | 73 | [ ] | `_cutscenes-ending__ending_7.ogg` | Welcome home, brother. ...So, one more run? For fun? Just a little one? | Cutscene: ending |
-| 74 | [ ] | `_cutscenes-true_ending__true_ending_2.ogg` | No. I read your tickets, Eddie Duval. All twenty of them. Your handwriting is somehow worse than Jules's, and he writes with his elbow. | Cutscene: true ending |
+| 74 | [ ] | `_cutscenes-true_ending__true_ending_2.ogg` | No. I read your tickets, Eddie Duval. All twenty of them. Your handwriting is somehow worse than James's, and he writes with his elbow. | Cutscene: true ending |
 | 75 | [ ] | `_cutscenes-true_ending__true_ending_4.ogg` | You never learned to walk away, so I'm teaching you. Cash out, Eddie. Take the win. It's like a refund, but for your whole life. | Cutscene: true ending |
 | 76 | [ ] | `_cutscenes-true_ending__true_ending_9.ogg` | Even my debt? ...That's disappointing. It was my longest relationship. | Cutscene: true ending |
 | 77 | [ ] | `rico__marlow_intro_3.ogg` | So I can't die. Great. What's the catch? | Conversation: marlow_intro |
@@ -119,9 +119,9 @@ Tick the box for each line as you go.
 | 83 | [ ] | `marlow__farewell_1.ogg` | Stay alive, stay lucky, stay on the line, pick any two, never three, and I say this as a man who got your brother his seat at the table. | Parting words as the player leaves. |
 | 84 | [ ] | `marlow__farewell_2.ogg` | Call me if you need me, kid, call me if you don't, I'm lonely, that's classified, and I'll be here, with my guilt, and a snack. | Parting words as the player leaves. |
 | 85 | [ ] | `marlow__rich_1.ogg` | Look at that pot, Rico, resist the urge, resist it, resist it, you didn't resist it, and now I'm eating a second sandwich, out of stress. | The player is carrying a lot of money. |
-| 86 | [ ] | `marlow__rich_2.ogg` | You're rich, kid, don't tell the House, don't tell yourself either, and for the love of everything, don't tell Jules, because he'll want to borrow it. | The player is carrying a lot of money. |
+| 86 | [ ] | `marlow__rich_2.ogg` | You're rich, kid, don't tell the House, don't tell yourself either, and for the love of everything, don't tell James, because he'll want to borrow it. | The player is carrying a lot of money. |
 | 87 | [ ] | `marlow__broke_1.ogg` | Broke again, kid? That's the third time today, and it's lunch, and I'm starting to think your brother is a better planner, which is deeply upsetting. | The player is nearly broke. |
-| 88 | [ ] | `marlow__broke_2.ogg` | Hey, it's just money, Rico, it comes back, mostly, maybe, look, it's a hope, not a promise, and I'm a bad promise guy, ask Jules. | The player is nearly broke. |
+| 88 | [ ] | `marlow__broke_2.ogg` | Hey, it's just money, Rico, it comes back, mostly, maybe, look, it's a hope, not a promise, and I'm a bad promise guy, ask James. | The player is nearly broke. |
 | 89 | [ ] | `marlow__ugly_1.ogg` | Rico, what are you wearing, I can hear it, it's whispering help, and I'm on a payphone, which means I'm the one who's actually suffering. | The player is wearing ugly clothes. |
 | 90 | [ ] | `marlow__ugly_2.ogg` | Is that a fanny pack, kid, on the phone, I can see it, don't ask how, and I'm so sorry, I hang up on people for less. | The player is wearing ugly clothes. |
 | 91 | [ ] | `marlow__sharp_1.ogg` | Hey, nice suit, kid, I can hear the starch, it's screaming don't bleed, and I second that, because I owe a lot of favors on that fabric. | The player is dressed sharp. |
@@ -129,62 +129,62 @@ Tick the box for each line as you go.
 | 93 | [ ] | `marlow__died_1.ogg` | Rico, again? We have to stop meeting like this, in a morgue, via payphone, and I'm eating my feelings, which, unfortunately, are a tuna salad. | The player just died. |
 | 94 | [ ] | `marlow__died_2.ogg` | I heard the thud, kid, it was a loud one, I clapped, don't judge me, and then I felt terrible, and then I ate a second sandwich. | The player just died. |
 | 95 | [ ] | `marlow__boss_1.ogg` | A boss, defeated, Rico? I'm updating my bet, and I'm betting you survive, which is a first, and I'm going to put it in writing, so you can't back out. | The player just beat a boss. |
-| 96 | [ ] | `marlow__boss_2.ogg` | That's one more casino beaten, kid, Jules is a little closer, or a little farther, I'm still checking the map, and by map I mean a napkin. | The player just beat a boss. |
-| 97 | [ ] | `marlow__idle_1.ogg` | Five casinos, kid, twenty-five floors, and Jules at the top of the Bellagiro, easy, by which I mean impossible, in that order, and I'm so, so sorry. | Idle chatter. Random. |
-| 98 | [ ] | `marlow__idle_2.ogg` | I keep thinking about the day I got Jules that seat at the table, Rico, and I keep thinking it was a favor, and I keep eating, which doesn't help. | Idle chatter. Random. |
+| 96 | [ ] | `marlow__boss_2.ogg` | That's one more casino beaten, kid, James is a little closer, or a little farther, I'm still checking the map, and by map I mean a napkin. | The player just beat a boss. |
+| 97 | [ ] | `marlow__idle_1.ogg` | Five casinos, kid, twenty-five floors, and James at the top of the Bellagiro, easy, by which I mean impossible, in that order, and I'm so, so sorry. | Idle chatter. Random. |
+| 98 | [ ] | `marlow__idle_2.ogg` | I keep thinking about the day I got James that seat at the table, Rico, and I keep thinking it was a favor, and I keep eating, which doesn't help. | Idle chatter. Random. |
 | 99 | [ ] | `marlow__buy_1.ogg` | Good call, kid, not great, good, like good on a report card for a goldfish, and I'm eating a sandwich in celebration, a small one. | The player just bought something. |
 | 100 | [ ] | `marlow__buy_2.ogg` | I hope you read the fine print, Rico, there's no fine print, that's the fine print, and I should know, I've signed everything, including your brother's seat. | The player just bought something. |
 | 101 | [ ] | `_cutscenes-city1_arrive__city1_arrive_2.ogg` | Rico, you're in an alley behind Resortz, so before you do anything, please don't touch anything wet, and please don't make eye contact with the dumpster. | Cutscene: city1 arrive |
 | 102 | [ ] | `_cutscenes-city1_arrive__city1_arrive_5.ogg` | A pawn ticket from Reno, so good news, Rico, you have a clue, and bad news, the clue is Reno. | Cutscene: city1 arrive |
 | 103 | [ ] | `_cutscenes-city2_arrive__city2_arrive_2.ogg` | That's the doorman at Cirrcus Cirrcus, Rico, so smile, don't make eye contact, and for the love of God, don't ask him about the balloons. | Cutscene: city2 arrive |
 | 104 | [ ] | `_cutscenes-city3_arrive__city3_arrive_2.ogg` | Stay quiet in there, Rico, Hard Rok keeps its toughest guys by the stage, and they're very sensitive about their eardrums. | Cutscene: city3 arrive |
-| 105 | [ ] | `_cutscenes-city3_arrive__city3_arrive_4.ogg` | Rico, before you go in, I have to tell you something, and I need you not to throw anything, I'm the one who got Jules his seat at The House's table. | Cutscene: city3 arrive |
+| 105 | [ ] | `_cutscenes-city3_arrive__city3_arrive_4.ogg` | Rico, before you go in, I have to tell you something, and I need you not to throw anything, I'm the one who got James his seat at The House's table. | Cutscene: city3 arrive |
 | 106 | [ ] | `_cutscenes-city3_arrive__city3_arrive_6.ogg` | I thought he'd win, Rico, he always won, it was a safe bet, on paper, and I'd like to point out that the paper is currently on fire. | Cutscene: city3 arrive |
 | 107 | [ ] | `_cutscenes-city3_arrive__city3_arrive_8.ogg` | That's fair, but I'm the only one who knows the way up to the penthouse, so climb first, yell second, and please hurry, I'm very uncomfortable. | Cutscene: city3 arrive |
 | 108 | [ ] | `_cutscenes-city4_arrive__city4_arrive_2.ogg` | Goldun Nugget has a shark tank and a long memory, Rico, and everyone is welcome to come in, which is a real problem for the people who try to leave. | Cutscene: city4 arrive |
-| 109 | [ ] | `_cutscenes-city5_arrive__city5_arrive_4.ogg` | The penthouse is at the top of the Bellagiro, Rico, that's where Jules is, and please remember the plan, which is, do not bet him. | Cutscene: city5 arrive |
-| 110 | [ ] | `_cutscenes-city1_clue__city1_clue_2.ogg` | Flip it over, there's a note on the back that says 'Reno,' so good news, Rico, Jules is alive, and bad news, he's in Reno. | Cutscene: city1 clue |
-| 111 | [ ] | `_cutscenes-city2_clue__city2_clue_2.ogg` | Confirmed, Jules is dealing for The House now, fast hands, no sleep, and a vacant stare, it's honestly a very Jules career. | Cutscene: city2 clue |
+| 109 | [ ] | `_cutscenes-city5_arrive__city5_arrive_4.ogg` | The penthouse is at the top of the Bellagiro, Rico, that's where James is, and please remember the plan, which is, do not bet him. | Cutscene: city5 arrive |
+| 110 | [ ] | `_cutscenes-city1_clue__city1_clue_2.ogg` | Flip it over, there's a note on the back that says 'Reno,' so good news, Rico, James is alive, and bad news, he's in Reno. | Cutscene: city1 clue |
+| 111 | [ ] | `_cutscenes-city2_clue__city2_clue_2.ogg` | Confirmed, James is dealing for The House now, fast hands, no sleep, and a vacant stare, it's honestly a very James career. | Cutscene: city2 clue |
 | 112 | [ ] | `_cutscenes-city3_clue__city3_clue_2.ogg` | He's moving up, Rico, every city gets him a better table, and every table gets him a worse deal, so I'd hurry. | Cutscene: city3 clue |
 | 113 | [ ] | `_cutscenes-city4_clue__city4_clue_2.ogg` | That's the top floor of the Bellagiro, Rico, one more climb, and please don't die, I'd like to yell at you in person. | Cutscene: city4 clue |
 | 114 | [ ] | `_cutscenes-secret_found__secret_found_2.ogg` | That's not on the map, Rico, so be careful in there, and by careful I mean reckless, because it's a secret table and you'll want the story. | Cutscene: secret found |
 | 115 | [ ] | `_cutscenes-secret_defeat__secret_defeat_2.ogg` | You're not supposed to know about those rooms, Rico, and the House is going to be very upset, in its calm, corporate way. | Cutscene: secret defeat |
-| 116 | [ ] | `_cutscenes-intro__intro_7.ogg` | Radio check, Rico. The House keeps Jules at the top of the Bellagiro, on the Strip. Every chip you grab rides in your Pot, and at each door you bank it or let it ride for double. You'll let it ride. You always let it ride. | Cutscene: intro |
-| 117 | [ ] | `_cutscenes-intro__intro_8.ogg` | Now get in that heap you call a car. The goal, in plain English: climb five casinos, get Jules, and try very hard not to bet him. | Cutscene: intro |
+| 116 | [ ] | `_cutscenes-intro__intro_7.ogg` | Radio check, Rico. The House keeps James at the top of the Bellagiro, on the Strip. Every chip you grab rides in your Pot, and at each door you bank it or let it ride for double. You'll let it ride. You always let it ride. | Cutscene: intro |
+| 117 | [ ] | `_cutscenes-intro__intro_8.ogg` | Now get in that heap you call a car. The goal, in plain English: climb five casinos, get James, and try very hard not to bet him. | Cutscene: intro |
 | 118 | [ ] | `_cutscenes-ending__ending_4.ogg` | Rico, I've seen a lot of men walk away from a table, and exactly zero of them were happy about it. Be gentle with him, he's basically a cat. | Cutscene: ending |
 | 119 | [ ] | `_cutscenes-ending__ending_8.ogg` | Rico, you absolute lunatic, the top of the Bellagiro is a casino, you can't just do another lap. ...Fine. High Roller mode is open. Let it ride, kid. | Cutscene: ending |
 | 120 | [ ] | `_cutscenes-true_ending__true_ending_8.ogg` | Rico, the lights just went warm at the top of the Bellagiro. Every Marker in the apartment burned up at once. Everyone's free, including me, which is terrifying. | Cutscene: true ending |
 | 121 | [ ] | `_cutscenes-true_ending__true_ending_10.ogg` | Course not, it's still a casino. It's just ours now. Let it ride, kid. | Cutscene: true ending |
 | 122 | [ ] | `marlow__radio_1.ogg` | Same deal as always, Rico. Grab the chips, run for the door, and don't get cute. You'll get cute. I've made peace with it, and a little bit of a will. | Radio/lobby: radio |
 | 123 | [ ] | `marlow__radio_2.ogg` | Word is security doubled. When a big lug winds up, parry him. Or just die and wake up at home. It's free, in the sense that Mags is billing you. | Radio/lobby: radio |
-| 124 | [ ] | `marlow__radio_3.ogg` | Good news, Jules is alive. Bad news, he's one casino ahead of you, and I got him the job. I'll explain that part later. Or never. Probably never. | Radio/lobby: radio |
+| 124 | [ ] | `marlow__radio_3.ogg` | Good news, James is alive. Bad news, he's one casino ahead of you, and I got him the job. I'll explain that part later. Or never. Probably never. | Radio/lobby: radio |
 | 125 | [ ] | `marlow__radio_4.ogg` | Slot machines on every floor. Bet the Pot if you're feeling lucky. I wouldn't, but I'm broke, so take that as research. | Radio/lobby: radio |
 | 126 | [ ] | `marlow__radio_5.ogg` | Smash the glass, smash the crates, grab whatever falls out. Insurance won't cover it, but you will, in the sense that you'll be the one dying. | Radio/lobby: radio |
-| 127 | [ ] | `marlow__radio_6.ogg` | Jules left a trail of IOUs up the whole coast. Follow the money and you'll find him, or a very tired accountant holding about forty of them. | Radio/lobby: radio |
+| 127 | [ ] | `marlow__radio_6.ogg` | James left a trail of IOUs up the whole coast. Follow the money and you'll find him, or a very tired accountant holding about forty of them. | Radio/lobby: radio |
 | 128 | [ ] | `marlow__radio_7.ogg` | Back again? The Fence has new toys if you've banked enough. He also has a new face. Stop asking, Rico. Nobody wants to know how. | Radio/lobby: radio |
 | 129 | [ ] | `marlow__first_exit_1.ogg` | First door. Cash out and that money is yours forever, which in this town means The Fence will gladly take it off your hands for a very fair price. He sets the price. | Radio/lobby: first exit |
 | 130 | [ ] | `marlow__first_exit_2.ogg` | Or let it ride for double the multiplier, and the House adds a rule. Your call, high roller. It's your funeral, but let's be honest, it's also a Tuesday. | Radio/lobby: first exit |
 | 131 | [ ] | `marlow__marlow_intro_1.ogg` | Rico! You picked up! So the rumors are true: The House doesn't let debtors die, it just mails them home with a bigger bill, like a very rude pizza. | Conversation: marlow_intro |
 | 132 | [ ] | `marlow__marlow_intro_2.ogg` | You bust, you wake up in your apartment, and the interest on your Marker goes up. Every do-over costs money, which makes it the worst video game ever, and I say that as your babysitter. | Conversation: marlow_intro |
-| 133 | [ ] | `marlow__marlow_intro_4.ogg` | The catch is you never stop owing. Climb the five casinos, get Jules back from The House, and get out before the interest finishes its own climb. | Conversation: marlow_intro |
+| 133 | [ ] | `marlow__marlow_intro_4.ogg` | The catch is you never stop owing. Climb the five casinos, get James back from The House, and get out before the interest finishes its own climb. | Conversation: marlow_intro |
 | 134 | [ ] | `marlow__marlow_spikes_1.ogg` | You died to spikes again? Rico, they don't move, they don't sneak, and they have exactly one job, and you keep helping them do it. | Conversation: marlow_spikes |
 | 135 | [ ] | `marlow__marlow_guard_1.ogg` | Those bouncers telegraph every punch, so parry right before it lands and they'll be eating carpet, which, I'll be honest, is where most of this casino's customers end up anyway. | Conversation: marlow_guard |
 | 136 | [ ] | `marlow__marlow_bat_1.ogg` | You lost to rats, Rico. I'm leaving that out of the report, and the eulogy, and honestly the rest of your life story. | Conversation: marlow_bat |
 | 137 | [ ] | `marlow__marlow_sal_1.ogg` | That first boss fights like he deals, slow and then suddenly rude, so wait for the big wind-up, sidestep it, and punish him while he's still being dramatic. | Conversation: marlow_sal |
 | 138 | [ ] | `marlow__marlow_sal_2.ogg` | And parry the big move if you can, because it stuns him wide open for double damage, which is the whole tip, and the rest of my advice is mostly sighing. | Conversation: marlow_sal |
 | 139 | [ ] | `marlow__marlow_roulette_1.ogg` | The second boss throws balls at you, and the balls bounce, so hit them right back at her, because nothing hurts a gambler more than getting her own bad luck returned. | Conversation: marlow_roulette |
-| 140 | [ ] | `marlow__marlow_house_1.ogg` | You made it all the way to the penthouse, which is further than Jules ever got, further than me, and a lot further than my self-respect. | Conversation: marlow_house |
+| 140 | [ ] | `marlow__marlow_house_1.ogg` | You made it all the way to the penthouse, which is further than James ever got, further than me, and a lot further than my self-respect. | Conversation: marlow_house |
 | 141 | [ ] | `marlow__marlow_house_2.ogg` | So don't you dare quit now, because I'll be so annoyed, and then I'll cry, loudly, on a payphone, in public. | Conversation: marlow_house |
 | 142 | [ ] | `marlow__marlow_mags_1.ogg` | Mags got you? You borrowed money from a shark in a suit, Rico, and there were warning signs, one of which was literally a fin. | Conversation: marlow_mags |
 | 143 | [ ] | `marlow__marlow_greedy_1.ogg` | You were riding at times eight when you busted, which is the exact kind of number I would have put on a tombstone if you could stay dead. | Conversation: marlow_greedy |
-| 144 | [ ] | `marlow__marlow_greedy_2.ogg` | Just bank once in a while, okay? Jules never did, and look where it got him: a job at the casino, as the help, with a name tag. | Conversation: marlow_greedy |
+| 144 | [ ] | `marlow__marlow_greedy_2.ogg` | Just bank once in a while, okay? James never did, and look where it got him: a job at the casino, as the help, with a name tag. | Conversation: marlow_greedy |
 | 145 | [ ] | `marlow__marlow_careful_1.ogg` | Three cash-outs last run? That's careful money, Rico, so who are you, and what did you do with my idiot? | Conversation: marlow_careful |
-| 146 | [ ] | `marlow__marlow_confess_1.ogg` | About what I said in Biloxi: I used to deal for The House, and I'm the one who got Jules his seat at that table. | Conversation: marlow_confess |
+| 146 | [ ] | `marlow__marlow_confess_1.ogg` | About what I said in Biloxi: I used to deal for The House, and I'm the one who got James his seat at that table. | Conversation: marlow_confess |
 | 147 | [ ] | `marlow__marlow_confess_2.ogg` | I honestly thought he'd win, because he always won, and I know that's not an excuse, it's just a really bad bet that I'm still paying off. | Conversation: marlow_confess |
 | 148 | [ ] | `marlow__marlow_confess_4.ogg` | I did, and now I'm talking you back to him, one casino at a time, which is the only apology I've got, and it's a bad one, but it's also a pretty decent one, considering. | Conversation: marlow_confess |
 | 149 | [ ] | `marlow__marlow_vault_1.ogg` | You cracked a safe! They only open if you get there fast, so speed pays at every casino, which is honestly the only thing those casinos have in common. | Conversation: marlow_vault |
 | 150 | [ ] | `marlow__marlow_daily_1.ogg` | Daily Deal, huh? Everyone in the world gets the same floors today, so go show them how it's done, or at least how to die in a really creative way. | Conversation: marlow_daily |
-| 151 | [ ] | `marlow__marlow_ending_1.ogg` | Jules is out, the Bellagiro is quiet, and you're still picking up this phone, which I'm choosing to find sweet instead of worrying. | Conversation: marlow_ending |
+| 151 | [ ] | `marlow__marlow_ending_1.ogg` | James is out, the Bellagiro is quiet, and you're still picking up this phone, which I'm choosing to find sweet instead of worrying. | Conversation: marlow_ending |
 | 152 | [ ] | `marlow__marlow_ending_2.ogg` | ...Yeah, no, I'd go back too, honestly. Let it ride, kid. | Conversation: marlow_ending |
 | 153 | [ ] | `marlow__marlow_true_1.ogg` | The House is quiet for the first time in twenty years, and that was you, and I still can't believe I helped. | Conversation: marlow_true |
 | 154 | [ ] | `marlow__marlow_true_2.ogg` | Eddie Duval finally cashed out, so I owe you a drink, actually about a thousand drinks, okay, fine, I owe you a bar. | Conversation: marlow_true |
@@ -233,7 +233,7 @@ Tick the box for each line as you go.
 | 189 | [ ] | `vera__vera_queen_found_2.ogg` | Twenty years I've owed The House this card, and you found it folded inside a losing ticket, because of course you did. | Conversation: vera_queen_found |
 | 190 | [ ] | `vera__vera_queen_found_3.ogg` | You just paid off my Marker, Rico, which means I'm free to walk out that door. | Conversation: vera_queen_found |
 | 191 | [ ] | `vera__vera_queen_found_4.ogg` | I'm staying, though, because somebody has to keep you lucky, and licenses are 25% off for you forever, which, from me, is basically a love letter. | Conversation: vera_queen_found |
-| 192 | [ ] | `vera__vera_ending_1.ogg` | You got Jules out, and do you know how many runners I've watched try that and fail? | Conversation: vera_ending |
+| 192 | [ ] | `vera__vera_ending_1.ogg` | You got James out, and do you know how many runners I've watched try that and fail? | Conversation: vera_ending |
 | 193 | [ ] | `vera__vera_ending_2.ogg` | None of them knew when to cash out, but you did, mostly, twice, in a row, and I'd call that a miracle if I didn't know how you play. | Conversation: vera_ending |
 | 194 | [ ] | `vera__vera_eddie_1.ogg` | Eddie Duval. You've been reading his tickets, haven't you? | Conversation: vera_eddie |
 | 195 | [ ] | `vera__vera_eddie_2.ogg` | He was the best player I ever dealt to, and he never walked away from a table, not once, not even when it was on fire. | Conversation: vera_eddie |
@@ -315,37 +315,37 @@ Tick the box for each line as you go.
 
 ---
 
-## JULES  "One more hand. Just one."
+## JAMES  "One more hand. Just one."
 *mid pitch, medium, low energy. same as the hero, but hoarse accent. haunted, sheepish, proud.* Tip: Whisper like you have not slept since Tuesday.
 
 | # | Done | File name (in voice/all/) | Line | How to say it |
 |---|---|---|---|---|
-| 255 | [ ] | `jules__greet_1.ogg` | Rico, is it really you? I've had that hallucination before, and he's usually taller, and he usually has a sandwich, and I'm just saying, one more hand, and I'll be right with you. | Greeting the player. In character. |
-| 256 | [ ] | `jules__greet_2.ogg` | I knew you'd come, Rico, I just didn't know when, I did bet on never, but I'm winning, so that's fine, I'm definitely winning, just give me one more hand. | Greeting the player. In character. |
-| 257 | [ ] | `jules__farewell_1.ogg` | Don't wait for me, Rico, go, I'm busy, I'm winning, I'm basically a legend, I just need one more hand, and then I'll be right out, probably. | Parting words as the player leaves. |
-| 258 | [ ] | `jules__farewell_2.ogg` | Say hi to Mom, or don't, she'll worry, and then she'll ask for the money back, and I'll say I'm winning, and she'll say that's what you said last time. | Parting words as the player leaves. |
-| 259 | [ ] | `jules__rich_1.ogg` | That's a lot of chips, Rico, I know the feeling, don't trust it, it's a lie told by a sparkly liar, and I'm winning, by the way, just in case you're wondering. | The player is carrying a lot of money. |
-| 260 | [ ] | `jules__rich_2.ogg` | I had that much once, for ten minutes, and then I had a dealer's smile, and I'm still up, in a way, and one more hand will prove it. | The player is carrying a lot of money. |
-| 261 | [ ] | `jules__broke_1.ogg` | Broke, Rico? Welcome, it's cozy, the walls are close, and the rent is nothing, and I'm winning, so I'm only in here for the ambience. | The player is nearly broke. |
-| 262 | [ ] | `jules__broke_2.ogg` | I've been broke for three years, Rico, it's fine, I have a lot of hobbies, mostly regret, and also winning, I'm very, very winning. | The player is nearly broke. |
-| 263 | [ ] | `jules__ugly_1.ogg` | Nice outfit, Rico, I love it, I'm lying, I'm so lying, and I'm winning, so I can afford to be honest, and it's a crime. | The player is wearing ugly clothes. |
-| 264 | [ ] | `jules__ugly_2.ogg` | I'd say something, Rico, but you're my brother, I'd just say it more quietly, and I'm winning, so I'll let it slide. | The player is wearing ugly clothes. |
-| 265 | [ ] | `jules__sharp_1.ogg` | You look great, Rico, suspiciously great, who died, is it me, is it me, and I'm winning, so it can't be me, can it? | The player is dressed sharp. |
-| 266 | [ ] | `jules__sharp_2.ogg` | Look at you, Rico, Dad would be proud, Dad would also ask where you stole it, and I'm winning, so I'm proud too. | The player is dressed sharp. |
-| 267 | [ ] | `jules__died_1.ogg` | You died, Rico, welcome to my life, it's less dead than you'd think, and more dead than I'd like, and I'm winning, so it's mostly fine. | The player just died. |
-| 268 | [ ] | `jules__died_2.ogg` | It doesn't hurt after the first twenty, Rico, then it's just administrative, and I'm winning, so I've got a lot of paperwork. | The player just died. |
-| 269 | [ ] | `jules__boss_1.ogg` | You beat a boss, Rico? I never got past the third, or did, they blur together, like all my mistakes, and I'm winning, so I'm taking credit. | The player just beat a boss. |
-| 270 | [ ] | `jules__boss_2.ogg` | I heard the table go quiet, Rico, it was you, or the building collapsing, both are fine, and I'm winning, so I'll take either. | The player just beat a boss. |
-| 271 | [ ] | `jules__idle_1.ogg` | The cards remember everything, Rico, especially the bad ones, especially me, and I'm winning, so they're basically my friends. | Idle chatter. Random. |
-| 272 | [ ] | `jules__idle_2.ogg` | You hear that, Rico, the wheel, it never stops, it also never says sorry, and I'm winning, so it's fine. | Idle chatter. Random. |
-| 273 | [ ] | `jules__buy_1.ogg` | Good pick, Rico, I'd have picked it too, I lost anyway, eventually, with style, and I'm winning, so ignore that. | The player just bought something. |
-| 274 | [ ] | `jules__buy_2.ogg` | Take my advice, Rico, don't, take my advice again, don't, you're not listening, brother, and I'm winning, so listen anyway. | The player just bought something. |
+| 255 | [ ] | `james__greet_1.ogg` | Rico, is it really you? I've had that hallucination before, and he's usually taller, and he usually has a sandwich, and I'm just saying, one more hand, and I'll be right with you. | Greeting the player. In character. |
+| 256 | [ ] | `james__greet_2.ogg` | I knew you'd come, Rico, I just didn't know when, I did bet on never, but I'm winning, so that's fine, I'm definitely winning, just give me one more hand. | Greeting the player. In character. |
+| 257 | [ ] | `james__farewell_1.ogg` | Don't wait for me, Rico, go, I'm busy, I'm winning, I'm basically a legend, I just need one more hand, and then I'll be right out, probably. | Parting words as the player leaves. |
+| 258 | [ ] | `james__farewell_2.ogg` | Say hi to Mom, or don't, she'll worry, and then she'll ask for the money back, and I'll say I'm winning, and she'll say that's what you said last time. | Parting words as the player leaves. |
+| 259 | [ ] | `james__rich_1.ogg` | That's a lot of chips, Rico, I know the feeling, don't trust it, it's a lie told by a sparkly liar, and I'm winning, by the way, just in case you're wondering. | The player is carrying a lot of money. |
+| 260 | [ ] | `james__rich_2.ogg` | I had that much once, for ten minutes, and then I had a dealer's smile, and I'm still up, in a way, and one more hand will prove it. | The player is carrying a lot of money. |
+| 261 | [ ] | `james__broke_1.ogg` | Broke, Rico? Welcome, it's cozy, the walls are close, and the rent is nothing, and I'm winning, so I'm only in here for the ambience. | The player is nearly broke. |
+| 262 | [ ] | `james__broke_2.ogg` | I've been broke for three years, Rico, it's fine, I have a lot of hobbies, mostly regret, and also winning, I'm very, very winning. | The player is nearly broke. |
+| 263 | [ ] | `james__ugly_1.ogg` | Nice outfit, Rico, I love it, I'm lying, I'm so lying, and I'm winning, so I can afford to be honest, and it's a crime. | The player is wearing ugly clothes. |
+| 264 | [ ] | `james__ugly_2.ogg` | I'd say something, Rico, but you're my brother, I'd just say it more quietly, and I'm winning, so I'll let it slide. | The player is wearing ugly clothes. |
+| 265 | [ ] | `james__sharp_1.ogg` | You look great, Rico, suspiciously great, who died, is it me, is it me, and I'm winning, so it can't be me, can it? | The player is dressed sharp. |
+| 266 | [ ] | `james__sharp_2.ogg` | Look at you, Rico, Dad would be proud, Dad would also ask where you stole it, and I'm winning, so I'm proud too. | The player is dressed sharp. |
+| 267 | [ ] | `james__died_1.ogg` | You died, Rico, welcome to my life, it's less dead than you'd think, and more dead than I'd like, and I'm winning, so it's mostly fine. | The player just died. |
+| 268 | [ ] | `james__died_2.ogg` | It doesn't hurt after the first twenty, Rico, then it's just administrative, and I'm winning, so I've got a lot of paperwork. | The player just died. |
+| 269 | [ ] | `james__boss_1.ogg` | You beat a boss, Rico? I never got past the third, or did, they blur together, like all my mistakes, and I'm winning, so I'm taking credit. | The player just beat a boss. |
+| 270 | [ ] | `james__boss_2.ogg` | I heard the table go quiet, Rico, it was you, or the building collapsing, both are fine, and I'm winning, so I'll take either. | The player just beat a boss. |
+| 271 | [ ] | `james__idle_1.ogg` | The cards remember everything, Rico, especially the bad ones, especially me, and I'm winning, so they're basically my friends. | Idle chatter. Random. |
+| 272 | [ ] | `james__idle_2.ogg` | You hear that, Rico, the wheel, it never stops, it also never says sorry, and I'm winning, so it's fine. | Idle chatter. Random. |
+| 273 | [ ] | `james__buy_1.ogg` | Good pick, Rico, I'd have picked it too, I lost anyway, eventually, with style, and I'm winning, so ignore that. | The player just bought something. |
+| 274 | [ ] | `james__buy_2.ogg` | Take my advice, Rico, don't, take my advice again, don't, you're not listening, brother, and I'm winning, so listen anyway. | The player just bought something. |
 | 275 | [ ] | `_cutscenes-ending__ending_2.ogg` | Rico? You climbed five casinos for me? That's so sweet, but I'm up eleven grand and I'm on a RUN, so can you wait like ten minutes? | Cutscene: ending |
 | 276 | [ ] | `_cutscenes-ending__ending_6.ogg` | ...Okay. Okay. One last chip, and I'm cashing out. It feels like falling, but the good kind, where someone catches you. | Cutscene: ending |
-| 277 | [ ] | `jules__jules_home_1.ogg` | Rico, I keep waking up in the apartment out of habit, and The House still thinks I owe it money, which, to be fair, I do. | Conversation: jules_home |
-| 278 | [ ] | `jules__jules_home_2.ogg` | Thanks for coming for me, and now let me come with you, so pick me on the title screen, because I hit harder than you, and I also steal. | Conversation: jules_home |
-| 279 | [ ] | `jules__jules_eddie_1.ogg` | Those losing tickets are Eddie Duval's trail, and I dealt to that voice every night for three years. | Conversation: jules_eddie |
-| 280 | [ ] | `jules__jules_eddie_2.ogg` | He doesn't want our money, he wants somebody to finally beat him so he can stop, which is the saddest ten-second pitch I've ever heard. | Conversation: jules_eddie |
+| 277 | [ ] | `james__james_home_1.ogg` | Rico, I keep waking up in the apartment out of habit, and The House still thinks I owe it money, which, to be fair, I do. | Conversation: james_home |
+| 278 | [ ] | `james__james_home_2.ogg` | Thanks for coming for me, and now let me come with you, so pick me on the title screen, because I hit harder than you, and I also steal. | Conversation: james_home |
+| 279 | [ ] | `james__james_eddie_1.ogg` | Those losing tickets are Eddie Duval's trail, and I dealt to that voice every night for three years. | Conversation: james_eddie |
+| 280 | [ ] | `james__james_eddie_2.ogg` | He doesn't want our money, he wants somebody to finally beat him so he can stop, which is the saddest ten-second pitch I've ever heard. | Conversation: james_eddie |
 
 ---
 

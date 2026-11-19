@@ -9,7 +9,7 @@ var broken := false
 var vault_state := "closed"
 
 const Art := preload("res://scripts/art.gd")
-const ANIMATED := ["velma", "dumpster_dan", "slick_nick", "lorraine", "dunn", "secretdoor", "tailor", "fizz", "gunny", "shady", "safe", "poker", "holdem", "baccarat", "hilo", "blackjack", "case", "roulette", "bar", "lucky", "vera", "mags", "phone", "cat", "vault", "bets", "jules", "daily", "board", "fence"]
+const ANIMATED := ["velma", "dumpster_dan", "slick_nick", "lorraine", "dunn", "secretdoor", "tailor", "fizz", "gunny", "shady", "safe", "poker", "holdem", "baccarat", "hilo", "blackjack", "case", "roulette", "bar", "lucky", "vera", "mags", "phone", "cat", "vault", "bets", "james", "daily", "board", "fence"]
 
 
 func _ready() -> void:
@@ -87,9 +87,9 @@ func _draw() -> void:
 			_draw_kiosk()
 		"vault":
 			_draw_vault()
-		"jules":
-			Art.jules(self, t)
-			_txt_small("JULES", -40, Color(0.6, 1.0, 0.7))
+		"james":
+			Art.james(self, t)
+			_txt_small("JAMES", -40, Color(0.6, 1.0, 0.7))
 		"crate":
 			draw_rect(Rect2(-6, -12, 12, 12), k)
 			draw_rect(Rect2(-5, -11, 10, 10), Color(0.5, 0.31, 0.16))
@@ -445,7 +445,7 @@ func _draw_vault() -> void:
 			_txt_small("VAULT", -36, Color(1, 0.85, 0.3))
 
 
-func _draw_jules() -> void:
+func _draw_james() -> void:
 	var bob := sin(t * 1.8) * 0.6
 	var hood := Color(0.2, 0.45, 0.3)
 	draw_rect(Rect2(-4, -9, 3, 9), Color(0.15, 0.12, 0.18))
@@ -455,4 +455,4 @@ func _draw_jules() -> void:
 	draw_rect(Rect2(-5, -29 + bob, 10, 4), hood.lightened(0.15))
 	draw_rect(Rect2(-5, -28 + bob, 2, 6), hood.lightened(0.15))
 	draw_rect(Rect2(1, -24 + bob, 1, 1), Color(0.1, 0.05, 0.05))
-	_txt_small("JULES", -33, Color(0.6, 1.0, 0.7))
+	_txt_small("JAMES", -33, Color(0.6, 1.0, 0.7))

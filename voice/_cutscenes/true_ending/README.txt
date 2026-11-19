@@ -10,7 +10,7 @@ true_ending_1.ogg
     SPEAKER: THE HOUSE
 
 true_ending_2.ogg
-    SAY: "No. I read your tickets, Eddie. All twenty of them. Your handwriting's worse than Jules's."
+    SAY: "No. I read your tickets, Eddie. All twenty of them. Your handwriting's worse than James's."
     HOW: Cutscene: true ending  (Cutscene true_ending)
     SPEAKER: RICO
 

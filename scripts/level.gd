@@ -535,7 +535,7 @@ func generate_lobby(r: RandomNumberGenerator) -> void:
 	var fl := (fy + 1) * T
 	var spots := [
 		[7, "phone"], [10, "cat"], [13, "tickets"], [20, "trophies"],
-		[27, "fence"], [31, "lucky"], [36, "vera"], [40, "mags"], [44, "jules"], [47, "board"], [49, "daily"],
+		[27, "fence"], [31, "lucky"], [36, "vera"], [40, "mags"], [44, "james"], [47, "board"], [49, "daily"],
 	]
 	for sp in spots:
 		games.append([Vector2(int(sp[0]) * T + 8, fl), sp[1]])

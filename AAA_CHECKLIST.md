@@ -16,7 +16,7 @@ This is every feature a polished, commercial-quality 2D action roguelike is expe
 - [x] **"NEW GAME" on first launch.** One button and you're in. Pressing it plays the opening cutscene right away. (`main._title_select`)
 - [x] **Opening cutscene that introduces every character.** Each gets a portrait name card with a role line: Rook, Mags, The House, Vera, Lucky, Comp, Marlow. (`main._intro_steps`, `hud._draw_cast_card`)
 - [x] **Chapter card after the intro.** "CHAPTER ONE: THE MARKER".
-- [x] **The story stays simple.** One goal at a time: get Jules back, and bank or ride at each door.
+- [x] **The story stays simple.** One goal at a time: get James back, and bank or ride at each door.
 - [x] **Objective tracker always on screen.** "Take the DESCEND door", "Reach the EXIT", boss goals. (`main.objective_lines`)
 - [x] **Waypoint arrows.** A bouncing arrow over the DESCEND door, and an off-screen EXIT arrow in runs.
 - [x] **One-time contextual tips.** For slots, Vera, side bets, vaults, the bar, the boss floor, loans and the Lobby. (`main._tip`)
@@ -48,7 +48,7 @@ This is every feature a polished, commercial-quality 2D action roguelike is expe
   - Vera: dealer's vest, shuffling cards.
   - Mags: a shark in a pinstripe suit at her ledger desk.
   - Lucky: behind a bar with bottles.
-  - Jules, Comp the cat, and Marlow's payphone.
+  - James, Comp the cat, and Marlow's payphone.
 - [x] **Large illustrated portraits in dialogue.** Bosses, Vera and Mags.
 - [x] **Enemy designs.** Guard, Bat, Dealer and Heavy, each with a riot shield, telegraphs and hit flashes.
 - [x] **Lucky and Marlow portraits drawn as vector art.** No more pixel heads in dialogue. (`art.npc_portrait`)
