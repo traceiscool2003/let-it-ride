@@ -44,7 +44,7 @@ static func draw(ci: CanvasItem, f: Font, city: int, t: float) -> void:
 	_wet_road(ci, city, t)
 	_overhead_lights(ci, city, t)
 	_traffic(ci, city, t)
-	_car(ci, city, Vector2(450, 524), t)
+	_car(ci, city, Vector2(HERO_X, HERO_Y), t)
 	_rain(ci, city, t)
 	_foreground(ci, city, t)
 	_exit_sign(ci, f, city, L, t)
@@ -230,30 +230,88 @@ static func _billboard(ci: CanvasItem, f: Font, city: int, p: Vector2, n: int, t
 		ci.draw_rect(Rect2(p, Vector2(w, 2)), Color(tc, 0.8))
 
 
+## Lane layout (screen y). A divided highway seen from the side: the far side is
+## the oncoming carriageway, then a double-yellow median, then our two lanes.
+const FAR_EDGE := 408.0
+const MEDIAN_Y := 452.0      # top of the median strip (10 px tall)
+const LANE_DIV := 502.0      # white dashes between the next lane and Rico's lane
+const NEAR_EDGE := 554.0     # solid white edge line, then the shoulder
+const ONCOMING_Y := 446.0    # wheel line of oncoming cars
+const NEXT_LANE_Y := 494.0   # wheel line of slower same-way cars
+const HERO_Y := 546.0        # wheel line of Rico's car
+const HERO_X := 500.0
+
+
 static func _road(ci: CanvasItem, city: int, L: Dictionary, t: float) -> void:
 	var rc: Color = L["road"]
-	ci.draw_rect(Rect2(0, ROAD_TOP, 1280, 720 - ROAD_TOP), rc)
-	# Guard rail.
+	var spd := 900.0 + city * 60.0   # matches the overhead lights, so it all moves together
+	# Asphalt: each band slightly darker toward the camera, like real depth.
+	ci.draw_rect(Rect2(0, ROAD_TOP, 1280, FAR_EDGE - ROAD_TOP), rc.lightened(0.08))            # far shoulder
+	ci.draw_rect(Rect2(0, FAR_EDGE, 1280, MEDIAN_Y - FAR_EDGE), rc.lightened(0.03))              # oncoming lane
+	ci.draw_rect(Rect2(0, MEDIAN_Y, 1280, 10), rc.darkened(0.25))                                 # median
+	ci.draw_rect(Rect2(0, MEDIAN_Y + 10, 1280, NEAR_EDGE - MEDIAN_Y - 10), rc)                    # our lanes
+	ci.draw_rect(Rect2(0, NEAR_EDGE + 3, 1280, 40), rc.lightened(0.06))                           # near shoulder
+	ci.draw_rect(Rect2(0, NEAR_EDGE + 43, 1280, 720 - NEAR_EDGE - 43), rc.darkened(0.45))          # verge
+	# Worn tyre tracks down the middle of each lane.
+	for ly in [430.0, 482.0, 530.0]:
+		ci.draw_rect(Rect2(0, ly - 5, 1280, 3), Color(0, 0, 0, 0.12))
+		ci.draw_rect(Rect2(0, ly + 6, 1280, 3), Color(0, 0, 0, 0.12))
+	# Speed streaks in the asphalt grain.
+	var goff := fmod(t * spd, 1280.0)
+	for k in 40:
+		var gy := ROAD_TOP + 10.0 + Scenery.rnd(k * 7) * (NEAR_EDGE - ROAD_TOP)
+		var gx := fposmod(Scenery.rnd(k * 3) * 1280.0 - goff, 1280.0)
+		ci.draw_rect(Rect2(gx, gy, 30 + Scenery.rnd(k) * 60.0, 1), Color(1, 1, 1, 0.025))
+	# Far guard rail, with posts rushing by.
 	ci.draw_rect(Rect2(0, ROAD_TOP - 6, 1280, 4), Color(0.45, 0.45, 0.5) if city > 0 else Color(0.4, 0.3, 0.2))
-	var spd := 520.0 + city * 60.0
-	var off := fmod(t * spd, 90.0)
+	var off := fmod(t * spd * 0.55, 90.0)
 	for k in 16:
-		var px := k * 90.0 - off
-		ci.draw_rect(Rect2(px, ROAD_TOP - 8, 3, 10), Color(0.3, 0.3, 0.33))
-	# Lane markings.
-	var lane_y := 540.0
+		ci.draw_rect(Rect2(k * 90.0 - off, ROAD_TOP - 8, 3, 10), Color(0.3, 0.3, 0.33))
+	# ---- Markings. Faded and patchy downtown, crisp and bright on the Strip.
+	var paint_a: float = [0.35, 0.6, 0.75, 0.85, 0.95][city]
+	var white := Color(0.95, 0.95, 0.92, paint_a)
+	var yellow := Color(1.0, 0.8, 0.25, paint_a)
+	# Solid white edge lines.
+	ci.draw_rect(Rect2(0, FAR_EDGE - 1, 1280, 2), Color(white, white.a * 0.7))
+	ci.draw_rect(Rect2(0, NEAR_EDGE, 1280, 3), white)
+	# Double yellow on the median: nobody crosses into oncoming traffic.
+	ci.draw_rect(Rect2(0, MEDIAN_Y + 1, 1280, 2), yellow)
+	ci.draw_rect(Rect2(0, MEDIAN_Y + 7, 1280, 2), yellow)
+	# Dashed white lane divider: 60 px dash, 60 px gap, moving with the road.
 	var doff := fmod(t * spd, 120.0)
 	for k in 13:
-		ci.draw_rect(Rect2(k * 120.0 - doff, lane_y, 60, 5), Color(0.95, 0.85, 0.4, 0.75 if city > 0 else 0.4))
-	# Cracks and potholes in the bad city; a smooth glossy sheen in the good ones.
-	if city == 0:
-		var poff := fmod(t * spd, 340.0)
-		for k in 5:
-			var px := k * 340.0 - poff
-			ci.draw_line(Vector2(px, 575), Vector2(px + 40, 591), Color(0, 0, 0, 0.5), 2.0)
-			ci.draw_line(Vector2(px + 40, 591), Vector2(px + 70, 583), Color(0, 0, 0, 0.5), 2.0)
-	elif city >= 3:
-		Scenery.hgrad(ci, Rect2(0, ROAD_TOP + 2, 1280, 30), Color(1, 1, 1, 0.0), Color(1, 0.8, 0.9, 0.06))
+		ci.draw_rect(Rect2(k * 120.0 - doff, LANE_DIV, 60, 3), white)
+	# Cat's-eye reflectors on the median and the lane divider, glinting at night.
+	var roff := fmod(t * spd, 240.0)
+	for k in 7:
+		var rx := k * 240.0 - roff
+		var eye := Color(1.0, 0.85, 0.35, 0.9) if city > 0 else Color(0.8, 0.6, 0.3, 0.5)
+		ci.draw_rect(Rect2(rx, MEDIAN_Y + 4, 4, 2), eye)
+		Scenery.glow(ci, Vector2(rx + 2, MEDIAN_Y + 5), 8, 3, Color(eye, 0.3))
+		ci.draw_rect(Rect2(rx + 120, LANE_DIV, 4, 3), Color(1, 1, 1, 0.9 if city > 0 else 0.45))
+	# Rumble strip on the shoulder.
+	var soff := fmod(t * spd, 14.0)
+	for k in 93:
+		ci.draw_rect(Rect2(k * 14.0 - soff, NEAR_EDGE + 8, 7, 4), Color(0, 0, 0, 0.18))
+	# Road condition by city.
+	match city:
+		0:
+			# Cracks, tar patches and potholes in Atlantic Shitty.
+			var poff := fmod(t * spd, 420.0)
+			for k in 5:
+				var px := k * 420.0 - poff
+				ci.draw_rect(Rect2(px + 40, 470, 90, 16), rc.darkened(0.35))              # tar patch
+				ci.draw_line(Vector2(px, 518), Vector2(px + 36, 530), Color(0, 0, 0, 0.5), 1.5)
+				ci.draw_line(Vector2(px + 36, 530), Vector2(px + 64, 524), Color(0, 0, 0, 0.5), 1.5)
+				Scenery.glow(ci, Vector2(px + 250, 538), 18, 4, Color(0, 0, 0, 0.6))          # pothole
+				ci.draw_rect(Rect2(px + 200, LANE_DIV - 1, 70, 5), rc)                       # missing paint
+		1:
+			var poff := fmod(t * spd, 700.0)
+			for k in 3:
+				ci.draw_rect(Rect2(k * 700.0 - poff + 100, 476, 120, 12), rc.darkened(0.2))
+		_:
+			# Fresh, glossy blacktop with a soft sheen.
+			Scenery.hgrad(ci, Rect2(0, MEDIAN_Y + 12, 1280, 24), Color(1, 1, 1, 0.0), Color(1, 0.9, 0.95, 0.04 + 0.01 * city))
 	ci.draw_rect(Rect2(0, 712, 1280, 8), rc.darkened(0.3))
 
 
@@ -485,9 +543,9 @@ static func _overhead_lights(ci: CanvasItem, city: int, t: float) -> void:
 	for i in 5:
 		var lx := 1400.0 - i * gap + off - gap
 		# Pool of light on the asphalt.
-		Scenery.glow(ci, Vector2(lx, 520), 210, 46, Color(warm, 0.16 if city > 0 else 0.1))
+		Scenery.glow(ci, Vector2(lx, 505), 230, 60, Color(warm, 0.16 if city > 0 else 0.1))
 		# Cone from the lamp head.
-		ci.draw_colored_polygon(PackedVector2Array([Vector2(lx - 8, 60), Vector2(lx + 8, 60), Vector2(lx + 150, 520), Vector2(lx - 150, 520)]), Color(warm, 0.045))
+		ci.draw_colored_polygon(PackedVector2Array([Vector2(lx - 8, 60), Vector2(lx + 8, 60), Vector2(lx + 160, NEAR_EDGE), Vector2(lx - 160, NEAR_EDGE)]), Color(warm, 0.045))
 
 
 ## Foreground pole and rail blurs, closest to the camera and fastest.
@@ -517,10 +575,10 @@ static func _wet_road(ci: CanvasItem, city: int, t: float) -> void:
 	for i in 5:
 		var lx := 1400.0 - i * gap + off - gap
 		for k in 6:
-			ci.draw_rect(Rect2(lx - 3 + sin(t * 9.0 + k) * 2.0, 560 + k * 22, 6, 16), Color(1.0, 0.8, 0.5, 0.08 - k * 0.012))
+			ci.draw_rect(Rect2(lx - 3 + sin(t * 9.0 + k) * 2.0, NEAR_EDGE + 6 + k * 18, 6, 14), Color(1.0, 0.8, 0.5, 0.08 - k * 0.012))
 	# The car's own lights in the puddles.
-	ci.draw_rect(Rect2(450 + 200 * 1.5, 560, 8, 60), Color(1.0, 0.95, 0.75, 0.07))
-	ci.draw_rect(Rect2(452, 560, 6, 50), Color(1.0, 0.2, 0.2, 0.08))
+	ci.draw_rect(Rect2(HERO_X + 200 * 1.5, NEAR_EDGE + 4, 8, 50), Color(1.0, 0.95, 0.75, 0.07))
+	ci.draw_rect(Rect2(HERO_X + 2, NEAR_EDGE + 4, 6, 40), Color(1.0, 0.2, 0.2, 0.08))
 
 
 ## Rain in Atlantic Shitty, a light drizzle in Reno.
@@ -583,7 +641,7 @@ static func _traffic(ci: CanvasItem, city: int, t: float) -> void:
 		var lap := int(floor((t * 820.0 - i * 790.0) / span))
 		var model := _traffic_model(city, i * 17 + lap)
 		ci.draw_set_transform(Vector2.ZERO)
-		_car_body(ci, model, Vector2(x, 444), t, 0.72, 0.58, true, _traffic_paint(city, i * 7 + lap))
+		_car_body(ci, model, Vector2(x, ONCOMING_Y), t, 0.72, 0.58, true, _traffic_paint(city, i * 7 + lap))
 	# Same-direction lane: Rico gains on these slowly.
 	span = 2000.0
 	for i in 2:
@@ -591,12 +649,12 @@ static func _traffic(ci: CanvasItem, city: int, t: float) -> void:
 		var lap := int(floor((t * 260.0 - i * 1000.0) / span))
 		var model := _traffic_model(city, i * 31 + lap + 5)
 		ci.draw_set_transform(Vector2.ZERO)
-		_car_body(ci, model, Vector2(x, 470), t, 0.9, 0.48, false, _traffic_paint(city, i * 13 + lap + 3))
+		_car_body(ci, model, Vector2(x, NEXT_LANE_Y), t, 0.9, 0.48, false, _traffic_paint(city, i * 13 + lap + 3))
 	ci.draw_set_transform(Vector2.ZERO)
 	# A thin layer of road haze between the traffic and the hero car.
-	ci.draw_rect(Rect2(0, 400, 1280, 80), Color(0.02, 0.02, 0.04, 0.2))
+	ci.draw_rect(Rect2(0, ROAD_TOP, 1280, NEXT_LANE_Y - ROAD_TOP), Color(0.02, 0.02, 0.04, 0.16))
 	# Soft spotlight on the hero car so it always pops.
-	Scenery.glow(ci, Vector2(450 + CARS[city]["len"] * 0.75, 470), 330, 90, Color(1.0, 0.9, 0.75, 0.07))
+	Scenery.glow(ci, Vector2(HERO_X + float(CARS[city]["len"]) * 0.75, HERO_Y - 50), 330, 90, Color(1.0, 0.9, 0.75, 0.07))
 
 
 static func _traffic_model(city: int, n: int) -> int:
