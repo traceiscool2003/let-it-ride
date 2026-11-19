@@ -22,48 +22,46 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 11 lines:
 
 intro_1.ogg
-    SAY: "Seven, you lose. Eleven, you lose. Everything's a lose. Also a tax."
+    SAY: "Seven, you lose. Eleven, you lose. Snake eyes, you lose and also pay a tax. Everything's a lose here, but the tax is the fun part."
     HOW: Boss intro cutscene. Menacing. Craps themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "Boxcars... on my own roll. Of course. Twelve. I hate twelve."
+    SAY: "Boxcars. On my own roll. Of course. Twelve. I hate twelve, and now it's put me in the ground, which is a place where numbers can't hurt me."
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "Boxcars! BOXCARS! Twelve! You hate twelve! I love twelve!"
+    SAY: "Come out roll! Seven or eleven, I win. Anything else, I blame you."
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "Natural! Natural! You hear that? That's my natural. It sings!"
+    SAY: "Point's set, Rico. Hit your number before a seven, or die. Mostly die."
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Seven! You lose! Seven always loses! That's the rule I just invented!"
+    SAY: "Seven or eleven on the come out, you lose. I've decided that applies to your actual life too."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "Snake eyes! Ssssnake EYES! You don't even want to know what's in my pocket!"
+    SAY: "Snake eyes is two ones, Rico. That's exactly how many friends you have, and I'm counting me."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "Come out roll! Come OUT! Come out, come out, wherever you suck!"
+    SAY: "Roll a seven after your point and you lose. So naturally, that's the one number you'll love."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "Hsss! Careful! Venom's expensive!"
+    SAY: "Not the dice! They're my babies!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "Ow, ow, ow! My dice! My lucky dice! Why are you hitting them?!"
+    SAY: "Ow! Hit me, not my lucky dice!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "Sevennn! Sevennn! Your lucky number's dead!"
+    SAY: "Seven out, pal. The shooter loses, and tonight the shooter is you."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "House pays. House always pays. Sometimes in teeth."
+    SAY: "You never even rolled. The dice just looked at you and felt bad."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
-
-GRUNTS (optional): grunt_hurt_1.ogg .. grunt_hurt_3.ogg (when hit, about 1 in 3 hits) and grunt_death_1.ogg (when defeated), in this boss's voice. See HOW_TO_RECORD.md, section "Grunts".

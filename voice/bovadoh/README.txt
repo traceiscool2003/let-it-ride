@@ -22,48 +22,46 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 11 lines:
 
 intro_1.ogg
-    SAY: "Seven cards, two hands. Beat both or push. You will push. Into a wall."
+    SAY: "Pai Gow: seven cards, two hands, and you have to beat both or you push. You'll push, Rico, right into a wall, and I'll call it a push."
     HOW: Boss intro cutscene. Menacing. Pai Gow themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "Both hands... lost. Impossible. I'll need a moment. Several moments. A sabbatical."
+    SAY: "I lost both hands. Both. That's impossible, I need a moment. I need several moments. Put it on my tab of moments."
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "...Impressive. Marginally. Like a cold bath. In a good way. I'm lying."
+    SAY: "Impressive. Now I will play both hands at once, which is easy, since neither has ever been challenged."
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "Both hands. Now. At once. As expected. You'll fail at once."
+    SAY: "I have two hands and you have one. Soon you will have none, which is a metaphor and also a threat."
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Two hands. Two defeats. Do the math. I have, and you're negative."
+    SAY: "Seven cards, split into five and two. Both hands are better than your life, and I'm including the childhood."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "You push, I take. It's called Pai Gow. It's called your problem."
+    SAY: "You keep arranging your hands, Rico, as if there's a version where you win. Charming, like watching a dog drive."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "Dull. Everything's dull. You, too. Especially the dying."
+    SAY: "In Pai Gow, ties go to the banker, and I am the banker. So your best case is losing slowly."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "Hm. That stung. I shall feel it later. In a spa."
+    SAY: "Hm. That stung. I'll cry about it later, at a spa."
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "Interesting. Do it again. I'll ignore it. Twice."
+    SAY: "Do that again, and I will pretend not to notice. Twice."
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "Predictable. Like water. Like taxes. Like you, losing."
+    SAY: "Both of my hands won, and both of yours were mostly regret."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "As expected. I'll file this under 'Tuesday.'"
+    SAY: "I'll file this under Tuesday, like everything else I have beaten."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
-
-GRUNTS (optional): grunt_hurt_1.ogg .. grunt_hurt_3.ogg (when hit, about 1 in 3 hits) and grunt_death_1.ogg (when defeated), in this boss's voice. See HOW_TO_RECORD.md, section "Grunts".

@@ -5,12 +5,12 @@ The game plays the clip during the cutscene and waits for it to finish. Players 
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 2 lines:
 
 city2_clue_1.ogg
-    SAY: "Another IOU. 'Dealing at Hard Rok.' Dealing. For The House."
+    SAY: "Another IOU, and this one says 'Dealing at Hard Rok.' James isn't just gambling anymore. He works for The House."
     HOW: Cutscene: city2 clue  (Cutscene city2_clue)
     SPEAKER: RICO
 
 city2_clue_2.ogg
-    SAY: "Confirmed. James is dealing for The House now. Fast hands, no sleep. It's a very James career."
+    SAY: "Confirmed. James is dealing for The House now. Fast hands, no sleep, vacant stare. It's honestly a very James career."
     HOW: Cutscene: city2 clue  (Cutscene city2_clue)
     SPEAKER: MARLOW
 

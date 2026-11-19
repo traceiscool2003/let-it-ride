@@ -22,48 +22,46 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 11 lines:
 
 intro_1.ogg
-    SAY: "In Razz the worst hand wins. You should fit right in. You're a dream."
+    SAY: "In Razz, the worst hand wins, so you've basically already beaten me by being you. You're a natural. It's a lifetime achievement award."
     HOW: Boss intro cutscene. Menacing. Razz themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "A wheel... the best of the worst. Nice. Not financial advice. Mostly a will."
+    SAY: "A wheel, the best of the worst, and I lost anyway. That's not even a poker result, that's a personality review."
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "Nice hit. We're STILL going to the moon. The moon is a dumpster, but it's OUR dumpster."
+    SAY: "You hurt me, but in Razz the worst hand wins, so I'm technically ahead. To the moon!"
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "To the MOOOON! Or the floor! Whichever pays out!"
+    SAY: "All in on the dip! In Razz the best hand is ace to five, and mine is a panic attack."
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Worst hand wins, friend. Congrats on yours. It's a masterpiece of dogshit."
+    SAY: "In Razz the lowest hand wins, so you're finally a natural. Congratulations on your entire career."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "Diamond hands! Diamond everything! Diamond-flavored ulcer!"
+    SAY: "King, queen, jack showing? In Razz that's a disaster, and in life it's just your usual Tuesday."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "Not financial advice. But you're done. That is legal advice. From a clown."
+    SAY: "I've got diamond hands, Rico, mostly because the real ones got liquidated."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "Buy the dip! Oh, that's me. That's me buying the dip. Painfully."
+    SAY: "Dip! Buy the dip! ...Oh no, I'm the dip."
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "Rug pull! Rug PULL! Somebody's pulling MY rug!"
+    SAY: "Rug pull! And I don't even own a rug!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "HODL this, loser. HODL a feeling. A bad one. In a coffin."
+    SAY: "You've been liquidated, buddy. Unlike your portfolio, I'm thrilled about it."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "Liquidated. All of you. Every dollar. Every organ."
+    SAY: "Not financial advice, but I'm taking your wallet and your dignity. Mostly the dignity."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
-
-GRUNTS (optional): grunt_hurt_1.ogg .. grunt_hurt_3.ogg (when hit, about 1 in 3 hits) and grunt_death_1.ogg (when defeated), in this boss's voice. See HOW_TO_RECORD.md, section "Grunts".

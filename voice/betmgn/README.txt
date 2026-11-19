@@ -22,48 +22,46 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 11 lines:
 
 intro_1.ogg
-    SAY: "Three cards. Ante up. Quick, it's over fast. Like your marriage."
+    SAY: "Three Card Poker: three cards, ante up, and it's over so fast it'll feel like your last relationship. Quick, painless, and ending with a lawyer."
     HOW: Boss intro cutscene. Menacing. Three Card Poker themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "Queen high... of course. I had the commission. I HAD the commission."
+    SAY: "Queen high. Of course. I had the commission on the table! I had the commission and I had a plan!"
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "Alright, let's raise the ante. The ante's your dignity."
+    SAY: "Three cards isn't simple once you see the ante. That's my fee for existing."
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "Three cards. Three seconds. You're done. The clock's mine."
+    SAY: "Final hand, Rico. Three cards, one ante, and my commission scales with your screaming."
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Pair plus? Pair minus. You owe me a pair. Of kneecaps."
+    SAY: "Three-card poker is easy. You get three cards, I get your money, and the math is very consistent."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "Ante up, folks! The ante is everything! The ante is also my yacht!"
+    SAY: "Pair Plus pays when you have a pair, Rico. You've never had a pair of anything but problems."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "That's a Straight Flush of bad ideas. A royal one."
+    SAY: "Ante up everything you own, and I'll let you keep your three cards. They're yours, and they're bad."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "Ouch! That's a bad beat! Where do I file a complaint?!"
+    SAY: "Ow! That's coming out of your payout!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "No no no, my commission! That's MY commission!"
+    SAY: "Three cards, not three hits!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "Quick, wasn't it? The house edge says hi. It also says 'bye.'"
+    SAY: "Three cards, three seconds. That's efficiency with a healthy margin."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "The house edge says hi. It's always the house edge. That's the pitch."
+    SAY: "Pair Plus pays on a pair. You just paid plus. Thanks for playing."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
-
-GRUNTS (optional): grunt_hurt_1.ogg .. grunt_hurt_3.ogg (when hit, about 1 in 3 hits) and grunt_death_1.ogg (when defeated), in this boss's voice. See HOW_TO_RECORD.md, section "Grunts".

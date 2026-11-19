@@ -22,186 +22,186 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 46 lines:
 
 greet_1.ogg
-    SAY: "Rico? Is it really you? I've had that hallucination before. He's usually taller."
+    SAY: "Rico! Great timing, I'm up. Give me one more hand and we'll catch up. Don't sit down, they recruit."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_2.ogg
-    SAY: "I knew you'd come. I just didn't know when. I did bet on 'never,' though."
+    SAY: "I knew you'd come, Rico. I had money on never, but I'm winning, so no hard feelings."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_3.ogg
-    SAY: "One more hand. Just one. Oh. It's you. You can have the hand."
+    SAY: "Oh, it's you. I thought you were the dealer. Same energy, though. One more hand, then we hug."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_4.ogg
-    SAY: "Is it morning? What day is it? Is there a day? Who has the clock?"
+    SAY: "What day is it, Rico? Is there a day? Anyway, I'd love to catch up, right after this hand."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 farewell_1.ogg
-    SAY: "Don't wait for me. Go. I'm busy being a cautionary tale."
+    SAY: "Don't wait for me, Rico. I'm busy being a legend. I'll be out after one more hand. Probably two."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_2.ogg
-    SAY: "Say hi to Mom. Or don't. She'll worry. Then she'll ask for the money back."
+    SAY: "Tell Mom I'm doing great. She'll ask for her money back. Tell her I'm doing great about that too."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_3.ogg
-    SAY: "Take the money. Leave the cards. And the dice. And the chair. I'm attached to the chair."
+    SAY: "Take the chips, leave the cards. And the chair. I'm very attached to the chair."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_4.ogg
-    SAY: "Come back. I'll be here. I'm always here. It's, like, a whole problem."
+    SAY: "Come back anytime, Rico. I'll be here. I'm always here. That's not a problem, that's a schedule."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 rich_1.ogg
-    SAY: "That's a lot of chips. I know the feeling. Don't trust it. It's a lie told by a sparkly liar."
+    SAY: "That's a lot of chips, Rico. Don't trust them. They're sparkly liars. Mine love me, though."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_2.ogg
-    SAY: "I had that much once. For ten minutes. Then I had a dealer's smile."
+    SAY: "I had that much once, for ten minutes. Best ten minutes of my life. I've been chasing them for three years."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_3.ogg
-    SAY: "Bank it. I'm begging. I'm not above begging. I'm below it. Watch."
+    SAY: "Bank it, Rico? Sure, bank it. Or spend it at my table. We have a very nice table."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_4.ogg
-    SAY: "I was rich once. It didn't help. It just changed how I lost."
+    SAY: "Being rich didn't help me, Rico. It just changed how I lost. Now I lose in a nicer chair."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 broke_1.ogg
-    SAY: "Broke? Welcome. It's cozy. The walls are close and the rent is nothing."
+    SAY: "Broke, Rico? Welcome. It's cozy. The rent's nothing, and the walls are close enough to hug."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_2.ogg
-    SAY: "I've been broke for three years. It's fine. I have a lot of hobbies. Mostly regret."
+    SAY: "I've been broke three years, Rico. It's great. You find a lot of hobbies. Mine is staying right here."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_3.ogg
-    SAY: "It's just money. It was never ours. It was the House's. Look at the logo."
+    SAY: "It's just money, Rico. It was never ours, it's the House's. I'm only borrowing my own future, and they're very flexible about it."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_4.ogg
-    SAY: "At least we're broke together. That's called family. Or a pyramid scheme."
+    SAY: "Broke together, Rico. That's called family. Or a pyramid scheme. Want in? I get a commission."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 ugly_1.ogg
-    SAY: "Nice outfit. I love it. I'm lying. I'm so lying."
+    SAY: "Nice outfit, Rico. I love it. I'm lying. I'm in a good mood, so it's a happy lie."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_2.ogg
-    SAY: "I'd say something. But you're my brother. I'd just say it more quietly."
+    SAY: "I'd say something, Rico, but you're my brother. So I'll just say it quietly, with my eyes."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_3.ogg
-    SAY: "You look like me. After three years. And one stain. Is that mine?"
+    SAY: "You look like me after three years at the table. Is that a stain? Oh, that one's mine. Keep it."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_4.ogg
-    SAY: "Mom would cry. Then laugh. Then ask where you got it. Then cry again."
+    SAY: "Mom would cry, then laugh, then ask where you got it, then cry again. It's her whole routine for me."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 sharp_1.ogg
-    SAY: "You look great. Suspiciously great. Who died? Is it me? Is it me?"
+    SAY: "You look great, Rico. Who died? If it's me, nobody told me, and I'm right here."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_2.ogg
-    SAY: "Look at you. Dad would be proud. Dad would also ask where you stole it."
+    SAY: "Dad would be proud, Rico. Then he'd ask where you stole it. Then he'd borrow it."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_3.ogg
-    SAY: "I used to dress like that. Before. Now I dress like 'before.'"
+    SAY: "I used to dress like that, Rico. Now I wear the House's vest. It has a name tag. I love the name tag."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_4.ogg
-    SAY: "Did you buy that with my debts? It's got my fingerprints. And my interest."
+    SAY: "Did you buy that with my debts? It's got my fingerprints on it. Fine, keep it. Looks better on you."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 died_1.ogg
-    SAY: "You died? Welcome to my life. It's less dead than you'd think. More dead than I'd like."
+    SAY: "You died? Welcome to my life, Rico. It's less dead than you'd think, but more paperwork."
     HOW: The player just died.  (NPC talk (died))
 
 died_2.ogg
-    SAY: "It doesn't hurt after the first twenty. Then it's just administrative."
+    SAY: "It stops hurting after the first twenty, Rico. Then it's just paperwork. I do a lot of paperwork here. I love it."
     HOW: The player just died.  (NPC talk (died))
 
 died_3.ogg
-    SAY: "I've died here a hundred times. You get used to it. And the lighting."
+    SAY: "I've died at this table a hundred times, Rico. You get used to it. The lighting's flattering."
     HOW: The player just died.  (NPC talk (died))
 
 died_4.ogg
-    SAY: "Get up, Rico. It's just money. And a body. And a soul. And a deposit."
+    SAY: "Get up, Rico. It's just a body. Mine's been on layaway for years, and I'm fine."
     HOW: The player just died.  (NPC talk (died))
 
 boss_1.ogg
-    SAY: "You beat a boss? I never got past the third. Or did. They blur together. Like all my mistakes."
+    SAY: "I never got past the third boss, Rico. Then I found the table, and honestly, I stopped needing to."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_2.ogg
-    SAY: "I heard the table go quiet. It was you. Or the building collapsing. Both are fine."
+    SAY: "I heard the table go quiet. That was you, or the building collapsing. Either way, I'm still seated."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_3.ogg
-    SAY: "The House is going to notice. It notices everything. It noticed me twice."
+    SAY: "The House notices everything, Rico. It noticed me twice, and now I have a name tag and a very small pension."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_4.ogg
-    SAY: "I'm proud. And scared. And a little jealous. Mostly jealous. Win more, loser."
+    SAY: "I'm proud of you, Rico. And scared. And jealous. Mostly jealous. Please lose a little, for me."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 idle_1.ogg
-    SAY: "The cards remember everything. Especially the bad ones. Especially me."
+    SAY: "The cards remember everything, Rico. Especially the bad hands. We're very close."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_2.ogg
-    SAY: "You hear that? The wheel. It never stops. It also never says sorry."
+    SAY: "You hear that wheel, Rico? It never stops. It also never says sorry. I find that very honest."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_3.ogg
-    SAY: "I counted every floor. There's more. Always more. It's a growing business."
+    SAY: "I counted every floor, Rico. There's more. It's a growing business, and I'm basically a founding member."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_4.ogg
-    SAY: "Be careful with the House. It's not a person. It's a vibe with lawyers."
+    SAY: "Be careful with the House, Rico. It's not a person. It's a vibe with lawyers. A vibe I work for."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 buy_1.ogg
-    SAY: "Good pick. I'd have picked it too. I lost anyway. Eventually, with style."
+    SAY: "Good pick, Rico. I'd have picked it too. I lost anyway, but with style."
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_2.ogg
-    SAY: "Take my advice: don't. Take my advice again: don't. You're not listening. Brother."
+    SAY: "Don't buy it, Rico. ... You bought it. That's exactly how I got my table."
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_3.ogg
-    SAY: "It might work. Mine didn't. But I'm an optimist. By which I mean broke."
+    SAY: "It might work. Mine didn't. But I'm an optimist, which is just a gambler who's still sitting down."
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_4.ogg
-    SAY: "At least you're trying. That's what I said. Right before the funeral."
+    SAY: "At least you're trying, Rico. That's what everyone said at my intervention. Great snacks, though."
     HOW: The player just bought something.  (NPC talk (buy))
 
 james_home_1.ogg
-    SAY: "Rico. I keep waking up in the apartment. Old habits. The House still thinks I owe it. Which, to be fair, I do."
+    SAY: "Rico, I keep waking up in the apartment out of habit, and The House still thinks I owe it money, which, to be fair, I do."
     HOW: Conversation: james_home  (Lobby conversation)
 
 james_home_2.ogg
-    SAY: "Thanks for coming for me. Now let me come with you. Pick me on the title screen. I hit harder than you. I also steal."
+    SAY: "Thanks for coming for me, and now let me come with you, so pick me on the title screen, because I hit harder than you, and I also steal."
     HOW: Conversation: james_home  (Lobby conversation)
 
 james_eddie_1.ogg
-    SAY: "Those losing tickets are Eddie Duval's trail. I dealt to that voice every night for three years."
+    SAY: "Those losing tickets are Eddie Duval's trail, and I dealt to that voice every night for three years."
     HOW: Conversation: james_eddie  (Lobby conversation)
 
 james_eddie_2.ogg
-    SAY: "He doesn't want our money. He wants somebody to finally beat him so he can stop. It's the saddest ten-second pitch I've ever heard."
+    SAY: "He doesn't want our money, he wants somebody to finally beat him so he can stop, which is the saddest ten-second pitch I've ever heard."
     HOW: Conversation: james_eddie  (Lobby conversation)
 
 james_rep1_1.ogg
-    SAY: "Bank it, Rico. I didn't. Look where it got me. A very comfortable cell with a view."
+    SAY: "Bank it, Rico, because I didn't, and look where it got me: a very comfortable cell with a view."
     HOW: Conversation: james_rep1  (Lobby conversation)
 
 james_rep2_1.ogg
-    SAY: "The House cheats. So we cheat better. That's called family values."
+    SAY: "The House cheats, so we cheat better, and in our family that's what we call values."
     HOW: Conversation: james_rep2  (Lobby conversation)
 

@@ -5,12 +5,12 @@ The game plays the clip during the cutscene and waits for it to finish. Players 
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 2 lines:
 
 intro_cast_1.ogg
-    SAY: "New face. I deal the cards and sell the charms. Bring me something shiny and I'll make the odds lean your way. Don't ask what they're leaning on."
+    SAY: "I'm Vera. I deal the cards and sell the charms. Bring me something shiny and I'll bend the odds your way, and no, I won't tell you what they're bending against."
     HOW: Cutscene: intro cast  (Cutscene intro_cast)
     SPEAKER: VERA
 
 intro_cast_2.ogg
-    SAY: "Lucky's the name. I keep a bar on most floors. A drink can save your life, runner. A second one can end it. I'm a bartender, not a prophet."
+    SAY: "Name's Lucky. I run a bar on most floors, and a drink can save your life, runner. I also run a betting pool on how you die, so please, order the second one."
     HOW: Cutscene: intro cast  (Cutscene intro_cast)
     SPEAKER: LUCKY
 

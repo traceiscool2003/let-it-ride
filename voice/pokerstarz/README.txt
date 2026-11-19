@@ -22,48 +22,46 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 11 lines:
 
 intro_1.ogg
-    SAY: "Four hole cards. You must use exactly two. Smash the like button on your own funeral."
+    SAY: "Omaha: four hole cards, and you have to use exactly two. Same as your funeral, where you'll get four mourners and use two of them as pallbearers."
     HOW: Boss intro cutscene. Menacing. Omaha Hi-Lo themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "Split pot... I get nothing. Chat, am I cooked? Chat?"
+    SAY: "Split pot, and I get the low half, which is nothing. Chat, am I cooked? Chat? Why is nobody typing?"
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "Okay, that actually hurt. Smash that like button. Smash it better than you smashed me."
+    SAY: "Chat, he's actually good! Smash that like button while I destroy him for the clip!"
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "Chat, he's cheating! Ban him! BAN HIM! Where are the mods?!"
+    SAY: "New strategy: I'm using all four hole cards. That's illegal in Omaha, but I have sponsors."
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Four hole cards. You have none. You have a mortgage."
+    SAY: "Omaha says use exactly two hole cards, Rico. You're using zero, because you're holding a pair of excuses."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "Don't forget to subscribe to my wins. Don't forget to unsubscribe from yours."
+    SAY: "Chat, he's got four hole cards and still found a way to have nothing. That's content."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "This is content. You're content. You're basically a thumbnail."
+    SAY: "Like, subscribe, and fold, in that order. Then consider a career change, like therapy."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "Rude. I'm demonetized. I'm DEMONETIZED."
+    SAY: "Hey! No hitting on stream!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "Oh my god, stop. Stop! I'm streaming!"
+    SAY: "Ow! I'm getting demonetized!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "GG. No re. I'm clipping this. For the highlight reel of you losing."
+    SAY: "And that's the clip: 'Idiot Loses Everything With Four Hole Cards.' Thumbnail is your face."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "That's the clip of the day. Title: 'Idiot Dies.'"
+    SAY: "GG, no re. You're going on my highlight reel, right next to my other victims. Also you."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
-
-GRUNTS (optional): grunt_hurt_1.ogg .. grunt_hurt_3.ogg (when hit, about 1 in 3 hits) and grunt_death_1.ogg (when defeated), in this boss's voice. See HOW_TO_RECORD.md, section "Grunts".

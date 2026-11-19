@@ -22,90 +22,90 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 22 lines:
 
 bark_1.ogg
-    SAY: "Place your bets. Place them quietly. Place them with remorse."
+    SAY: "Sir, please lose more professionally. Your sobbing is affecting the other guests' enjoyment."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_2.ogg
-    SAY: "Cards on the table. Hands where I can see 'em. Heart where I can step on it."
+    SAY: "Per policy, your losses are valued. Your feelings are not."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_3.ogg
-    SAY: "No cameras. No phones. No joy."
+    SAY: "This table is being reorganized, so your winnings are now our winnings. We call it synergy."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_4.ogg
-    SAY: "Watch your chips, sir. They're the only thing here that loves you. And they're leaving."
+    SAY: "Crying at the table is permitted, sir, but only in the designated crying area. It's the parking lot."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_5.ogg
-    SAY: "That's a violation. And a threat. And a Tuesday."
+    SAY: "I've filed your concern in the folder labelled Concerns. It's inside the incinerator."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_6.ogg
-    SAY: "Pit to floor, we have a loser. Repeat: a loser. Bring a mop."
+    SAY: "We value your feedback, sir. We've scheduled a meeting about it, location undisclosed."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_7.ogg
-    SAY: "Please keep the noise to a minimum. The losing should be silent."
+    SAY: "Our records say you simply lost, sir. That's handled by a different department. It doesn't exist."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_8.ogg
-    SAY: "That table's closed. Permanently. We had an incident. It's a shrine now."
+    SAY: "Sir, this is your third refund request. The answer is still a lovely smile."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_9.ogg
-    SAY: "The House appreciates your patronage. And your kneecaps. Thank you for both."
+    SAY: "You're upset, sir, so we've given you a complimentary water and a complimentary exit."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_10.ogg
-    SAY: "All bets are final. Unlike your life. That has a rematch clause."
+    SAY: "Per my last email, which was never sent, you're no longer permitted to be happy at this table."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_11.ogg
-    SAY: "Don't make me call the floor. The floor's already here. It's under you."
+    SAY: "All bets are final, sir, and so is every decision about your credit, your seat, and your dignity."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_12.ogg
-    SAY: "Sir, that was a poor decision. Well, it was poor. It was also a decision. Don't get cocky."
+    SAY: "Welcome back, sir. We missed you. We also missed several chips. Let's discuss both in my office."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 city1_3.ogg
-    SAY: "I lost my retirement on a slot shaped like a lobster. The lobster won."
+    SAY: "Welcome to Resortz. Resort fee, service fee, convenience fee, and a fee for hearing this sentence."
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city1_9.ogg
-    SAY: "A mascot ate my sandwich. The mascot's a crab. The crab was on a break."
+    SAY: "Atlantic Shitty was voted 'adequate' by guests. The poll was conducted at gunpoint, by management."
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city2_3.ogg
-    SAY: "I lost a bet to a juggler. He was juggling my kidneys. Allegedly."
+    SAY: "Welcome to Cirrcus Cirrcus, where our clowns are licensed, bonded, and legally required to stop laughing when you lose."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city2_9.ogg
-    SAY: "The cotton candy is a lie. It's insulation. We eat it anyway."
+    SAY: "Guests are reminded the tightrope is for performers only. Walking it over the craps table is not a legal bet."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city3_3.ogg
-    SAY: "I paid fifteen bucks for a pick. I don't play. I don't know what it is. I wear it as a hat."
+    SAY: "Welcome to Hard Rok, where every table is a guitar solo and every loss gets a standing ovation, at a volume we don't control."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city3_9.ogg
-    SAY: "Rock and roll never dies. My bankroll did. At the show."
+    SAY: "Guests are reminded that display guitars may not be played, smashed, or used to settle blackjack disputes."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city4_3.ogg
-    SAY: "Gold! Everything's gold! Even the toilets! Even the plumbing! Even the sadness!"
+    SAY: "Welcome to the Goldun Nugget. Our shark tank is decorative, our gold is paint, and our service charge is your wallet."
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city4_9.ogg
-    SAY: "Welcome to the old days. They weren't better. They were just louder. And more flammable."
+    SAY: "Guests are reminded that smoking, sleeping, and singing are allowed only in designated areas. There are none."
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city5_3.ogg
-    SAY: "I lost a diamond ring on a hand of blackjack. Technically I lost the hand. The ring just fell off."
+    SAY: "Welcome to the Bellagiro, where the fountains dance, the chandeliers shine, and the minimum bet is your rent."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 
 city5_9.ogg
-    SAY: "Welcome to the top. It's lonely. The elevator also stinks."
+    SAY: "Bellagiro policy requires all guests to look wealthy. Failures are escorted to the cheaper floor."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 

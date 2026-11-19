@@ -22,66 +22,66 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 16 lines:
 
 idle_1.ogg
-    SAY: "Got any change? Got any WISDOM? I'll take either. I'll take a sandwich."
+    SAY: "I used to be a tax accountant. Now I live in a dumpster and I still owe more than you."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_2.ogg
-    SAY: "The rats pay rent. Do you? Because Rattigan hasn't missed a month."
+    SAY: "The rats pay rent and never miss a month. Best tenants I've ever had."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_3.ogg
-    SAY: "I used to teach economics. Now I eat economics. It's mostly gristle."
+    SAY: "I've been in this alley so long the pigeons think I'm a statue. They're right. I haven't moved since Tuesday."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_4.ogg
-    SAY: "The walls have secrets. Some are loose. Some are James's. He pawned a jacket. Ask the jacket."
+    SAY: "Your brother James came through once and tipped me a pawn ticket. I want you to know I've been very careful with it."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 greet_1.ogg
-    SAY: "Hey there, friend. Spare a smile? I'll take a molar."
+    SAY: "Spare a dollar, friend? I'd say it's for food, but it's really the dumpster's cover charge."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_2.ogg
-    SAY: "Ooh, a visitor! Or a hallucination. Both are nice. Both tip the same."
+    SAY: "A visitor! I've been alone so long I started talking to my reflection in a puddle. Terrible listener."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_3.ogg
-    SAY: "You look like a man with a destiny and a wallet. One of them is lying."
+    SAY: "Welcome home, Rico. Mind the mattress. It's the only thing in here getting more action than the casino."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 farewell_1.ogg
-    SAY: "Come back when you're rich! Or me. I'll be rich! Or dead!"
+    SAY: "Safe travels, buddy. If you die out there, I call dibs on your shoes."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_2.ogg
-    SAY: "Mind the third brick. It likes to move. It was my wife."
+    SAY: "Come back soon. I'll be here. I'm always here. It's a flaw in my lifestyle."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_3.ogg
-    SAY: "Don't forget me. Everybody does. It's a whole thing. I do a bit about it."
+    SAY: "Don't forget me when you're rich. By rich I mean when you own a sandwich."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 rich_1.ogg
-    SAY: "Look at you! The Midas of the alley! Touch me. Not like that. Pay me."
+    SAY: "All that cash, Rico. You could buy a house, or a very small lawyer. I'd encourage the lawyer."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_2.ogg
-    SAY: "That's more than I've seen since 1998. I had a good '98. A year, not a person."
+    SAY: "Give me one chip and I swear I'll only spend it on things that would horrify you."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 broke_1.ogg
-    SAY: "Ha! Welcome to the club. We've got cardboard. And a mildew sauna."
+    SAY: "Broke, huh? Welcome to my side of the alley. Rent's free and the rats are supportive."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_2.ogg
-    SAY: "Poor! It's honest. It's also drafty."
+    SAY: "Out of money? Rico, that's just my life with better lighting. You're going to love it."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 died_1.ogg
-    SAY: "Don't worry. Death's mostly paperwork. I've done the paperwork. They said it was fine. They didn't say it was good."
+    SAY: "You died? Don't sweat it, buddy. I died once too, but the dumpster was cheaper than the funeral, so I stayed."
     HOW: The player just died.  (NPC talk (died))
 
 boss_1.ogg
-    SAY: "The boss? I raised him. He was a lovely child. Strangled the cat. A lovely child."
+    SAY: "You beat a boss? Good for you. I once beat a pigeon for a hot dog and I still think about it."
     HOW: The player just beat a boss.  (NPC talk (boss))
 

@@ -22,90 +22,90 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 22 lines:
 
 bark_1.ogg
-    SAY: "Is this the buffet? Because I've been to the cage and they sent me here."
+    SAY: "Is this the buffet? I've passed nine slot machines and a crying man, so I'm doubting it."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_2.ogg
-    SAY: "Honey! Come look! Slot machines! Honey? Honey? He's gone. Slot machine."
+    SAY: "My husband went to the ATM nine hours ago. I think he found a better one."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_3.ogg
-    SAY: "Does the free drink come with an umbrella? Does it come with a wallet?"
+    SAY: "I won fifty dollars, then lost four hundred trying to win more. So I'm technically ahead, mentally."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_4.ogg
-    SAY: "I lost five dollars! I'm RUINED! Five! Dollars! It was Tuesday's!"
+    SAY: "I came here to relax, and the casino keeps asking me for money. What am I even paying for?"
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_5.ogg
-    SAY: "Wait, is it a one-armed bandit or a no-armed bandit? Because mine just took my watch."
+    SAY: "I've seen a man arguing with a cup and a woman wearing a shower curtain. Is that Vegas?"
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_6.ogg
-    SAY: "Hey, buddy! Which way to the pool? I've been walking for two days."
+    SAY: "The brochure said luxury. The carpet is sticky and I'm afraid to ask why."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_7.ogg
-    SAY: "I've never seen so many lights in my life! Is that the exit? Is that a seizure?"
+    SAY: "Is it normal for the lights to flash this much, or am I having a medical event in a festive room?"
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_8.ogg
-    SAY: "Can I pay with a coupon? A coupon for coupons?"
+    SAY: "Fifteen dollars for a tiny water. The cashier said 'enjoy the resort' like it was a threat."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_9.ogg
-    SAY: "Where's the fountain? Is that it? It's very small. And full of coins. And a man."
+    SAY: "Our anniversary trip is going great. She's in the lobby, I'm at the slots."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_10.ogg
-    SAY: "Why is everyone so serious? My husband's at the roulette table, he's smiling, he's also unconscious."
+    SAY: "Can I pay with a coupon? It's two-for-one fries, but I have a lot of them."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_11.ogg
-    SAY: "My husband is in a coma at the roulette table. He says he's 'up.'"
+    SAY: "I told my family it was a conference. I've only attended a slot machine shaped like a lobster."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_12.ogg
-    SAY: "It's so clean! Except for that. And that. And that man."
+    SAY: "Does the free drink come with a napkin? Nobody's brought me anything in an hour."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 city1_1.ogg
-    SAY: "The boardwalk smells like regret and funnel cake. And a little like regret on funnel cake."
+    SAY: "A hundred and twenty bucks for a boardwalk room, and the view is another hotel's parking lot. Their view is better."
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city1_7.ogg
-    SAY: "Don't drink the water. Don't drink the drinks. Don't drink. It's a casino. Drink."
+    SAY: "A seagull just stole my chips. Now he's winning more than I am."
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city2_1.ogg
-    SAY: "Reno! The biggest little city with the smallest chances. It says so on the shirt."
+    SAY: "The sign says 'biggest little city in the world.' I think they're bragging about the debt."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city2_7.ogg
-    SAY: "Come see the world's smallest elephant. It's a dog. In a hat. He's very sad."
+    SAY: "The clown keeps counting my chips. I'm fairly sure he's also the dealer."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city3_1.ogg
-    SAY: "Biloxi! Where the sharks are gentlemen. And the gentlemen are sharks."
+    SAY: "It's so humid my chips are sweating. Either that's the AC or the casino is nervous."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city3_7.ogg
-    SAY: "Everybody here lost their voice. It's a cult. It's called Karaoke."
+    SAY: "The riverboat was supposed to be romantic. The river smells like a wet sock and the boat smells like what the sock was thinking."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city4_1.ogg
-    SAY: "Fremont! Old Vegas! Old money! Old vice! Old everything! Old me!"
+    SAY: "I thought Old Vegas was glamorous. The neon flickers, the carpet's older than me, and the shrimp cocktail is a rumor."
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city4_7.ogg
-    SAY: "I lost a gold bar. I wasn't even playing. I was just standing. It left."
+    SAY: "Half the sign burned out, so it says 'Gold Nug.' That's what I call my husband after he loses."
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city5_1.ogg
-    SAY: "The Strip! The nicest casino in the nicest town! It's also a lobster with a lawsuit!"
+    SAY: "Forty bucks for a bottle of water at the Bellagiro. The waiter asked if I wanted it sparkling. I wanted a refund."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 
 city5_7.ogg
-    SAY: "Sir, this is a Wendy's. Just kidding. It's a palace. It's a very expensive Wendy's."
+    SAY: "We came for the shows. The best I've seen is a man in a tuxedo crying in the elevator."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 

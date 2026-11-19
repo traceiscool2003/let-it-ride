@@ -5,27 +5,27 @@ The game plays the clip during the cutscene and waits for it to finish. Players 
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 5 lines:
 
 city2_arrive_1.ogg
-    SAY: "Reno. The biggest little city. And that's a clown."
+    SAY: "Reno, the biggest little city in the world. A clown just asked me for a cigarette, so the slogan checks out."
     HOW: Cutscene: city2 arrive  (Cutscene city2_arrive)
     SPEAKER: RICO
 
 city2_arrive_2.ogg
-    SAY: "That's the doorman. Smile. Don't get close."
+    SAY: "That's the doorman at Cirrcus Cirrcus, Rico. Smile, don't make eye contact, and never ask about the balloons."
     HOW: Cutscene: city2 arrive  (Cutscene city2_arrive)
     SPEAKER: MARLOW
 
 city2_arrive_3.ogg
-    SAY: "Welcome to the circus, sugar. Nobody leaves with their dignity."
+    SAY: "Welcome to the circus, sugar. The clowns are sad, the lions are tired, and only the elephant leaves with dignity."
     HOW: Cutscene: city2 arrive  (Cutscene city2_arrive)
     SPEAKER: VERA
 
 city2_arrive_4.ogg
-    SAY: "Pawn ticket? Yeah, I remember your brother. Pawned his watch. Said he got 'promoted.' To Biloxi."
+    SAY: "Pawn ticket? Sure, I remember your brother. Tall, sad, great at losing. He pawned his watch here and said he got promoted to Biloxi."
     HOW: Cutscene: city2 arrive  (Cutscene city2_arrive)
     SPEAKER: HUSTLER
 
 city2_arrive_5.ogg
-    SAY: "Promoted to what? Biloxi's not a job. It's a rash."
+    SAY: "Promoted to Biloxi? Marlow, that's not a promotion. That's a punishment with a river view."
     HOW: Cutscene: city2 arrive  (Cutscene city2_arrive)
     SPEAKER: RICO
 

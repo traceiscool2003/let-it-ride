@@ -22,203 +22,203 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 62 lines:
 
 greet_1.ogg
-    SAY: "Look who crawled back to my table. Mind the carpet, it's seen things."
+    SAY: "Sugar! Come in. I saved a charm for exactly your level of bad judgment."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_2.ogg
-    SAY: "Sit, sugar. The cards are warm and your odds are not."
+    SAY: "Sit down, sugar. The cards are warm, the incense is legal in most states, and my hope costs triple."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_3.ogg
-    SAY: "Back for charms? Of course. Nobody comes here for my personality."
+    SAY: "Back again? Good. Everyone else in this building wants your soul. I only want your money."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_4.ogg
-    SAY: "I was just thinking about you. Mostly about your wallet. Mostly its funeral."
+    SAY: "My crystal ball asked who keeps paying full price for hope. I said that's Rico, he's my college fund."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 farewell_1.ogg
-    SAY: "Go on. Lose gracefully. Or lose loudly, it's better for tips."
+    SAY: "Go climb, sugar. And if the House kills you, die near my shop. Funeral crowds buy a lot of candles."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_2.ogg
-    SAY: "Come back with something shiny. Or someone's teeth. I'm not picky."
+    SAY: "My charms work wonderfully, right up until they stop. I don't give refunds for stopping."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_3.ogg
-    SAY: "Climb safe. I mean that. You're my only repeat customer."
+    SAY: "Climb safe, sugar. You're my best customer, and dead customers leave terrible reviews."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_4.ogg
-    SAY: "Don't die. It's bad for my numbers. And mildly sad."
+    SAY: "Walk toward the light, Rico. If you can't find it, walk toward my cash register."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 rich_1.ogg
-    SAY: "That's a heavy pocket. Let me help you with it. It's what I do."
+    SAY: "Look at that wallet, sugar. It's begging me to take it, and I'm a woman who helps the needy."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_2.ogg
-    SAY: "Money like that makes my charms blush. They've never seen a wallet that thick."
+    SAY: "All that money and you came to see me? That's either wisdom or a cry for help, and both pay the same."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_3.ogg
-    SAY: "You're glowing, sugar. That's either gold or a medical issue."
+    SAY: "You're glowing, sugar. Is that wealth or a medical issue? I'll sell you a charm for each."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_4.ogg
-    SAY: "Rich suits you. Poor suited you better. Poor was honest."
+    SAY: "Rich suits you, Rico. It means you can afford the charms that come in a velvet bag with zero guarantees."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 broke_1.ogg
-    SAY: "Empty pockets. I can sell you hope. Wholesale. Nonrefundable."
+    SAY: "Broke, sugar? Fine. Hope is the only thing I sell that costs nothing to make, so I charge the most for it."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_2.ogg
-    SAY: "Aw. Sit. Look at the charms. Looking's free. Everything else is a felony."
+    SAY: "You're not broke, sugar, you're pre-rich. It's a market segment, and I price it like one."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_3.ogg
-    SAY: "You're broke, not dead. Yet. Those are two separate payment plans."
+    SAY: "Looking is free, sugar. Touching is a felony, and you've been eyeing that rabbit foot like a suspect."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_4.ogg
-    SAY: "Come back when you've robbed someone. Someone rich. I have standards."
+    SAY: "Come back when you've robbed someone with insurance. I'll sell you a charm that makes the police sleepy."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 ugly_1.ogg
-    SAY: "Honey, what are you wearing? Blink twice if it's a hostage situation."
+    SAY: "Sugar, what are you wearing? That outfit looks like a hostage situation where the hostage lost."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_2.ogg
-    SAY: "That outfit is a cry for help. In a language nobody speaks."
+    SAY: "That outfit is cursed, darling. I'd know, I sell curses. Mine at least come in a nice box."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_3.ogg
-    SAY: "Even the slot machines looked away. And they have no eyes."
+    SAY: "Even the slot machines looked away when you walked in, and they don't have eyes."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_4.ogg
-    SAY: "Silas will have a stroke. I'll sell tickets. Front row."
+    SAY: "Go show Silas that outfit, honey. He'll faint, and I'm selling front row tickets with a free fainting charm."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 sharp_1.ogg
-    SAY: "Now THAT is how you dress for a loss. Beautiful. Doomed. Fitted."
+    SAY: "Now that's how you dress for a funeral, sugar. Your own. I love that you planned ahead."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_2.ogg
-    SAY: "Look at you. Dapper doom, with pockets."
+    SAY: "All dapper and doomed. I can't decide whether to read your future or just say you look pretty and take your money."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_3.ogg
-    SAY: "You clean up nice, sugar. Try not to bleed on it. Try."
+    SAY: "You clean up nice, sugar. Try not to bleed on it, because no charm in this shop removes bloodstains."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_4.ogg
-    SAY: "If you die in that, at least it's an open casket with taste."
+    SAY: "If you die in that suit, at least it's an open casket with taste. I'll bill you for the candle in advance."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 died_1.ogg
-    SAY: "You died. Again. It's becoming a hobby. A bad one, but yours."
+    SAY: "You died again, sugar. It's becoming a hobby, but I respect a man who commits to a bit."
     HOW: The player just died.  (NPC talk (died))
 
 died_2.ogg
-    SAY: "I saw it. Everyone saw it. The cat saw it and left the room."
+    SAY: "I saw it happen, honey. My shop cat watched too, then left the building without asking for a refund."
     HOW: The player just died.  (NPC talk (died))
 
 died_3.ogg
-    SAY: "Dust off, sugar. James is still up there and you're still down here."
+    SAY: "Dust yourself off, sugar. You woke up owing more than before, so at least make that debt mean something."
     HOW: The player just died.  (NPC talk (died))
 
 died_4.ogg
-    SAY: "That was a bold way to lose. Not smart. Bold. We'll call it bold."
+    SAY: "A bold way to lose, sugar. Not smart, just bold. In this town we put bold on the headstone and smart in the footnotes."
     HOW: The player just died.  (NPC talk (died))
 
 boss_1.ogg
-    SAY: "You beat a boss! I'll remember that when you owe me. Which is soon."
+    SAY: "You beat a boss, sugar. I'll remember that fondly, right up until you owe me money in about three minutes."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_2.ogg
-    SAY: "Impressive. Terrifying, but impressive. Mostly terrifying."
+    SAY: "Another casino boss dethroned. I considered being nicer to you, then I remembered my prices."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_3.ogg
-    SAY: "Another table down. Those people had friends. Mean, wealthy friends."
+    SAY: "That boss had friends, sugar, mean wealthy ones. They'll be shopping for my most expensive curses, so thank you."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_4.ogg
-    SAY: "Sit. Let me price that victory. It's worth a lot. To me. To you, nothing, ha."
+    SAY: "Let me price that victory, sugar. To you it's a triumph. To me it's an upsell."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 idle_1.ogg
-    SAY: "Charms don't pick themselves. They pick pockets. Same thing."
+    SAY: "I keep telling the cards to stop gossiping about you, but they love a story that ends with someone losing everything."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_2.ogg
-    SAY: "I know a secret. It costs extra. So does the silence."
+    SAY: "Everybody has a tell, Rico. Yours is hope, which is why I'll never stop selling it to you."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_3.ogg
-    SAY: "Everybody's got a tell. Yours is hope. It's disgusting."
+    SAY: "Charms, curses and a little cold reading. The cold reading is just me watching you lose."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_4.ogg
-    SAY: "Cards, charms, chaos. Pick two. You've picked all three. Twice."
+    SAY: "Nobody who buys a lucky charm ever stops needing one. In the industry, we call that retention."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 buy_1.ogg
-    SAY: "Wise choice. Or a terrible one. Same fee either way."
+    SAY: "Wise choice, sugar. Or a terrible one. The fee's the same either way, so I'm thrilled."
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_2.ogg
-    SAY: "Take it. It likes you. It likes everyone. It's a charm. Attention-seeking is the job."
+    SAY: "Take it, sugar, it likes you. It likes everyone. That's why I hired it."
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_3.ogg
-    SAY: "That one bites, sugar. In a good way. Mostly."
+    SAY: "That charm bites a little, mostly in a good way. If it doesn't work, I'll gladly sell you another."
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_4.ogg
-    SAY: "Pleasure doing business. Mostly mine. All mine, actually."
+    SAY: "Pleasure doing business, sugar. For me, a pleasure. For you, an educational experience."
     HOW: The player just bought something.  (NPC talk (buy))
 
 vera_intro_1.ogg
-    SAY: "Fresh Marker, still wet. I'm Vera Vex. I deal charms now, not cards. The cards got complicated."
+    SAY: "Fresh Marker, still wet, I see. I'm Vera Vex, and I deal charms now instead of cards, because the cards got complicated and one of them left."
     HOW: Conversation: vera_intro  (Lobby conversation)
 
 vera_intro_2.ogg
-    SAY: "Charms bend the odds on every floor. Win them on slots, crack them out of safes, take them off bosses, or buy them at my table."
+    SAY: "Charms bend the odds on every floor, and you can win them on slots, crack them out of safes, take them off bosses, or just buy them at my table like a civilized person."
     HOW: Conversation: vera_intro  (Lobby conversation)
 
 vera_intro_4.ogg
-    SAY: "Up here I sell licenses. Pay me from your wallet and I'll start slipping the good charms into the casinos. For a fee. Everything's a fee."
+    SAY: "Up here I sell licenses, so pay me from your wallet and I'll start slipping the good charms into the casinos for you, for a fee, because everything in here is a fee."
     HOW: Conversation: vera_intro  (Lobby conversation)
 
 vera_bust_1.ogg
-    SAY: "You came back. Everyone comes back. That's the problem with this place. It's also the business model."
+    SAY: "You came back, and honestly everyone comes back, which is the problem with this place and also, unfortunately, the entire business model."
     HOW: Conversation: vera_bust  (Lobby conversation)
 
 vera_stack_1.ogg
-    SAY: "Five charms and still breathing. Here's the trick: pick a vice and feed it."
+    SAY: "Five charms and you're still breathing, so here's the trick: pick one vice and feed it like a stray."
     HOW: Conversation: vera_stack  (Lobby conversation)
 
 vera_stack_2.ogg
-    SAY: "Greed charms multiply each other. Risk charms love a long ride. Stack the same vice and watch the numbers go stupid. Like you."
+    SAY: "Greed charms multiply each other and risk charms love a long ride, so stack the same vice and watch the numbers go stupid, which, frankly, suits you."
     HOW: Conversation: vera_stack  (Lobby conversation)
 
 vera_jackpot_1.ogg
-    SAY: "Triple sevens. The House hates that sound. Do it again. I want to hear it cry."
+    SAY: "Triple sevens! The House hates that sound, so do it again, because I want to hear it cry."
     HOW: Conversation: vera_jackpot  (Lobby conversation)
 
 vera_sal_1.ogg
-    SAY: "You took down your first table. He'll be back on his feet tomorrow. Nobody stays down here. Not even the bad guys. Especially not the bad guys."
+    SAY: "You beat your first boss, and he'll be back on his feet by tomorrow, because nobody stays beaten in this place, least of all the bad guys, and especially not you."
     HOW: Conversation: vera_sal  (Lobby conversation)
 
 vera_queen_hint_1.ogg
-    SAY: "Ever wonder why I stopped dealing? My deck's one card short. The Queen of Spades."
+    SAY: "Ever wonder why I stopped dealing? My deck is one card short, the Queen of Spades."
     HOW: Conversation: vera_queen_hint  (Lobby conversation)
 
 vera_queen_hint_2.ogg
-    SAY: "She's my Marker. Lost her to The House a long time ago. If you see her up there... bring her home. She's lovely. Bit pointy."
+    SAY: "She's my Marker, and I lost her to The House a long time ago, so if you see her up there, bring her home, because she's lovely, if a little pointy."
     HOW: Conversation: vera_queen_hint  (Lobby conversation)
 
 vera_queen_found_1.ogg
@@ -226,46 +226,46 @@ vera_queen_found_1.ogg
     HOW: Conversation: vera_queen_found  (Lobby conversation)
 
 vera_queen_found_2.ogg
-    SAY: "Twenty years I've owed The House this card, and you found it folded in a losing ticket. Of course you did."
+    SAY: "Twenty years I've owed The House this card, and you found it folded inside a losing ticket, because of course you did."
     HOW: Conversation: vera_queen_found  (Lobby conversation)
 
 vera_queen_found_3.ogg
-    SAY: "You just paid my Marker, Rico. I'm free to walk out that door."
+    SAY: "You just paid off my Marker, Rico, which means I'm free to walk out that door."
     HOW: Conversation: vera_queen_found  (Lobby conversation)
 
 vera_queen_found_4.ogg
-    SAY: "I'm staying. Somebody has to keep you lucky. Licenses are 25% off for you, forever. That's romance, for me."
+    SAY: "I'm staying, though, because somebody has to keep you lucky, and licenses are 25% off for you forever, which, from me, is basically a love letter."
     HOW: Conversation: vera_queen_found  (Lobby conversation)
 
 vera_ending_1.ogg
-    SAY: "You got James out. Do you know how many runners I've watched try that?"
+    SAY: "You got James out, and do you know how many runners I've watched try that and fail?"
     HOW: Conversation: vera_ending  (Lobby conversation)
 
 vera_ending_2.ogg
-    SAY: "None of them knew when to cash out. You did. Mostly. Twice. In a row. It's a miracle. Don't push it."
+    SAY: "None of them knew when to cash out, but you did, mostly, twice, in a row, and I'd call that a miracle if I didn't know how you play."
     HOW: Conversation: vera_ending  (Lobby conversation)
 
 vera_eddie_1.ogg
-    SAY: "Eddie Duval. You've been reading his tickets, haven't you."
+    SAY: "Eddie Duval. You've been reading his tickets, haven't you?"
     HOW: Conversation: vera_eddie  (Lobby conversation)
 
 vera_eddie_2.ogg
-    SAY: "Best player I ever dealt to. Never walked away from a table. Not once. Not even when it caught fire."
+    SAY: "He was the best player I ever dealt to, and he never walked away from a table, not once, not even when it was on fire."
     HOW: Conversation: vera_eddie  (Lobby conversation)
 
 vera_eddie_3.ogg
-    SAY: "Now he IS the table. That voice on the PA? That's what's left of Eddie. It's mostly interest."
+    SAY: "Now he IS the table, and that voice on the PA is what's left of Eddie, which, to be fair, is mostly interest."
     HOW: Conversation: vera_eddie  (Lobby conversation)
 
 vera_rep1_1.ogg
-    SAY: "Charms don't make you lucky. They make you less unlucky. It's a very small difference. It's the whole business."
+    SAY: "Charms don't make you lucky, they just make you less unlucky, which is a very small difference and also my entire business."
     HOW: Conversation: vera_rep1  (Lobby conversation)
 
 vera_rep2_1.ogg
-    SAY: "The House always wins. Eventually. Your job is to leave before eventually. Mine's to sell you a ticket."
+    SAY: "The House always wins eventually, so your job is to leave before eventually, and mine is to sell you the ticket out."
     HOW: Conversation: vera_rep2  (Lobby conversation)
 
 vera_rep3_1.ogg
-    SAY: "Everything's for sale, sugar. Advice included. Advice especially. Advice is the high-margin item."
+    SAY: "Everything's for sale, sugar, and that includes advice, especially advice, because advice is the high-margin item."
     HOW: Conversation: vera_rep3  (Lobby conversation)
 

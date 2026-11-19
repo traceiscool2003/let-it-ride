@@ -22,162 +22,162 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 40 lines:
 
 greet_1.ogg
-    SAY: "Psst. Hey. You. Want a pick-me-up? Side effects include being picked up. By paramedics."
+    SAY: "Psst, over here. Welcome to the pharmacy, which isn't licensed. I'm legally required to tell you that, then ask you to forget it."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_2.ogg
-    SAY: "Quiet. Come closer. Closer. NOT that close. Ugh, you breathe a lot."
+    SAY: "Come closer. Not that close, ugh, you breathe a lot. My products may cause drowsiness, euphoria, or a brief friendship with a paramedic."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_3.ogg
-    SAY: "Welcome to the pharmacy. We're not licensed. We're barely lichen."
+    SAY: "Welcome to Doc Fizz's. Every bottle has a legal warning, and today's is: please don't ask what the other bottle is for."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_4.ogg
-    SAY: "Finally. A customer. Or a cop. Are you a cop? Blink if you're a cop. Don't blink."
+    SAY: "A customer! Or a cop. Are you a cop? If so, this is a bakery and these are very strong muffins."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 farewell_1.ogg
-    SAY: "Don't tell anyone. Especially me. I've already forgotten."
+    SAY: "Side effects begin immediately and last permanently. In rare cases you develop a French accent, which my warranty does not cover."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_2.ogg
-    SAY: "Side effects begin immediately. And permanently. And, rarely, in French."
+    SAY: "Go on, be amazing. Statistically you'll be dead, but I'm told the amazing ones are really amazing."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_3.ogg
-    SAY: "Go! Run! Be amazing! Or dead! Statistically it's dead!"
+    SAY: "Keep the bottle. Do not return the bottle. It's been looking at me, and I'd rather not discuss what it said."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_4.ogg
-    SAY: "Keep the bottle. I don't want it back. It's looking at me."
+    SAY: "Don't tell anyone where you got that. Especially me. Legally, I never met you."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 rich_1.ogg
-    SAY: "Oh, you're LOADED. I have the GOOD stuff. It's in the other, worse bag."
+    SAY: "You're loaded! Let me show you the good stuff, in the bag that hums. The warning on it is one I'm not allowed to read aloud."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_2.ogg
-    SAY: "Cash! Real cash! My favorite flavor! Tastes like a lawyer!"
+    SAY: "Real cash, my favorite! It tastes like a lawyer, and by law I must tell you the lawyer is also an ingredient."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_3.ogg
-    SAY: "For you, double price, triple effect, quadruple lawsuit."
+    SAY: "For you, double price and triple effect. Side effects now include, and I quote the form, a sudden urge to spend more money here."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_4.ogg
-    SAY: "Hide that money. Spend it HERE. Where it's safe from your future."
+    SAY: "Hide that cash inside my product, it's the safest place. Warning: the product dissolves paper."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 broke_1.ogg
-    SAY: "No cash? I accept organs. Small ones. Spares. You've got spares, right?"
+    SAY: "No cash? I accept organs. Small ones, spares really. You have spares, right? The form specifically says spares."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_2.ogg
-    SAY: "Broke? Free sample! Free as in 'my liability is now your liability.'"
+    SAY: "Free sample! Free meaning my liability becomes your liability. By taking it, you also agree to be liable for my feelings."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_3.ogg
-    SAY: "I trust you. I'll bill your family. Do you have a family? They do now: me."
+    SAY: "I'll put it on your tab, Rico. By tab I mean I'll bill your family. You have a family, right? I just invented one."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_4.ogg
-    SAY: "Come back when you've been mugged by someone richer than you. Aim high."
+    SAY: "Come back when you've been mugged by someone richer than you. At least then your wallet gets a better class of trauma."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 ugly_1.ogg
-    SAY: "That outfit? It's already a hallucination. I haven't even sold you anything."
+    SAY: "That outfit is a hallucination, and I haven't even sold you anything yet. Legal says that's somehow my fault."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_2.ogg
-    SAY: "You look like a warning label. In a good font, though."
+    SAY: "You look like a warning label, Rico, which I love. I write them. Mine are eight pages now."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_3.ogg
-    SAY: "Don't worry, the drugs make it look better. The drugs make EVERYTHING look better. Even me."
+    SAY: "Don't worry about the outfit, the drugs make everything look better. A bottle once told me I'm very handsome in the right dose."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_4.ogg
-    SAY: "I've seen better fits on a cadaver. And that cadaver was DEAD."
+    SAY: "I've seen better-fitting clothes on a cadaver, and I'm legally required to say the cadaver was not consulted."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 sharp_1.ogg
-    SAY: "Fancy! The stuff will clash with your suit. Beautifully. Violently."
+    SAY: "Fancy! That suit looks amazing until you spill something on it, and my products spill in six different colors."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_2.ogg
-    SAY: "Look at you. A well-dressed mistake. My favorite kind."
+    SAY: "A well-dressed mistake, my favorite customer. They pay in cash and never read the label."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_3.ogg
-    SAY: "You're too nice for this stall. Buy something. Get less nice."
+    SAY: "You're too nice for this stall, Rico. Buy something. Side effects include a lowered moral baseline and a craving for shrimp."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_4.ogg
-    SAY: "Sharp! Let's ruin it. With science. And bile."
+    SAY: "Sharp! Let's ruin it with science. Side effects include stains, glowing, and a mild urge to join a cult."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 died_1.ogg
-    SAY: "You look dead. Great sign. Means the product works. Try this."
+    SAY: "You look dead, which means my product works. I have no data supporting that, other than your face."
     HOW: The player just died.  (NPC talk (died))
 
 died_2.ogg
-    SAY: "I heard the scream. Was it you? It was you. Good lungs. Really, great lungs."
+    SAY: "I heard the scream, and it was you. Nice lungs, by the way. That's a compliment, from a medical professional, sort of."
     HOW: The player just died.  (NPC talk (died))
 
 died_3.ogg
-    SAY: "Death's not so bad. Mostly it's the sequel that's worse. I've seen the sequel. Don't see the sequel."
+    SAY: "Death isn't the problem, Rico, the respawn is. It's long, it's repetitive, and I'm told the loading screen is unbearable."
     HOW: The player just died.  (NPC talk (died))
 
 died_4.ogg
-    SAY: "Don't die near the merchandise. The insurance covers nothing. Literally nothing."
+    SAY: "Please don't die near the merchandise. The insurance covers nothing. I checked. The policy is a drawing of a duck."
     HOW: The player just died.  (NPC talk (died))
 
 boss_1.ogg
-    SAY: "A boss! Down! Give me your blood for science. Just a pint. Okay, a gallon."
+    SAY: "You beat a boss! I need a pint of your blood for science. Okay, a gallon. I'm legally obligated to say it's not for science."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_2.ogg
-    SAY: "You killed someone big? Buy something to celebrate. Their leftovers are in the red bottle."
+    SAY: "You killed someone important, so celebrate with the red bottle. It's made from the last boss's leftovers, and the label says do not."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_3.ogg
-    SAY: "Bosses are just customers who never learned to share. I sold that one his last drink."
+    SAY: "Bosses are just customers who never paid their tab. Now I collect in trophies, and a little in organs."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_4.ogg
-    SAY: "Did he have a pulse? A tooth? A kidney? Asking for... business. Not for the business."
+    SAY: "Did he have a kidney? Asking for business reasons. A second business, which I'm required to deny exists."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 idle_1.ogg
-    SAY: "I have a bottle that sings. It's a bad singer. It's mostly a scream."
+    SAY: "I have a bottle that sings. Badly. Mostly it screams, and screaming is a known side effect of the bottle."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_2.ogg
-    SAY: "Everything has side effects. Even oxygen. Ask anyone who's died."
+    SAY: "Everything has side effects, even oxygen. Ask anyone who's died of it. My labels are sixteen pages now, and the last four are apologies."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_3.ogg
-    SAY: "Don't read the label. The label is lying. The label is also a bit of a coward."
+    SAY: "Don't read the label, Rico. The label is lying. It's also a cousin of mine, which I'm required to disclose."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_4.ogg
-    SAY: "Tell me your symptoms. Then ignore my advice. That's the process. That's the whole process."
+    SAY: "Tell me your symptoms, then ignore my advice. That's the whole medical process here, and it has a ninety percent success rate, meaning you keep coming back."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 buy_1.ogg
-    SAY: "Drink it fast. No, SLOW. Wait. FAST. Whichever one you didn't do."
+    SAY: "Drink it fast. No, slow. Wait, fast. Whichever one you didn't do. I forgot which is safe, so it's a gamble either way."
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_2.ogg
-    SAY: "Side effects include luck, death, and a strong opinion about jazz."
+    SAY: "Side effects include luck, liver failure and a brief chat with a higher power. He says you owe him money too."
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_3.ogg
-    SAY: "Do not mix with anything. I mean it. Mix it. I'm joking. Mix it."
+    SAY: "Do not mix with alcohol, other medications, or the afternoon. If you must mix, do it far from my shop, my reputation and my dog."
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_4.ogg
-    SAY: "A good choice! Probably! I don't read. I just pour and pray."
+    SAY: "Good choice, probably. I don't read, I just pour and pray, and the prayer isn't responsible for the results either."
     HOW: The player just bought something.  (NPC talk (buy))
 

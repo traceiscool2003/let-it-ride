@@ -22,90 +22,90 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 22 lines:
 
 bark_1.ogg
-    SAY: "You got a... you got a dollar? I'll pay you back. In stories."
+    SAY: "Spare a dollar? It's not for drugs, it's for slots. Worse, but it blinks."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_2.ogg
-    SAY: "I swear I put it somewhere... somewhere. My kidney, maybe."
+    SAY: "I only came in to use the bathroom. The slot machine called me. I said I'd be right back. That was March."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_3.ogg
-    SAY: "Don't tell them I'm here. Don't tell them anything. Don't tell me, either."
+    SAY: "I sold my car for chips, then my coat, and now my opinions. Nobody's buying those either."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_4.ogg
-    SAY: "I'm fine. I'm just... resting. Standing. Resting upright. In a hallway."
+    SAY: "My system is simple. I put in a dollar and pray. Then I put in another and pray harder."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_5.ogg
-    SAY: "Hey. Hey. Do you hear the bugs? They're singing. They're good. They're in a band."
+    SAY: "I need twenty bucks to get my kidney back. Lost it in a bet. Good kidney, still under warranty."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_6.ogg
-    SAY: "I've got nine lives. Six of them are used. Two are in pawn."
+    SAY: "Shh, don't tell the machine I'm leaving. It gets clingy. Last time it ate my shoe."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_7.ogg
-    SAY: "The walls are breathing. Nice walls. They're my friends. They owe me."
+    SAY: "I used to be somebody. Then I became a regular. Now I'm a regular nobody, which is a promotion."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_8.ogg
-    SAY: "Got a light? Got a... got a fix? Got a Wi-Fi password?"
+    SAY: "Three days awake, and the slot machine is the only thing that says 'welcome back.'"
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_9.ogg
-    SAY: "Whoa. Where'd you come from? Did you fall from the ceiling? That's cool. I did that Tuesday."
+    SAY: "Let me tell you about my winning system. By winning I mean a time I almost did."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_10.ogg
-    SAY: "I'm clean. Mostly. Sort of. Clean-ish. Like a ketchup bottle."
+    SAY: "One more spin and then I'm going home. Told my kid the same thing in 2019."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_11.ogg
-    SAY: "Everything's shiny. Everything's shiny! I love shiny! Shiny is my life partner!"
+    SAY: "Spare change? I'm trying to reach a million. I'm at negative thirty-two thousand, so it's a climb."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_12.ogg
-    SAY: "Shh. The floor is listening. The floor has a tab on me."
+    SAY: "You look rich. Can I hold your wallet a second? I want to remember what hope feels like."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 city1_2.ogg
-    SAY: "Atlantic Shitty, where dreams go to evaporate. And pay a resort fee."
+    SAY: "I lost my retirement on a lobster slot machine. The lobster hasn't even apologized."
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city1_8.ogg
-    SAY: "Welcome to Resortz. Lower your standards. They're already on the floor."
+    SAY: "I watched a seagull cash out at the cage. He tipped better than I do."
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city2_2.ogg
-    SAY: "Cirrcus Cirrcus: where the clowns run the tables. And the clowns run on spite."
+    SAY: "I pawned my ring for chips, then the pawn receipt. The shop says I'm their best customer. It's a lot of pressure."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city2_8.ogg
-    SAY: "I'm a clown. I'm sad. I'm broke. I'm also double-jointed. But mostly sad."
+    SAY: "The lion's name is Gary and he owes me twelve dollars. He's a lion, so I'm not asking twice."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city3_2.ogg
-    SAY: "Hard Rok: it's loud, it's pricey, it's a guitar. It's also a mild stroke."
+    SAY: "I lost my paycheck on the riverboat. The air's so wet I can't tell if it's the river or my tears."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city3_8.ogg
-    SAY: "I came for the show. I stayed for the cover charge. I'll be here forever."
+    SAY: "I came to see the Elvis impersonator. Now I owe him eighty dollars and I'm not sure which of us is Elvis."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city4_2.ogg
-    SAY: "The Goldun Nugget's got a shark tank. It's decorative. It's also hungry."
+    SAY: "I've been here since the nineties. I just realized I'm not a guest, I'm furniture. Cheaper furniture."
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city4_8.ogg
-    SAY: "A glass of champagne? That's a hundred. Please. Don't make me say it twice."
+    SAY: "Old Fremont Street was paradise. It still is, if you squint. I've been squinting since 1994."
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city5_2.ogg
-    SAY: "The Bellagiro fountain! It dances! It judges! It's the only thing here with rhythm!"
+    SAY: "I lost my life savings at baccarat. The dealer told me to enjoy the fountain. I'm still not sure it was a joke."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 
 city5_8.ogg
-    SAY: "The chandelier is a quarter-million. Don't sneeze. Don't blink. Don't think near it."
+    SAY: "I need ten thousand to turn into a million. My system is begging. So, hi."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 

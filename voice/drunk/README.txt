@@ -22,90 +22,90 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 22 lines:
 
 bark_1.ogg
-    SAY: "I love you, man. I love everybody! I love that lamp!"
+    SAY: "I love everyone in this casino, even the guy who took my chips. Him most."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_2.ogg
-    SAY: "Shhhh. The slot machine is sleeping. It's had a long night. Bless it."
+    SAY: "I'm not drunk, I'm emotionally flexible. The floor is moving, and that's the casino's fault."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_3.ogg
-    SAY: "I'm not drunk. The floor is spinning. It's the floor's fault. It's the floor's drinking problem."
+    SAY: "Rico? I love that name. I've never forgotten it. I've also never heard it."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_4.ogg
-    SAY: "One more. Just one more. Hic. Just one. Then one. Then one more."
+    SAY: "I lost my wife, my keys, and my car, in that order. The keys hurt most."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_5.ogg
-    SAY: "Where's my wife? Where's my shirt? Where's the wife who owned the shirt?"
+    SAY: "A toast to the slot machine that took my savings. May she find someone who treats her as well as I did."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_6.ogg
-    SAY: "I used to be somebody. Now I'm... everybody. A group of somebodies. A drunken committee."
+    SAY: "Ever look at a roulette wheel and think, sad little planet? No? Just me? Cheers."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_7.ogg
-    SAY: "Cheers! To whatever that was! May it never come back! May it come back with a snack!"
+    SAY: "The bartender's said 'you're cut off' so many times it feels like our song."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_8.ogg
-    SAY: "Never bet on red. Always bet on whiskey. Whiskey's got better odds. Whiskey's got me."
+    SAY: "They gave me a free drink, a free napkin, and a free reason to cry in public."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_9.ogg
-    SAY: "I think I'm in the wrong casino. I think I'm in the wrong marriage."
+    SAY: "I think I'm in love with the dealer. She's the only one who says 'sir, step away' like she cares."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_10.ogg
-    SAY: "I lost my keys. Or my car. Or my wife. One of them was in the lake. I think it was the lake."
+    SAY: "I'm winning it all back: my youth, my hair, and the slot machine's respect. In that order."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_11.ogg
-    SAY: "Don't tell my kids. Don't tell my kids' kids. Don't tell my kids' kids' accountants."
+    SAY: "A man just hugged me and took my wallet. I want him to know I support his career."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_12.ogg
-    SAY: "Everything's fine. Fine. FINE. Is that a bear? That's a bear. Everything's fine."
+    SAY: "I don't remember how I got here. Good news: neither does my wallet."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 city1_4.ogg
-    SAY: "Saltwater taffy and bad decisions! Both stick to your teeth for years!"
+    SAY: "I love the boardwalk at night. Salt air, fried dough, and the smell of a man's bad decisions."
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city1_10.ogg
-    SAY: "This casino was voted 'adequate.' By the casino. At gunpoint."
+    SAY: "Atlantic Shitty is the greatest city on earth. I say that after falling off the boardwalk and enjoying it."
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city2_4.ogg
-    SAY: "The trapeze is for the high rollers. Literally. They roll. They fall. We clap."
+    SAY: "I made friends with a trapeze, a clown, and a lion. One of them is a mirror."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city2_10.ogg
-    SAY: "Don't take the lion's tickets. He has a temper. And a lawyer."
+    SAY: "I won a goldfish at the carnival game. I love him. He's already dead and I'm still holding the bag."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city3_4.ogg
-    SAY: "The drums are for decoration. Mostly. Also for the cops."
+    SAY: "Three days in this casino and the humidity is my best friend. He's wet and he loves me."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city3_10.ogg
-    SAY: "They serve a burger shaped like an amp. It's loud. Also lethal."
+    SAY: "I love Biloxi, the humidity, the guitars. Mostly I love that nobody's asked me to leave in nine hours."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city4_4.ogg
-    SAY: "I haven't seen daylight since the Clinton administration. It's fine. I'm tan from the slots."
+    SAY: "I love the flickering neon. It's the only thing here with a pulse."
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city4_10.ogg
-    SAY: "A note was left at the front desk, handwritten. 'Don't come for me. I'm finally winning.' Looks like a gambler's brother."
+    SAY: "A man left a note at the front desk: 'Don't come for me, I'm finally winning.' I've been crying for an hour and I don't even know him."
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city5_4.ogg
-    SAY: "Everything here costs a hundred dollars. Even the air. Even the apologies."
+    SAY: "I told the fountain I loved it. It splashed me. I think we're engaged."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 
 city5_10.ogg
-    SAY: "The House challenged some guy to a hand. James is the pot. Pot's a person. Allegedly."
+    SAY: "The House challenged some guy to Texas Hold'em tonight. The prize is his brother. It's the most romantic thing I've ever heard."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 

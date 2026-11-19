@@ -5,7 +5,7 @@ The game plays the clip during the cutscene and waits for it to finish. Players 
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 3 lines:
 
 mags_chase_1.ogg
-    SAY: "Payday, kid. You're late. I hate late. Late is where I grow."
+    SAY: "Payday, kid. You're late, and I hate late. Late is when your debt gets a growth spurt, and I'm so proud of how big it's getting."
     HOW: Cutscene: mags chase  (Cutscene mags_chase)
     SPEAKER: MAGS
 
@@ -15,7 +15,7 @@ mags_chase_2.ogg
     SPEAKER: RICO
 
 mags_chase_3.ogg
-    SAY: "We ARE talking. This is me talking. The swimming is me collecting. Cash out and pay me, or keep running. I like running. It builds appetite."
+    SAY: "We ARE talking, sweetie. This is me talking. The swimming is me collecting. Cash out and pay me, or keep running, because I love watching my little investment run."
     HOW: Cutscene: mags chase  (Cutscene mags_chase)
     SPEAKER: MAGS
 

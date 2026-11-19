@@ -22,48 +22,46 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 11 lines:
 
 intro_1.ogg
-    SAY: "Punto. Banco. Tie. Always a tie: you lose either way."
+    SAY: "Punto, Banco, or Tie. You'll pick Tie, because it pays eight to one, and it lands about as often as you do a sit-up."
     HOW: Boss intro cutscene. Menacing. Baccarat themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "Natural nine... and still I fall. The Circle breaks. How gauche."
+    SAY: "A natural nine and I still fall. The Circle breaks. How gauche, to be defeated by a man who bets with his shoes."
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "A natural eight. Perhaps it's your turn. Perhaps it's mine. It's mine."
+    SAY: "A natural eight? How adorable. I have a natural too, and mine comes with a wine cellar."
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "Banker. Player. Tie. Doom. Doom always beats the other three."
+    SAY: "Banker, Player, or Tie. Bet on any of them, Rico, but mercy is not on the table."
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "The shoe is cold. The room is colder. My heart is a fridge."
+    SAY: "In baccarat the player decides nothing. I find that peaceful. In your case, accurate."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "Place your bets on the inevitable. The inevitable has a 1.06% house edge."
+    SAY: "A tie pays eight to one, and it appears about as often as my affection for you."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "Pinky out, darling. This will hurt. Mostly your pride. Also your ribs."
+    SAY: "Squeeze the cards slowly, darling. It's tradition, and the only time you'll hold on to anything."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "How... rude. I shall tell my aunts."
+    SAY: "How rude. I have not been struck since finishing school."
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "Mon Dieu. Mon Dieu, that's a lot of blood on the baize."
+    SAY: "Mon Dieu, you have bled on the baize. It's imported."
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "The Circle closes. Again. It always closes. On you. With a click."
+    SAY: "The Banker wins, as ever, and the Player, as ever, is you, on the floor."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "Adieu. Un-adieu. Bonne chance in the next life. You'll need it."
+    SAY: "Adieu, darling. You'd have made an excellent tie. That pays eight to one, but not to you."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
-
-GRUNTS (optional): grunt_hurt_1.ogg .. grunt_hurt_3.ogg (when hit, about 1 in 3 hits) and grunt_death_1.ogg (when defeated), in this boss's voice. See HOW_TO_RECORD.md, section "Grunts".

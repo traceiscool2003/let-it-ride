@@ -22,90 +22,90 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 22 lines:
 
 bark_1.ogg
-    SAY: "Not tonight, pal. Not tomorrow. Not in this lifetime. Not in the next, either."
+    SAY: "No, you can't come in. I'd explain why, but you'd ask a follow-up, and I'm on break."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_2.ogg
-    SAY: "Name's not on the list. Nobody's name is on the list. The list is a lie."
+    SAY: "You're not on the list. Nobody is. The list is a napkin, and I lost it."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_3.ogg
-    SAY: "Move along. Move along or move on. Either way you're moving."
+    SAY: "Dress code: no sneakers, no hats, no hope. You're wearing all three."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_4.ogg
-    SAY: "I don't care who you know. I care who I punch. You're up."
+    SAY: "VIP means very important people. You're, at best, a visibly inconvenient pedestrian."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_5.ogg
-    SAY: "ID. And a birth certificate. And a signed apology from your mother."
+    SAY: "The line starts at the back. The back is in a different state. Start now."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_6.ogg
-    SAY: "Dress code. You're in violation. You're in violation of several. Of many codes."
+    SAY: "I can't let you in, but I can let you stay outside. That's available to everyone."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_7.ogg
-    SAY: "Step outside. Please. Not really a request. Mostly a countdown."
+    SAY: "ID, a second ID to confirm the first, and a note from your mother. Plus a lock of her hair, for the paperwork."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_8.ogg
-    SAY: "You have the wrong shoes. And the wrong face. Also the wrong shoes."
+    SAY: "Nice try, pal. Those shoes say 'lost,' that face says 'banned,' and together they say 'calling security.'"
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_9.ogg
-    SAY: "VIP only. You're not. You'll never be. Not even in death. The dead have a velvet rope."
+    SAY: "I don't make the rules. I just enforce them. The first rule is I don't make the rules. Stop asking."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_10.ogg
-    SAY: "Keep walking. Eyes forward. Heart in your throat. That's the rule."
+    SAY: "Not tonight, not tomorrow. Ask again in the next life. I'll still be standing here."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_11.ogg
-    SAY: "The line starts at the back. The back's in a different state."
+    SAY: "The answer is no. And your next question? Also no. I'm saving us time."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_12.ogg
-    SAY: "No. That's the entire policy. It's very concise."
+    SAY: "You can't come in with that attitude, that jacket, or whatever that smell is."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 city1_5.ogg
-    SAY: "The seagulls steal chips here. They're the only ones winning."
+    SAY: "No shoes, no shirt, no service. And no, the seagull does not count as your plus-one."
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city1_11.ogg
-    SAY: "I came for the ocean. I stayed for the debt. Also the ocean smells."
+    SAY: "The casino's full, the boardwalk's full, and the alley's full of some guy's stuff. Go home."
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city2_5.ogg
-    SAY: "Mind the clown. The clown bites. The clown is also the manager."
+    SAY: "No, you can't ride the elephant. No, you can't sit on the clown. I don't care about your coupon."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city2_11.ogg
-    SAY: "Some guy pawned a gold watch here last week. Sad story. Said he was 'getting promoted.' To Biloxi, I think."
+    SAY: "A guy pawned his gold watch at the shop out front last week. Said he'd been promoted to Biloxi. Sounded like firing."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city3_5.ogg
-    SAY: "A bad beat sounds like a power chord. And looks like a rhinestone jacket."
+    SAY: "No guitars at the blackjack table. Yes, even the cheap one. Especially the cheap one."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city3_11.ogg
-    SAY: "Word is the new dealer upstairs is some guy named James. Dealing for The House. Doing great. Unsettlingly great."
+    SAY: "Can't go upstairs, sir. The new dealer's a guy named James. He works for The House now. I'm under orders not to say how happy he looks."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city4_5.ogg
-    SAY: "The neon is older than I am. And it's in better shape. I'm furious."
+    SAY: "No, you can't swim in the shark tank. And I don't care that they look hungry. So do I."
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city4_11.ogg
-    SAY: "Don't stare at the chandelier. It judges. And then it falls on the people it judged."
+    SAY: "The chandelier is off-limits. It judges people, then falls on them. I've seen it."
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city5_5.ogg
-    SAY: "Don't stare at the High Roller. He bites. He bites the poor ones. I've seen it."
+    SAY: "The penthouse is invitation only, sir, and invitations go only to people who already own it."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 
 city5_11.ogg
-    SAY: "They serve a hundred-dollar water. It's the same water. It's also the same tap."
+    SAY: "No, you can't go to the penthouse without a reservation. 'I'm rescuing my brother' isn't one, though it's very moving."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 

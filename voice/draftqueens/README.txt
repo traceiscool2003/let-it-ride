@@ -22,48 +22,46 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 11 lines:
 
 intro_1.ogg
-    SAY: "Five cards. Discard what you don't like. I'll start with your face."
+    SAY: "Five cards, and you can discard any you don't like. I'll start by discarding your face, and then we'll see how the rest of you draws."
     HOW: Boss intro cutscene. Menacing. Five Card Draw themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "A... pat hand. I had a pat hand. And a fantasy league. Gone."
+    SAY: "I had a pat hand! I stood pat, like the book says! The book is also why I'm losing my fantasy league."
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "Discard? Honey, I'm just getting started. And I'm drafting YOU."
+    SAY: "Time to draw. I'm tossing three cards and keeping two queens, and honestly, Rico, you're the next thing getting tossed."
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "Oh, now it's personal. Full house, sweetie. My lineup, my rules, your funeral."
+    SAY: "Last draw, sweetie. I'm discarding my manners and keeping the queens."
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Is that the best you can draw? My fantasy team would roast you."
+    SAY: "One draw, sweetie. That's one more chance than your life ever gave you."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "I read you at the flop. You looked boring. Still do."
+    SAY: "I threw away three cards and kept two queens. Try that with your friends, Rico. Oh wait, you'd have zero left."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "Cards don't lie. Neither does my eyeliner. Both are perfect."
+    SAY: "You're holding a pair of twos and a lot of hope. Only one of those ever pays, and it's not the hope."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "Ow! That's a three-hundred-dollar blazer! Also my face!"
+    SAY: "Ow! Not the face, I just redrew it!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "Not the hair! My hair has a better record than your whole bloodline!"
+    SAY: "Hey! That was my good card!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "Better luck next season, sweetie."
+    SAY: "Five cards, one draw, and you drew a gravestone."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "That's a fold. Pack it up. We'll draft you next year."
+    SAY: "Nice try, sweetie. I drew a queen, and you drew the dirt."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
-
-GRUNTS (optional): grunt_hurt_1.ogg .. grunt_hurt_3.ogg (when hit, about 1 in 3 hits) and grunt_death_1.ogg (when defeated), in this boss's voice. See HOW_TO_RECORD.md, section "Grunts".

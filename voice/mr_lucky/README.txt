@@ -22,48 +22,46 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 11 lines:
 
 intro_1.ogg
-    SAY: "Pick eighty numbers. You'll hit none. I'm Keno Kevin. Welcome. Please don't pick Kevin."
+    SAY: "Pick up to ten numbers, out of eighty. You'll hit none, because I'm Keno Kevin, welcome, and please don't pick Kevin. He never hits."
     HOW: Boss intro cutscene. Menacing. Keno themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "Eighty out of eighty... how? How? That's not even possible. I'm Kevin. I'm unlucky. I'm Keno."
+    SAY: "Eighty out of eighty? How? That's not even possible. I'm Kevin, I'm unlucky, I'm Keno, and I'm out of numbers."
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "My, my. You ARE lucky. Statistically unnerving. Please stop."
+    SAY: "You hit six numbers, Rico! In keno, that wins you a free ticket to lose more keno."
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "Now, now. Pick a number. Any number. Wrong. I'm a little hurt."
+    SAY: "Twenty numbers get drawn out of eighty, Rico, and yours is up."
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Pick eighty numbers. Hit none. I've done the math. Your odds are 'sorry.'"
+    SAY: "Pick up to ten numbers, Rico. I'll wait. Your odds are about the same as you having a good day."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "Luck is just a lie told by the winning. I'm a very honest liar."
+    SAY: "You picked seven, and the ball came up eleven. The universe is telling you to go home."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "Are you having fun? You will. Fun's a lottery. Of pain."
+    SAY: "Keno is bingo that went to college and became a worse person. Honestly, so am I."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "Ow! Oh dear. I'm a very fragile gentleman."
+    SAY: "Ow! My balls! The numbered ones!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "That was unkind. I shall mention it. To someone. I'm a ghost, but still."
+    SAY: "I bruise like a lottery ticket in the rain!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "Never lucky. Always careful. Careful is just luck's older, scarier brother."
+    SAY: "You hit zero out of ten. In keno that pays nothing, and in life, about the same."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "Better luck next time. Always. That's the slogan. Print it on the casket."
+    SAY: "Better luck next draw. I've said that for years, and it has never once been true."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
-
-GRUNTS (optional): grunt_hurt_1.ogg .. grunt_hurt_3.ogg (when hit, about 1 in 3 hits) and grunt_death_1.ogg (when defeated), in this boss's voice. See HOW_TO_RECORD.md, section "Grunts".

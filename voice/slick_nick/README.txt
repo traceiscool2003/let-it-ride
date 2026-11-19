@@ -22,70 +22,70 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 17 lines:
 
 idle_1.ogg
-    SAY: "I'm smarter than you and twice as handsome. Your brother had the third thing. Ha. Debt."
+    SAY: "People call me arrogant. If I were really arrogant, would I have learned what the word means? Also, yes."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_2.ogg
-    SAY: "Luck? I don't need luck. I have hair. And a trust fund. And hair."
+    SAY: "I don't gamble, Rico, I invest. It's what gambling is called when your dad has a boat."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_3.ogg
-    SAY: "I read the odds. And then I rewrite them. In crayon."
+    SAY: "I have a system that can't lose. I'm only not rich because casinos keep changing the rules to be mean to me."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_4.ogg
-    SAY: "Don't take it personally. Take it to the bank. They'll laugh. In your face. Take it anyway."
+    SAY: "My trust fund does the gambling and my face does the posing. Neither has ever been wrong."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 greet_1.ogg
-    SAY: "Well, well. If it isn't my favorite sucker. Wait, you're the only one. Wow, dismal."
+    SAY: "Rico! The man in debt to a casino I'm technically a member of."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_2.ogg
-    SAY: "Ah, the other gambler. Cute. Like a puppy. A puppy with a Marker."
+    SAY: "Ah, the other gambler. You're like a golden retriever with a loan shark."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_3.ogg
-    SAY: "Looking for a rival? You found one. I'm excellent. Also: expensive."
+    SAY: "Hello, Rico. I'd shake your hand, but I just had mine manicured and I'd hate for it to catch your luck."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 farewell_1.ogg
-    SAY: "Don't lose too early. I want to win later. Ideally on your grave."
+    SAY: "Run along, Rico, and don't die before I finish this drink. I want to gloat in person."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_2.ogg
-    SAY: "See you at the top. I'll be there. First. In a better suit."
+    SAY: "See you at the top, where I'll already be, with better hair and a bigger tab."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_3.ogg
-    SAY: "Try not to embarrass yourself. I'll be watching. With popcorn."
+    SAY: "Good luck out there. I'm rooting for you, in the sense that I'd like to be there when you fail."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 rich_1.ogg
-    SAY: "Nice pot. I have a bigger one. I always have a bigger one. It's genetic."
+    SAY: "Nice stack, Rico. I'd be jealous, but I have a bigger one in a country you can't pronounce."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_2.ogg
-    SAY: "You're doing great! For you. For a normal person you're doing 'whoa, buddy.'"
+    SAY: "Doing great for a man who started with nothing. It's inspiring, in a mostly sympathetic way."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 broke_1.ogg
-    SAY: "Oof. Broke? Must be rough being you. I hear it's also a smell."
+    SAY: "Broke already? I'll tell everyone you tried, in the tone we use for people who tried to cook."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_2.ogg
-    SAY: "I'd buy you a drink. But no. I'd buy you the idea of a drink. Cheers."
+    SAY: "I'd lend you money, but my accountant says charity is a tax scam for people who lose."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 died_1.ogg
-    SAY: "You died? I won. Again. I didn't even play. It's that easy."
+    SAY: "You died again? Rico, at this point it's not a tragedy, it's a subscription. And I'd cancel."
     HOW: The player just died.  (NPC talk (died))
 
 boss_1.ogg
-    SAY: "A boss? I was about to do that. Today. After lunch. And brunch."
+    SAY: "You beat a boss? I was going to do that after lunch. Now I have to talk to my lawyer."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_2.ogg
-    SAY: "Lucky shot. Everyone's lucky once. You've been lucky twice. Statistically suspicious."
+    SAY: "Lucky win, Rico. Everyone gets one. Try not to spend it all in the same place."
     HOW: The player just beat a boss.  (NPC talk (boss))
 

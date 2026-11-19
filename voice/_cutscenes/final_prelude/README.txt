@@ -5,17 +5,17 @@ The game plays the clip during the cutscene and waits for it to finish. Players 
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 3 lines:
 
 final_prelude_1.ogg
-    SAY: "You climbed my five cities. You beat my table-lords. You wore my clothes."
+    SAY: "You climbed my five cities and beat my table lords, Rico. You have exceeded my expectations, which were very low."
     HOW: Cutscene: final prelude  (Cutscene final_prelude)
     SPEAKER: THE HOUSE
 
 final_prelude_2.ogg
-    SAY: "And I still got a bet on you."
+    SAY: "Cute. Deal the cards."
     HOW: Cutscene: final prelude  (Cutscene final_prelude)
     SPEAKER: RICO
 
 final_prelude_3.ogg
-    SAY: "Then sit. Hole cards. Flop. Turn. River. And the pot, Rico, is your brother."
+    SAY: "Texas Hold'em, then. The pot is your brother. Do sit, the chair is still warm from your losses."
     HOW: Cutscene: final prelude  (Cutscene final_prelude)
     SPEAKER: THE HOUSE
 

@@ -22,66 +22,66 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 16 lines:
 
 idle_1.ogg
-    SAY: "Never cross your fingers. Cross a fortune-teller. They bleed less."
+    SAY: "Never cross your fingers at a card table, honey. The spirits find it rude, and they don't give refunds on curses."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_2.ogg
-    SAY: "Don't whistle at a table. It summons the House. And its lawyers. Different whistles."
+    SAY: "Palms, tarot, tea leaves. Every one of them says the same thing about this casino: leave."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_3.ogg
-    SAY: "A black cat? I own three. That's the secret. Also a lot of dander."
+    SAY: "Black cats are good luck. I own four. The fifth is a raccoon, but he's committed to the bit."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_4.ogg
-    SAY: "Throw salt. Throw sage. Throw chips. Throw a fit. I do all four before breakfast."
+    SAY: "I once predicted a man's death perfectly and he sued me. Now I say 'could be a rash.'"
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 greet_1.ogg
-    SAY: "Oh honey! You're glowing! That's either luck or fever. Let me check. It's fever."
+    SAY: "Oh honey, you're glowing. That's either good fortune or a fever, and I can't tell without touching you, which I will."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_2.ogg
-    SAY: "Come sit, sugar. The stars are loud tonight. They're saying 'no.'"
+    SAY: "Sit, sugar. The stars are loud tonight, and they all say you'll regret something. They haven't picked what."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_3.ogg
-    SAY: "Wait, don't tell me. You're a Scorpio. Bad news. For you. And your stuff."
+    SAY: "Don't tell me, you're a Scorpio. That explains the debt, the dying, and honestly the haircut."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 farewell_1.ogg
-    SAY: "Knock on wood. Knock on your own head. It's more reliable."
+    SAY: "Go with the spirits, Rico. If they ask for a sacrifice, offer Marlow. He's already tired."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_2.ogg
-    SAY: "Take my lucky penny. It's cursed. You'll love it. It's a good curse. A hobby curse."
+    SAY: "Take my lucky penny. It's cursed, but it's a good curse, like a really committed ex."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_3.ogg
-    SAY: "Go with God. And with a rabbit's foot. The rabbit's not using it."
+    SAY: "Don't step on any cracks, honey. One of them is my mother, and she's very sensitive."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 rich_1.ogg
-    SAY: "Money! It's a sign! A big sign! It says 'send me some.'"
+    SAY: "All that money, honey. The universe likes you, or it's setting you up for something awful."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_2.ogg
-    SAY: "You're blessed. Or cursed. Same sparkle. Different invoice."
+    SAY: "You're loaded, so Venus is in your favor. Give me forty dollars and I'll ask her about the rest."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 broke_1.ogg
-    SAY: "Broke? That's just Mercury being rude. He's always been a dick, that planet."
+    SAY: "Broke, sugar? Mercury's in retrograde. By retrograde I mean your entire life."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_2.ogg
-    SAY: "Poor baby. Retrograde again. Retrograde's been going on for nine years. It's not retrograde. It's you."
+    SAY: "Poor baby. The planets have aligned against you, and they've been very organized about it."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 died_1.ogg
-    SAY: "Dying? Bad omen. I'll light a candle. A big one. For you. And for the fire marshal."
+    SAY: "You died again, honey? I saw it in the cards. I didn't want to spoil the surprise. Bad for business."
     HOW: The player just died.  (NPC talk (died))
 
 boss_1.ogg
-    SAY: "A boss? Mercury's with you! Mercury's a flaky ally, but yes!"
+    SAY: "You beat a boss? The cards did mention a winner, but they said 'by accident,' and I chose to be polite."
     HOW: The player just beat a boss.  (NPC talk (boss))
 

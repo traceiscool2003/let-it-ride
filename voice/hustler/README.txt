@@ -22,90 +22,90 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 22 lines:
 
 bark_1.ogg
-    SAY: "Hey. Hey you. Wanna buy a watch? It's yours. Technically. By yours I mean mine."
+    SAY: "Wanna buy a watch? Real gold, real Swiss. By real I mean it says 'real' on it."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_2.ogg
-    SAY: "I got a guy. He's got a guy. You want the guy. Don't ask which guy."
+    SAY: "Psst. Genuine casino chip, forty bucks. That's thirty-nine more than it's worth."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_3.ogg
-    SAY: "Psst. Free money. It's a scam. But free. And the scam's free too."
+    SAY: "Three-card monte. Easy money. Just find the lady. By easy I mean impossible."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_4.ogg
-    SAY: "Wanna see a magic trick? It's a wallet. Now it's gone. Ta-da."
+    SAY: "Lucky socks, guaranteed to win. By guaranteed I mean I'll refund you if I find you."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_5.ogg
-    SAY: "Everything's for sale. Even me. I'm on sale. Today only. Limited time."
+    SAY: "Fake ID, very convincing. It has your face, my face, and a third face I can't explain."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_6.ogg
-    SAY: "You look lucky. You look LOST. Same thing here."
+    SAY: "Blackjack system, fifty bucks. Rule one: you give me fifty bucks."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_7.ogg
-    SAY: "Three-card monte! Find the lady! The lady's in the cab. She's left. She had enough."
+    SAY: "Magic beans. They bring good luck. Also, they're beans, so if you lose, you get a snack."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_8.ogg
-    SAY: "Cheap chips! Authentic! Probably! Not chewable! Not edible! Not mine!"
+    SAY: "Genuine rabbit's foot, twenty bucks. The rabbit isn't using it anymore, but he's upset."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_9.ogg
-    SAY: "Ten bucks. No questions. Eleven bucks and I answer all of them."
+    SAY: "A map to the jackpot, fifty bucks. It leads straight to the exit, which is spiritually the jackpot."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_10.ogg
-    SAY: "That's a nice jacket. I'll take it. Joke. I'll take it. Not a joke."
+    SAY: "Insider tip on the next big winner. It's a horse. The horse is me. I'm running from the cops."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_11.ogg
-    SAY: "Business is slow. Be my business. Please. I have kids. In a van."
+    SAY: "Brand-new sunglasses, ten bucks, totally legit. I'd explain how I got them, but then you'd be a witness."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 bark_12.ogg
-    SAY: "Don't look at me. I didn't do it. Whatever it was. I was at lunch. In a cell."
+    SAY: "Indoor-rated umbrella, fifty bucks. And yes, it's raining. There's a pipe leaking over table six."
     HOW: Random crowd bark, any city.  (Crowd bark)
 
 city1_6.ogg
-    SAY: "This place has seen better decades. And better beaches. And better hepatitis."
+    SAY: "Saltwater taffy, twenty bucks a box. It's real taffy. Previously chewed, but real."
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city1_12.ogg
-    SAY: "I heard a man bet his brother at The House. Never came back. Now they say he deals in Bellagiro. Sad stuff."
+    SAY: "Free sample of information: a guy bet his own brother at The House's table, and now the brother deals at the Bellagiro. The rest costs fifty bucks."
     HOW: Crowd bark flavored for city 1.  (Crowd bark (city 1))
 
 city2_6.ogg
-    SAY: "Everything here is sticky. Don't ask. Don't touch. Don't sit."
+    SAY: "Pawn shop's on the corner. Ten bucks for that watch today, nine tomorrow. It depreciates when you cry."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city2_12.ogg
-    SAY: "Please do not feed the acrobats. They'll follow you home. They do not have homes."
+    SAY: "Cotton candy, five bucks. Pink, fluffy, technically fiberglass, tastes like regret. That's a flavor."
     HOW: Crowd bark flavored for city 2.  (Crowd bark (city 2))
 
 city3_6.ogg
-    SAY: "Hey! Don't touch the Elvis suit! He's still in it!"
+    SAY: "Guitar picks, five bucks, signed by a rock star. By rock star I mean my cousin Dale, who's on probation."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city3_12.ogg
-    SAY: "The coat check costs more than the room. The room's a closet. The closet's a coat check."
+    SAY: "Rock-and-roll sunglasses, ten bucks. You'll look like a legend and be hard to identify in a lineup."
     HOW: Crowd bark flavored for city 3.  (Crowd bark (city 3))
 
 city4_6.ogg
-    SAY: "They don't make casinos like this anymore. Thank God. And the health department."
+    SAY: "Genuine gold nuggets, twenty bucks. By gold I mean spray paint. By genuine I mean a lot of it."
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city4_12.ogg
-    SAY: "Ten thousand dollars on red. On red! He's dead now. It was black."
+    SAY: "Vintage casino chips, thirty bucks. From the sixties. The chips, not the dealers. Though it's close."
     HOW: Crowd bark flavored for city 4.  (Crowd bark (city 4))
 
 city5_6.ogg
-    SAY: "Fine art. Fine wine. Fine print. Mostly fine print. All fine print."
+    SAY: "Genuine Bellagiro fountain water, twenty bucks a bottle. It's tap water, but it has a story. I scooped it."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 
 city5_12.ogg
-    SAY: "The House is watching. Behave. Or don't. I've bet against you."
+    SAY: "Real diamonds, fifty bucks. Rhinestones, but if you squint, and you're drunk, and you're me, diamonds."
     HOW: Crowd bark flavored for city 5.  (Crowd bark (city 5))
 

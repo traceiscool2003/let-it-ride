@@ -22,66 +22,66 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 16 lines:
 
 idle_1.ogg
-    SAY: "Sir, you can't do that here. I don't know what you're doing. But you can't."
+    SAY: "Nineteen years in security here, and I've never seen a guest leave happy. I call that professional success."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_2.ogg
-    SAY: "I'm just doing my job. Which is you. All of you. Your whole life."
+    SAY: "I'm told my job is to protect the casino from you, and you from the casino. Nobody will say which one pays."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_3.ogg
-    SAY: "Please keep your hands where I can see them. And your chips. And your guilt."
+    SAY: "I'm not paid enough for this. I say it out loud every hour, in case payroll is listening."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_4.ogg
-    SAY: "Management reserves the right to refuse. Everything. Including, today, me."
+    SAY: "Management says smile at the guests. But the guests keep dying, which makes smiling feel strange."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 greet_1.ogg
-    SAY: "Evening, sir. Behave. Or whatever the opposite of this is. Behave anyway."
+    SAY: "Evening, sir. Please keep your hands visible, your chips visible, and your intentions visible, if you have any."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_2.ogg
-    SAY: "ID, please. And your life story. And a character reference. And a note from the House."
+    SAY: "Welcome, sir. I'll need ID, a second ID, and a brief explanation of why you look like that."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_3.ogg
-    SAY: "Move along, citizen. Or stand still. I'm confused. Pick one. Either."
+    SAY: "Ah, Rico. I was told you'd be coming. There's a laminated photo of you at the front desk."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 farewell_1.ogg
-    SAY: "Have a nice day. Or don't. It's not my department. My department is paperwork."
+    SAY: "Have a safe evening, sir. If you die on the premises, do it near the exit. The mop is closer."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_2.ogg
-    SAY: "Exit's that way. Not that way. That way. No, THAT way. That's a window. Oh well."
+    SAY: "Exit's that way, sir. If you're planning a scene, it's also that way, but faster."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_3.ogg
-    SAY: "Enjoy your stay. Quietly. Or loudly. It's not like I'll remember."
+    SAY: "Please take nothing from the premises, sir, including the lighting. Someone did last week."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 rich_1.ogg
-    SAY: "That's a lot of money, sir. I'll be watching. I'll be sweating. I'll be watching."
+    SAY: "Sir, that is a lot of money. I'll need you to carry it more apologetically."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_2.ogg
-    SAY: "Winning is fine. Winning loudly is a violation. Winning while smiling is a felony."
+    SAY: "Winning is fine, sir, but do it quietly. The losers nearby have a policy about eye contact."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 broke_1.ogg
-    SAY: "No funds? The exit's that way. The exit's always that way. It's my favorite sentence."
+    SAY: "Without funds, sir, you're just a man standing in a casino. That's loitering with extra steps."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_2.ogg
-    SAY: "Loitering without chips is discouraged. Loitering with chips is slightly less discouraged."
+    SAY: "No money? That's fine, sir. The exit is free, the only thing in here that is."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 died_1.ogg
-    SAY: "Sir, you can't die here. It's against policy. Policy 47: 'No dying before nine.'"
+    SAY: "Sir, dying on the premises is against policy. I've filed a form. The form has already been rejected."
     HOW: The player just died.  (NPC talk (died))
 
 boss_1.ogg
-    SAY: "You hit a boss? That's... that's an incident. I'll need a form. And a bandage. For me."
+    SAY: "You hurt a boss, sir? That's an incident. I'll need a form, a witness, and ideally a different job."
     HOW: The player just beat a boss.  (NPC talk (boss))
 

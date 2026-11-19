@@ -22,186 +22,186 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 46 lines:
 
 greet_1.ogg
-    SAY: "Pull up a stool, runner. Mind the one with the stain. It's fond of you."
+    SAY: "Sit anywhere but the stool by the door, runner. The pool says you die there, and I've got money on it."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_2.ogg
-    SAY: "The usual? Whatever that was. You never finish your sentences."
+    SAY: "The usual? Take your time ordering. I've got ten bucks on you dying mid-sentence, and I want to enjoy it."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_3.ogg
-    SAY: "Lucky's. We don't water it down. Much. We definitely don't change the ice."
+    SAY: "Welcome to Lucky's. We don't water the drinks much, and the pool on how you die is up to six hundred."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_4.ogg
-    SAY: "Good to see you breathing. I had you at even money for 'not.'"
+    SAY: "You're breathing! I had you at even money not to. I lost, and I've never been happier. Don't tell the pool."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 farewell_1.ogg
-    SAY: "Drink responsibly. Or at least first. That's the whole policy."
+    SAY: "Drink responsibly, runner. Or at least drink first. I'll keep a stool warm and the pool open on how you leave."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_2.ogg
-    SAY: "Come back in one piece. Two pieces. I'm not picky, I have a mop."
+    SAY: "Come back in one piece. Or two, I'm not picky. I have a mop, and I have money on which."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_3.ogg
-    SAY: "I'll keep your seat warm. And your tab open. It's the only thing that never closes."
+    SAY: "Break a leg out there, runner. I've got twenty on left leg, first floor. No pressure."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_4.ogg
-    SAY: "Break a leg. Not your own. Someone else's. Nicer."
+    SAY: "I'll keep your tab open. It's the only thing here that never closes. The pool closes at midnight."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 rich_1.ogg
-    SAY: "First round's on me. Second on you. And your fortune. And your remaining dignity."
+    SAY: "First round's on me, second's on you, third's on your fortune. The pool says you'll lose it all by dinner."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_2.ogg
-    SAY: "That's a lot of green. I've a Scotch that'll cry. A good cry. It's earned it."
+    SAY: "That's a lot of green, runner. I've got a Scotch that'll make you cry, and six guys in the pool who'll cry harder if you keep it."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_3.ogg
-    SAY: "Cash like that needs a toast. And an alibi."
+    SAY: "Cash like that needs a toast and an alibi. I'll do the toast. The guys in the pool sell alibis."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_4.ogg
-    SAY: "You're buying, aren't you. It's not a question. I'm getting the glasses."
+    SAY: "You're buying, aren't you? I'm already pouring. I've moved the pool to 'dies drunk and rich,' and it's a crowd favorite."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 broke_1.ogg
-    SAY: "Tab's on me. Don't make it a habit. Make it a hobby. A small one."
+    SAY: "Tab's on me tonight, runner. Don't make it a habit, make it a hobby. The pool's offering you ten percent if you die before closing."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_2.ogg
-    SAY: "I'll pour you water. It's all I've got that's free. It's also all I've got that's honest."
+    SAY: "I'll pour you water, runner. It's all I've got that's free, and I'm not totally sure it's honest."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_3.ogg
-    SAY: "Broke? Join the club. I'm the president. Dues are one drink. Per sorrow."
+    SAY: "Broke? Join the club. Dues are one drink per sorrow, and you owe me nine years."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_4.ogg
-    SAY: "Not a problem. Sit. Cry. Hydrate. The tears are on the house."
+    SAY: "Sit, runner, cry, hydrate. The tears are on the house. The guys in the pool are betting on how long you last without a drink."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 ugly_1.ogg
-    SAY: "That outfit's strong. Like my worst whiskey. And you smell similar."
+    SAY: "That outfit's strong, runner, like my worst whiskey. You smell about the same. I've got a pool on which one knocks someone out first."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_2.ogg
-    SAY: "Not my business what you wear. It's my business that it hurts."
+    SAY: "I've seen better coats in the lost and found. They were on fire, and still more flattering."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_3.ogg
-    SAY: "I've seen better coats in the lost and found. The coats were also on fire."
+    SAY: "Not my business what you wear, runner. But I've added 'death by fashion' to the pool, and it's paying well."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 ugly_4.ogg
-    SAY: "A drink might help. Or at least blur it. For both of us."
+    SAY: "Have a drink, runner. It blurs everything, and I'd like that for both of us."
     HOW: The player is wearing ugly clothes.  (NPC talk (ugly))
 
 sharp_1.ogg
-    SAY: "Look at you. All class and no chaser. Wait, I have chasers. Oh good."
+    SAY: "Look at you, runner. All class, no chaser. Wait, I have chasers. Good. The pool now has 'best dressed corpse,' and you're the front-runner."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_2.ogg
-    SAY: "Dressed to kill. Or at least be killed in. It's a good look either way."
+    SAY: "Dressed to kill, or at least to be killed in. I've got forty bucks on the second one."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_3.ogg
-    SAY: "That suit deserves a good Scotch. You deserve a cheap one. Fair?"
+    SAY: "That suit deserves a good Scotch. You get the cheap one. Fair's fair."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 sharp_4.ogg
-    SAY: "You almost look like you belong here. Don't worry. A drink will fix that."
+    SAY: "You almost look like you belong here, runner. One drink fixes that. Two makes the pool very interesting."
     HOW: The player is dressed sharp.  (NPC talk (sharp))
 
 died_1.ogg
-    SAY: "Ah, you died. Have a drink. It helps. It doesn't, but it's something to do with your hands."
+    SAY: "Welcome back, runner. I had you dying on the stairs, so thank you. Drinks are on the guy who bet 'spikes.' He's very upset."
     HOW: The player just died.  (NPC talk (died))
 
 died_2.ogg
-    SAY: "Rough one. I'll keep the stool warm. And the bleach handy."
+    SAY: "Rough one, runner. I had you picked for the elevator, so now I owe a man in a hat forty bucks. He's smug about it. Take that personally."
     HOW: The player just died.  (NPC talk (died))
 
 died_3.ogg
-    SAY: "I've buried better drunks than you. And worse. Mostly worse. Mostly me."
+    SAY: "You died, runner, so have a drink. It won't help, but it gives your hands something to do. The pool just paid out, so it's on me."
     HOW: The player just died.  (NPC talk (died))
 
 died_4.ogg
-    SAY: "A drink can save your life, runner. A second can end it. A third is the Marker."
+    SAY: "That's death number forty-three, runner. I had 'ugly and sudden,' so I'm buying a round for myself."
     HOW: The player just died.  (NPC talk (died))
 
 boss_1.ogg
-    SAY: "You beat a boss? The next round's mine. And the one after. And the funeral."
+    SAY: "You beat a boss, runner? Round's on me. I had you dying to him, and now I owe the whole bar."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_2.ogg
-    SAY: "Cheers to the one that fell! May he rest, and may his tab be forgiven! It won't be!"
+    SAY: "Cheers to the one that fell. May he rest, and may his tab be forgiven. It won't be."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_3.ogg
-    SAY: "That boss drank here. Tipped badly. Died worse."
+    SAY: "That boss drank here, runner. Tipped badly, died worse. I'd say rest in peace, but he owes me for eleven Scotches."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 boss_4.ogg
-    SAY: "A toast: to the one who didn't die tonight. Tonight being relative."
+    SAY: "A toast to the one who didn't die tonight, runner. Tonight being relative. I've already got money on tomorrow."
     HOW: The player just beat a boss.  (NPC talk (boss))
 
 idle_1.ogg
-    SAY: "I keep a bar on most floors. Out of spite. And grief. Mostly grief. Spite's a bonus."
+    SAY: "I've got a bar on every floor, runner. It's convenient. You die, I'm already there to collect."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_2.ogg
-    SAY: "I know a guy who knows a guy. I'm the guy. The other guy is also me."
+    SAY: "The pool on how many times you die before the Bellagiro is at fifty-three. The guy who bet sixty is crying."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_3.ogg
-    SAY: "A drink never lies. Only the drinker does. And the bartender. Ask me about the bartender."
+    SAY: "A drink never lies, runner. Only the drinker does. And the bartender, but don't ask him, he's me."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_4.ogg
-    SAY: "Wipe the glass. Listen. That's the whole job. Also, apologize. Constantly."
+    SAY: "My whole job is wiping a glass and listening, runner. Mostly I listen for the thud. It's how I settle the pool."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 buy_1.ogg
-    SAY: "Down the hatch. Gently. Like a bad idea."
+    SAY: "Bottoms up, runner. Gently, like a bad idea. I've got a bet on how long you keep it down, and the odds are not in your favor."
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_2.ogg
-    SAY: "That one has a kick. And a story. Neither has an ending."
+    SAY: "That one has a kick, runner. I've got ten bucks on whether you stay standing after it."
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_3.ogg
-    SAY: "Careful. Don't spill your luck. Spill your guts. Different thing."
+    SAY: "Careful, runner, don't spill it. I'll bet you ten bucks you do. Actually, make it twenty. I know you."
     HOW: The player just bought something.  (NPC talk (buy))
 
 buy_4.ogg
-    SAY: "On the house. Sort of. I mean, the House won't cover it. It never does."
+    SAY: "On the house, runner. Not THE House, that one never pays. The pool covers it. The pool loves you."
     HOW: The player just bought something.  (NPC talk (buy))
 
 lucky_intro_1.ogg
-    SAY: "Lucky's the name. On the floors I pour drinks. Up here I just listen."
+    SAY: "Lucky's the name. On the floors I pour drinks, and up here I mostly take bets, mainly on how soon you'll be back, so thanks in advance for the business."
     HOW: Conversation: lucky_intro  (Lobby conversation)
 
 lucky_intro_2.ogg
-    SAY: "Everybody busts eventually. Barkeeps hear all about it. It's the worst part of the job and the only part."
+    SAY: "Everybody busts eventually, and bartenders hear all about it, and I've got a whole pool going on your next death, and honestly the odds are excellent."
     HOW: Conversation: lucky_intro  (Lobby conversation)
 
 lucky_tip_1.ogg
-    SAY: "Pro tip: a Shot of Courage costs less than the interest on a bust. Find my bar on the floors. I have a lot of bars. I have trust issues."
+    SAY: "Pro tip: a Shot of Courage costs less than the interest on a bust, so find my bar on the floors, and yes, I have a lot of bars, and no, I won't explain how."
     HOW: Conversation: lucky_tip  (Lobby conversation)
 
 lucky_cat_1.ogg
-    SAY: "Keep petting Comp like that and he'll follow you up. ...He won't. He's a cat. But he likes you. It's creepy."
+    SAY: "Keep petting Comp like that and he'll follow you up the floors, except he won't, because he's a cat, but he does like you, which is creepy, and I've got money on it ending badly."
     HOW: Conversation: lucky_cat  (Lobby conversation)
 
 lucky_rep1_1.ogg
-    SAY: "On the house? Nothing's on the house. That's the House's whole thing. It's in the name."
+    SAY: "On the house? Nothing's on the house, pal, that's The House's whole thing, it's right there in the name."
     HOW: Conversation: lucky_rep1  (Lobby conversation)
 
 lucky_rep2_1.ogg
-    SAY: "You've got the look of somebody about to let it ride. Tell me when. I'll film it."
+    SAY: "You've got the look of somebody about to let it ride, so tell me when, and I'll film it for the pool."
     HOW: Conversation: lucky_rep2  (Lobby conversation)
 

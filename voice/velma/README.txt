@@ -22,66 +22,66 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 16 lines:
 
 idle_1.ogg
-    SAY: "Honey, I've lost more than you've bet. And I got a standing ovation."
+    SAY: "Thirty years in this lounge, and the only thing that ever left early was my husbands."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_2.ogg
-    SAY: "This next one's for the broken-hearted. And the broke. And the broken-hearted broke. Table four."
+    SAY: "This next song is for the broken-hearted. Table four, that means you, and your house."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_3.ogg
-    SAY: "Dim the lights. The odds are shy. So is my husband. He's in a trunk."
+    SAY: "People ask if I ever wanted to leave this lounge. I did. My contract has a clause about my soul."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 idle_4.ogg
-    SAY: "Last call for love. Everything's last call. Except the ones with a lawyer."
+    SAY: "I once got a standing ovation here. Turns out they were just trying to reach the exit past me."
     HOW: Idle chatter. Random.  (NPC talk (idle))
 
 greet_1.ogg
-    SAY: "Evening, sugar. Pull up a shadow. They're cheaper than chairs."
+    SAY: "Evening, sugar. Pull up a chair. The cushion's cursed, but the view is free."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_2.ogg
-    SAY: "You look like a song I forgot the end of. A sad one. In a minor key. Mostly a minor key."
+    SAY: "You look like you need a love song. I only know the sad ones, so you're in luck."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 greet_3.ogg
-    SAY: "Take a seat. Take a chance. Take a breath. Not all three. You'll pass out."
+    SAY: "Sit anywhere, honey, except the left stool. That's my third husband's, and he's still using it."
     HOW: Greeting the player. In character.  (NPC talk (greet))
 
 farewell_1.ogg
-    SAY: "Don't be a stranger. Be a legend. Or a stranger with a legend. I'm not picky."
+    SAY: "Go on, Rico. If you see my second husband out there, tell him the check bounced and so did the marriage."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_2.ogg
-    SAY: "The stage'll be here. So will I. So will the debt."
+    SAY: "Come back and see me, sugar. I'll be right here. The lounge hasn't let me leave since the nineties."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 farewell_3.ogg
-    SAY: "Go. Win something. Lose something prettier. Bring a hat."
+    SAY: "Break a leg out there. Break two, and I know a doctor who takes chips."
     HOW: Parting words as the player leaves.  (NPC talk (farewell))
 
 rich_1.ogg
-    SAY: "Oh, you're in the money. Sing with me. I'll do the money. You do the dying."
+    SAY: "Flush with cash, are we? I'm writing a song about it. It's called Please Buy Me A Drink."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 rich_2.ogg
-    SAY: "Diamonds are a girl's best chips. Chips are a girl's best diamonds. Hand them over."
+    SAY: "Rich again? Last time I sang you a love song and you tipped me a coaster."
     HOW: The player is carrying a lot of money.  (NPC talk (rich))
 
 broke_1.ogg
-    SAY: "Broke and brave. My favorite lyric. It rhymes with 'sleep outside.'"
+    SAY: "Broke already, sugar? Sit down, I'll sing something sad. It's free, the only thing in here that is."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 broke_2.ogg
-    SAY: "Come sit. The blues are free. It's the encore that costs."
+    SAY: "Honey, you're so broke the slot machines look at you with pity. They're not built for pity."
     HOW: The player is nearly broke.  (NPC talk (broke))
 
 died_1.ogg
-    SAY: "I wrote a song about you. It's mostly a sigh. With a bridge. The bridge is you, falling off one."
+    SAY: "I heard you died out there, sugar, so I wrote you a ballad. Mostly it's me humming and checking my watch."
     HOW: The player just died.  (NPC talk (died))
 
 boss_1.ogg
-    SAY: "I'll sing about that one. Twice. Once for the win, once for the funeral."
+    SAY: "You beat a boss? Honey, I've tried for years. I just marry them instead."
     HOW: The player just beat a boss.  (NPC talk (boss))
 

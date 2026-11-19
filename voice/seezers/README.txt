@@ -22,48 +22,46 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 11 lines:
 
 intro_1.ogg
-    SAY: "Dealer stands on 17. I never stand. Not for you. Not for the Senate."
+    SAY: "Dealer stands on seventeen, but I never stand, not for you, not for the Senate, and especially not after what happened to Caesar."
     HOW: Boss intro cutscene. Menacing. Blackjack themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "Twenty-two. I busted. How embarrassing. Rome fell on a bad hit."
+    SAY: "Twenty-two. I busted. How embarrassing. Rome fell on a bad hit, and now I know exactly how it felt."
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "You have wounded Caesar. Splendid. I shall stab you later. In the Senate."
+    SAY: "You have wounded Caesar, so I shall hit on sixteen. I fear nothing, not even math."
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "THIS IS THE END OF THE EMPIRE! AND THE START OF A BETTER BUFFET!"
+    SAY: "Seventeen, and I STAND. You, however, will fall like Rome, only faster and with less paperwork."
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Dealer stands. YOU do not. You will lie down. Like a Roman. Dead."
+    SAY: "The dealer hits sixteen and stands on seventeen. It's Rome's rule for conquering, with more stabbing."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "I'd hit you on 16. And on 17. And on a Friday."
+    SAY: "You split your eights? A thing split is a thing broken, and I say that as a man stabbed twenty-three times."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "Et tu, gambler? Et tu? Et DOUBLE-DOWN, brute!"
+    SAY: "Want to double down, Rico? You already doubled your debt. Why not take insurance on your life?"
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "A mere scratch on the marble! Marble's expensive. I'm taking it out of your hide!"
+    SAY: "By Juno! That was my good toga!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "By Jupiter! By Juno! By whoever I owe money to!"
+    SAY: "Et tu, Rico?! Et twenty-two, I bust!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "Veni, vidi, bust. You came, you saw, you busted. I'll write it on a tablet. A tablet computer."
+    SAY: "Veni, vidi, bust. And by 'bust' I mean you hit on twelve, and now you're a statue."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "Hail, Caesar. And farewell. Hail is complimentary. Farewell costs extra."
+    SAY: "Hail, Caesar. The dealer wins, and the player becomes a footnote."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
-
-GRUNTS (optional): grunt_hurt_1.ogg .. grunt_hurt_3.ogg (when hit, about 1 in 3 hits) and grunt_death_1.ogg (when defeated), in this boss's voice. See HOW_TO_RECORD.md, section "Grunts".

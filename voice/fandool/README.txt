@@ -22,48 +22,46 @@ Or bake the recipe in with Audacity, then turn OFF Settings > Audio > Voice Filt
 FILES EXPECTED (.ogg, 44.1 kHz, mono). 11 lines:
 
 intro_1.ogg
-    SAY: "Three down, four up. Everything you do is face up, pal. Including the begging."
+    SAY: "Seven Card Stud: three cards down, four up, so everything you do is face up. Including the begging, which I'm already looking forward to."
     HOW: Boss intro cutscene. Menacing. Seven Card Stud themed.  (Boss intro)
 
 defeat_1.ogg
-    SAY: "The river... wasn't supposed to... bleed. Replay. Please. Slow-mo."
+    SAY: "The river wasn't supposed to bleed. In stud there IS no river! I'm hallucinating my own defeat!"
     HOW: Boss defeat. Falling apart.  (Boss defeat)
 
 phase2_1.ogg
-    SAY: "Now it's a REAL game! Strap in, rookie!"
+    SAY: "Fifth street, baby! Every card you hold is face up, so the whole room gets to watch you panic."
     HOW: Boss reaches phase 2. Furious, stronger.  (Boss fight (phase2))
 
 phase3_1.ogg
-    SAY: "FINAL QUARTER! LET'S GOOOOO! Somebody call a timeout on this idiot!"
+    SAY: "Seventh street, the last card, face down! It's my only secret, and it's an ace."
     HOW: Boss reaches the final phase. Desperate and angry.  (Boss fight (phase3))
 
 taunt_1.ogg
-    SAY: "Everything's face up, buddy! Including your mistakes! Including that haircut!"
+    SAY: "In stud your up cards are face up, Rico. Everyone can see your hand, even the people who left."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_2.ogg
-    SAY: "I've seen your hole cards. They're shaking. They want a trade."
+    SAY: "There's nowhere to hide in stud, and nowhere to run either. It's a package deal."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 taunt_3.ogg
-    SAY: "Replay that! Replay it! Slow-mo! Look at that guy fall!"
+    SAY: "A seven and a three showing on fourth street? That's bringing a spork to a gunfight."
     HOW: Boss taunt during an attack.  (Boss fight (taunt))
 
 hurt_1.ogg
-    SAY: "Foul! That's a foul! I'm calling a foul on the whole building!"
+    SAY: "Foul! Somebody review the tape!"
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 hurt_2.ogg
-    SAY: "REF! REF! I'M BLEEDING, REF!"
+    SAY: "Ref! He hit me! Ref! ...I'm the ref. Ow."
     HOW: Boss gets hit. Grunt-style.  (Boss fight (hurt))
 
 kill_1.ogg
-    SAY: "Another one bites the dust! Insert horn noise!"
+    SAY: "And that's the game, folks! Me winning, you losing, and a nice highlight for the replay."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
 kill_2.ogg
-    SAY: "Sudden death. For you. The commercial break's mine."
+    SAY: "Replay that in slow motion. I want to watch you fall in high definition."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
-
-GRUNTS (optional): grunt_hurt_1.ogg .. grunt_hurt_3.ogg (when hit, about 1 in 3 hits) and grunt_death_1.ogg (when defeated), in this boss's voice. See HOW_TO_RECORD.md, section "Grunts".
