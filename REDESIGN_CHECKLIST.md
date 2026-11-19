@@ -347,4 +347,8 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
   - **Performance:** keep CPU use reasonable. Precompute wavetables, or render loops into AudioStreamWAV buffers at load time instead of per-sample generation where possible.
 
 ## N. Sound effects (LOCAL session: do not edit)
-- [ ] **50. Sound effects and grunt slots.** Done locally by the user's Claude session.
+- [x] **50. Sound effects and grunt slots.**
+  - DONE (local): `scripts/sfx.gd` rewritten as layered foley at 44.1 kHz: pitch-drop thumps, filtered noise, metal and bell partials, clay-chip clacks, glass shatter, debris grains and room echo. No more beeps.
+  - Added `double_jump`, `land_hard` and `heal` sounds.
+  - Grunt slots: `Sfx.grunt(who, slot)` plays `res://voice/<who>/grunt_<slot>_<n>.ogg` if the user recorded one. Hooked to Rico's moves, enemy deaths and boss hits and deaths.
+  - Documented in `HOW_TO_RECORD.md` and the voice folder READMEs.

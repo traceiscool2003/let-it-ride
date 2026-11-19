@@ -65,3 +65,5 @@ kill_2.ogg
     SAY: "Better luck next time. Always."
     HOW: Boss kills the player. Gloating.  (Boss fight (kill))
 
+
+GRUNTS (optional): grunt_hurt_1.ogg .. grunt_hurt_3.ogg (when hit, about 1 in 3 hits) and grunt_death_1.ogg (when defeated), in this boss's voice. See HOW_TO_RECORD.md, section "Grunts".

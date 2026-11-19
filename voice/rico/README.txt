@@ -293,3 +293,6 @@ mags_intro_4.ogg
     SAY: "You're a shark. In a suit."
     HOW: Conversation: mags_intro  (Lobby conversation)
 
+
+GRUNTS (optional): record short effort sounds named grunt_<slot>_<n>.ogg in this folder.
+Slots: jump, attack, dash, effort, slide, land, hurt, death, parry, heal. See HOW_TO_RECORD.md, section "Grunts".

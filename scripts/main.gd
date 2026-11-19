@@ -1698,7 +1698,7 @@ func _focus_tick(delta: float) -> void:
 		nerve -= NERVE_COST
 		hp = mini(start_hp, hp + 1)
 		hurt_flash = 0.0
-		Sfx.play("buy", 1.3)
+		Sfx.play("heal")
 		fx.burst(player.global_position + Vector2(0, -6), 20, Color(0.5, 1.0, 0.9), 120.0, 0.6, 2.5, -40.0)
 		fx.text(player.global_position + Vector2(0, -26), "+1 LIFE", Color(0.6, 1.0, 0.9), 11)
 
@@ -2225,6 +2225,8 @@ func _hit_juice(at: Vector2, dmg: int, fin: bool, killed: bool, from_x: float) -
 
 
 func _boss_hit_fx(dealt: int, at: Vector2) -> void:
+	if boss and randf() < 0.35:
+		Sfx.grunt(String(boss.def.get("id", "the_house")), "hurt")
 	fx.burst(at, 12 + dealt * 4, Color(1, 0.85, 0.4), 160.0, 0.35, 2.5, 120.0)
 	fx.text(at + Vector2(0, -12), "-%d" % dealt, Color(1, 0.4, 0.3) if dealt < 3 else Color(1, 0.9, 0.3), 12)
 	Sfx.play("hit", 0.8)
@@ -2234,6 +2236,7 @@ func _boss_hit_fx(dealt: int, at: Vector2) -> void:
 
 
 func _enemy_killed(e) -> void:
+	Sfx.grunt("enemy", "death")
 	var bonus: int = (5 if e.kind == 0 else 3) * flow_mult() * (3 if e.elite else 1)
 	_gain_xp(12 if e.elite else 4, "")
 	if e.elite:
@@ -2381,6 +2384,8 @@ func _on_boss_phase(p: int) -> void:
 
 
 func _on_boss_defeated() -> void:
+	if boss:
+		Sfx.grunt(String(boss.def.get("id", "the_house")), "death")
 	var tier: int = boss.tier
 	if raise_paid > 0:
 		pot += int(raise_paid * 1.5)

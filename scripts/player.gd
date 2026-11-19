@@ -378,7 +378,7 @@ func _on_land(vy: float) -> void:
 	land_comp = 1.0 + 4.0 * k
 	if vy > 120.0:
 		_dust(Vector2(global_position.x, _bottom()), 3 + int(k * 6), Vector2.UP, 1.4)
-		Sfx.play("land", 1.0 - k * 0.3)
+		Sfx.play("land_hard" if k > 0.75 else "land", 1.0 - k * 0.15)
 	landed.emit(vy)
 
 
@@ -403,7 +403,7 @@ func _double_jump() -> void:
 	squash = Vector2(0.7, 1.32)
 	if fx:
 		fx.burst(Vector2(global_position.x, _bottom()), 10, Color(1, 1, 1, 0.9), 70.0, 0.35, 2.0, 40.0, Vector2.DOWN, 1.2)
-	Sfx.play("jump", 1.25)
+	Sfx.play("double_jump")
 	_emit("DOUBLE JUMP")
 
 

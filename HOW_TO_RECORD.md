@@ -1410,3 +1410,47 @@ Folder: `voice/hustler/` (cutscene lines go in the folder shown). Voice: Everyth
 | 21 | [ ] | `hustler/city5_6.ogg` | Fine art. Fine wine. Fine print. | Crowd bark flavored for city 5. |
 | 22 | [ ] | `hustler/city5_12.ogg` | The House is watching. Behave. | Crowd bark flavored for city 5. |
 
+
+---
+
+## Grunts and effort sounds (optional, but they make combat feel real)
+
+The game already has synthesized sound effects for everything: punches, whooshes, landings, glass and chips. Grunts are **your voice layered on top**, like in a real action game.
+
+### How it works
+1. Record short grunts, roughly half a second each. One grunt per file.
+2. Name them `grunt_<slot>_<number>.ogg`. The number goes from 1 to 5. Record 2-3 versions of each, and the game picks one at random so it never sounds repetitive.
+3. Drop them into the folder for that character, as in the table below.
+4. That's it. No code changes. Files can be `.ogg`, `.wav` or `.mp3`.
+
+### Rico (`voice/rico/`)
+| File name | When it plays | How to perform it |
+|---|---|---|
+| `grunt_jump_1.ogg`, `_2`, `_3` | Jumping, double jump, wall jump | A short "hup!" or "hah!". Light, quick, from the chest. |
+| `grunt_attack_1.ogg` ... `_3` | Swinging (about half the swings) | A sharp "hyah!", "hnn!" or "ha!". Punchy, under half a second. |
+| `grunt_dash_1.ogg`, `_2` | Dashing | A quick exhale: "hff!" |
+| `grunt_effort_1.ogg`, `_2` | Vaults, ledge grabs, stomps | A strained "nngh!" |
+| `grunt_slide_1.ogg` | Sliding | "Whoa!" or a quick "ha!" |
+| `grunt_land_1.ogg` | Big falls and hard landings | "Oof!" |
+| `grunt_hurt_1.ogg` ... `_3` | Taking a hit (every time) | "Agh!", "Ugh!", "Oof!". Make it sound like it hurt. |
+| `grunt_death_1.ogg`, `_2` | Busting (dying) | A longer, dramatic groan: "Nooo... my chips..." |
+| `grunt_parry_1.ogg`, `_2` | A perfect parry | A cocky "Ha!" or "Nope!" |
+| `grunt_heal_1.ogg` | Healing with Nerve | A relieved sigh: "Ahhh, that's better." |
+
+### Regular enemies (`voice/enemy/`)
+| File name | When it plays | How to perform it |
+|---|---|---|
+| `grunt_death_1.ogg` ... `_5` | An enemy goes down | A mix: "Ugh!", "Argh!", "Not again...". Vary your pitch on each one so they sound like different people. |
+
+### Bosses (`voice/<boss folder>/`, e.g. `voice/draftqueens/`, `voice/the_house/`)
+| File name | When it plays | How to perform it |
+|---|---|---|
+| `grunt_hurt_1.ogg` ... `_3` | The boss takes a hit (about 1 in 3 hits) | In that boss's voice (see VOICE_CAST.md): "Hngh!" or "You little...!" |
+| `grunt_death_1.ogg` | The boss is defeated | A big, dramatic defeat cry. |
+
+### Tips for grunts
+- **Record a lot, then keep the best.** Do 10 jump grunts in a row, then keep the 3 best.
+- **Keep them short.** Trim the silence before and after in Audacity (select the silence, then press Delete).
+- **Don't clip.** Grunts are loud. Back off the mic a little, or lower your input volume, so the waveform doesn't hit the top.
+- **The in-game voice filter applies to grunts too.** Rico's filter is light; boss filters change your voice more. Record clean, and the game makes each one sound different.
+- **To hear them:** press F5 in Godot and jump, attack, get hit.
