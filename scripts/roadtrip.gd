@@ -43,6 +43,7 @@ static func draw(ci: CanvasItem, f: Font, city: int, t: float) -> void:
 	_road(ci, city, L, t)
 	_wet_road(ci, city, t)
 	_overhead_lights(ci, city, t)
+	_traffic(ci, city, t)
 	_car(ci, city, Vector2(450, 524), t)
 	_rain(ci, city, t)
 	_foreground(ci, city, t)
@@ -325,19 +326,25 @@ static func street_light(t: float, x: float, city: int) -> float:
 	return clampf(k, 0.0, 1.0)
 
 
-static func _car_body(ci: CanvasItem, city: int, base: Vector2, t: float) -> void:
+## `city` picks the car model. Traffic cars pass a smaller `sc`, a `dim` that
+## pushes them back into the night, `flip` for oncoming cars, and their own paint.
+static func _car_body(ci: CanvasItem, city: int, base: Vector2, t: float, sc := 1.5, dim := 0.0, flip := false, paint_over := Color(0, 0, 0, 0)) -> void:
 	var C: Dictionary = CARS[clampi(city, 0, CARS.size() - 1)]
 	var length: float = C["len"]
 	var r: float = C["r"]
-	var paint: Color = C["paint"]
+	var paint: Color = C["paint"] if paint_over.a == 0.0 else paint_over
 	var trim: Color = C["trim"]
 	var rim: Color = C["rim"]
+	if dim > 0.0:
+		paint = paint.darkened(dim)
+		trim = trim.darkened(dim)
+		rim = rim.darkened(dim)
 	var wheels: Array = C["wheels"]
-	var lit := street_light(t, base.x + length * 0.75, city)
+	var lit := street_light(t, base.x + length * 0.75, city) * (1.0 - dim)
 	# Ride: the junker jitters on old springs, the supercar glides.
 	var rattle: float = [1.6, 1.0, 0.7, 0.35, 0.15][city]
-	var bob := sin(t * (17.0 if city == 0 else 10.0)) * rattle + (sin(t * 41.0) * 0.6 if city == 0 else 0.0)
-	var M := Transform2D(0.0, Vector2(1.5, 1.5), 0.0, base)
+	var bob := sin(t * (17.0 if city == 0 else 10.0) + base.x * 0.01) * rattle + (sin(t * 41.0) * 0.6 if city == 0 else 0.0)
+	var M := Transform2D(0.0, Vector2(-sc if flip else sc, sc), 0.0, base)
 	ci.draw_set_transform_matrix(M)
 	# Ground shadow, the supercar's underglow, and the tail-light streaks.
 	Scenery.glow(ci, Vector2(length * 0.5, 1), length * 0.56, 7, Color(0, 0, 0, 0.6))
@@ -356,7 +363,7 @@ static func _car_body(ci: CanvasItem, city: int, base: Vector2, t: float) -> voi
 			Scenery.glow(ci, ep, 4 + age * 10, 3 + age * 7, Color(0.75, 0.75, 0.8, 0.13 * (1.0 - age)))
 	# Headlight beam reaching down the road ahead.
 	var flick := 1.0 if city != 0 or sin(t * 6.0) > -0.7 else 0.35
-	var beam_a := (0.12 if city > 0 else 0.08) * flick
+	var beam_a := (0.12 if city > 0 else 0.08) * flick * (1.0 - dim * 0.6)
 	for b in 4:
 		var w := 10.0 + b * 9.0
 		var hy := body_y - 22.0
@@ -560,3 +567,45 @@ static func _finish(ci: CanvasItem, t: float) -> void:
 		var gx := Scenery.rnd(seed * 977 + i * 3) * 1280.0
 		var gy := Scenery.rnd(seed * 571 + i * 7) * 720.0
 		ci.draw_rect(Rect2(gx, gy, 1, 1), Color(1, 1, 1, 0.07))
+
+
+# ---------------------------------------------------------------- traffic
+
+## Other drivers, kept in the background so Rico's car stays the hero:
+## oncoming cars in the far lane (small, dark, fast) and slower same-way cars
+## in the next lane that Rico overtakes (a little bigger, still dimmer).
+## Models and paint follow the neighbourhood: beaters downtown, exotics on the Strip.
+static func _traffic(ci: CanvasItem, city: int, t: float) -> void:
+	# Oncoming lane: headlights first, cars flash past right to left.
+	var span := 2300.0
+	for i in 3:
+		var x := fposmod(1500.0 - t * 820.0 + i * 790.0, span) - 400.0
+		var lap := int(floor((t * 820.0 - i * 790.0) / span))
+		var model := _traffic_model(city, i * 17 + lap)
+		ci.draw_set_transform(Vector2.ZERO)
+		_car_body(ci, model, Vector2(x, 444), t, 0.72, 0.58, true, _traffic_paint(city, i * 7 + lap))
+	# Same-direction lane: Rico gains on these slowly.
+	span = 2000.0
+	for i in 2:
+		var x := fposmod(1300.0 - t * 260.0 + i * 1000.0, span) - 400.0
+		var lap := int(floor((t * 260.0 - i * 1000.0) / span))
+		var model := _traffic_model(city, i * 31 + lap + 5)
+		ci.draw_set_transform(Vector2.ZERO)
+		_car_body(ci, model, Vector2(x, 470), t, 0.9, 0.48, false, _traffic_paint(city, i * 13 + lap + 3))
+	ci.draw_set_transform(Vector2.ZERO)
+	# A thin layer of road haze between the traffic and the hero car.
+	ci.draw_rect(Rect2(0, 400, 1280, 80), Color(0.02, 0.02, 0.04, 0.2))
+	# Soft spotlight on the hero car so it always pops.
+	Scenery.glow(ci, Vector2(450 + CARS[city]["len"] * 0.75, 470), 330, 90, Color(1.0, 0.9, 0.75, 0.07))
+
+
+static func _traffic_model(city: int, n: int) -> int:
+	var pick := int(Scenery.rnd(n * 3 + city * 11) * 3.0) - 1   # city-1 .. city+1
+	return clampi(city + pick, 0, 4)
+
+
+static func _traffic_paint(city: int, n: int) -> Color:
+	var h := Scenery.rnd(n * 5 + 2)
+	var s := 0.18 + 0.12 * city
+	var v := 0.42 + 0.09 * city
+	return Color.from_hsv(h, s, v)
