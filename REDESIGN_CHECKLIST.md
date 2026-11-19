@@ -308,3 +308,43 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
 - **2026-11-19 (run 1 end):** All items 1-45 and 42b are [x]. Remaining known gaps: screenshots not regenerated (no display in the cloud run); ability-only base-kit completability was reasoned about (downward flow) but not bot-verified; hub-based NPC placement of minor NPCs is on floors only. Next: playtest by hand, record voices (see HOW_TO_RECORD.md).
 
 - **2026-11-19 (lobby makeover):** The lobby is now Rico's apartment (bed, window, wardrobe, couch/TV, front door APT 4B) opening onto a night street (skyline, storefronts for Pawn/Lucky/Vera/Mags/News, lamps, bus stop to Atlantic Shitty). `level.generate_lobby`, `_draw_home_bg`, `_draw_home_tile`; screenshots via `xvfb-run ... tests/capture_home.gd`. Voice IDs unchanged; one Marlow intro line's text changed.
+
+---
+
+# PART 3 (added 2026-11-19): AAA visual and audio overhaul
+The user wants everything to look and sound advanced, like a AAA game: "not cheap, fast things". Take your time on each item and make it genuinely beautiful. Check your work with screenshots: run `tests/capture*.gd` windowed and compare against the reference games.
+
+Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT edit `scripts/sfx.gd` or the grunt sections of `HOW_TO_RECORD.md`.
+
+## M. Environments: every map, Hollow Knight and Silksong quality
+- [ ] **46. Rendering upgrade for levels:**
+  - Parallax: at least 4 background layers plus 1-2 foreground layers per zone, with depth fog and atmospheric perspective.
+  - Lighting: rim lighting, light shafts, emissive props, animated ambient particles (dust, steam, embers, rain, confetti depending on zone).
+  - Tiles: edge highlights, ambient occlusion in corners, varied tiles (no repeating grid look), decals (cracks, stains, posters, graffiti), and props that break up silhouettes.
+  - Smooth camera framing.
+- [ ] **47. A distinct, detailed look for each city/zone, matching the trashy-to-luxury climb:**
+  - **Alley (city 1):** wet brick, dumpsters, fire escapes, flickering neon, steam vents, rain, trash bags, rats, puddle reflections.
+  - **Atlantic Shitty, Resortz:** peeling carpet, water-stained ceilings, dim slots, boardwalk windows.
+  - **Reno, Cirrcus Cirrcus:** tacky carnival colors, tent stripes, clown art, a tired carousel.
+  - **Biloxi, Hard Rok:** guitars, stage lights, gulf windows, wood and leather.
+  - **Fremont, Goldun Nugget:** gold, neon canopy, a shark tank, old-Vegas glamour.
+  - **The Strip, Bellagiro:** marble, crystal chandeliers, fountains, gardens, art.
+  - **Boss arenas:** each table-game boss gets a themed stage with set dressing.
+  - **The apartment hub:** cozy-gross, lived-in detail.
+- [ ] **48. Every character redesigned to look premium:**
+  - **Rico:** silhouette, outfit layers, the clothing tiers per floor, readable at gameplay zoom.
+  - **Every enemy type:** distinct silhouettes, color coding by city.
+  - **Every NPC:** the vendors, the cat, the rivals, the singer and the others.
+  - **Every boss:** big, detailed, animated, with a visual change per phase.
+  - **Portraits:** dialogue portraits for everyone.
+  - Use `rig.gd` (the procedural IK rig) and code-drawn art, with smooth shading, outlines, highlights and secondary motion (cloth, hair, coats).
+  - Keep the animation quality Hollow Knight-like.
+- [ ] **49. Music overhaul (`scripts/music.gd`):** replace the chiptune/beep feel with rich synthesized music.
+  - **Synthesis:** layered pads, an electric-piano/Rhodes timbre (FM), upright or electric bass, real-sounding drum kits (kick, snare, hats synthesized with noise and pitch envelopes), and reverb/echo.
+  - **Exploration:** one theme per city that matches its mood: grimy lo-fi jazz noir in the alley, through smoky lounge jazz, to big-band and luxe Vegas on the Strip.
+  - **Bosses:** an intense track per boss with phase escalation.
+  - **Transitions:** smooth crossfades.
+  - **Performance:** keep CPU use reasonable. Precompute wavetables, or render loops into AudioStreamWAV buffers at load time instead of per-sample generation where possible.
+
+## N. Sound effects (LOCAL session: do not edit)
+- [ ] **50. Sound effects and grunt slots.** Done locally by the user's Claude session.
