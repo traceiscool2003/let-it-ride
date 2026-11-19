@@ -94,3 +94,14 @@ Open `project.godot` in Godot 4.7 and press F5.
 - `AAA_CHECKLIST.md` lists every feature and where it lives in the code.
 - `godot --path . --script res://tests/capture.gd` saves screenshots to `user://`.
 - `godot --path . --script res://tests/poses.gd` saves a gallery of every animation pose.
+
+## Voice acting
+
+Every line of dialogue can be voiced. Drop `res://voice/<character>/<line_id>.ogg` (or `.wav`/`.mp3`) and the game plays it automatically; missing files fall back to pitched text blips.
+
+- `HOW_TO_RECORD.md`: beginner step-by-step guide, recipe cards, per-character tick-box checklist
+- `VOICE_CAST.md`: how each character should sound
+- `VOICE_SCRIPT.md`: every line with its ID
+- Press **F3** in game for the Voice Test menu. Settings > Audio has Voice Volume and Voice Filters.
+- After editing `scripts/voice_lines*.gd` or `voice_profiles.gd`, regenerate the docs and folders with:
+  `godot --headless --path . --script res://tools/gen_voice_kit.gd`

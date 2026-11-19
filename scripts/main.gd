@@ -20,6 +20,7 @@ const Charms := preload("res://scripts/charms.gd")
 const Wardrobe := preload("res://scripts/wardrobe.gd")
 const Weapons := preload("res://scripts/weapons.gd")
 const Cities := preload("res://scripts/cities.gd")
+const VoiceMisc := preload("res://scripts/voice_lines_misc.gd")
 const VoiceLines := preload("res://scripts/voice_lines.gd")
 const VoiceProfiles := preload("res://scripts/voice_profiles.gd")
 const BossDefs := preload("res://scripts/boss_defs.gd")
@@ -926,6 +927,12 @@ func _build_floor() -> void:
 			{"do": "say", "lines": Story.MAGS_CHASE},
 			{"do": "pan", "to": "player", "zoom": cam_zoom, "t": 0.7}, {"do": "bars", "v": 0.0},
 		], "mags")
+	if not in_hub and state == "play" and not is_boss_floor() and Cities.floor_in_city(floor_num) == (0 if floor_num > 5 else 0) and floor_num <= 25:
+		var cn := Cities.city_of(floor_num) + 1
+		var sid := "city%d_arrive" % cn
+		if VoiceMisc.SCENES.has(sid):
+			_cinematic_later([{"do": "bars", "v": 1.0}, {"do": "card", "text": String(Cities.info(floor_num)["name"]), "sub": String(Cities.info(floor_num)["full"]), "t": 2.2},
+				{"do": "say", "lines": VoiceMisc.SCENES[sid]}, {"do": "bars", "v": 0.0}], sid)
 	if is_boss_floor() and state == "play" and not in_hub:
 		var tier: int = boss.tier
 		_tip("boss", "BOSS FLOOR", "The exit stays locked until the boss goes down. Watch for the wind-up, then parry (Q / K) or get out of the way.")
