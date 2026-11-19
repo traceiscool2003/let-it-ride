@@ -1,4 +1,5 @@
 extends RefCounted
+const Portraits := preload("res://scripts/portraits.gd")
 ## Detailed, animated character art drawn with vector shapes: the Lobby
 ## NPCs (Vera, Mags, Lucky, Jules, Comp the cat, Marlow's payphone) and the
 ## three bosses (Big Sal, Madame Roulette, The House), including their
@@ -920,7 +921,7 @@ static func npc_portrait(ci: CanvasItem, center: Vector2, who: String, t: float,
 			cat(ci, t)
 		_:
 			ci.draw_set_transform_matrix(Transform2D.IDENTITY)
-			return false
+			return Portraits.draw(ci, center, who, t, sc)
 	ci.draw_set_transform_matrix(Transform2D.IDENTITY)
 	return true
 

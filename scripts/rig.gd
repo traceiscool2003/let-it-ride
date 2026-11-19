@@ -6,6 +6,7 @@ extends RefCounted
 ## rotation), so one rig handles every state.
 
 const Sprites := preload("res://scripts/sprites.gd")
+const Gear := preload("res://scripts/gear.gd")
 
 var s: Dictionary
 var pose: Dictionary
@@ -177,9 +178,24 @@ static func boss_style(tier: int) -> Dictionary:
 	return st
 
 
-static func enemy_style(kind: int) -> Dictionary:
+static func enemy_style(kind: int, floor_num := 0) -> Dictionary:
 	var st := guard_style()
 	var pal: Dictionary = Sprites.GUARD_PAL.duplicate()
+	if kind != 2 and floor_num > 0:
+		var cp: Array = Gear.palette(floor_num)
+		pal["J"] = cp[0]
+		pal["j"] = cp[1]
+		pal["W"] = cp[1]
+		pal["R"] = cp[2]
+		pal["S"] = Color(0.78, 0.6, 0.48) if kind != 3 else Color(0.6, 0.45, 0.35)
+		st["arm"] = (cp[0] as Color).lightened(0.05)
+		st["leg"] = (cp[0] as Color).darkened(0.45)
+		if kind == 3:
+			st["arm_w"] = 3.6
+			st["leg_w"] = 3.8
+		st["torso_tex"] = Sprites.bake(Sprites.G_TORSO, pal)
+		st["head_tex"] = Sprites.bake(Sprites.G_HEAD, pal)
+		return st
 	if kind == 2:
 		pal["J"] = Color(0.62, 0.08, 0.14)
 		pal["j"] = Color(0.8, 0.2, 0.25)

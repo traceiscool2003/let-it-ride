@@ -333,7 +333,8 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
   - **Boss arenas:** each table-game boss gets a themed stage with set dressing.
   - **The apartment hub:** cozy-gross, lived-in detail.
   - DONE: zones 0-5 each have their own parallax set, dressing, decals and particles (alley rain/steam/rats/puddles/barrel fire; Resortz carpet/palms/leaks/boardwalk windows; Cirrcus tent stripes/bunting/ferris wheel/balloons/popcorn/carousel horse/confetti; Hard Rok wood paneling/amps/guitars/gulf windows/smoke (palette retuned); Goldun Nugget gold arches/shark tank/glitter; Bellagiro marble/chandeliers/fountains/topiary/sparkles). Boss arenas: curtains, spotlight sweep, per-boss emblem (`level.boss_id`), table + chairs, rising embers. Hub makeover was already done.
-- [ ] **48. Every character redesigned to look premium:**
+- [x] **48. Every character redesigned to look premium:**
+  - DONE (this pass): enemy gear per type in new `scripts/gear.gd` (bandana, junkie beanie+syringe, bottle in paper bag, eyeshade+fanned cards, headset+clipboard, shades+earpiece+tie, scoped sniper rifle, crown+monocle) and city jacket palettes (grimy alley, teal Resortz, tent-red Cirrcus, leather Hard Rok, black-gold Nugget, white-tux Bellagiro) via `Rig.enemy_style(kind, floor)`; generated dialogue portraits for every other speaker (all bosses, rivals, crowd) in new `scripts/portraits.gd`, hooked from `Art.npc_portrait`; Rico/boss/NPC rig art, wardrobe tiers and 3-phase boss changes already existed from earlier items. Screenshots: `tests/capture_enemies.gd`, `tests/capture_cast.gd`.
   - **Rico:** silhouette, outfit layers, the clothing tiers per floor, readable at gameplay zoom.
   - **Every enemy type:** distinct silhouettes, color coding by city.
   - **Every NPC:** the vendors, the cat, the rivals, the singer and the others.

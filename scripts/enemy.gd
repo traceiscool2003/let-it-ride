@@ -1,4 +1,5 @@
 extends CharacterBody2D
+const Gear := preload("res://scripts/gear.gd")
 ## Pit security. kind 0 = Guard (patrols, telegraphs a punch you can parry),
 ## kind 1 = Bat (hangs, then swoops), kind 2 = Dealer (throws cards from range),
 ## kind 3 = Heavy (riot shield blocks frontal strikes; flank, stomp or parry).
@@ -44,7 +45,11 @@ var ground_y := 0.0
 var elite := false
 
 
+var fl_n := 1
+
+
 func setup(k: int, lvl, pl, floor_num: int, threat := 1.0, elite_ := false) -> void:
+	fl_n = floor_num
 	kind = k
 	level = lvl
 	player = pl
@@ -64,7 +69,7 @@ func setup(k: int, lvl, pl, floor_num: int, threat := 1.0, elite_ := false) -> v
 		hp = int(T["hp"]) + floor_num / 10
 		v_shots = int(T.get("shots", 1)) + (1 if randf() < 0.3 and beh == "burst" else 0)
 		if beh != "rat":
-			rig = Rig.new(Rig.enemy_style(kind))
+			rig = Rig.new(Rig.enemy_style(kind, floor_num))
 		if bool(T.get("air", false)):
 			size = Vector2(12, 10)
 		shot_cd = randf_range(0.8, 2.0)
@@ -75,7 +80,7 @@ func setup(k: int, lvl, pl, floor_num: int, threat := 1.0, elite_ := false) -> v
 	else:
 		speed = 36.0 + floor_num * 4.0
 		size = Vector2(12, 21)
-		rig = Rig.new(Rig.guard_style() if kind == 0 else Rig.enemy_style(kind))
+		rig = Rig.new(Rig.enemy_style(kind, floor_num))
 		if kind == 3:
 			size = Vector2(16, 27)
 			speed *= 0.6
@@ -450,7 +455,9 @@ func _draw() -> void:
 		if elite and alive:
 			var gp := 0.5 + 0.5 * sin(t * 4.0)
 			draw_circle(Vector2(0, 0), size.y * 0.75, Color(1, 0.8, 0.25, 0.08 + 0.06 * gp))
-		rig.draw(self, Transform2D(0.0, Vector2(float(dir), 1.0) * _scale(), 0.0, Vector2(0, size.y * 0.5)))
+		var exf := Transform2D(0.0, Vector2(float(dir), 1.0) * _scale(), 0.0, Vector2(0, size.y * 0.5))
+		rig.draw(self, exf)
+		Gear.enemy(self, exf, rig, kind, t, Gear.palette(fl_n)[2])
 		if beh != "" and alive:
 			var tc: Color = T.get("col", Color.GRAY)
 			draw_set_transform(Vector2(0, size.y * 0.5) , 0.0, Vector2(float(dir), 1.0))
