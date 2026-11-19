@@ -17,6 +17,7 @@ const HUDScript := preload("res://scripts/hud.gd")
 const CasinoScript := preload("res://scripts/casino.gd")
 const Story := preload("res://scripts/story.gd")
 const Charms := preload("res://scripts/charms.gd")
+const Wardrobe := preload("res://scripts/wardrobe.gd")
 const Dialogue := preload("res://scripts/dialogue.gd")
 const Menus := preload("res://scripts/menus.gd")
 const MagsScript := preload("res://scripts/mags.gd")
@@ -305,6 +306,8 @@ var casino
 ## Slot machines on this floor, keyed by position: each has its own odds.
 var machines := {}
 var charms: Charms
+## Worn clothing ids for this run (see wardrobe.gd). Abilities come from here.
+var worn: Array = []
 var menu: Menus
 var settings: SettingsScript
 var settings_return := "title"
@@ -632,6 +635,7 @@ func _start_run(daily := false) -> void:
 	revive_used = false
 	run_dmg_bonus = ch["dmg"]
 	charms.reset_run()
+	worn = Wardrobe.START_OUTFIT.duplicate()
 	heat_run = heat()
 	hp = 99
 	_recalc_max_hp()
@@ -792,6 +796,8 @@ func _build_floor() -> void:
 	player.dash_enabled = not rules.has("grounded")
 	player.dash_max = 1 + perk("dash") + charms.dash_bonus()
 	player.dashes = player.dash_max
+	_apply_worn()
+	player.pounded.connect(_on_pound)
 	player.parry_bonus = perk("parry") * 0.05
 	world.add_child(player)
 	player.move_done.connect(_on_move)
@@ -1981,6 +1987,9 @@ func _on_boss_defeated() -> void:
 	for e in enemies:
 		if is_instance_valid(e) and e.alive:
 			e.kill(0.0)
+	var drop := _roll_wear(1)
+	if not drop.is_empty():
+		_give_wear(drop[0])
 	level.exit_locked = false
 	level.tile_layer.queue_redraw()
 	for p in projectiles:
@@ -2608,6 +2617,56 @@ func _charm_item(id: String, tag := "") -> Dictionary:
 		"icon": String(inf["tags"][0]).left(1) if inf["tags"].size() > 0 else "?"}
 
 
+func _wear_item(id: String) -> Dictionary:
+	var inf: Dictionary = Wardrobe.info(id)
+	var price := int(round(float(inf["price"]) * _price_mult()))
+	var ab := " [" + String(inf["abil"]).to_upper().replace("_", " ") + "]" if inf.has("abil") else ""
+	return {"id": id, "name": inf["name"], "desc": String(inf["desc"]), "tag": "$%d" % price, "price": price,
+		"col": Color(inf["col"]).lightened(0.25), "tag_col": Color(inf["col2"]), "icon": "W"}
+
+
+## Pick clothing the player does not wear yet. Ability gear is weighted first.
+func _roll_wear(n: int) -> Array:
+	var pool: Array = []
+	for id in Wardrobe.ITEMS:
+		if id != "thrift_sneakers" and not worn.has(id) and int(Wardrobe.ITEMS[id]["price"]) > 0:
+			pool.append(id)
+	var out: Array = []
+	while out.size() < n and not pool.is_empty():
+		out.append(pool.pop_at(rng.randi_range(0, pool.size() - 1)))
+	return out
+
+
+func _give_wear(id: String) -> void:
+	var inf: Dictionary = Wardrobe.info(id)
+	worn = Wardrobe.wear(worn, id)
+	_apply_worn()
+	toasts.append({"text": "WEARING: " + String(inf["name"]), "sub": String(inf["desc"]), "t": 4.0})
+	if player and is_instance_valid(player):
+		fx.burst(player.global_position, 16, Color(inf["col"]), 120.0, 0.6, 2.5, -30.0)
+
+
+## Push worn clothing onto the player: abilities and the drawn outfit.
+func _apply_worn() -> void:
+	if player == null or not is_instance_valid(player):
+		return
+	var ab: Dictionary = Wardrobe.abilities(worn)
+	player.abil = ab
+	player.worn = worn
+	player.outfit_floor = floor_num
+	player.dash_enabled = not rules.has("grounded")
+
+
+func _on_pound(pos: Vector2) -> void:
+	shake(0.35)
+	hitstop(0.05)
+	Sfx.play("slam")
+	fx.burst(pos, 14, Color(0.8, 0.7, 0.6), 140.0, 0.5, 2.4, 80.0, Vector2.UP, PI * 0.5)
+	for e in enemies:
+		if is_instance_valid(e) and e.alive and absf(e.global_position.x - pos.x) < 36.0 and absf(e.global_position.y - pos.y) < 24.0:
+			e.hurt(2 + run_dmg_bonus, 0.0) if e.has_method("hurt") else e.kill(0.0)
+
+
 func _shop_price(id: String) -> int:
 	var base: int = Charms.PRICE[Charms.info(id)["rarity"]]
 	return int(round(base * (1.0 + floor_num / 6.0) * _price_mult() / 5.0)) * 5
@@ -2652,6 +2711,12 @@ func _build_menu(kind: String, sub_override: String, keep_sel: int) -> void:
 				it["price"] = price
 				it["disabled"] = pot < price
 				items.append(it)
+			if not data.has("wear"):
+				data["wear"] = _roll_wear(2)
+			for wid in data["wear"]:
+				var wit := _wear_item(wid)
+				wit["disabled"] = pot < int(wit["price"])
+				items.append(wit)
 			var rr := int(round(20 * (1 + int(data["rerolls"])) * _price_mult()))
 			items.append({"id": "reroll", "name": "REROLL", "desc": "Vera shuffles new charms onto the table.", "tag": "$%d" % rr, "price": rr, "col": Color(0.6, 0.6, 0.7), "icon": "R", "disabled": pot < rr})
 		"pick":
@@ -2768,6 +2833,13 @@ func _menu_result(res: Dictionary) -> void:
 			if pot < price:
 				menu.set_msg("Vera: \"Your Pot's light, sugar.\"", Color(1, 0.5, 0.45))
 				Sfx.play("deny")
+				return
+			if Wardrobe.ITEMS.has(id):
+				pot -= price
+				(menu.data["wear"] as Array).erase(id)
+				Sfx.play("buy")
+				_give_wear(id)
+				_build_menu("shop", "", menu.sel)
 				return
 			pot -= price
 			if id == "reroll":

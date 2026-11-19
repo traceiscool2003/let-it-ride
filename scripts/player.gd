@@ -3,12 +3,14 @@ extends CharacterBody2D
 
 signal move_done(move_name: String)
 signal landed(impact: float)
+signal pounded(pos: Vector2)
 
 enum S { NORMAL, WALL_RUN, LEDGE, CLIMB, SLIDE, DASH, VAULT, DEAD }
 
 const T := 16.0
 const Rig := preload("res://scripts/rig.gd")
 const SCARF_N := 8
+const Wardrobe := preload("res://scripts/wardrobe.gd")
 
 var cfg: MovementConfig
 var level
@@ -38,6 +40,10 @@ var dash_enabled := true
 ## Abilities come from worn clothing (see main.OUTFIT_ITEMS). Keys: dash, double_jump,
 ## wall (cling + wall jump), wall_run, slide, vault, ledge, glide, super_dash, pound.
 var abil := {"dash": true}
+## Worn clothing ids and the floor number (outfit tier); main sets these.
+var worn: Array = []
+var outfit_floor := 1
+var pounding := false
 var air_jumps := 0
 var dash_cd := 0.0
 var dash_dir := Vector2.RIGHT
@@ -222,6 +228,24 @@ func _st_normal(delta: float, ix: int, iy: int, jump_held: bool, dash_pressed: b
 		wall_run_ready = true
 	else:
 		coyote = maxf(0.0, coyote - delta)
+
+	if pounding:
+		if on_floor:
+			pounding = false
+			pounded.emit(Vector2(global_position.x, _bottom()))
+		else:
+			velocity = Vector2(0, 560.0)
+			move_and_slide()
+			if is_on_floor():
+				pounding = false
+				_on_land(560.0)
+				pounded.emit(Vector2(global_position.x, _bottom()))
+			return
+	elif abil.get("pound", false) and not on_floor and iy > 0 and not jump_held and velocity.y > -80.0 and (_ground_below() < 0.0 or _ground_below() - _bottom() > 24.0):
+		pounding = true
+		squash = Vector2(0.8, 1.3)
+		Sfx.play("slam", 1.2)
+		return
 
 	var wd := _wall_dir() if abil.get("wall", false) else 0
 	if not on_floor and wd != 0:
@@ -990,6 +1014,7 @@ func _draw() -> void:
 					draw_line(p0, p1, sc if i % 3 != 2 else sc.darkened(0.2), w)
 
 	rig.draw(self, xf, a)
+	Wardrobe.draw(self, rig, xf, worn, outfit_floor, a)
 
 	if flow_ratio > 0.25:
 		draw_set_transform_matrix(xf)

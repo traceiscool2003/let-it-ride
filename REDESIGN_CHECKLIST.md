@@ -68,8 +68,9 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - Keep coyote time, jump buffer and corner correction.
   - Remove or gate the parkour extras (wall run, slide, vault, ledge grab) so the default kit reads like HK.
   - The map is "grounded and slower": walking pace, not a speedrunner game.
-- [ ] **2. Abilities are wearable clothing items**
-  - PROGRESS: the player side is done (`player.abil` keys `dash`, `double_jump`, `wall`, `wall_run`, `slide`, `vault`, `ledge`, `glide`, `super_dash`; `pound` is not wired yet).
+- [x] **2. Abilities are wearable clothing items**
+  - DONE: new `scripts/wardrobe.gd` (item table, slots, swag score, per-city outfit tiers, rig drawing); `main.worn` sets `player.abil` on spawn, Vera's table sells 2 clothes, bosses drop one, ground pound added (`player.pounded`).
+  - (old note) PROGRESS: the player side is done (`player.abil` keys `dash`, `double_jump`, `wall`, `wall_run`, `slide`, `vault`, `ledge`, `glide`, `super_dash`; `pound` is not wired yet).
   - Still to do:
     - a clothing item table in main
     - drops and vendor sales
