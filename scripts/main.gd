@@ -39,7 +39,7 @@ const DEFAULT_KEYS := {
 	"attack": [KEY_F, KEY_J],
 	"parry": [KEY_Q, KEY_K],
 	"focus": [KEY_E, KEY_L],
-	"shoot": [KEY_G, KEY_O], "weapon": [KEY_TAB],
+	"shoot": [KEY_G, KEY_O], "weapon": [KEY_TAB], "map": [KEY_M],
 	"confirm": [KEY_ENTER, KEY_KP_ENTER],
 	"restart": [KEY_R], "pause": [KEY_ESCAPE, KEY_P],
 	"choose1": [KEY_1], "choose2": [KEY_2],
@@ -382,6 +382,8 @@ var dialog_spoken: Array = []
 var dialog_clip := 0.0
 var dialog_clip_wait := 0.0
 var recent_death := false
+## Map screen (M): markers you drop (floor-local world positions).
+var map_markers: Array = []
 var voice_test_on := false
 var vt_char := 0
 var vt_line := 0
@@ -900,6 +902,7 @@ func _build_floor() -> void:
 	chip_mult = 1
 	iris_t = 0.0
 	charms.reset_floor()
+	map_markers.clear()
 	floor_t = 0.0
 	dice_chip_t = 0.0
 	bet_used = false
@@ -1060,6 +1063,7 @@ func _choose(i: int) -> void:
 		best = banked
 		new_best = true
 	floor_num += 1
+	_recalc_max_hp()
 	_save()
 	_loading_floor(func(): _build_floor())
 
@@ -1261,6 +1265,23 @@ func _process(delta: float) -> void:
 			_wipe_tick(delta)
 		"skills":
 			_skills_tick()
+		"map":
+			Music.intensity = 0.0
+			if _jp("map") or _jp("pause") or _jp("dash"):
+				state = "play"
+				get_tree().paused = false
+				Sfx.play("tick", 0.8)
+			elif (_jp("jump") or _jp("confirm")) and player and is_instance_valid(player):
+				# Drop or remove a marker at your position.
+				var near := -1
+				for i in map_markers.size():
+					if (map_markers[i] as Vector2).distance_to(player.global_position) < 40.0:
+						near = i
+				if near >= 0:
+					map_markers.remove_at(near)
+				else:
+					map_markers.append(player.global_position)
+				Sfx.play("tick", 1.5)
 		"trophies":
 			if _jp("pause") or _jp("dash") or _jp("jump") or _jp("confirm"):
 				_back_from_menu_screen()
@@ -1559,6 +1580,11 @@ func _tick_play(delta: float) -> void:
 		popups = popups.filter(func(p): return p["life"] > 0.0)
 		return
 	floor_t += delta
+	if _jp("map") and state == "play":
+		state = "map"
+		get_tree().paused = true
+		Sfx.play("tick", 1.2)
+		return
 	_coach_tick(delta)
 	dice_chip_t = maxf(0.0, dice_chip_t - delta)
 	_tick_bet()
@@ -2416,6 +2442,11 @@ func _callout(text: String, col: Color) -> void:
 	callout_col = col
 
 
+## Loyalty status for this run: earned by beating each city's boss (floor 5, 10, ...).
+func run_status() -> int:
+	return Cities.status_for(floor_num - 1)
+
+
 func _collect(c) -> void:
 	var v: int = c.value
 	if not c.raw:
@@ -2425,6 +2456,8 @@ func _collect(c) -> void:
 			"extra_mult": float(chip_mult) * (2.0 if dice_chip_t > 0.0 else 1.0)})
 		if charms.seven_proc:
 			_callout("LUCKY SEVEN!  +$%d" % v, Color(1, 0.85, 0.3))
+	if not c.raw:
+		v = int(round(v * (1.0 + Cities.chip_bonus(run_status()))))
 	pot += v
 	stats["chips"] = stats.get("chips", 0) + v
 	var col: Color = c.color()
@@ -2689,7 +2722,7 @@ func _stake_rules() -> Array:
 
 func _recalc_max_hp() -> void:
 	var ch: Dictionary = CHARACTERS[char_i]
-	start_hp = maxi(1, base_hp + perk("skin") + int(ch["hp"]) + charms.max_hp_delta() - (1 if _stake("short") else 0))
+	start_hp = maxi(1, (1 if run_status() >= 4 else 0) + base_hp + perk("skin") + int(ch["hp"]) + charms.max_hp_delta() - (1 if _stake("short") else 0))
 	hp = mini(hp, start_hp)
 
 
@@ -2705,8 +2738,12 @@ func _debt() -> int:
 	return debt_principal + debt_interest
 
 
+func _price_mult_status() -> float:
+	return 0.9 if run_status() >= 3 else 1.0
+
+
 func _price_mult() -> float:
-	return charms.price_mult() * (1.5 if _stake("comps") else 1.0)
+	return charms.price_mult() * (1.5 if _stake("comps") else 1.0) * _price_mult_status()
 
 
 func _floor_kind_available(kind: String) -> bool:

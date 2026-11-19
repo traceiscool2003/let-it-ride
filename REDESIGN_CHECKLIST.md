@@ -165,10 +165,13 @@ A Hollow Knight-style action platformer (movement, combat, animation, map) with 
   - Bigger, deeper, Hollow Knight-style interconnected maps.
   - The pace is grounded and slower, rewarding players who take their time.
 - [ ] **27. Hidden stuff:** breakable walls, secret rooms and hidden items.
-- [ ] **28. The map naturally guides you to the boss** through layout, lighting and signage, not a waypoint arrow.
+- [x] **28. The map naturally guides you
+  - DONE: removed the exit waypoint arrow (`hud.gd`); the lit exit door (lamp + glow in `level._build_lights`) and the M map guide you. Level layout bias toward the exit is unchanged. to the boss** through layout, lighting and signage, not a waypoint arrow.
 - [ ] **29. Vendor rooms are spread around the map:** a clothing or items vendor, the sketchy vendor and a weapons vendor.
-- [ ] **30. Silksong-style map screen on M** that shows only rooms you've visited, plus your position and markers.
-- [ ] **31. Each city earns you a new casino status**, like real loyalty tiers (Bronze, Silver, Gold, Platinum, Black Card). The status gives perks and shows on the HUD.
+- [x] **30. Silksong-style map screen
+  - DONE: `state "map"` (M key): `hud._draw_map` draws only seen cells, you, exit, shops/tables, boss, SPACE drops markers (`main.map_markers`). on M** that shows only rooms you've visited, plus your position and markers.
+- [x] **31. Each city earns you
+  - DONE: `main.run_status()` (Bronze..Black Card per boss beaten in the run), chip bonus, shop discount (Gold+), +1 life (Platinum+), status on the HUD (`cities.gd`). a new casino status**, like real loyalty tiers (Bronze, Silver, Gold, Platinum, Black Card). The status gives perks and shows on the HUD.
 
 ## G. Money
 - [x] **32. Money is poker chips

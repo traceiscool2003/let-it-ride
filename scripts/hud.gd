@@ -156,6 +156,46 @@ func _update_minimap() -> void:
 	mini_tex.update(mini_img)
 
 
+## Silksong-style map (M): only places you have seen, you, markers, vendors, exit.
+func _draw_map() -> void:
+	var lv = g.level
+	if lv == null or not is_instance_valid(lv) or mini_tex == null:
+		return
+	draw_rect(Rect2(0, 0, 1280, 720), Color(0.03, 0.02, 0.05, 0.94))
+	var city: Dictionary = g.Cities.info(g.floor_num)
+	_ctxt(54, "%s  -  FLOOR %d" % [String(city["full"]).to_upper(), g.floor_num], 28, GOLD)
+	var sc := minf(1100.0 / lv.w, 520.0 / lv.h)
+	var mr := Rect2(640 - lv.w * sc * 0.5, 100, lv.w * sc, lv.h * sc)
+	draw_rect(mr.grow(6), Color(0.1, 0.07, 0.14))
+	draw_rect(mr.grow(6), Color(GOLD, 0.5), false, 2.0)
+	draw_texture_rect(mini_tex, mr, false)
+	# Room grid lines.
+	for rx in range(1, lv.RX):
+		draw_line(mr.position + Vector2(rx * lv.RW * sc, 0), mr.position + Vector2(rx * lv.RW * sc, mr.size.y), Color(1, 1, 1, 0.05), 1.0)
+	for ry in range(1, lv.RY):
+		draw_line(mr.position + Vector2(0, ry * lv.RH * sc), mr.position + Vector2(mr.size.x, ry * lv.RH * sc), Color(1, 1, 1, 0.05), 1.0)
+	var ex: Vector2 = lv.exit_pos / 16.0
+	if lv.seen[clampi(int(ex.y) - 1, 0, lv.h - 1) * lv.w + clampi(int(ex.x), 0, lv.w - 1)] == 1:
+		_diamond(ex * sc + mr.position + Vector2(0, -sc), 8.0, GOLD)
+		_txt(ex * sc + mr.position + Vector2(10, -4), "EXIT", 13, GOLD)
+	for gm in lv.games:
+		var gp: Vector2 = (gm[0] as Vector2) / 16.0
+		if lv.seen[clampi(int(gp.y) - 1, 0, lv.h - 1) * lv.w + clampi(int(gp.x), 0, lv.w - 1)] == 1:
+			var lab := "SHOP" if gm[1] == "vera" else ("BAR" if gm[1] == "bar" else "TABLE")
+			draw_circle(gp * sc + mr.position + Vector2(0, -sc), 5.0, CYAN)
+			_txt(gp * sc + mr.position + Vector2(8, -2), lab, 12, CYAN)
+	for mk in g.map_markers:
+		var mp: Vector2 = (mk as Vector2) / 16.0 * sc + mr.position
+		_diamond(mp, 6.0, Color(1, 0.4, 0.8))
+	if g.boss and is_instance_valid(g.boss) and g.boss.alive():
+		draw_circle(g.boss.global_position / 16.0 * sc + mr.position, 6.0, RED)
+	var pp: Vector2 = g.player.global_position / 16.0 * sc + mr.position
+	if _blink(300):
+		draw_circle(pp, 6.0, Color.WHITE)
+	draw_circle(pp, 4.0, GREEN)
+	_ctxt(660, "SPACE: drop / remove a marker      M or ESC: close      The map fills in as you explore.", 16, DIM)
+
+
 # ---------------------------------------------------------------- dispatch
 
 func _draw() -> void:
@@ -170,6 +210,9 @@ func _draw() -> void:
 			_draw_trophies()
 		"play":
 			_draw_play()
+		"map":
+			_draw_play()
+			_draw_map()
 		"cine":
 			_draw_cine()
 		"settings":
@@ -323,6 +366,7 @@ func _draw_run_hud() -> void:
 	else:
 		_ctxt(76, "FLOOR %d" % g.floor_num, 18, Color(1, 1, 1, 0.85))
 
+	_ctxt(98, "%s STATUS" % g.Cities.status_name(g.run_status()), 13, g.Cities.CITIES[clampi(g.run_status() - 1, 0, 4)]["col"] if g.run_status() >= 1 else DIM)
 	# --- Minimap.
 	if mini_tex and g.level and is_instance_valid(g.level):
 		var lv = g.level
@@ -910,22 +954,6 @@ func _draw_run_extras() -> void:
 			draw_rect(r, Color(0, 0, 0, 0.35))
 			draw_rect(r, Color(1, 1, 1, 0.08), false, 1.0)
 	_draw_objectives(22.0, 206.0)
-	# --- Arrow toward the exit when it's off screen.
-	if g.level and is_instance_valid(g.level) and g.exit_seen() and not g.level.exit_locked:
-		var ep: Vector2 = g.to_screen(g.level.exit_pos + Vector2(0, -16))
-		var view := Rect2(60, 60, 1160, 600)
-		if not view.has_point(ep):
-			var c := Vector2(640, 360)
-			var d := (ep - c).normalized()
-			var hit := c + d * 1000.0
-			var k := minf(absf((view.size.x * 0.5) / maxf(0.001, absf(d.x))), absf((view.size.y * 0.5) / maxf(0.001, absf(d.y))))
-			hit = c + d * k
-			var pulse := 1.0 + 0.15 * sin(t * 7.0)
-			var tip := hit + d * 14.0 * pulse
-			var side := Vector2(-d.y, d.x) * 11.0 * pulse
-			draw_colored_polygon(PackedVector2Array([tip, hit - d * 8.0 + side, hit - d * 8.0 - side]), GOLD)
-			draw_polyline(PackedVector2Array([tip, hit - d * 8.0 + side, hit - d * 8.0 - side, tip]), Color(0, 0, 0, 0.7), 2.0)
-			_txt(hit - d * 34.0 + Vector2(-30, 6), "EXIT", 15, GOLD, HORIZONTAL_ALIGNMENT_CENTER, 60)
 	# --- Dice buff.
 	if g.dice_chip_t > 0.0:
 		_txt(Vector2(0, 640), "SNAKE EYES  CHIPS x2  %ds" % ceili(g.dice_chip_t), 18, GREEN, HORIZONTAL_ALIGNMENT_CENTER, 1280)

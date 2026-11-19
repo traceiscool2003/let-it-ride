@@ -9,7 +9,7 @@ const CITIES := [
 		"status": "BRONZE", "perk": "Chips are worth +5%", "col": Color(0.8, 0.5, 0.25),
 		"sub": "Salt air, soggy boardwalk, and a casino that smells like regret."},
 	{"name": "RENO", "casino": "CIRRCUS CIRRCUS", "full": "Reno: Cirrcus Cirrcus", "zone": 1, "alley_floors": 0,
-		"status": "SILVER", "perk": "Chips +10%, start each floor with +1 Nerve", "col": Color(0.75, 0.78, 0.85),
+		"status": "SILVER", "perk": "Chips +10%", "col": Color(0.75, 0.78, 0.85),
 		"sub": "The biggest little city. The smallest little odds."},
 	{"name": "BILOXI", "casino": "HARD ROK", "full": "Biloxi: Hard Rok", "zone": 2, "alley_floors": 0,
 		"status": "GOLD", "perk": "Chips +15%, shop prices -10%", "col": Color(1.0, 0.82, 0.3),
@@ -18,7 +18,7 @@ const CITIES := [
 		"status": "PLATINUM", "perk": "Chips +20%, +1 max life", "col": Color(0.85, 0.95, 1.0),
 		"sub": "Old Vegas. Neon, gold, and a tank full of sharks."},
 	{"name": "THE STRIP", "casino": "BELLAGIRO", "full": "The Strip: Bellagiro", "zone": 5, "alley_floors": 0,
-		"status": "BLACK CARD", "perk": "Chips +30%, the House respects you", "col": Color(0.1, 0.1, 0.12),
+		"status": "BLACK CARD", "perk": "Chips +30%", "col": Color(0.1, 0.1, 0.12),
 		"sub": "The nicest casino in Vegas. The fountain alone costs more than you."},
 ]
 const STATUS_ORDER := ["NONE", "BRONZE", "SILVER", "GOLD", "PLATINUM", "BLACK CARD"]
