@@ -8,21 +8,67 @@ extends RefCounted
 const Scenery := preload("res://scripts/scenery.gd")
 const SpriteChar := preload("res://scripts/sprite_char.gd")
 
+## Keep loaded textures alive: a texture loaded inside a draw call and then
+## dropped is freed before the GPU draws it (it renders as solid white).
+static var _tex_cache := {}
+
+
+static func tex(path: String) -> Texture2D:
+	if not _tex_cache.has(path):
+		_tex_cache[path] = load(path) if ResourceLoader.exists(path) else null
+	return _tex_cache[path]
+
 const HORIZON := 430.0
 const ROOF_Y := 560.0
 
 
 static func draw_scene(ci: CanvasItem, f: Font, t: float, tt: float) -> void:
 	var flash := _lightning(t)
-	_sky(ci, t, flash)
-	_strip(ci, f, t)
-	_city(ci, t, flash)
+	if not _art_skyline(ci, t, flash):
+		_sky(ci, t, flash)
+		_strip(ci, f, t)
+		_city(ci, t, flash)
 	_neon_signs(ci, f, t)
-	_rooftop(ci, t, flash)
 	_foreground(ci, f, t, false)
 	_rain(ci, t)
 	_foreground(ci, f, t, true)
 	_finish(ci, t, tt, flash)
+
+
+## The painted night skyline (CraftPix "scrolling city" layers in assets/bg),
+## drawn at 3x with nearest filtering so the pixels stay crisp. Each layer drifts
+## at its own speed for parallax; a gold Vegas glow sits on the horizon and the
+## searchlights sweep through the sky. Returns false if the art is missing.
+static func _art_skyline(ci: CanvasItem, t: float, flash: float) -> bool:
+	var layers: Array = []
+	for i in range(1, 6):
+		var p := "res://assets/bg/skyline_1/%d.png" % i
+		if tex(p) != null:
+			layers.append(tex(p))
+	if layers.is_empty():
+		return false
+	var sc := 3.0
+	var y0 := 720.0 - 324.0 * sc + 60.0   # crop a little of the bottom, show the towers
+	for li in layers.size():
+		var tex: Texture2D = layers[li]
+		var w := tex.get_width() * sc
+		var speed: float = [0.0, 2.0, 5.0, 9.0, 15.0, 24.0][mini(li, 5)]
+		var off := fposmod(t * speed, w)
+		var x := -off
+		while x < 1280.0:
+			ci.draw_texture_rect(tex, Rect2(x, y0, w, tex.get_height() * sc), false)
+			x += w
+		if li == 1:
+			# Behind the near layers: the Strip's gold glow and the searchlights.
+			Scenery.glow(ci, Vector2(980, 470), 520.0, 150.0, Color(1.0, 0.62, 0.3, 0.28))
+			for s in 4:
+				var ang := -PI * 0.5 + sin(t * 0.5 + s * 1.7) * 0.42
+				Scenery.beam(ci, Vector2(760 + s * 140, 520), ang, 640, 44, Color(1.0, 0.92, 0.7, 0.07))
+	# Cinematic grade: cool shadows, a warm horizon, and lightning.
+	Scenery.vgrad(ci, Rect2(0, 0, 1280, 720), [[0.0, Color(0.05, 0.02, 0.12, 0.35)], [0.55, Color(0.3, 0.1, 0.25, 0.0)], [1.0, Color(0.02, 0.0, 0.04, 0.55)]])
+	if flash > 0.0:
+		ci.draw_rect(Rect2(0, 0, 1280, 720), Color(0.75, 0.75, 1.0, 0.18 * flash))
+	return true
 
 
 # ---------------------------------------------------------------- sky

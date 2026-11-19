@@ -559,3 +559,24 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
   - Verify with `tests/capture_enemies.gd` and `tests/poses.gd`. All tests must pass.
 
 > **Note (LOCAL session, 2026-11-19):** Rico's brother is now named **JAMES** (renamed from Jules everywhere, including the voice folder `voice/james` and the line ids `james_*`). Use James in all new and rewritten lines.
+
+- [ ] **56. Use the CraftPix background art in the levels and the road trip.** Art is in `assets/bg/` (see `LICENSE_craftpix.txt`).
+  - **What's there:**
+    - `skyline_1..8/1-5.png`: parallax layers, back to front, 576x324. Draw at 3x with nearest filtering.
+    - `silhouette_1..8/1-5.png`: grey night silhouettes. Tint them.
+    - `street_1..4/*.png`: street scenes, 1920x1080, with separate layers:
+      - street_1: grimy alley (dumpsters, graffiti, crates)
+      - street_2: downtown bar street
+      - street_3: neon shopping strip
+      - street_4: classy town square with a fountain
+  - **IMPORTANT:** cache every loaded texture in a static dictionary (see `title_screen.gd` `tex()`). A texture loaded inside `_draw` and then dropped is freed before the GPU draws it, and it renders as solid white.
+  - **Level backdrops:** each city gets its own distant parallax skyline behind the level and a street layer for the hub, tinted to the city mood and matching the trashy-to-luxury climb:
+    - Atlantic Shitty: street_1 alley plus a dark dusky skyline
+    - Reno: street_2
+    - Biloxi: skyline teal
+    - Fremont: street_3 neon
+    - The Strip: street_4 and a luxe pink skyline
+    - Keep them behind gameplay, darkened enough that platforms stay readable.
+  - **Road trip (`scripts/roadtrip.gd`):** replace the code-drawn skyline with the matching skyline art per city, keeping the cars, traffic, road and effects.
+  - **The apartment street hub:** use street_1 or street_2 layers as the backdrop.
+  - Verify with `capture_zones.gd`, `capture_drive.gd` and `capture_home.gd` screenshots. All tests must pass.
