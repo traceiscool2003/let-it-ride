@@ -632,29 +632,11 @@ func _draw_title() -> void:
 		else:
 			draw_string_outline(f, Vector2(x, y), label, HORIZONTAL_ALIGNMENT_LEFT, -1, 25, 4, Color(0, 0, 0, 0.7 * ka))
 			draw_string(f, Vector2(x, y), label, HORIZONTAL_ALIGNMENT_LEFT, -1, 25, Color(0.85, 0.82, 0.92, 0.62 * ka))
-	# Runner card: a glass panel bottom-right, near Rico on the roof.
-	var ca := clampf((tt - 1.8) / 0.4, 0.0, 1.0)
-	if ca > 0.0:
-		var ch: Dictionary = g.CHARACTERS[g.char_i]
-		var unlocked: bool = g.char_unlocked(g.char_i)
-		var pr := Rect2(1280 - 430 + (1.0 - ease(ca, 0.3)) * 60.0, 586, 396, 92)
-		draw_rect(pr, Color(0.05, 0.03, 0.09, 0.72 * ca))
-		Scenery.hgrad(self, Rect2(pr.position, Vector2(pr.size.x, 2)), Color(1.0, 0.8, 0.3, 0.9 * ca), Color(1.0, 0.35, 0.55, 0.0))
-		draw_rect(pr, Color(1, 1, 1, 0.12 * ca), false, 1.0)
-		var pc := Rect2(pr.position + Vector2(8, 8), Vector2(76, 76))
-		draw_rect(pc, Color(0.12, 0.06, 0.16, ca))
-		if unlocked:
-			Art.npc_portrait(self, pc.get_center() + Vector2(0, 2), ch["name"], t, 4.6)
-		else:
-			_txt(Vector2(pc.position.x, pc.position.y + 54), "?", 48, DIM, HORIZONTAL_ALIGNMENT_CENTER, pc.size.x)
-		_txt(Vector2(pr.position.x + 98, pr.position.y + 28), "RUNNER", 12, Color(DIM, ca))
-		_txt(Vector2(pr.position.x + 158, pr.position.y + 30), "<  " + (ch["name"] if unlocked else "???") + "  >", 22, Color(1.0, 0.86, 0.5, ca))
-		draw_multiline_string(f, Vector2(pr.position.x + 98, pr.position.y + 54), ch["desc"] if unlocked else ch["lock"], HORIZONTAL_ALIGNMENT_LEFT, 286, 14, 2, Color(DIM, ca))
 	# Key-cap hints and the stats bar.
 	var ha := clampf((tt - 2.0) / 0.4, 0.0, 1.0)
 	if ha > 0.0:
 		var hx := 92.0
-		for hint in [["UP/DOWN", "Choose"], ["LEFT/RIGHT", "Runner"], ["SPACE", "Select"], ["F6", "Voice Studio"]]:
+		for hint in [["UP/DOWN", "Choose"], ["SPACE", "Select"], ["F6", "Voice Studio"]]:
 			hx = _keycap(Vector2(hx, 674), String(hint[0]), String(hint[1]), ha) + 20.0
 		var stats := "WALLET %s   ·   LEVEL %d   ·   BEST %s   ·   RUNS %d   ·   TROPHIES %d/%d" % [
 			_money(g.wallet), g.level_num, _money(g.best), g.runs, g.trophies.size(), g.TROPHIES.size()]

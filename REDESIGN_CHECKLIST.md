@@ -543,3 +543,17 @@ Item 50 (sound effects and grunt slots) is being done in a LOCAL session. Do NOT
   - **Persistence:** it remembers completion in the save. It can be replayed any time from the hub gate or the pause menu ("PRACTICE").
   - Every new line goes into the voice registry (`voice_lines_misc.gd`) with ids, and must pass `voice_plan.should_record()` (story or tutorial lines are recorded). Then regenerate the kits.
   - **Tests:** add `tests/tutorial_test.gd`, which walks a bot through the stations and checks each completes. Screenshot it with a capture script.
+
+- [ ] **55. Enemies and NPCs use the CraftPix sprite sheets too** (like Rico now does).
+  - **Sheets:** `assets/chars/` (see LICENSE.txt), loaded with `scripts/sprite_char.gd` (SpriteChar.frames / material). Copy the pattern from `player.gd` `_update_sprite()`: AnimatedSprite2D child, SPR_SCALE 0.4, feet on the collider bottom, flip by facing, the hit flash via the shader's `flash`.
+  - **Map the sheets to enemy types** (`enemy_types.gd`):
+    - **gangsters_1 (tommy gun: Shot / Recharge anims):** RANGED gunmen in the later cities (Fremont, the Strip). Play "shot" when firing and "recharge" between volleys.
+    - **gangsters_2 (melee, 3 attack anims):** brawlers and bouncers. Use a different attack anim per combo hit.
+    - **gangsters_3 (suit):** pit boss and suited security.
+    - **city_men_2 / city_men_1:** alley thugs, junkies and the bottle thrower in Atlantic Shitty and Reno.
+    - **city_men_3:** hustlers and card dealers.
+  - **Recolor per city** with the shader (add modes, e.g. a hue-shift uniform) so the same sheet looks different in each city and doesn't clash with Rico's current sheet.
+  - Keep the procedural rig for bats, drones, rats and anything without a sheet.
+  - **NPCs in the apartment and street hub:** pick sheets and recolors that fit each character.
+  - Bosses can keep their current art (do not swap them).
+  - Verify with `tests/capture_enemies.gd` and `tests/poses.gd`. All tests must pass.

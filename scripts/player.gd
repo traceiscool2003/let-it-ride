@@ -10,6 +10,8 @@ enum S { NORMAL, WALL_RUN, LEDGE, CLIMB, SLIDE, DASH, VAULT, DEAD }
 const T := 16.0
 const Rig := preload("res://scripts/rig.gd")
 const RicoArt := preload("res://scripts/rico_art.gd")
+const SpriteChar := preload("res://scripts/sprite_char.gd")
+const SPR_SCALE := 0.4
 const SCARF_N := 8
 const Wardrobe := preload("res://scripts/wardrobe.gd")
 
@@ -46,6 +48,12 @@ var worn: Array = []
 var outfit_floor := 1
 var pounding := false
 var hit_flash := 0.0
+## Sprite-sheet look (SpriteChar). The procedural rig still runs underneath for
+## poses, but it is only drawn when use_sprites is false.
+var use_sprites := true
+var spr: AnimatedSprite2D
+var spr_tier := -1
+var spr_mat: ShaderMaterial
 var charm_ids: Array = []
 var air_jumps := 0
 var dash_cd := 0.0
@@ -94,6 +102,12 @@ func _ready() -> void:
 	add_child(col)
 	_set_body(false)
 	rig = Rig.new(Rig.runner_style(hood, hood_l))
+	if use_sprites:
+		spr = AnimatedSprite2D.new()
+		spr.centered = true
+		spr.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+		spr.z_index = 0
+		add_child(spr)
 
 
 # ---------------------------------------------------------------- helpers
@@ -826,6 +840,8 @@ func _process(delta: float) -> void:
 		if state == S.NORMAL and is_on_floor() and absf(velocity.x) > 60.0:
 			_dust(Vector2(global_position.x - facing * 2.0, _bottom()), 2, Vector2(-facing, -0.8), 0.5)
 	_update_scarf(delta)
+	if use_sprites and spr:
+		_update_sprite(delta)
 	queue_redraw()
 
 
@@ -1011,7 +1027,8 @@ func _draw() -> void:
 	var ghost :=Color(0.85, 0.9, 1.0).lerp(Color(1.0, 0.72, 0.2), flow_ratio)
 	for i in trail.size():
 		var k := float(i + 1) / float(trail.size() + 1)
-		rig.draw_silhouette(self, Transform2D(0.0, trail[i] - global_position) * xf, Color(ghost, 0.2 * k * a))
+		if not use_sprites:
+			rig.draw_silhouette(self, Transform2D(0.0, trail[i] - global_position) * xf, Color(ghost, 0.2 * k * a))
 
 	draw_set_transform(Vector2.ZERO)
 	if false and scarf.size() == SCARF_N:  # scarf removed from the design
@@ -1033,11 +1050,12 @@ func _draw() -> void:
 	elif flow_ratio > 0.7:
 		lk["mood"] = "fired"
 	RicoArt.dress_rig(rig, lk)
-	rig.draw(self, xf, a, RicoArt.body.bind(lk))
-	RicoArt.accessories(self, xf, rig, a, worn, lk)
+	if not use_sprites:
+		rig.draw(self, xf, a, RicoArt.body.bind(lk))
+		RicoArt.accessories(self, xf, rig, a, worn, lk)
 	if not charm_ids.is_empty():
 		Wardrobe.draw_charm_gear(self, rig, xf, charm_ids, a)
-	if hit_flash > 0.0:
+	if hit_flash > 0.0 and not use_sprites:
 		rig.draw_silhouette(self, xf, Color(1, 1, 1, 0.9))
 
 	if flow_ratio > 0.25:
@@ -1089,3 +1107,92 @@ func _ground_below() -> float:
 		if level.solid(cx, cy + i):
 			return float((cy + i) * T)
 	return -1.0
+
+
+# ---------------------------------------------------------------- sprite look
+
+## Pick Rico's sheet for the outfit tier and the animation for the current state.
+func _update_sprite(_delta: float) -> void:
+	var tier := clampi(int((outfit_floor - 1) / 5), 0, SpriteChar.RICO_TIERS.size() - 1)
+	if tier != spr_tier:
+		spr_tier = tier
+		var td: Dictionary = SpriteChar.RICO_TIERS[tier]
+		spr.sprite_frames = SpriteChar.frames(String(td["sheet"]))
+		spr_mat = SpriteChar.material(int(td["recolor"]))
+		spr.material = spr_mat
+		spr.play("idle")
+	var on_floor := is_on_floor() or force_ground
+	var anim := "idle"
+	var frame := -1
+	var rot := 0.0
+	if state == S.DEAD:
+		anim = "dead"
+	elif invuln > 0.9 and state == S.NORMAL:
+		anim = "hurt"
+	elif atk_t > 0.0:
+		anim = "attack"
+		var k := 1.0 - atk_t / cfg.attack_time
+		frame = int(k * spr.sprite_frames.get_frame_count("attack"))
+		if atk_kind == "up":
+			rot = -0.5
+		elif atk_kind == "down":
+			rot = 0.7
+	else:
+		match state:
+			S.SLIDE:
+				anim = "run"
+				frame = 3
+				rot = -0.55
+			S.DASH:
+				anim = "run"
+				frame = 4
+				rot = dash_dir.angle() * 0.4 if absf(dash_dir.x) > 0.2 else -0.3
+			S.WALL_RUN:
+				anim = "run"
+				rot = -1.1
+			S.LEDGE, S.CLIMB, S.VAULT:
+				anim = "jump"
+				frame = 4
+			_:
+				if not on_floor:
+					if spr.sprite_frames.has_animation("jump"):
+						anim = "jump"
+						var n := spr.sprite_frames.get_frame_count("jump")
+						# Rising uses the first half of the jump sheet, falling the second.
+						var k2 := clampf(0.5 + velocity.y / 700.0, 0.0, 0.999)
+						frame = int(k2 * n)
+						if wall_sliding:
+							frame = n - 2
+					else:
+						# No jump sheet: a mid-stride run frame reads as a leap.
+						anim = "run"
+						frame = 2 if velocity.y < 0.0 else 6
+						rot = -0.12 if velocity.y < 0.0 else 0.1
+				elif absf(velocity.x) > 95.0:
+					anim = "run"
+				elif absf(velocity.x) > 12.0:
+					anim = "walk"
+	if not spr.sprite_frames.has_animation(anim):
+		anim = "idle"
+	if spr.animation != anim:
+		spr.play(anim)
+	if frame >= 0:
+		spr.pause()
+		spr.frame = clampi(frame, 0, spr.sprite_frames.get_frame_count(anim) - 1)
+	elif not spr.is_playing():
+		if spr.sprite_frames.get_animation_loop(anim):
+			spr.play(anim)
+	if anim == "run":
+		spr.speed_scale = clampf(absf(velocity.x) / 150.0, 0.7, 1.6)
+	else:
+		spr.speed_scale = 1.0
+	spr.flip_h = facing < 0
+	# Feet on the collider's bottom edge; the body sits slightly left in each frame.
+	var bottom := cfg.stand_size.y * 0.5
+	spr.position = Vector2((1.6 if facing > 0 else -1.6), bottom - (127.0 - 64.0) * SPR_SCALE)
+	spr.rotation = lerp_angle(spr.rotation, rot * float(facing), 0.35)
+	spr.scale = Vector2(SPR_SCALE * squash.x, SPR_SCALE * squash.y)
+	var blink := 0.35 if (invuln > 0.0 and int(invuln * 20.0) % 2 == 0) else 1.0
+	spr.modulate = Color(1, 1, 1, blink)
+	if spr_mat:
+		spr_mat.set_shader_parameter("flash", clampf(hit_flash * 4.0, 0.0, 0.9))

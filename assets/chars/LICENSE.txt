@@ -1,0 +1,5 @@
+Character sprite sheets from CraftPix.net free packs:
+- Free Gangster Pixel Character Sprite Sheets Pack
+- City Man Pixel Art Character Sprite Sheets
+License: https://craftpix.net/file-licenses/ (free for personal and commercial games; do not resell or redistribute the raw files).
+Modified in game: palette changes and recolours per outfit tier.
